@@ -41,7 +41,7 @@ colour map, so one edit recolours every pose at once. Roles are named for the
 colour, not what it paints: the cleric's dome and the fighter's hair come from
 the same slots.
 
-There can be several bases (cleric, fighter, mage) on the same poses. Pick one with
+There can be several bases (cleric, fighter, mage, skeleton) on the same poses. Pick one with
 **Base**; your colours carry over when you switch.
 
 Poses are named `<action><facing>`, like the source files they come from
@@ -54,7 +54,16 @@ The pose data is built from folders of sprite PNGs and is not stored in the
 repo (`poses/` is git-ignored). Rebuild it with:
 
 ```bash
-python3 tools/extract_poses.py cleric=path/to/cleric fighter=path/to/fighter mage=sprites/mage
+python3 tools/extract_poses.py cleric=path/to/cleric fighter=path/to/fighter mage=sprites/mage skeleton=sprites/skeleton
+```
+
+The skeleton is not drawn by hand: `tools/make_skeleton.py` repaints the cleric's
+poses as bone (the dome becomes a skull, the body ribs and legs), keeping every
+silhouette, so it shares anchors and the ground line with the other bases. Run
+it first to produce `sprites/skeleton`:
+
+```bash
+python3 tools/make_skeleton.py path/to/cleric sprites/skeleton
 ```
 
 Raw sprite PNGs can live in `sprites/`, which is also git-ignored. This needs
@@ -71,3 +80,4 @@ check it matches the source exactly.
 | `app.js` | The editor: model, rendering, input, history, export |
 | `characters.html`, `characters.js` | Recolour the base poses, save and export characters |
 | `tools/extract_poses.py` | Builds `poses/base.js` from sprite PNGs |
+| `tools/make_skeleton.py` | Paints the skeleton base on the cleric's poses |
