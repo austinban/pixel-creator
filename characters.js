@@ -2,6 +2,15 @@
 // character is a role -> colour map, and every pose is recoloured from it.
 
 const STORAGE_KEY = 'pixel-creator.character';
+
+// Character files saved before the roles followed the shared palette used
+// these ids; each maps to the palette slot with the same colour.
+const OLD_ROLE_IDS = {
+  'skin-light': 'orange', skin: 'coral', 'skin-shadow': 'orchid', 'skin-pale': 'salmon', 'skin-warm': 'amber',
+  'cloth-shadow': 'indigo', 'cloth-dark': 'blue', 'cloth-mid': 'teal', 'cloth-light': 'mint',
+  'cloth-highlight': 'cream', 'cloth-grey': 'steel', 'cloth-bright': 'sky', 'cloth-deep': 'deep-teal',
+  accent: 'yellow', 'mouth-dark': 'magenta-dark', mouth: 'magenta', 'mouth-bright': 'hot-pink',
+};
 const PLAY_MS = 150;
 const GALLERY_SCALE = 3;
 const STAGE_SCALE = 10;
@@ -18,10 +27,11 @@ if (!data) {
 function boot() {
   el('app').hidden = false;
 
-  const { cell, roles, groups, poses } = data;
+  const { cell, roles, groups, poses, characters } = data;
   const baseColors = Object.fromEntries(roles.map((r) => [r.id, r.hex]));
   const rolesOf = (groupId) => roles.filter((r) => r.group === groupId);
 
+  let base = characters[0];
   let character = fresh();
   let selected = poses.find((p) => p.id === 'chargingSE') || poses[0];
   let frame = 0;
@@ -29,8 +39,10 @@ function boot() {
   let timer = null;
 
   function fresh() {
-    return { name: 'Cleric', hue: {}, colors: { ...baseColors } };
+    return { name: base.label, base: base.id, hue: {}, colors: { ...baseColors } };
   }
+
+  const frameCount = (pose) => pose.cols * pose.rows;
 
   /* ---------- colour ---------- */
 
@@ -82,7 +94,7 @@ function boot() {
     canvas.height = h;
     const ctx = canvas.getContext('2d');
     const image = ctx.createImageData(w, h);
-    pose.frames.forEach((lines, i) => {
+    base.frames[pose.id].forEach((lines, i) => {
       const ox = (i % pose.cols) * cell;
       const oy = Math.floor(i / pose.cols) * cell;
       lines.forEach((line, y) => {
@@ -133,7 +145,7 @@ function boot() {
       drawPose(canvas, pose, rgb);
     });
     drawStage(rgb);
-    const total = selected.frames.length;
+    const total = frameCount(selected);
     el('poseTitle').textContent = selected.label;
     el('poseMeta').textContent = total > 1
       ? `${selected.id} · frame ${frame + 1} of ${total}`
@@ -144,6 +156,7 @@ function boot() {
 
   function syncControls() {
     el('charName').value = character.name;
+    el('baseSelect').value = base.id;
     groups.forEach((g) => {
       const slider = document.querySelector(`input[data-hue="${g.id}"]`);
       if (slider) slider.value = character.hue[g.id] || 0;
@@ -171,7 +184,7 @@ function boot() {
     heading.textContent = g.label;
     section.appendChild(heading);
 
-    if (g.id !== 'outline') {
+    if (g.hue) {
       const row = document.createElement('label');
       row.className = 'hue';
       row.innerHTML = '<span>Hue</span><input type="range" min="-180" max="180" step="1" value="0"><span class="mono" data-hue-readout></span>';
@@ -203,6 +216,22 @@ function boot() {
     el('groups').appendChild(section);
   });
 
+  characters.forEach((c) => {
+    const option = document.createElement('option');
+    option.value = c.id;
+    option.textContent = c.label;
+    el('baseSelect').appendChild(option);
+  });
+
+  el('baseSelect').addEventListener('change', (event) => {
+    // A character still carrying its base's default name follows it to the new base.
+    const renamed = character.name === base.label;
+    base = characters.find((c) => c.id === event.target.value);
+    character.base = base.id;
+    if (renamed) character.name = base.label;
+    changed();
+  });
+
   el('charName').addEventListener('input', (event) => {
     character.name = event.target.value;
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(character)); } catch { /* ignore */ }
@@ -217,7 +246,7 @@ function boot() {
     character = fresh();
     character.name = 'Random';
     groups.forEach((g) => {
-      if (g.id !== 'outline') setGroupHue(g.id, Math.floor(Math.random() * 360) - 180);
+      if (g.hue) setGroupHue(g.id, Math.floor(Math.random() * 360) - 180);
     });
     changed();
   });
@@ -251,9 +280,9 @@ function boot() {
   function startTimer() {
     clearInterval(timer);
     timer = null;
-    if (!playing || selected.frames.length < 2) return;
+    if (!playing || frameCount(selected) < 2) return;
     timer = setInterval(() => {
-      frame = (frame + 1) % selected.frames.length;
+      frame = (frame + 1) % frameCount(selected);
       render();
     }, PLAY_MS);
   }
@@ -294,7 +323,7 @@ function boot() {
   });
 
   el('saveChar').addEventListener('click', () => {
-    const json = JSON.stringify({ version: 1, ...character }, null, 2);
+    const json = JSON.stringify({ version: 2, ...character }, null, 2);
     download(new Blob([json], { type: 'application/json' }), `${slug(character.name)}.json`);
   });
 
@@ -309,6 +338,7 @@ function boot() {
       return;
     }
     character = next;
+    base = characters.find((c) => c.id === next.base);
     el('charNote').textContent = `Loaded ${file.name}.`;
     changed();
   });
@@ -318,10 +348,15 @@ function boot() {
     let raw;
     try { raw = JSON.parse(text); } catch { return null; }
     if (!raw || typeof raw !== 'object' || typeof raw.colors !== 'object' || !raw.colors) return null;
-    const next = fresh();
+    const known = characters.find((c) => c.id === raw.base);
+    const next = { ...fresh(), base: (known || characters[0]).id };
     next.name = typeof raw.name === 'string' ? raw.name : 'Loaded';
+    const saved = { ...raw.colors };
+    Object.entries(OLD_ROLE_IDS).forEach(([old, id]) => {
+      if (old in saved && !(id in saved)) saved[id] = saved[old];
+    });
     roles.forEach((r) => {
-      const hex = raw.colors[r.id];
+      const hex = saved[r.id];
       if (typeof hex === 'string' && /^#[0-9a-f]{6}$/i.test(hex)) next.colors[r.id] = hex.toLowerCase();
     });
     groups.forEach((g) => {
@@ -335,7 +370,10 @@ function boot() {
 
   try {
     const saved = parseCharacter(localStorage.getItem(STORAGE_KEY) || '');
-    if (saved) character = saved;
+    if (saved) {
+      character = saved;
+      base = characters.find((c) => c.id === saved.base);
+    }
   } catch { /* storage blocked */ }
 
   select(selected);

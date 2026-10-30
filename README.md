@@ -35,23 +35,31 @@ Then visit http://localhost:4321.
 ## Characters
 
 `characters.html` recolours a set of base poses into new characters. Pixels in
-the base poses are colour *roles* (head highlight, cloth mid, outline...), and a
-character is a role -> colour map, so one edit recolours every pose at once.
+the base poses are colour *roles*, one per slot of the art's shared master
+palette (orange, coral, magenta, indigo, teal...), and a character is a role ->
+colour map, so one edit recolours every pose at once. Roles are named for the
+colour, not what it paints: the cleric's dome and the fighter's hair come from
+the same slots.
+
+There can be several bases (cleric, fighter) on the same poses. Pick one with
+**Base**; your colours carry over when you switch.
 
 Poses are named `<action><facing>`, like the source files they come from
 (`20240427cleric-attackNE.png` becomes `attackNE`). NE faces away from the
-camera, SE toward it. Exports are named `<character>-<pose>.png`.
+camera, SE toward it. Exports are named `<character>-<pose>.png`. Saved
+character files record their base; files saved before roles followed the
+palette still load.
 
-The pose data is built from a folder of sprite PNGs and is not stored in the
+The pose data is built from folders of sprite PNGs and is not stored in the
 repo (`poses/` is git-ignored). Rebuild it with:
 
 ```bash
-python3 tools/extract_poses.py path/to/sprites
+python3 tools/extract_poses.py cleric=path/to/cleric fighter=path/to/fighter
 ```
 
-This needs Python 3 with Pillow. It stops if any pixel is a colour it has no
-role for, and re-renders every frame from its roles to check it matches the
-source exactly.
+This needs Python 3 with Pillow. It stops on any pixel whose colour has no role
+(add it to `ROLES` in the script), and re-renders every frame from its roles to
+check it matches the source exactly.
 
 ## Layout
 
