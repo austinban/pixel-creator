@@ -57,7 +57,7 @@
     </section>
 
     <section class="group">
-      <h2>Export</h2>
+      <h2>Export &amp; import</h2>
       <label class="field wide">Pixel size
         <select id="scale">
           <option value="1">1× (true size)</option>
@@ -69,6 +69,9 @@
       <p class="hint" id="exportSize"></p>
       <button id="export" class="btn btn-primary">Export PNG</button>
       <p class="hint">Untouched pixels stay fully transparent.</p>
+      <button id="import" class="btn">Import PNG&hellip;</button>
+      <input id="importFile" type="file" accept="image/png,image/gif,image/webp" hidden>
+      <p class="hint" id="importNote">Loads at 1 image pixel per cell, up to 128 &times; 128.</p>
     </section>
   </aside>
 

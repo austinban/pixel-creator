@@ -278,6 +278,66 @@ function exportPng() {
   }, 'image/png');
 }
 
+/* ---------- import ---------- */
+
+const hex2 = (n) => n.toString(16).padStart(2, '0');
+
+async function importImage(file) {
+  const note = el('importNote');
+  let bitmap;
+  try {
+    bitmap = await createImageBitmap(file);
+  } catch {
+    note.textContent = `Couldn't read ${file.name} as an image.`;
+    return;
+  }
+  if (bitmap.width > MAX_DIM || bitmap.height > MAX_DIM) {
+    note.textContent = `${file.name} is ${bitmap.width} × ${bitmap.height}; the limit is ${MAX_DIM} × ${MAX_DIM}.`;
+    return;
+  }
+
+  const probe = document.createElement('canvas');
+  probe.width = bitmap.width;
+  probe.height = bitmap.height;
+  const pctx = probe.getContext('2d', { willReadFrequently: true });
+  pctx.drawImage(bitmap, 0, 0);
+  const { data } = pctx.getImageData(0, 0, bitmap.width, bitmap.height);
+
+  // Cells are either a colour or empty, so partial transparency has to snap
+  // one way: half-opaque and up counts as painted.
+  const next = new Array(bitmap.width * bitmap.height).fill(null);
+  const found = [];
+  for (let i = 0; i < next.length; i++) {
+    const o = i * 4;
+    if (data[o + 3] < 128) continue;
+    const hex = `#${hex2(data[o])}${hex2(data[o + 1])}${hex2(data[o + 2])}`;
+    next[i] = hex;
+    if (!found.includes(hex)) found.push(hex);
+  }
+
+  pushHistory(snapshot());
+  cols = bitmap.width;
+  rows = bitmap.height;
+  pixels = next;
+  el('cols').value = cols;
+  el('rows').value = rows;
+  found.forEach((hex) => {
+    if (!palette.some((p) => p.toLowerCase() === hex)) palette.push(hex);
+  });
+  layout();
+  draw();
+  renderPalette();
+  updateStatus();
+  note.textContent = `Imported ${file.name}: ${cols} × ${rows}, ${found.length} colours added to the palette.`;
+}
+
+el('import').addEventListener('click', () => el('importFile').click());
+el('importFile').addEventListener('change', (event) => {
+  const [file] = event.target.files;
+  event.target.value = ''; // lets the same file be chosen twice in a row
+  if (file) importImage(file);
+});
+
 /* ---------- controls ---------- */
 
 el('resize').addEventListener('click', () => {

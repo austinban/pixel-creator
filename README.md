@@ -23,6 +23,10 @@ Then visit http://localhost:4321.
 - **Tools** — pencil (`B`), eraser (`E`), flood fill (`G`), eyedropper (`I`).
 - **Undo / redo** — `Cmd/Ctrl+Z` and `Cmd/Ctrl+Shift+Z`. A whole drag counts as
   one step.
+- **Import** — load a PNG, GIF or WebP up to 128×128 at one image pixel per
+  cell. The grid resizes to fit, transparent pixels stay empty, and the
+  image's colours are added to the palette. Pixels that are at least half
+  opaque become solid; the rest become empty.
 - **Export** — PNG at 1×, 8×, 16× or 32× the grid. Cells you never touch are
   written as fully transparent pixels, and the export is drawn fresh rather
   than captured from the screen, so neither the grid lines nor the
