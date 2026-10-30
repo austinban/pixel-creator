@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Characters &middot; Pixel Creator</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div>
+    <h1>Pixel Creator</h1>
+    <p class="tagline">One set of base poses, any number of characters.</p>
+  </div>
+  <nav class="nav">
+    <a href="index.html">Editor</a>
+    <a href="characters.html" aria-current="page">Characters</a>
+  </nav>
+</header>
+
+<main class="layout" id="app" hidden>
+  <aside class="panel">
+    <section class="group">
+      <h2>Character</h2>
+      <label class="field wide">Name<input id="charName" type="text" maxlength="40"></label>
+      <div class="row">
+        <button id="randomize" class="btn btn-primary">Randomize</button>
+        <button id="reset" class="btn">Reset</button>
+      </div>
+    </section>
+
+    <div id="groups" class="panel"></div>
+
+    <section class="group">
+      <h2>Save &amp; export</h2>
+      <label class="field wide">Pixel size
+        <select id="exportScale">
+          <option value="1">1× (true size)</option>
+          <option value="4" selected>4×</option>
+          <option value="8">8×</option>
+        </select>
+      </label>
+      <button id="exportPose" class="btn btn-primary">Export selected pose PNG</button>
+      <div class="row">
+        <button id="saveChar" class="btn">Save JSON</button>
+        <button id="loadChar" class="btn">Load JSON&hellip;</button>
+      </div>
+      <input id="loadFile" type="file" accept="application/json,.json" hidden>
+      <p class="hint" id="charNote"></p>
+    </section>
+  </aside>
+
+  <section class="stage">
+    <div class="preview">
+      <div class="canvas-wrap"><canvas id="stage" aria-label="Selected pose"></canvas></div>
+      <div class="preview-side">
+        <p class="pose-title" id="poseTitle"></p>
+        <p class="hint" id="poseMeta"></p>
+        <div class="row">
+          <button id="play" class="btn">Pause</button>
+        </div>
+        <label class="check"><input id="showGround" type="checkbox"> Show ground line (row <span id="groundRow"></span>)</label>
+      </div>
+    </div>
+
+    <div class="gallery" id="gallery"></div>
+  </section>
+</main>
+
+<section class="empty" id="missing" hidden>
+  <h2>No base poses found</h2>
+  <p>This page reads <code>poses/base.js</code>, which is built from a folder of sprite PNGs and isn't stored in the repo:</p>
+  <pre>python3 tools/extract_poses.py path/to/sprites</pre>
+  <p>Then reload.</p>
+</section>
+
+<script src="poses/base.js"></script>
+<script src="characters.js"></script>
+</body>
+</html>

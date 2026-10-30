@@ -20,9 +20,25 @@ body {
 }
 
 .topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
   padding: 18px 24px 12px;
   border-bottom: 1px solid var(--line);
 }
+
+.nav { display: flex; gap: 4px; }
+
+.nav a {
+  color: var(--muted);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+.nav a:hover { color: var(--text); }
+.nav a[aria-current="page"] { background: var(--panel-2); color: var(--text); }
 
 .topbar h1 { margin: 0; font-size: 18px; letter-spacing: 0.2px; }
 .tagline { margin: 4px 0 0; color: var(--muted); font-size: 13px; }
@@ -166,3 +182,51 @@ kbd {
 @media (max-width: 720px) {
   .layout { grid-template-columns: minmax(0, 1fr); }
 }
+
+input[type="text"] {
+  width: 100%;
+  min-width: 0;
+  background: var(--panel-2);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 6px 8px;
+  font: inherit;
+}
+
+.hue { display: grid; grid-template-columns: auto 1fr 3.2em; gap: 8px; align-items: center; color: var(--muted); font-size: 12px; }
+.hue input[type="range"] { width: 100%; }
+.hue .mono { text-align: right; }
+
+.role-swatches { display: flex; flex-wrap: wrap; gap: 5px; }
+.role-swatches input[type="color"] { width: 28px; height: 28px; }
+
+.preview { display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap; }
+#stage { image-rendering: pixelated; display: block; max-width: 100%; height: auto; }
+.preview-side { display: grid; gap: 10px; min-width: 180px; }
+.pose-title { margin: 0; font-size: 16px; font-weight: 600; }
+
+.gallery { display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-start; }
+
+.pose-card {
+  display: grid;
+  gap: 6px;
+  justify-items: center;
+  background: var(--panel);
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 8px;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.pose-card canvas { image-rendering: pixelated; display: block; background: var(--panel-2); border-radius: 4px; }
+.pose-card:hover { border-color: #3c4454; color: var(--text); }
+.pose-card.is-active { border-color: var(--accent); color: var(--text); }
+
+.empty { max-width: 560px; margin: 48px auto; padding: 0 24px; }
+.empty pre { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 10px 12px; overflow-x: auto; }
+.empty code { font-family: ui-monospace, Menlo, monospace; }
+[hidden] { display: none !important; }

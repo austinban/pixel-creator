@@ -32,6 +32,27 @@ Then visit http://localhost:4321.
   than captured from the screen, so neither the grid lines nor the
   transparency checkerboard end up in the file.
 
+## Characters
+
+`characters.html` recolours a set of base poses into new characters. Pixels in
+the base poses are colour *roles* (head highlight, cloth mid, outline...), and a
+character is a role -> colour map, so one edit recolours every pose at once.
+
+Poses are named `<action><facing>`, like the source files they come from
+(`20240427cleric-attackNE.png` becomes `attackNE`). NE faces away from the
+camera, SE toward it. Exports are named `<character>-<pose>.png`.
+
+The pose data is built from a folder of sprite PNGs and is not stored in the
+repo (`poses/` is git-ignored). Rebuild it with:
+
+```bash
+python3 tools/extract_poses.py path/to/sprites
+```
+
+This needs Python 3 with Pillow. It stops if any pixel is a colour it has no
+role for, and re-renders every frame from its roles to check it matches the
+source exactly.
+
 ## Layout
 
 | File | What's in it |
@@ -39,3 +60,5 @@ Then visit http://localhost:4321.
 | `index.html` | Markup for the panel and the canvas |
 | `styles.css` | All styling |
 | `app.js` | The editor: model, rendering, input, history, export |
+| `characters.html`, `characters.js` | Recolour the base poses, save and export characters |
+| `tools/extract_poses.py` | Builds `poses/base.js` from sprite PNGs |
