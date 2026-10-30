@@ -41,7 +41,7 @@ colour map, so one edit recolours every pose at once. Roles are named for the
 colour, not what it paints: the cleric's dome and the fighter's hair come from
 the same slots.
 
-There can be several bases (cleric, fighter, mage, skeleton, zombie) on the same poses. Pick one with
+There can be several bases (cleric, fighter, mage, skeleton, zombie, knight) on the same poses. Pick one with
 **Base**; your colours carry over when you switch.
 
 Characters are saved in your browser as instances. **Duplicate** copies one (its
@@ -69,7 +69,7 @@ The pose data is built from folders of sprite PNGs and is not stored in the
 repo (`poses/` is git-ignored). Rebuild it with:
 
 ```bash
-python3 tools/extract_poses.py cleric=path/to/cleric fighter=path/to/fighter mage=sprites/mage skeleton=sprites/skeleton zombie=sprites/zombie
+python3 tools/extract_poses.py cleric=path/to/cleric fighter=path/to/fighter mage=sprites/mage skeleton=sprites/skeleton zombie=sprites/zombie knight=sprites/knight
 ```
 
 The skeleton is not drawn by hand: `tools/make_skeleton.py` repaints the cleric's
@@ -93,6 +93,17 @@ against the body.
 python3 tools/make_zombie.py path/to/fighter sprites/zombie
 ```
 
+The knight (`tools/make_knight.py`) is also built on the fighter's poses and
+reshapes them too: the hair becomes a rounded steel helm with a crest, a gold
+brow band and a dark visor, and the body is repainted as clean plate, with
+breastplate bands and a gold belt, plated shoulders, and gauntlets and greaves.
+No skin is left showing. The crest, breastplate, shoulders and knees are drawn on
+the standing frames; the lying and crouched ones get the helm and plain plate.
+
+```bash
+python3 tools/make_knight.py path/to/fighter sprites/knight
+```
+
 Raw sprite PNGs can live in `sprites/`, which is also git-ignored. This needs
 Python 3 with Pillow. It stops on any pixel whose colour has no role
 (add it to `ROLES` in the script), and re-renders every frame from its roles to
@@ -110,3 +121,4 @@ check it matches the source exactly.
 | `tools/extract_poses.py` | Builds `poses/base.js` from sprite PNGs |
 | `tools/make_skeleton.py` | Paints the skeleton base on the cleric's poses |
 | `tools/make_zombie.py` | Paints the zombie base on the fighter's poses |
+| `tools/make_knight.py` | Paints the armoured knight base on the fighter's poses |
