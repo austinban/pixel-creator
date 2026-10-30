@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pixel Creator</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <h1>Pixel Creator</h1>
+  <p class="tagline">Draw on a grid, export a transparent PNG.</p>
+</header>
+
+<main class="layout">
+  <aside class="panel">
+    <section class="group">
+      <h2>Canvas size</h2>
+      <div class="row">
+        <label class="field">W<input id="cols" type="number" min="1" max="128" value="16"></label>
+        <label class="field">H<input id="rows" type="number" min="1" max="128" value="16"></label>
+        <button id="resize" class="btn">Resize</button>
+      </div>
+      <div class="chips" id="presets">
+        <button class="chip" data-size="8">8</button>
+        <button class="chip" data-size="16">16</button>
+        <button class="chip" data-size="32">32</button>
+        <button class="chip" data-size="64">64</button>
+      </div>
+      <p class="hint">Resizing keeps the pixels that still fit.</p>
+    </section>
+
+    <section class="group">
+      <h2>Palette</h2>
+      <div class="swatches" id="swatches"></div>
+      <div class="row">
+        <input id="picker" type="color" value="#111111" aria-label="Custom colour">
+        <button id="addSwatch" class="btn">Add</button>
+      </div>
+      <p class="hint">Current: <span id="currentColor" class="mono">#111111</span></p>
+    </section>
+
+    <section class="group">
+      <h2>Tools</h2>
+      <div class="chips" id="tools">
+        <button class="chip is-active" data-tool="pencil">Pencil <kbd>B</kbd></button>
+        <button class="chip" data-tool="eraser">Eraser <kbd>E</kbd></button>
+        <button class="chip" data-tool="fill">Fill <kbd>G</kbd></button>
+        <button class="chip" data-tool="eyedropper">Pick <kbd>I</kbd></button>
+      </div>
+      <div class="row">
+        <button id="undo" class="btn">Undo</button>
+        <button id="redo" class="btn">Redo</button>
+        <button id="clear" class="btn btn-danger">Clear</button>
+      </div>
+      <label class="check"><input id="showGrid" type="checkbox" checked> Show grid lines</label>
+    </section>
+
+    <section class="group">
+      <h2>Export</h2>
+      <label class="field wide">Pixel size
+        <select id="scale">
+          <option value="1">1× (true size)</option>
+          <option value="8">8×</option>
+          <option value="16" selected>16×</option>
+          <option value="32">32×</option>
+        </select>
+      </label>
+      <p class="hint" id="exportSize"></p>
+      <button id="export" class="btn btn-primary">Export PNG</button>
+      <p class="hint">Untouched pixels stay fully transparent.</p>
+    </section>
+  </aside>
+
+  <section class="stage">
+    <div class="canvas-wrap">
+      <canvas id="grid" aria-label="Pixel canvas"></canvas>
+    </div>
+    <p class="status" id="status">16 × 16 &middot; 0 pixels filled</p>
+  </section>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
