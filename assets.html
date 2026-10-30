@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Assets &middot; Pixel Creator</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div>
+    <h1>Pixel Creator</h1>
+    <p class="tagline">Things that aren't characters: markers, effects, props.</p>
+  </div>
+  <nav class="nav">
+    <a href="index.html">Editor</a>
+    <a href="characters.html">Characters</a>
+    <a href="assets.html" aria-current="page">Assets</a>
+  </nav>
+</header>
+
+<main class="layout" id="app" hidden>
+  <aside class="panel">
+    <section class="group">
+      <h2>Asset</h2>
+      <label class="field wide">Asset<select id="assetSelect"></select></label>
+      <label class="field wide">Saved colours<select id="instanceSelect"></select></label>
+      <div class="row">
+        <button id="dupItem" class="btn">Duplicate</button>
+        <button id="newItem" class="btn">New</button>
+        <button id="deleteItem" class="btn btn-danger">Delete</button>
+      </div>
+      <label class="field wide">Name<input id="itemName" type="text" maxlength="40"></label>
+      <div class="row">
+        <button id="randomize" class="btn btn-primary">Randomize</button>
+        <button id="reset" class="btn">Reset</button>
+      </div>
+    </section>
+
+    <div id="groups" class="panel"></div>
+
+    <section class="group">
+      <h2>Export</h2>
+      <label class="field wide">Pixel size
+        <select id="exportScale">
+          <option value="1">1× (true size)</option>
+          <option value="4" selected>4×</option>
+          <option value="8">8×</option>
+        </select>
+      </label>
+      <button id="exportSheet" class="btn btn-primary">Export sheet PNG</button>
+      <button id="exportFrames" class="btn">Export sheet and frames (ZIP)</button>
+      <button id="exportAll" class="btn">Export all saved (ZIP)</button>
+      <p class="hint" id="note"></p>
+    </section>
+  </aside>
+
+  <section class="stage">
+    <div class="preview">
+      <div class="canvas-wrap"><canvas id="stage" aria-label="Current frame"></canvas></div>
+      <div class="preview-side">
+        <p class="pose-title" id="assetTitle"></p>
+        <p class="hint" id="assetMeta"></p>
+        <div class="row">
+          <button id="play" class="btn">Pause</button>
+        </div>
+        <label class="field wide">Speed
+          <select id="fps">
+            <option value="4">4 frames a second</option>
+            <option value="8">8 frames a second</option>
+            <option value="12">12 frames a second</option>
+            <option value="16">16 frames a second</option>
+            <option value="24">24 frames a second</option>
+          </select>
+        </label>
+        <p class="hint" id="anchorNote"></p>
+      </div>
+    </div>
+
+    <div class="canvas-wrap sheet-wrap"><canvas id="sheet" aria-label="All frames"></canvas></div>
+
+    <section class="group over" id="over">
+      <h2>Over a character</h2>
+      <div class="row">
+        <label class="field wide">Character<select id="overBase"></select></label>
+        <label class="field wide">Pose<select id="overPose"></select></label>
+      </div>
+      <div class="canvas-wrap"><canvas id="overCanvas" aria-label="The asset above a character"></canvas></div>
+      <p class="hint">Centred over the head, with its tip two rows above it at rest (one to three as it bobs). In your game, place each frame so its anchor sits where you want that tip.</p>
+    </section>
+  </section>
+</main>
+
+<section class="empty" id="missing" hidden>
+  <h2>No assets found</h2>
+  <p>This page reads <code>assets/data.js</code>, which is built by:</p>
+  <pre>python3 tools/make_assets.py</pre>
+  <p>Then reload.</p>
+</section>
+
+<script src="colors.js"></script>
+<script src="files.js"></script>
+<script src="zip.js"></script>
+<script src="assets/data.js"></script>
+<script src="poses/base.js"></script>
+<script src="assets.js"></script>
+</body>
+</html>

@@ -244,3 +244,8 @@ a.btn { display: block; text-align: center; text-decoration: none; }
   border-radius: 50%;
   background: var(--accent);
 }
+
+#overCanvas, #sheet { image-rendering: pixelated; display: block; max-width: 100%; height: auto; }
+.sheet-wrap { overflow-x: auto; }
+.over { max-width: 480px; }
+.over .row { align-items: flex-end; }

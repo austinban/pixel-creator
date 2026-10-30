@@ -109,6 +109,34 @@ Python 3 with Pillow. It stops on any pixel whose colour has no role
 (add it to `ROLES` in the script), and re-renders every frame from its roles to
 check it matches the source exactly.
 
+## Assets
+
+`assets.html` is for things that aren't characters. They are painted in the same
+colour roles, so they recolour the same way, and each saved item has its own
+colours, so you can keep a crystal per player. There are the same Duplicate, New
+and Delete buttons, and exports as PNG sheets or ZIPs of every frame.
+
+The first asset is the **turn crystal**: a Sims-style marker for whose turn it is,
+hovering above the active character and turning as it bobs. It is rendered from a
+small 3D model (a stretched octahedron, flat-shaded) by `tools/make_assets.py`, so
+the rotation is real, and it repeats every quarter turn, so it loops without a
+seam. It is 8 frames at 8 a second, in a 32 × 32 cell, the same cell as the
+characters, with at least 5 pixels clear on every side so nothing clips and there
+is room for a glow later. Each asset names an **anchor**, the point where its tip
+hangs at rest: put that point where you want the tip. **Over a character** shows
+it placed that way, two rows above any head at rest, one to three as it bobs.
+
+Unlike the characters, the asset data is generated from code, not from anyone's art,
+so `assets/data.js` is committed. To change the crystal, edit `CRYSTAL` in
+`tools/make_assets.py` (cell size, frames, size, tilt, bob) and run:
+
+```bash
+python3 tools/make_assets.py
+```
+
+Add `--png-dir sprites/assets` to also write each sheet as a PNG and check that it
+re-reads identical. To add another asset, add a renderer beside the crystal.
+
 ## Layout
 
 | File | What's in it |
@@ -117,6 +145,10 @@ check it matches the source exactly.
 | `styles.css` | All styling |
 | `app.js` | The editor: model, rendering, input, history, export, and saving a pose back to a character |
 | `characters.html`, `characters.js` | Recolour the base poses, keep saved characters, export them |
+| `assets.html`, `assets.js` | Recolour assets, keep saved copies, preview them over a character, export |
+| `assets/data.js` | The built assets (committed; made by `tools/make_assets.py`) |
+| `tools/make_assets.py` | Renders the turn crystal and writes `assets/data.js` |
+| `colors.js`, `files.js` | Colour maths and download helpers shared by the pages |
 | `zip.js` | A small ZIP writer for the export buttons |
 | `tools/extract_poses.py` | Builds `poses/base.js` from sprite PNGs |
 | `tools/make_skeleton.py` | Paints the skeleton base on the cleric's poses |
