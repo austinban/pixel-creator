@@ -41,7 +41,7 @@ colour map, so one edit recolours every pose at once. Roles are named for the
 colour, not what it paints: the cleric's dome and the fighter's hair come from
 the same slots.
 
-There can be several bases (cleric, fighter) on the same poses. Pick one with
+There can be several bases (cleric, fighter, mage) on the same poses. Pick one with
 **Base**; your colours carry over when you switch.
 
 Poses are named `<action><facing>`, like the source files they come from
@@ -54,10 +54,11 @@ The pose data is built from folders of sprite PNGs and is not stored in the
 repo (`poses/` is git-ignored). Rebuild it with:
 
 ```bash
-python3 tools/extract_poses.py cleric=path/to/cleric fighter=path/to/fighter
+python3 tools/extract_poses.py cleric=path/to/cleric fighter=path/to/fighter mage=sprites/mage
 ```
 
-This needs Python 3 with Pillow. It stops on any pixel whose colour has no role
+Raw sprite PNGs can live in `sprites/`, which is also git-ignored. This needs
+Python 3 with Pillow. It stops on any pixel whose colour has no role
 (add it to `ROLES` in the script), and re-renders every frame from its roles to
 check it matches the source exactly.
 

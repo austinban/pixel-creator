@@ -2,3 +2,6 @@
 
 # Built from sprite PNGs that aren't ours to republish; see tools/extract_poses.py
 poses/
+
+# Raw sprite PNGs, same reason as poses/
+sprites/

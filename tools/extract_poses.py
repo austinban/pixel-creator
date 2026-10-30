@@ -33,6 +33,7 @@ GROUPS = [
     ('violet', 'Violet'),
     ('blue', 'Blue'),
     ('teal', 'Teal & mint'),
+    ('green', 'Green'),
     ('neutral', 'Cream'),
     ('outline', 'Outline'),
 ]
@@ -60,6 +61,15 @@ ROLES = [
     ('r', 'mint', 'Mint', 'teal', 'a8e3d1'),
     ('s', 'deep-teal', 'Deep teal', 'teal', '007585'),
     ('t', 'cream', 'Cream', 'neutral', 'faf1e3'),
+    ('u', 'purple', 'Purple', 'violet', '8a0c86'),
+    ('v', 'violet', 'Violet', 'violet', 'b13dff'),
+    ('w', 'grape', 'Grape', 'violet', '47255d'),
+    ('x', 'eggplant', 'Eggplant', 'violet', '4e1868'),
+    ('y', 'fuchsia', 'Fuchsia', 'magenta', 'd92cbe'),
+    ('z', 'lime', 'Lime', 'green', 'a9e030'),
+    ('A', 'green', 'Green', 'green', '55dc34'),
+    ('B', 'emerald', 'Emerald', 'green', '00ab56'),
+    ('C', 'sand', 'Sand', 'neutral', 'fae1aa'),
 ]
 
 # action, facing, columns, rows. Pose ids are action + facing, as in the
