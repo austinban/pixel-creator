@@ -2,7 +2,8 @@
 // No build step, no dependencies: the whole editor is this file.
 
 const MAX_DIM = 128;
-const DISPLAY_MAX = 560; // longest on-screen edge of the canvas, in CSS pixels
+const DISPLAY_MAX = 560; // tallest the canvas gets, in CSS pixels
+const DISPLAY_MAX_WIDE = 1000; // widest, so a 128-wide sheet still has usable cells
 const MAX_HISTORY = 100;
 
 const DEFAULT_PALETTE = [
@@ -81,12 +82,9 @@ function layout() {
   // Fit the longest edge into whatever room the stage has, so the canvas never
   // overflows a narrow window.
   const stage = document.querySelector('.stage');
-  const available = Math.min(
-    DISPLAY_MAX,
-    Math.max(120, stage.clientWidth - 24),      // 24 = .canvas-wrap padding
-    Math.max(120, window.innerHeight - 220)     // leave room for header + status
-  );
-  cellSize = Math.max(3, Math.floor(available / Math.max(cols, rows)));
+  const availableWidth = Math.min(DISPLAY_MAX_WIDE, Math.max(120, stage.clientWidth - 24));  // 24 = .canvas-wrap padding
+  const availableHeight = Math.min(DISPLAY_MAX, Math.max(120, window.innerHeight - 220));    // room for header + status
+  cellSize = Math.max(3, Math.min(Math.floor(availableWidth / cols), Math.floor(availableHeight / rows)));
   const dpr = window.devicePixelRatio || 1;
   canvas.width = Math.round(cols * cellSize * dpr);
   canvas.height = Math.round(rows * cellSize * dpr);
@@ -338,6 +336,80 @@ el('importFile').addEventListener('change', (event) => {
   if (file) importImage(file);
 });
 
+/* ---------- editing a character's pose ---------- */
+
+const STORE_KEY = 'pixel-creator.characters';
+const HANDOFF_KEY = 'pixel-creator.handoff';
+let editing = null; // the pose handed over from the characters page, while there is one
+
+function startEditing() {
+  if (new URLSearchParams(window.location.search).get('edit') !== '1') return;
+  let handoff = null;
+  try { handoff = JSON.parse(localStorage.getItem(HANDOFF_KEY)); } catch { /* unreadable */ }
+  const valid = handoff && Number.isInteger(handoff.w) && Number.isInteger(handoff.h)
+    && handoff.w <= MAX_DIM && handoff.h <= MAX_DIM && Array.isArray(handoff.pixels)
+    && handoff.pixels.length === handoff.w * handoff.h;
+  el('editBanner').hidden = false;
+  if (!valid) {
+    el('editTitle').textContent = 'Nothing to edit';
+    el('editNote').textContent = 'Open a pose from the characters page with "Edit in editor".';
+    el('saveBack').hidden = true;
+    return;
+  }
+
+  editing = handoff;
+  cols = handoff.w;
+  rows = handoff.h;
+  pixels = handoff.pixels.slice();
+  el('cols').value = cols;
+  el('rows').value = rows;
+  el('editTitle').textContent = `${handoff.name} · ${handoff.label}`;
+  [...new Set(pixels.filter(Boolean))].forEach((hex) => {
+    if (!palette.some((p) => p.toLowerCase() === hex)) palette.push(hex);
+  });
+
+  // A saved pose has to match the sheet it came from, so the grid is fixed.
+  ['cols', 'rows', 'resize', 'import'].forEach((id) => { el(id).disabled = true; });
+  document.querySelectorAll('#presets .chip').forEach((chip) => { chip.disabled = true; });
+  el('exportSize').textContent = `Saves back as ${cols} × ${rows}`;
+}
+
+// Pixels that still match one of the character's colours go back as that colour's
+// role, so recolouring the character recolours them too; the rest are saved as drawn.
+function saveToCharacter() {
+  if (!editing) return;
+  const note = el('editNote');
+  if (cols !== editing.w || rows !== editing.h) {
+    note.textContent = `The grid has to stay ${editing.w} × ${editing.h}.`;
+    return;
+  }
+  let stored = null;
+  try { stored = JSON.parse(localStorage.getItem(STORE_KEY)); } catch { /* unreadable */ }
+  const item = stored && Array.isArray(stored.items) && stored.items.find((i) => i.id === editing.instanceId);
+  if (!item) {
+    note.textContent = 'That character no longer exists. Open the pose again from the characters page.';
+    return;
+  }
+
+  const roleOf = {};
+  Object.entries(editing.roleColors).forEach(([char, hex]) => {
+    if (!(hex.toLowerCase() in roleOf)) roleOf[hex.toLowerCase()] = char;
+  });
+  const cells = pixels.map((c) => (c ? roleOf[c.toLowerCase()] || c.toLowerCase() : ''));
+  item.edits = item.edits || {};
+  item.edits[editing.poseId] = { w: editing.w, h: editing.h, cells };
+  stored.current = item.id;
+  try {
+    localStorage.setItem(STORE_KEY, JSON.stringify(stored));
+  } catch {
+    note.textContent = 'Could not save: the browser storage is full or blocked.';
+    return;
+  }
+  note.textContent = `Saved to ${item.name}.`;
+}
+
+el('saveBack').addEventListener('click', saveToCharacter);
+
 /* ---------- controls ---------- */
 
 el('resize').addEventListener('click', () => {
@@ -445,9 +517,11 @@ document.addEventListener('keydown', (event) => {
 
 /* ---------- boot ---------- */
 
+startEditing();
 layout();
 draw();
 renderPalette();
 setColor(color);
 updateStatus();
+if (editing) el('exportSize').textContent = `Saves back as ${cols} × ${rows}`;
 refreshHistoryButtons();

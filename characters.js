@@ -1,7 +1,12 @@
 // Characters - the base poses are drawn in colour roles, not colours. A
 // character is a role -> colour map, and every pose is recoloured from it.
+// Characters are saved instances: copy one, change its colours, and open any of
+// its poses in the editor to redraw them; the redrawn pose is stored on that
+// character as an edit.
 
-const STORAGE_KEY = 'pixel-creator.character';
+const STORE_KEY = 'pixel-creator.characters';
+const OLD_KEY = 'pixel-creator.character';       // the single character stored before copies existed
+const HANDOFF_KEY = 'pixel-creator.handoff';     // a pose on its way to the editor
 
 // Character files saved before the roles followed the shared palette used
 // these ids; each maps to the palette slot with the same colour.
@@ -31,15 +36,19 @@ function boot() {
   const baseColors = Object.fromEntries(roles.map((r) => [r.id, r.hex]));
   const rolesOf = (groupId) => roles.filter((r) => r.group === groupId);
 
-  let base = characters[0];
-  let character = fresh();
+  const roleChars = new Set(roles.map((r) => r.char));
+  const baseById = (id) => characters.find((c) => c.id === id) || characters[0];
+  const newId = () => (crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36) + Math.random().toString(36).slice(2, 8));
+
+  let store = loadStore();
+  let character = store.items.find((c) => c.id === store.current);
   let selected = poses.find((p) => p.id === 'chargingSE') || poses[0];
   let frame = 0;
   let playing = true;
   let timer = null;
 
-  function fresh() {
-    return { name: base.label, base: base.id, hue: {}, colors: { ...baseColors } };
+  function fresh(baseId = characters[0].id) {
+    return { id: newId(), name: baseById(baseId).label, base: baseId, hue: {}, colors: { ...baseColors }, edits: {} };
   }
 
   const frameCount = (pose) => pose.cols * pose.rows;
@@ -80,35 +89,46 @@ function boot() {
 
   /* ---------- rendering ---------- */
 
-  function rgbByChar() {
+  function rgbOf(ch) {
     const map = {};
-    roles.forEach((r) => { map[r.char] = toRgb(character.colors[r.id]); });
+    roles.forEach((r) => { map[r.char] = toRgb(ch.colors[r.id]); });
     return map;
   }
 
   // Paint every frame of a pose into one canvas, laid out like its source sheet.
-  function drawPose(canvas, pose, rgb) {
+  // A pose the character has edited is drawn from the edit, not from its base.
+  function drawPose(canvas, pose, ch) {
     const w = pose.cols * cell;
     const h = pose.rows * cell;
     canvas.width = w;
     canvas.height = h;
     const ctx = canvas.getContext('2d');
     const image = ctx.createImageData(w, h);
-    base.frames[pose.id].forEach((lines, i) => {
-      const ox = (i % pose.cols) * cell;
-      const oy = Math.floor(i / pose.cols) * cell;
-      lines.forEach((line, y) => {
-        for (let x = 0; x < cell; x++) {
-          const c = rgb[line[x]];
-          if (!c) continue;
-          image.data.set([c[0], c[1], c[2], 255], ((oy + y) * w + ox + x) * 4);
-        }
+    const rgb = rgbOf(ch);
+    const edit = ch.edits[pose.id];
+    if (edit) {
+      edit.cells.forEach((value, i) => {
+        if (!value) return;
+        const c = value.length === 1 ? rgb[value] : toRgb(value);
+        if (c) image.data.set([c[0], c[1], c[2], 255], i * 4);
       });
-    });
+    } else {
+      baseById(ch.base).frames[pose.id].forEach((lines, i) => {
+        const ox = (i % pose.cols) * cell;
+        const oy = Math.floor(i / pose.cols) * cell;
+        lines.forEach((line, y) => {
+          for (let x = 0; x < cell; x++) {
+            const c = rgb[line[x]];
+            if (!c) continue;
+            image.data.set([c[0], c[1], c[2], 255], ((oy + y) * w + ox + x) * 4);
+          }
+        });
+      });
+    }
     ctx.putImageData(image, 0, 0);
   }
 
-  function drawStage(rgb) {
+  function drawStage() {
     const canvas = el('stage');
     const size = cell * STAGE_SCALE;
     canvas.width = size;
@@ -126,7 +146,7 @@ function boot() {
     }
 
     const sheet = document.createElement('canvas');
-    drawPose(sheet, selected, rgb);
+    drawPose(sheet, selected, character);
     const sx = (frame % selected.cols) * cell;
     const sy = Math.floor(frame / selected.cols) * cell;
     ctx.drawImage(sheet, sx, sy, cell, cell, 0, 0, size, size);
@@ -139,24 +159,27 @@ function boot() {
   }
 
   function render() {
-    const rgb = rgbByChar();
-    document.querySelectorAll('.pose-card canvas').forEach((canvas) => {
-      const pose = poses.find((p) => p.id === canvas.closest('.pose-card').dataset.id);
-      drawPose(canvas, pose, rgb);
+    document.querySelectorAll('.pose-card').forEach((card) => {
+      const pose = poses.find((p) => p.id === card.dataset.id);
+      drawPose(card.querySelector('canvas'), pose, character);
+      card.classList.toggle('is-edited', Boolean(character.edits[pose.id]));
     });
-    drawStage(rgb);
+    drawStage();
     const total = frameCount(selected);
-    el('poseTitle').textContent = selected.label;
+    const edited = Boolean(character.edits[selected.id]);
+    el('poseTitle').textContent = selected.label + (edited ? ' · edited' : '');
     el('poseMeta').textContent = total > 1
       ? `${selected.id} · frame ${frame + 1} of ${total}`
       : `${selected.id} · 1 frame`;
     el('play').hidden = total < 2;
     el('play').textContent = playing ? 'Pause' : 'Play';
+    el('revertPose').hidden = !edited;
   }
 
   function syncControls() {
+    refreshInstances();
     el('charName').value = character.name;
-    el('baseSelect').value = base.id;
+    el('baseSelect').value = character.base;
     groups.forEach((g) => {
       const slider = document.querySelector(`input[data-hue="${g.id}"]`);
       if (slider) slider.value = character.hue[g.id] || 0;
@@ -172,8 +195,86 @@ function boot() {
   function changed() {
     syncControls();
     render();
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(character)); } catch { /* storage full or blocked */ }
+    persist();
   }
+
+  /* ---------- saved characters ---------- */
+
+  function persist() {
+    try {
+      localStorage.setItem(STORE_KEY, JSON.stringify({ version: 3, current: character.id, items: store.items }));
+    } catch {
+      el('charNote').textContent = 'Could not save: the browser storage is full or blocked.';
+    }
+  }
+
+  function loadStore() {
+    try {
+      const raw = JSON.parse(localStorage.getItem(STORE_KEY) || 'null');
+      if (raw && Array.isArray(raw.items)) {
+        const items = raw.items.map((item) => normalize(item, true)).filter(Boolean);
+        if (items.length) return { current: items.some((i) => i.id === raw.current) ? raw.current : items[0].id, items };
+      }
+      const old = normalize(JSON.parse(localStorage.getItem(OLD_KEY) || 'null'), false);
+      if (old) return { current: old.id, items: [old] };
+    } catch { /* unreadable or blocked: start fresh */ }
+    const first = fresh();
+    return { current: first.id, items: [first] };
+  }
+
+  function refreshInstances() {
+    const select = el('instanceSelect');
+    select.textContent = '';
+    store.items.forEach((item) => {
+      const option = document.createElement('option');
+      option.value = item.id;
+      option.textContent = item.name || 'Untitled';
+      select.appendChild(option);
+    });
+    select.value = character.id;
+    el('deleteChar').disabled = store.items.length < 2;
+  }
+
+  function switchTo(item) {
+    character = item;
+    store.current = item.id;
+    changed();
+  }
+
+  el('instanceSelect').addEventListener('change', (event) => {
+    switchTo(store.items.find((i) => i.id === event.target.value));
+  });
+
+  el('dupChar').addEventListener('click', () => {
+    const copy = JSON.parse(JSON.stringify(character));
+    copy.id = newId();
+    copy.name = `${character.name} copy`;
+    store.items.splice(store.items.indexOf(character) + 1, 0, copy);
+    switchTo(copy);
+    el('charNote').textContent = `Copied to "${copy.name}". Its colours and edits are its own now.`;
+  });
+
+  el('newChar').addEventListener('click', () => {
+    const next = fresh(character.base);
+    store.items.push(next);
+    switchTo(next);
+  });
+
+  el('deleteChar').addEventListener('click', () => {
+    if (store.items.length < 2 || !window.confirm(`Delete "${character.name}" and its edits?`)) return;
+    const at = store.items.indexOf(character);
+    store.items.splice(at, 1);
+    switchTo(store.items[Math.min(at, store.items.length - 1)]);
+  });
+
+  // The editor saves into the same store from another page; pick its changes up.
+  window.addEventListener('storage', (event) => {
+    if (event.key !== STORE_KEY) return;
+    store = loadStore();
+    character = store.items.find((c) => c.id === store.current);
+    syncControls();
+    render();
+  });
 
   /* ---------- controls ---------- */
 
@@ -225,26 +326,31 @@ function boot() {
 
   el('baseSelect').addEventListener('change', (event) => {
     // A character still carrying its base's default name follows it to the new base.
-    const renamed = character.name === base.label;
-    base = characters.find((c) => c.id === event.target.value);
-    character.base = base.id;
-    if (renamed) character.name = base.label;
+    const renamed = character.name === baseById(character.base).label;
+    character.base = event.target.value;
+    if (renamed) character.name = baseById(character.base).label;
     changed();
   });
 
   el('charName').addEventListener('input', (event) => {
     character.name = event.target.value;
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(character)); } catch { /* ignore */ }
+    el('instanceSelect').selectedOptions[0].textContent = character.name || 'Untitled';
+    persist();
   });
 
+  // Reset and Randomize change the colours only; the name and any edits stay.
+  function resetColors() {
+    character.colors = { ...baseColors };
+    character.hue = {};
+  }
+
   el('reset').addEventListener('click', () => {
-    character = fresh();
+    resetColors();
     changed();
   });
 
   el('randomize').addEventListener('click', () => {
-    character = fresh();
-    character.name = 'Random';
+    resetColors();
     groups.forEach((g) => {
       if (g.hue) setGroupHue(g.id, Math.floor(Math.random() * 360) - 180);
     });
@@ -296,6 +402,37 @@ function boot() {
   el('showGround').addEventListener('change', render);
   el('groundRow').textContent = data.ground;
 
+  /* ---------- editing a pose ---------- */
+
+  // Hand the selected pose to the editor as plain colours, with the character's
+  // role colours so the editor can tie matching pixels back to roles on save.
+  el('editPose').addEventListener('click', () => {
+    const sheet = document.createElement('canvas');
+    drawPose(sheet, selected, character);
+    const { data: px } = sheet.getContext('2d', { willReadFrequently: true }).getImageData(0, 0, sheet.width, sheet.height);
+    const pixels = [];
+    for (let i = 0; i < px.length; i += 4) pixels.push(px[i + 3] ? toHex([px[i], px[i + 1], px[i + 2]]) : null);
+    const roleColors = {};
+    roles.forEach((r) => { roleColors[r.char] = character.colors[r.id]; });
+    persist();
+    try {
+      localStorage.setItem(HANDOFF_KEY, JSON.stringify({
+        instanceId: character.id, name: character.name, poseId: selected.id, label: selected.label,
+        w: sheet.width, h: sheet.height, pixels, roleColors,
+      }));
+    } catch {
+      el('charNote').textContent = 'Could not open the editor: the browser storage is full or blocked.';
+      return;
+    }
+    window.location.href = 'index.html?edit=1';
+  });
+
+  el('revertPose').addEventListener('click', () => {
+    delete character.edits[selected.id];
+    changed();
+    el('charNote').textContent = `${selected.label} is back to the base pose.`;
+  });
+
   /* ---------- export, save, load ---------- */
 
   function download(blob, filename) {
@@ -309,47 +446,75 @@ function boot() {
 
   const slug = (text) => (text || 'character').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'character';
 
-  el('exportPose').addEventListener('click', () => {
-    const scale = Number(el('exportScale').value);
+  async function pngBytes(ch, pose, scale) {
     const source = document.createElement('canvas');
-    drawPose(source, selected, rgbByChar());
+    drawPose(source, pose, ch);
     const out = document.createElement('canvas');
     out.width = source.width * scale;
     out.height = source.height * scale;
     const ctx = out.getContext('2d');
     ctx.imageSmoothingEnabled = false;
     ctx.drawImage(source, 0, 0, out.width, out.height);
-    out.toBlob((blob) => download(blob, `${slug(character.name)}-${selected.id}.png`), 'image/png');
+    const blob = await new Promise((resolve) => out.toBlob(resolve, 'image/png'));
+    return new Uint8Array(await blob.arrayBuffer());
+  }
+
+  el('exportPose').addEventListener('click', async () => {
+    const bytes = await pngBytes(character, selected, Number(el('exportScale').value));
+    download(new Blob([bytes], { type: 'image/png' }), `${slug(character.name)}-${selected.id}.png`);
   });
+
+  // Every pose of each character, as one ZIP. With several characters each gets
+  // a folder, and two that share a name are told apart with a number.
+  async function exportSets(items, zipName) {
+    const scale = Number(el('exportScale').value);
+    const folders = new Map();
+    const files = [];
+    for (const ch of items) {
+      let name = slug(ch.name);
+      const used = folders.get(name) || 0;
+      folders.set(name, used + 1);
+      if (used) name = `${name}-${used + 1}`;
+      for (const pose of poses) {
+        const folder = items.length > 1 ? `${name}/` : '';
+        files.push({ name: `${folder}${name}-${pose.id}.png`, data: await pngBytes(ch, pose, scale) });
+      }
+    }
+    download(makeZip(files), zipName);
+    el('charNote').textContent = `Exported ${files.length} PNGs in ${zipName}.`;
+  }
+
+  el('exportSet').addEventListener('click', () => exportSets([character], `${slug(character.name)}-set.zip`));
+  el('exportAll').addEventListener('click', () => exportSets(store.items, 'characters.zip'));
 
   el('saveChar').addEventListener('click', () => {
-    const json = JSON.stringify({ version: 2, ...character }, null, 2);
-    download(new Blob([json], { type: 'application/json' }), `${slug(character.name)}.json`);
+    const { id, ...rest } = character;
+    download(new Blob([JSON.stringify({ version: 3, ...rest }, null, 2)], { type: 'application/json' }), `${slug(character.name)}.json`);
   });
 
+  // Loading a file adds a new character; it never replaces the one you have open.
   el('loadChar').addEventListener('click', () => el('loadFile').click());
   el('loadFile').addEventListener('change', async (event) => {
     const [file] = event.target.files;
     event.target.value = '';
     if (!file) return;
-    const next = parseCharacter(await file.text());
+    let next = null;
+    try { next = normalize(JSON.parse(await file.text()), false); } catch { /* not JSON */ }
     if (!next) {
       el('charNote').textContent = `${file.name} isn't a character file.`;
       return;
     }
-    character = next;
-    base = characters.find((c) => c.id === next.base);
-    el('charNote').textContent = `Loaded ${file.name}.`;
-    changed();
+    store.items.push(next);
+    switchTo(next);
+    el('charNote').textContent = `Loaded ${file.name} as "${next.name}".`;
   });
 
   // Anything missing falls back to the original colour, so older files keep working.
-  function parseCharacter(text) {
-    let raw;
-    try { raw = JSON.parse(text); } catch { return null; }
+  function normalize(raw, keepId) {
     if (!raw || typeof raw !== 'object' || typeof raw.colors !== 'object' || !raw.colors) return null;
     const known = characters.find((c) => c.id === raw.base);
-    const next = { ...fresh(), base: (known || characters[0]).id };
+    const next = fresh((known || characters[0]).id);
+    if (keepId && typeof raw.id === 'string') next.id = raw.id;
     next.name = typeof raw.name === 'string' ? raw.name : 'Loaded';
     const saved = { ...raw.colors };
     Object.entries(OLD_ROLE_IDS).forEach(([old, id]) => {
@@ -363,18 +528,18 @@ function boot() {
       const deg = raw.hue && Number(raw.hue[g.id]);
       if (Number.isFinite(deg)) next.hue[g.id] = deg;
     });
+    poses.forEach((pose) => {
+      const edit = raw.edits && raw.edits[pose.id];
+      const size = pose.cols * cell * pose.rows * cell;
+      const valid = (v) => typeof v === 'string' && (v === '' || (v.length === 1 && roleChars.has(v)) || /^#[0-9a-f]{6}$/.test(v));
+      if (edit && Array.isArray(edit.cells) && edit.cells.length === size && edit.cells.every(valid)) {
+        next.edits[pose.id] = { w: pose.cols * cell, h: pose.rows * cell, cells: edit.cells };
+      }
+    });
     return next;
   }
 
   /* ---------- boot ---------- */
-
-  try {
-    const saved = parseCharacter(localStorage.getItem(STORAGE_KEY) || '');
-    if (saved) {
-      character = saved;
-      base = characters.find((c) => c.id === saved.base);
-    }
-  } catch { /* storage blocked */ }
 
   select(selected);
   syncControls();

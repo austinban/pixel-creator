@@ -22,6 +22,12 @@
   <aside class="panel">
     <section class="group">
       <h2>Character</h2>
+      <label class="field wide">Saved characters<select id="instanceSelect"></select></label>
+      <div class="row">
+        <button id="dupChar" class="btn">Duplicate</button>
+        <button id="newChar" class="btn">New</button>
+        <button id="deleteChar" class="btn btn-danger">Delete</button>
+      </div>
       <label class="field wide">Base<select id="baseSelect"></select></label>
       <label class="field wide">Name<input id="charName" type="text" maxlength="40"></label>
       <div class="row">
@@ -42,6 +48,8 @@
         </select>
       </label>
       <button id="exportPose" class="btn btn-primary">Export selected pose PNG</button>
+      <button id="exportSet" class="btn">Export full set (ZIP)</button>
+      <button id="exportAll" class="btn">Export all characters (ZIP)</button>
       <div class="row">
         <button id="saveChar" class="btn">Save JSON</button>
         <button id="loadChar" class="btn">Load JSON&hellip;</button>
@@ -60,6 +68,8 @@
         <div class="row">
           <button id="play" class="btn">Pause</button>
         </div>
+        <button id="editPose" class="btn btn-primary">Edit in editor&hellip;</button>
+        <button id="revertPose" class="btn" hidden>Revert edits</button>
         <label class="check"><input id="showGround" type="checkbox"> Show ground line (row <span id="groundRow"></span>)</label>
       </div>
     </div>
@@ -75,6 +85,7 @@
   <p>Then reload.</p>
 </section>
 
+<script src="zip.js"></script>
 <script src="poses/base.js"></script>
 <script src="characters.js"></script>
 </body>

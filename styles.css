@@ -230,3 +230,17 @@ input[type="text"] {
 .empty pre { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 10px 12px; overflow-x: auto; }
 .empty code { font-family: ui-monospace, Menlo, monospace; }
 [hidden] { display: none !important; }
+
+a.btn { display: block; text-align: center; text-decoration: none; }
+
+.pose-card { position: relative; }
+.pose-card.is-edited::after {
+  content: '';
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+}
