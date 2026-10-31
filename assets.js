@@ -8,7 +8,9 @@ const SHEET_SCALE = 3;
 const OVER_SCALE = 8;
 const OVER_GAP = 2;        // rows between the asset's tip and the top of a head
 const CHARACTER_CELL = 32;
-const OVER_SIZE = { w: 48, h: 64 };
+const OVER_SIZE = { w: 48, h: 64 };          // an asset hanging above a character
+const BESIDE_SIZE = { w: 64, h: 32 };        // an asset standing next to one, on the same ground
+const BESIDE_AT = { asset: 0, character: 28 };
 
 const el = (id) => document.getElementById(id);
 const data = window.ASSETS;
@@ -27,6 +29,7 @@ function boot() {
   const defaultRgb = Object.fromEntries(roles.map((r) => [r.char, toRgb(r.hex)]));
   const rolesOf = (groupId) => roles.filter((r) => r.group === groupId);
   const assetById = (id) => assets.find((a) => a.id === id) || assets[0];
+  const isVariants = (asset) => asset.kind === 'variants';
   const newId = () => (crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36) + Math.random().toString(36).slice(2, 8));
 
   let store = loadStore();
@@ -93,7 +96,10 @@ function boot() {
   function switchTo(next) {
     item = next;
     store.current = next.id;
+    frame = 0;
+    useAssetSpeed();
     changed();
+    startTimer();
   }
 
   el('instanceSelect').addEventListener('change', (event) => switchTo(store.items.find((i) => i.id === event.target.value)));
@@ -217,23 +223,13 @@ function boot() {
     ctx.strokeRect((frame % asset.cols) * asset.w * scaled + 1, Math.floor(frame / asset.cols) * asset.h * scaled + 1, asset.w * scaled - 2, asset.h * scaled - 2);
   }
 
-  // The asset hovering above a character's head, as it would in play.
-  function drawOver(asset, rgb) {
+  // The character frame for the view, as plain pixels, and where its head is.
+  function characterFigure(frameIndex) {
     const poses = window.BASE_POSES;
-    const canvas = el('overCanvas');
-    canvas.width = OVER_SIZE.w * OVER_SCALE;
-    canvas.height = OVER_SIZE.h * OVER_SCALE;
-    const ctx = canvas.getContext('2d');
-    ctx.imageSmoothingEnabled = false;
-    checker(ctx, canvas.width, canvas.height, OVER_SCALE * 2);
-
     const base = poses.characters.find((c) => c.id === el('overBase').value);
     const pose = poses.poses.find((p) => p.id === el('overPose').value);
     const frames = base.frames[pose.id];
-    const lines = frames[frame % frames.length];
-    const left = (OVER_SIZE.w - CHARACTER_CELL) / 2;
-    const topOfCell = OVER_SIZE.h - CHARACTER_CELL;
-
+    const lines = frames[frameIndex % frames.length];
     const figure = document.createElement('canvas');
     figure.width = CHARACTER_CELL;
     figure.height = CHARACTER_CELL;
@@ -251,12 +247,38 @@ function boot() {
       }
     });
     fctx.putImageData(image, 0, 0);
-    ctx.drawImage(figure, left * OVER_SCALE, topOfCell * OVER_SCALE, CHARACTER_CELL * OVER_SCALE, CHARACTER_CELL * OVER_SCALE);
+    return { canvas: figure, headTop, headCentre: topCells.reduce((s, x) => s + x, 0) / topCells.length + 0.5 };
+  }
 
-    const headCentre = left + topCells.reduce((a, b) => a + b, 0) / topCells.length + 0.5;
-    const x0 = Math.round(headCentre - asset.anchor.x);
-    const y0 = topOfCell + headTop - OVER_GAP - asset.anchor.y;
-    ctx.drawImage(frameCanvas(asset, frame, rgb), x0 * OVER_SCALE, y0 * OVER_SCALE, asset.w * OVER_SCALE, asset.h * OVER_SCALE);
+  // The asset in use beside a character: hanging above the head, or standing on the ground.
+  function drawOver(asset, rgb) {
+    const canvas = el('overCanvas');
+    const size = asset.place === 'ground' ? BESIDE_SIZE : OVER_SIZE;
+    canvas.width = size.w * OVER_SCALE;
+    canvas.height = size.h * OVER_SCALE;
+    const ctx = canvas.getContext('2d');
+    ctx.imageSmoothingEnabled = false;
+    checker(ctx, canvas.width, canvas.height, OVER_SCALE * 2);
+    const at = (x, y, source, w, h) => ctx.drawImage(source, x * OVER_SCALE, y * OVER_SCALE, w * OVER_SCALE, h * OVER_SCALE);
+
+    if (asset.place === 'ground') {
+      // Same cell, same ground row: they share a baseline and a scale.
+      const figure = characterFigure(0);
+      at(BESIDE_AT.asset, 0, frameCanvas(asset, frame, rgb), asset.w, asset.h);
+      at(BESIDE_AT.character, 0, figure.canvas, CHARACTER_CELL, CHARACTER_CELL);
+      ctx.fillStyle = 'rgba(110,168,254,0.45)';
+      ctx.fillRect(0, asset.anchor.y * OVER_SCALE - 1, canvas.width, 2);
+      el('overNote').textContent = 'Standing on the same ground row as the character, at the same scale. The line marks the ground; an asset\u2019s anchor is where its base meets it.';
+    } else {
+      const figure = characterFigure(frame);
+      const left = (OVER_SIZE.w - CHARACTER_CELL) / 2;
+      const topOfCell = OVER_SIZE.h - CHARACTER_CELL;
+      at(left, topOfCell, figure.canvas, CHARACTER_CELL, CHARACTER_CELL);
+      const x0 = Math.round(left + figure.headCentre - asset.anchor.x);
+      const y0 = topOfCell + figure.headTop - OVER_GAP - asset.anchor.y;
+      at(x0, y0, frameCanvas(asset, frame, rgb), asset.w, asset.h);
+      el('overNote').textContent = 'Centred over the head, with its tip two rows above it at rest (one to three as it bobs). In your game, place each frame so its anchor sits where you want that tip.';
+    }
   }
 
   function render() {
@@ -265,9 +287,16 @@ function boot() {
     drawStage(asset, rgb);
     drawSheet(asset, rgb);
     if (window.BASE_POSES) drawOver(asset, rgb);
-    el('assetTitle').textContent = asset.label;
-    el('assetMeta').textContent = `${asset.id} · frame ${frame + 1} of ${asset.frames.length} · ${asset.w} × ${asset.h}`;
-    el('anchorNote').textContent = `Anchor: x ${asset.anchor.x}, y ${asset.anchor.y}: the tip at rest. Place that point where the tip should hang; the bob moves it one row either way.`;
+    const variants = isVariants(asset);
+    el('assetTitle').textContent = variants ? `${asset.label}: ${asset.names[frame]}` : asset.label;
+    el('assetMeta').textContent = variants
+      ? `${asset.id} · variant ${frame + 1} of ${asset.frames.length} · ${asset.w} × ${asset.h}`
+      : `${asset.id} · frame ${frame + 1} of ${asset.frames.length} · ${asset.w} × ${asset.h}`;
+    el('anchorNote').textContent = asset.place === 'ground'
+      ? `Anchor: x ${asset.anchor.x}, y ${asset.anchor.y}: the middle of the base, on the ground. Click a variant below to switch.`
+      : `Anchor: x ${asset.anchor.x}, y ${asset.anchor.y}: the tip at rest. Place that point where the tip should hang; the bob moves it one row either way.`;
+    el('play').hidden = variants;
+    el('speedRow').hidden = variants;
     el('play').textContent = playing ? 'Pause' : 'Play';
   }
 
@@ -288,6 +317,7 @@ function boot() {
   }
 
   function changed() {
+    if (frame >= assetById(item.asset).frames.length) frame = 0;
     syncControls();
     render();
     persist();
@@ -376,8 +406,8 @@ function boot() {
   function startTimer() {
     clearInterval(timer);
     timer = null;
-    if (!playing) return;
     const asset = assetById(item.asset);
+    if (!playing || isVariants(asset)) return;
     timer = setInterval(() => {
       frame = (frame + 1) % asset.frames.length;
       render();
@@ -393,8 +423,22 @@ function boot() {
 
   // Each asset says how fast it is meant to run; start there.
   function useAssetSpeed() {
-    el('fps').value = String(assetById(item.asset).fps);
+    const fps = assetById(item.asset).fps;
+    if (fps) el('fps').value = String(fps);
   }
+
+  // Click a frame in the filmstrip to look at it; for variants that is how you choose one.
+  el('sheet').addEventListener('click', (event) => {
+    const asset = assetById(item.asset);
+    const rect = el('sheet').getBoundingClientRect();
+    const x = ((event.clientX - rect.left) / rect.width) * el('sheet').width;
+    const y = ((event.clientY - rect.top) / rect.height) * el('sheet').height;
+    const index = Math.floor(y / (asset.h * SHEET_SCALE)) * asset.cols + Math.floor(x / (asset.w * SHEET_SCALE));
+    if (index < 0 || index >= asset.frames.length) return;
+    frame = index;
+    render();
+    if (!isVariants(asset)) startTimer();   // carry on from the frame you picked
+  });
 
   /* ---------- over a character ---------- */
 
@@ -454,7 +498,8 @@ function boot() {
       const folder = items.length > 1 ? `${name}/` : '';
       files.push({ name: `${folder}${name}-sheet.png`, data: await pngBytes(sheetCanvas(asset, rgb), scale()) });
       for (let i = 0; i < asset.frames.length; i++) {
-        files.push({ name: `${folder}${name}-${String(i + 1).padStart(2, '0')}.png`, data: await pngBytes(frameCanvas(asset, i, rgb), scale()) });
+        const label = asset.names ? slug(asset.names[i]) : String(i + 1).padStart(2, '0');
+        files.push({ name: `${folder}${name}-${label}.png`, data: await pngBytes(frameCanvas(asset, i, rgb), scale()) });
       }
     }
     download(makeZip(files), zipName);

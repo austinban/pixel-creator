@@ -64,7 +64,7 @@
         <div class="row">
           <button id="play" class="btn">Pause</button>
         </div>
-        <label class="field wide">Speed
+        <label class="field wide" id="speedRow">Speed
           <select id="fps">
             <option value="4">4 frames a second</option>
             <option value="8">8 frames a second</option>
@@ -80,13 +80,13 @@
     <div class="canvas-wrap sheet-wrap"><canvas id="sheet" aria-label="All frames"></canvas></div>
 
     <section class="group over" id="over">
-      <h2>Over a character</h2>
+      <h2>With a character</h2>
       <div class="row">
         <label class="field wide">Character<select id="overBase"></select></label>
         <label class="field wide">Pose<select id="overPose"></select></label>
       </div>
       <div class="canvas-wrap"><canvas id="overCanvas" aria-label="The asset above a character"></canvas></div>
-      <p class="hint">Centred over the head, with its tip two rows above it at rest (one to three as it bobs). In your game, place each frame so its anchor sits where you want that tip.</p>
+      <p class="hint" id="overNote"></p>
     </section>
   </section>
 </main>

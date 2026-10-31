@@ -126,6 +126,17 @@ is room for a glow later. Each asset names an **anchor**, the point where its ti
 hangs at rest: put that point where you want the tip. **Over a character** shows
 it placed that way, two rows above any head at rest, one to three as it bobs.
 
+The second asset is the **rock barrier**, a piece of terrain you can't walk through.
+It is a set of four **variants**, not an animation (a boulder, a tall rock, a pair,
+and a low slab), so the page lets you click one instead of playing it. Each rock is
+a jittered, subdivided mesh with a flat base, flat-shaded in cool stone with moss
+speckled on the upward-facing surfaces, so it recolours through the same sliders.
+It is built to the characters' scale: the same 32 × 32 cell, and the lowest painted
+row is row 27, the same row a standing character's feet end on, so a rock and a
+character placed in the same cell share a ground line. **With a character** shows
+them side by side on that line. Each variant keeps at least 3 pixels clear of the
+cell edge.
+
 Unlike the characters, the asset data is generated from code, not from anyone's art,
 so `assets/data.js` is committed. To change the crystal, edit `CRYSTAL` in
 `tools/make_assets.py` (cell size, frames, size, tilt, bob) and run:
@@ -135,7 +146,9 @@ python3 tools/make_assets.py
 ```
 
 Add `--png-dir sprites/assets` to also write each sheet as a PNG and check that it
-re-reads identical. To add another asset, add a renderer beside the crystal.
+re-reads identical. To add another asset, add a renderer beside the crystal and the rock. An asset says
+whether it is an `animation` or a set of `variants`, and whether it sits `above` a
+character or `ground`ed beside one.
 
 ## Layout
 

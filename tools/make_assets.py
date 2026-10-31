@@ -24,6 +24,7 @@ import extract_poses as ep  # noqa: E402
 SPARK, LIT, BASE, SHADE, DEEP, OUTLINE = 't', 'z', 'A', 'B', 's', 'O'
 
 SHEET_COLS = 8  # frames per row in an asset's sheet
+GROUND_ROW = 27  # the lowest painted row of a standing character: assets that sit on the ground end here too
 
 # --- the turn crystal -------------------------------------------------------
 CRYSTAL = dict(
@@ -40,6 +41,171 @@ CRYSTAL = dict(
 def normalise(v):
     n = math.sqrt(sum(c * c for c in v))
     return tuple(c / n for c in v)
+
+
+# --- rocks ------------------------------------------------------------------
+# A rock is a jittered, subdivided icosahedron with a flat base, flat-shaded. Stone
+# is the cool ramp (steel, lavender, indigo) held to a narrow range so it reads as
+# rock and not as a gem. Moss is small green speckle on the upward-facing surfaces.
+STONE = ((0.84, 'q'), (0.62, 'p'), (0.44, 'l'), (0.30, 'k'), (0.0, 'w'))
+MOSS = ((0.62, 'z'), (0.44, 'A'), (0.0, 'B'))
+CRACK = 'w'
+PHI = (1 + 5 ** 0.5) / 2
+ICO_VERTS = [(-1, PHI, 0), (1, PHI, 0), (-1, -PHI, 0), (1, -PHI, 0), (0, -1, PHI), (0, 1, PHI),
+             (0, -1, -PHI), (0, 1, -PHI), (PHI, 0, -1), (PHI, 0, 1), (-PHI, 0, -1), (-PHI, 0, 1)]
+ICO_FACES = [(0, 11, 5), (0, 5, 1), (0, 1, 7), (0, 7, 10), (0, 10, 11), (1, 5, 9), (5, 11, 4), (11, 10, 2),
+             (10, 7, 6), (7, 1, 8), (3, 9, 4), (3, 4, 2), (3, 2, 6), (3, 6, 8), (3, 8, 9), (4, 9, 5),
+             (2, 4, 11), (6, 2, 10), (8, 6, 7), (9, 8, 1)]
+
+
+def subdivided_sphere():
+    """The icosahedron with every face split in four, on the unit sphere."""
+    verts = [normalise(v) for v in ICO_VERTS]
+    midpoints = {}
+
+    def mid(i, j):
+        key = (min(i, j), max(i, j))
+        if key not in midpoints:
+            verts.append(normalise(tuple((verts[i][c] + verts[j][c]) / 2 for c in range(3))))
+            midpoints[key] = len(verts) - 1
+        return midpoints[key]
+
+    faces = []
+    for a, b, c in ICO_FACES:
+        ab, bc, ca = mid(a, b), mid(b, c), mid(c, a)
+        faces += [(a, ab, ca), (b, bc, ab), (c, ca, bc), (ab, bc, ca)]
+    return verts, faces
+
+
+SPHERE = subdivided_sphere()
+
+
+class Lcg:
+    """A tiny seeded random source, so the same seed always gives the same rock."""
+    def __init__(self, seed):
+        self.state = (seed * 2654435761) % 2 ** 32 or 1
+
+    def next(self):
+        self.state = (self.state * 1664525 + 1013904223) % 2 ** 32
+        return self.state / 2 ** 32
+
+
+ROCK = dict(
+    id='rock', label='Rock barrier', w=32, h=32,
+    tilt=28,          # degrees the camera looks down
+    flat=0.5,         # how much of the bottom is cut away, so it sits on the ground
+    light=(-0.45, 0.62, 0.64),
+    variants=[
+        dict(name='Boulder', moss=40, cracks=2, rocks=[dict(rx=11.5, ry=11.0, rz=9.0, jitter=0.16, seed=4, yaw=20, ox=0, oz=0)]),
+        dict(name='Tall rock', moss=30, cracks=2, rocks=[dict(rx=8.0, ry=14.0, rz=7.0, jitter=0.16, seed=2, yaw=-25, ox=0, oz=0)]),
+        dict(name='Twin rocks', moss=40, cracks=2, rocks=[dict(rx=7.6, ry=9.2, rz=7.0, jitter=0.16, seed=3, yaw=10, ox=-4.4, oz=-2),
+                                                         dict(rx=4.8, ry=5.2, rz=4.6, jitter=0.18, seed=14, yaw=-30, ox=6.4, oz=3)]),
+        dict(name='Slab', moss=25, cracks=2, rocks=[dict(rx=11.6, ry=5.6, rz=7.6, jitter=0.14, seed=5, yaw=8, ox=0, oz=0)]),
+    ],
+)
+
+
+def tone(table, value):
+    return next(char for floor, char in table if value > floor)
+
+
+def hash2(x, y, seed):
+    return ((x * 73856093) ^ (y * 19349663) ^ (seed * 83492791)) % 1000 / 1000
+
+
+def render_rock_variant(spec, variant, seed_override=None):
+    w, h = spec['w'], spec['h']
+    tilt = math.radians(spec['tilt'])
+    light = normalise(spec['light'])
+    cos_t, sin_t = math.cos(tilt), math.sin(tilt)
+    sphere_verts, sphere_faces = SPHERE
+    tris = []
+    first_seed = None
+    for index, rock in enumerate(variant['rocks']):
+        seed = rock['seed'] if seed_override is None else seed_override + index * 17
+        first_seed = seed if first_seed is None else first_seed
+        rng = Lcg(seed)
+        yaw = math.radians(rock['yaw'])
+        verts = []
+        for nx, ny, nz in sphere_verts:
+            k = 1 + (rng.next() - 0.5) * 2 * rock['jitter']
+            x, y, z = nx * rock['rx'] * k, ny * rock['ry'] * k, nz * rock['rz'] * k
+            y = max(y, -spec['flat'] * rock['ry'])
+            x, z = x * math.cos(yaw) + z * math.sin(yaw), -x * math.sin(yaw) + z * math.cos(yaw)
+            verts.append((x + rock['ox'], y, z + rock['oz']))
+        centre = (rock['ox'], 0, rock['oz'])
+        for fid, face in enumerate(sphere_faces):
+            pts = [verts[i] for i in face]
+            u = tuple(pts[1][i] - pts[0][i] for i in range(3))
+            v2 = tuple(pts[2][i] - pts[0][i] for i in range(3))
+            n = (u[1] * v2[2] - u[2] * v2[1], u[2] * v2[0] - u[0] * v2[2], u[0] * v2[1] - u[1] * v2[0])
+            mid = tuple(sum(q[i] for q in pts) / 3 - centre[i] for i in range(3))
+            if sum(n[i] * mid[i] for i in range(3)) < 0:
+                n = tuple(-c for c in n)
+            if not any(n):
+                continue
+            n = normalise(n)
+            vn = (n[0], n[1] * cos_t - n[2] * sin_t, n[2] * cos_t + n[1] * sin_t)   # as the camera sees it
+            if vn[2] <= 0:
+                continue
+            shade = 0.2 + 0.8 * max(0.0, sum(vn[i] * light[i] for i in range(3)))
+            shade += (hash2(fid, index, seed) - 0.5) * 0.10      # a little grain between neighbouring facets
+            screen = [(x, y * cos_t - z * sin_t, z * cos_t + y * sin_t) for x, y, z in pts]
+            tris.append((screen, shade, n[1]))
+
+    big = 80
+    ox, oy = big / 2, big * 0.75
+    cells = {}
+    for py in range(big):
+        for px in range(big):
+            x, y = px + 0.5 - ox, oy - (py + 0.5)
+            hit = [(max(q[2] for q in p), shade, up) for p, shade, up in tris if inside(p, x, y)]
+            if hit:
+                _, shade, up = max(hit)
+                cells[(px, py)] = (shade, up)
+    if not cells:
+        return ['.' * w] * h
+    xs, ys = [c[0] for c in cells], [c[1] for c in cells]
+    dx = round(w / 2 - (min(xs) + max(xs) + 1) / 2)
+    dy = (GROUND_ROW - 1) - max(ys)          # the lowest body row sits just above the outline row
+    grid = [['.'] * w for _ in range(h)]
+    placed = {}
+    for (px, py), (shade, up) in cells.items():
+        qx, qy = px + dx, py + dy
+        if not (0 <= qx < w and 0 <= qy < h):
+            continue
+        # Moss: speckle, in small clumps, on surfaces that face up.
+        mossy = up > 0.5 and hash2(qx // 2, qy // 2, first_seed) * 100 < variant['moss'] * (up - 0.3) * 2.2
+        grid[qy][qx] = tone(MOSS if mossy else STONE, shade)
+        placed[(qx, qy)] = shade
+
+    # Cracks: short runs down and to the right from near the top.
+    rng = Lcg(first_seed * 7 + 1)
+    top = min(y for _, y in placed)
+    for _ in range(variant.get('cracks', 0)):
+        cx_, cy_ = int(w / 2 + (rng.next() - 0.5) * 12), top + 2 + int(rng.next() * 5)
+        for step in range(3 + int(rng.next() * 3)):
+            for q in ((cx_ + step, cy_ + step), (cx_ + step + 1, cy_ + step)):
+                if q in placed and grid[q[1]][q[0]] not in ('z', 'A', 'B'):
+                    grid[q[1]][q[0]] = CRACK
+    for (px, py) in placed:
+        for ddx in (-1, 0, 1):
+            for ddy in (-1, 0, 1):
+                nx, ny = px + ddx, py + ddy
+                if 0 <= nx < w and 0 <= ny < h and grid[ny][nx] == '.':
+                    grid[ny][nx] = OUTLINE
+    return [''.join(row) for row in grid]
+
+
+def inside(p, x, y):
+    """Whether the point (x, y) is inside the triangle p, ignoring depth."""
+    (x0, y0, _), (x1, y1, _), (x2, y2, _) = p
+    d = (y1 - y2) * (x0 - x2) + (x2 - x1) * (y0 - y2)
+    if d == 0:
+        return False
+    a = ((y1 - y2) * (x - x2) + (x2 - x1) * (y - y2)) / d
+    b = ((y2 - y0) * (x - x2) + (x0 - x2) * (y - y2)) / d
+    return a >= 0 and b >= 0 and 1 - a - b >= 0
 
 
 def render_crystal(spec, frame):
@@ -79,13 +245,6 @@ def render_crystal(spec, frame):
         shade = 0.22 + 0.78 * max(0.0, sum(n[i] * light[i] for i in range(3)))
         visible.append((p, shade))
 
-    def inside(p, x, y):
-        (x0, y0, _), (x1, y1, _), (x2, y2, _) = p
-        d = (y1 - y2) * (x0 - x2) + (x2 - x1) * (y0 - y2)
-        a = ((y1 - y2) * (x - x2) + (x2 - x1) * (y - y2)) / d
-        b = ((y2 - y0) * (x - x2) + (x0 - x2) * (y - y2)) / d
-        return a >= 0 and b >= 0 and 1 - a - b >= 0
-
     grid = [['.'] * w for _ in range(h)]
     filled = {}
     for py in range(h):
@@ -119,55 +278,78 @@ def render_crystal(spec, frame):
     return [''.join(row) for row in grid]
 
 
+def sheet_layout(count):
+    return min(count, SHEET_COLS), -(-count // SHEET_COLS)
+
+
+def build_assets():
+    crystal = CRYSTAL
+    crystal_frames = [render_crystal(crystal, f) for f in range(crystal['frames'])]
+    cols, rows = sheet_layout(len(crystal_frames))
+    crystal_asset = {
+        'id': crystal['id'], 'label': crystal['label'], 'kind': 'animation', 'place': 'above',
+        'w': crystal['w'], 'h': crystal['h'], 'cols': cols, 'rows': rows, 'fps': crystal['fps'],
+        # Where the tip hangs: the bottom edge of the lowest pixel, in the frame where it is at rest.
+        'anchor': {'x': crystal['w'] // 2, 'y': 1 + max(y for y, row in enumerate(crystal_frames[0]) if row.strip('.'))},
+        'frames': crystal_frames,
+    }
+
+    rock = ROCK
+    rock_frames = [render_rock_variant(rock, v) for v in rock['variants']]
+    cols, rows = sheet_layout(len(rock_frames))
+    rock_asset = {
+        'id': rock['id'], 'label': rock['label'], 'kind': 'variants', 'place': 'ground',
+        'names': [v['name'] for v in rock['variants']],
+        'w': rock['w'], 'h': rock['h'], 'cols': cols, 'rows': rows, 'fps': 0,
+        # The middle of the base, on the ground row characters stand on.
+        'anchor': {'x': rock['w'] // 2, 'y': GROUND_ROW + 1},
+        'frames': rock_frames,
+    }
+    return [crystal_asset, rock_asset]
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__.split('\n')[0])
     parser.add_argument('--png-dir', type=Path, help='also write each asset as a PNG sheet here, and check it')
     parser.add_argument('--out', type=Path, default=Path(__file__).resolve().parent.parent / 'assets' / 'data.js')
     args = parser.parse_args()
 
-    spec = CRYSTAL
-    frames = [render_crystal(spec, f) for f in range(spec['frames'])]
-    asset = {
-        'id': spec['id'], 'label': spec['label'], 'w': spec['w'], 'h': spec['h'],
-        'cols': min(spec['frames'], SHEET_COLS), 'rows': -(-spec['frames'] // SHEET_COLS), 'fps': spec['fps'],
-        # Where the tip hangs: the bottom edge of the lowest pixel, in the frame where it is at rest.
-        'anchor': {'x': spec['w'] // 2, 'y': 1 + max(y for y, row in enumerate(frames[0]) if row.strip('.'))},
-        'frames': frames,
-    }
+    assets = build_assets()
     data = {
         'groups': [{'id': i, 'label': l, 'hue': i not in ('outline', 'neutral')} for i, l in ep.GROUPS],
         'roles': [{'char': c, 'id': i, 'label': l, 'group': g, 'hex': '#' + h} for c, i, l, g, h in ep.ROLES],
-        'assets': [asset],
+        'assets': assets,
     }
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text('window.ASSETS = ' + json.dumps(data, separators=(',', ':')) + ';\n')
-    print(f'wrote {len(data["assets"])} asset(s) -> {args.out}')
+    print(f'wrote {len(assets)} asset(s) -> {args.out}')
 
     if args.png_dir:
         from PIL import Image
         to_rgb = {c: tuple(int(h[i:i + 2], 16) for i in (0, 2, 4)) for c, _, _, _, h in ep.ROLES}
         args.png_dir.mkdir(parents=True, exist_ok=True)
-        sheet = Image.new('RGBA', (asset['w'] * asset['cols'], asset['h'] * asset['rows']), (0, 0, 0, 0))
-        px = sheet.load()
-        origin = lambda f: ((f % asset['cols']) * asset['w'], (f // asset['cols']) * asset['h'])
-        for f, rows in enumerate(asset['frames']):
-            ox, oy = origin(f)
-            for y, row in enumerate(rows):
-                for x, ch in enumerate(row):
-                    if ch != '.':
-                        px[ox + x, oy + y] = (*to_rgb[ch], 255)
-        path = args.png_dir / f'{asset["id"]}.png'
-        sheet.save(path)
-        # Re-read the PNG and compare every pixel with what the roles say it should be.
-        back = Image.open(path).convert('RGBA').load()
-        for f, rows in enumerate(asset['frames']):
-            ox, oy = origin(f)
-            for y, row in enumerate(rows):
-                for x, ch in enumerate(row):
-                    want = (0, 0, 0, 0) if ch == '.' else (*to_rgb[ch], 255)
-                    if back[ox + x, oy + y] != want:
-                        sys.exit(f'{path}: round trip differs at frame {f} ({x}, {y})')
-        print(f'{len(asset["frames"])} frames written and re-read identical -> {path}')
+        for asset in assets:
+            sheet = Image.new('RGBA', (asset['w'] * asset['cols'], asset['h'] * asset['rows']), (0, 0, 0, 0))
+            px = sheet.load()
+            origin = lambda f: ((f % asset['cols']) * asset['w'], (f // asset['cols']) * asset['h'])
+            for f, rows in enumerate(asset['frames']):
+                ox, oy = origin(f)
+                for y, row in enumerate(rows):
+                    for x, ch in enumerate(row):
+                        if ch != '.':
+                            px[ox + x, oy + y] = (*to_rgb[ch], 255)
+            path = args.png_dir / f'{asset["id"]}.png'
+            sheet.save(path)
+            # Re-read the PNG and compare every pixel with what the roles say it should be.
+            back = Image.open(path).convert('RGBA').load()
+            for f, rows in enumerate(asset['frames']):
+                ox, oy = origin(f)
+                for y, row in enumerate(rows):
+                    for x, ch in enumerate(row):
+                        want = (0, 0, 0, 0) if ch == '.' else (*to_rgb[ch], 255)
+                        if back[ox + x, oy + y] != want:
+                            sys.exit(f'{path}: round trip differs at frame {f} ({x}, {y})')
+            print(f'{asset["id"]}: {len(asset["frames"])} frames written and re-read identical -> {path}')
 
 
 if __name__ == '__main__':

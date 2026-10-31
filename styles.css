@@ -249,3 +249,5 @@ a.btn { display: block; text-align: center; text-decoration: none; }
 .sheet-wrap { overflow-x: auto; }
 .over { max-width: 480px; }
 .over .row { align-items: flex-end; }
+
+#sheet { cursor: pointer; }
