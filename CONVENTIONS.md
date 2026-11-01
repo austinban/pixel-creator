@@ -1,0 +1,197 @@
+# Conventions
+
+The rules every character, creature and weapon here follows, so new ones fit in with the old.
+They were **measured from the original six bases** (cleric, fighter, mage, skeleton, zombie,
+knight), not invented. The Human, Dog and Rat were then brought into line with them.
+
+The same rules, as numbers and code, are in `tools/conventions.py`. Generating a character checks
+them and refuses to write anything that breaks them. To check the whole project:
+
+```bash
+python3 tools/check_conventions.py
+```
+
+Run it after changing any pose, colour ramp, proportion or weapon.
+
+## The cell
+
+- A character is drawn in a **32 × 32** cell. Painted pixels stay inside columns **1-30** and rows
+  **0-31**.
+- A **weapon** is drawn in a **48 × 48** cell, so a swing can pass the character's edge. The
+  character sits in the middle of it, **8 pixels in** from every side.
+- Every pose has the same frame counts: attack 4, walking 8, everything else 1, in both facings.
+
+## Facings
+
+- **NE** is the character seen from behind, going away from the camera.
+- **SE** is the character seen from the front, coming toward it.
+- Light comes from the **upper left, in front**. Do not move it.
+
+## Standing on the ground
+
+- The lowest painted pixel of a frame, outline included, is on **row 27**, even in the middle of a
+  lunge. Walking may have a lifted foot one row up. Generation puts every frame there for you.
+- Lying down (**dead**) sits lower: the lowest row is **29-31**.
+- A frame can only leave the ground if the creature says so on purpose (a leap): `airborne`.
+
+## Outline
+
+- Every silhouette has a one-pixel outline in the **outline** colour. No painted pixel on the edge
+  of a shape is left un-outlined.
+
+## Size and weight
+
+- A standing **person** is **24-27 rows** tall, top of the outline to the ground, with its middle
+  at column **15-18**.
+- A **creature** is wider and lower than a person: **at most 26 columns** wide, **at least 14 rows**
+  tall.
+- **Height by pose.** A flinch is hunched (21-24 rows), a slump is low (16-18), a cast has the arms
+  thrown up (27-28), walking is 23-28, attack 22-27. See `HEIGHT` in `conventions.py`.
+- **Weight.** A figure fills the cell. Painted pixels per frame, in the originals: attack 267-388,
+  charging 274-380, damage 250-363, release 297-373, walking 258-394, weak 220-286, dead 225-312. A
+  character with much less than this reads as floating. Get weight from a thicker body and limbs
+  (`bulk` in `humanoid.py`), not from making the figure taller.
+
+## Lean: characters lean into what they are doing
+
+This is what makes the originals feel heavy. **Lean** is how far the head is from the feet across
+the screen: the middle of the head (the top third) minus the middle of the feet (the bottom three
+rows), in pixels, positive toward the right.
+
+The average of the six originals, frame by frame (`LEAN` in `conventions.py`):
+
+| pose | frame lean (px) |
+|---|---|
+| attack SE | −2.5, +3.5, +4.0, +4.0 |
+| attack NE | −4.0, +0.5, +3.5, +3.5 |
+| charging SE / NE | +3.0 / 0.0 |
+| damage SE / NE | +3.5 / +1.0 |
+| release SE / NE | +2.0 / −1.5 |
+| weak SE / NE | +2.0 / +3.0 |
+| walking SE | +2.0, +0.5, −0.5, +0.5, +2.0, +1.5, 0.0, +1.5 |
+| walking NE | −1.0 (×5), 0.0 (×3) |
+
+The shape of an **attack** is the lesson: the body goes **back** to wind up, then throws its weight
+**forward** and **keeps it there** through the follow-through. It does not straighten up when the
+arm finishes. A person must stay within **2.5 px** of these numbers (the originals themselves
+differ by up to 4).
+
+Leaning is done with **sway**: the upper body (torso, head, arms) moves ahead of the hips while the
+feet stay planted, which is how a figure puts its weight into a movement. Tipping the whole body
+forward barely moves the head across the screen (about 0.1 px a degree) and quickly looks like
+falling over, so do not reach for that. `tools/tune_lean.py` finds the sway that gives each frame
+its lean, and the head sits a little ahead of the shoulders (`head_fwd`), as the originals' do.
+
+## The walk
+
+The originals all share one walk, and it is a **bob with sliding feet**, not a rock forward and back.
+Over its eight frames (`WALK_*` in `conventions.py`):
+
+- **The head stays put.** It moves at most about 1 px across the screen over the whole cycle
+  (the originals: 0-0.8). The upper body does not swing forward and back.
+- **The body bobs down and up twice** in the eight frames, a period of four, by 1-3 rows. A person's
+  legs are straight when standing, so the bob goes *down* from there and back up.
+- **The feet slide** along the ground (the middle of the feet moves 1.2-3.3 px) and barely lift:
+  the lowest row is 26 on one frame at most, 27 on the rest.
+- Because the head does not move, the **lean** in a walk comes from the feet sliding under it, and it is
+  one steady weight shift for the whole walk, not a different one each frame.
+
+Do not fix a walk by adding forward-and-back sway to the body, and do not let a foot swing up and
+through the air.
+
+## The attack
+
+- It is an **overhand swing with the left hand**, in both facings.
+- Frame 1: the arm is swung **back, behind the body**. Frame 2: it comes **up and over the head** in
+  an arc. Frame 3: it strikes **forward and down** through chest height, with a lunge. Frame 4: a
+  low **follow-through**. The other hand guards, then is thrown back for balance.
+- The body turns into the swing and the arm is long, like the originals'.
+- A weapon's four frames give the strike hand's path exactly, in the weapon cell. A person's hand
+  has to be within **4.5 px** of the weapon's grip (the grip is an estimate, so a pixel of slack) on every frame, so a weapon placed in it looks
+  held. `tools/fit_hands.py` finds those positions.
+
+## Weapons
+
+- A weapon is two strips, **NE** and **SE**, of **4 frames of 48 × 48** (192 × 48), named
+  `NAME-attackNE.png` and `NAME-attackSE.png`.
+- A frame shows the weapon where it is in that frame of the attack. All the weapons share one
+  swing, so their paths agree frame by frame (within 6 px).
+- **A weapon is drawn behind the character**, as it will be in the game. The hand and body cover
+  its grip.
+
+## Colour
+
+- Everything is painted in the shared palette's colour **roles**, never in raw colours, so a
+  character recolours with the hue sliders and swatches.
+- A shaded material is a **ramp** of four roles, **light to dark**: lit, base, shade, deep. A ramp
+  never gets lighter as it goes down.
+- Shading has four steps, set by how the surface faces the light: lit, base, shade, deep. Where a
+  nearer part overlaps another, the edge falls into the deep step. That is what separates a leg from
+  a body.
+
+## Proportions of a person
+
+A big head on a small, thick body, like the originals (`BODY` in `humanoid.py`): legs 7 px, torso
+about 8, head about 9; arms **long** (about 7 px, shoulder to wrist) so the strike can reach out; the
+body **bulky** (`bulk` 1.5) so it carries weight; the head ahead of the shoulders (`head_fwd`);
+**small feet**, about 3.4 px long (`foot_rx`), like the originals', since long feet make a walk look
+like it is shuffling in flippers. Scale is 1.05. The **slim** build is `bulk` 1.0 with narrower
+shoulders and hips.
+
+## Builds
+
+A person can be built **slim** instead of the standard heavy build, on purpose. A slim build keeps
+the same head, limbs and reach (so every pose and the weapon hand carry over) but has less bulk
+through the body, and may carry up to **20% less** weight than the lightest original (the standard
+build: 8% less). Builds are declared in `BUILDS` and `BASE_BUILDS` in `conventions.py`, so a slim
+character is a choice you can see, not a loophole. A figure lighter than that reads as floating.
+
+## Look at the 3D model before making sprites
+
+Making the pixel sprites is slow, and it throws away detail, so a design is judged first as the model it
+is: the same ellipsoids, camera and light, drawn smooth, large and in the real colours, from five
+angles (face, SE, side, NE, back). Every creator takes `--model`:
+
+```bash
+python3 tools/make_NAME.py --model previews/NAME-3d.png                       the standing pose
+python3 tools/make_NAME.py --model previews/NAME-3d.png --pose attack --frame 2
+```
+
+It takes about three seconds and makes no sprites. Change the model until it looks right there, show it
+to whoever is approving the design, and only then generate the sprites. The face view is the one to
+check for anything worn on the head.
+
+## Making something new
+
+1. **A person**: copy `tools/make_human.py` and change the name, colours, hair or add accessories.
+   The poses, lean, weight and weapon hand come with it. The lean and hand numbers
+   (`tools/data/humanoid_lean.json`, `humanoid_hands.json`) were tuned for the standard build; if you
+   change the proportions a lot, re-run `tools/tune_lean.py NAME` then `tools/fit_hands.py NAME`.
+   Each person has numbers of their own (`tools/data/NAME_*.json`), so tuning one never changes
+   another. `tune_lean.py NAME --only walking` tunes one pose and leaves the others exactly as they
+   are: use it when only one pose needs work. Add a new person to `CREATORS` in `conventions.py`.
+2. **A creature**: copy `tools/make_dog.py` (four legs) or `tools/make_rat.py`, and change the
+   anatomy and poses.
+3. **A weapon**: draw the two strips and put them in `sprites/weapons/`, then
+   `python3 tools/make_assets.py`.
+4. Look at it in 3D first (above), and get it approved. Then generate, merge, and check:
+
+```bash
+python3 tools/make_NAME.py sprites/NAME
+python3 tools/extract_poses.py --merge NAME=sprites/NAME
+python3 tools/check_conventions.py
+```
+
+If generation reports a problem it says which rule and which frame, and writes nothing.
+
+The checker itself is tested (each rule is shown a good frame and a broken one):
+
+```bash
+python3 -m unittest discover -s tools -p 'test_*.py'
+```
+
+## Changing a convention
+
+If the rules turn out to be wrong, do not just edit a pose to dodge a check. Re-measure from the
+originals, change the number in `tools/conventions.py` **and** this file together, and re-run
+`check_conventions.py` so everything is held to the new rule.

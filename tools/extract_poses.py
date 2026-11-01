@@ -7,6 +7,11 @@ bases share one master palette, so the same roles work across them.
 
     python3 tools/extract_poses.py cleric=path/to/cleric fighter=path/to/fighter
 
+To add or replace one base without the others' folders to hand, merge it into the
+existing poses/base.js:
+
+    python3 tools/extract_poses.py --merge dog=sprites/dog
+
 Each folder holds one PNG per pose, named like 20240427cleric-attackNE.png: the
 pose id (attackNE) is whatever follows the last hyphen.
 
@@ -138,6 +143,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__.split('\n')[0])
     parser.add_argument('bases', nargs='+', metavar='NAME=FOLDER', help='a base character and the folder of its pose PNGs, e.g. cleric=sprites/cleric')
     parser.add_argument('--out', type=Path, default=Path(__file__).resolve().parent.parent / 'poses' / 'base.js')
+    parser.add_argument('--merge', action='store_true', help='keep the bases already in the output and add or replace the ones named')
     args = parser.parse_args()
 
     by_colour = {tuple(int(hex_[i:i + 2], 16) for i in (0, 2, 4)): char for char, _, _, _, hex_ in ROLES}
@@ -157,6 +163,16 @@ def main():
             frames_checked += len(frames)
         characters.append({'id': name.lower(), 'label': name.capitalize(), 'frames': frames_by_pose})
 
+    kept = []
+    if args.merge:
+        if not args.out.exists():
+            sys.exit(f'--merge needs an existing {args.out}')
+        existing = json.loads(args.out.read_text()[len('window.BASE_POSES = '):].rstrip().rstrip(';'))
+        if existing.get('cell') != CELL or [p['id'] for p in existing.get('poses', [])] != [a + f for a, f, _, _ in POSES]:
+            sys.exit(f'{args.out} was built from a different pose list; rebuild it from all the bases instead of merging')
+        replaced = {c['id'] for c in characters}
+        kept = [c for c in existing['characters'] if c['id'] not in replaced]
+
     data = {
         'cell': CELL,
         'ground': GROUND,
@@ -166,11 +182,12 @@ def main():
             {'id': a + f, 'label': f'{a.capitalize()} {f}', 'action': a, 'facing': f, 'cols': c, 'rows': r}
             for a, f, c, r in POSES
         ],
-        'characters': characters,
+        'characters': kept + characters,
     }
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text('window.BASE_POSES = ' + json.dumps(data, separators=(',', ':')) + ';\n')
-    print(f'{frames_checked} frames across {len(characters)} bases, all re-rendered identical to the source -> {args.out}')
+    total = len(kept) + len(characters)
+    print(f'{frames_checked} frames across {len(characters)} bases ({total} in all), all re-rendered identical to the source -> {args.out}')
 
 
 if __name__ == '__main__':
