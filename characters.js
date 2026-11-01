@@ -1,8 +1,9 @@
 // Characters - the base poses are drawn in colour roles, not colours. A
 // character is a role -> colour map, and every pose is recoloured from it.
-// Characters are saved instances: copy one, change its colours, and open any of
-// its poses in the editor to redraw them; the redrawn pose is stored on that
-// character as an edit.
+// A base never changes. Pick one and change anything, and the change goes into a
+// new saved copy (see copies.js). Copies keep their own colours, and any of their
+// poses can be opened in the editor to redraw; the redrawn pose is stored on that
+// copy as an edit.
 
 const STORE_KEY = 'pixel-creator.characters';
 const OLD_KEY = 'pixel-creator.character';       // the single character stored before copies existed
@@ -40,8 +41,16 @@ function boot() {
   const baseById = (id) => characters.find((c) => c.id === id) || characters[0];
   const newId = () => (crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36) + Math.random().toString(36).slice(2, 8));
 
+  // Each base shows as a read-only entry. It is never saved and never mutated:
+  // every change goes through edit(), which swaps it for a copy first.
+  const baseViews = {};
+  function viewOf(baseId) {
+    if (!baseViews[baseId]) baseViews[baseId] = baseView({ ...fresh(baseId), id: baseRefOf(baseId) });
+    return baseViews[baseId];
+  }
+
   let store = loadStore();
-  let character = store.items.find((c) => c.id === store.current);
+  let character = resolve(store.current);
   let selected = poses.find((p) => p.id === 'chargingSE') || poses[0];
   let frame = 0;
   let playing = true;
@@ -49,6 +58,11 @@ function boot() {
 
   function fresh(baseId = characters[0].id) {
     return { id: newId(), name: baseById(baseId).label, base: baseId, hue: {}, colors: { ...baseColors }, edits: {} };
+  }
+
+  function resolve(ref) {
+    if (isBaseRef(ref)) return viewOf(baseById(baseIdOf(ref)).id);
+    return store.items.find((c) => c.id === ref) || viewOf(characters[0].id);
   }
 
   const frameCount = (pose) => pose.cols * pose.rows;
@@ -70,42 +84,156 @@ function boot() {
     return map;
   }
 
-  // Paint every frame of a pose into one canvas, laid out like its source sheet.
-  // A pose the character has edited is drawn from the edit, not from its base.
-  function drawPose(canvas, pose, ch) {
-    const w = pose.cols * cell;
-    const h = pose.rows * cell;
-    canvas.width = w;
-    canvas.height = h;
-    const ctx = canvas.getContext('2d');
+  /* ---------- weapons ---------- */
+
+  // Weapons are assets in the Weapons category: one strip of four frames per facing, each frame
+  // in the cell of the attack frame it goes with. Choosing one draws its frame behind the
+  // character's, as in the game, so you can see how it sits against the hand frame by frame.
+  const weaponAssets = ((window.ASSETS && window.ASSETS.assets) || []).filter((a) => a.weapon);
+  const defaultRgb = Object.fromEntries(roles.map((r) => [r.char, toRgb(r.hex)]));
+  let weapon = 'none';   // 'none', a weapon's name, or 'copy:<id>' for one of your saved copies
+
+  function weaponCopies() {
+    try {
+      const raw = JSON.parse(localStorage.getItem('pixel-creator.assets') || 'null');
+      return (raw && Array.isArray(raw.items) ? raw.items : []).filter((i) => weaponAssets.some((a) => a.id === i.asset));
+    } catch { return []; }
+  }
+
+  function refreshWeapons() {
+    const select = el('weapon');
+    select.textContent = '';
+    const add = (value, text, parent) => {
+      const option = document.createElement('option');
+      option.value = value;
+      option.textContent = text;
+      parent.appendChild(option);
+    };
+    add('none', 'None', select);
+    const names = [...new Set(weaponAssets.map((a) => a.weapon))];
+    names.forEach((n) => add(n, weaponAssets.find((a) => a.weapon === n).label.replace(/ (NE|SE)$/, ''), select));
+    const copies = weaponCopies();
+    if (copies.length) {
+      const group = document.createElement('optgroup');
+      group.label = 'Your copies';
+      copies.forEach((c) => add(`copy:${c.id}`, c.name || 'Untitled', group));
+      select.appendChild(group);
+    }
+    if (![...select.options].some((o) => o.value === weapon)) weapon = 'none';
+    select.value = weapon;
+    el('weaponRow').hidden = !weaponAssets.length;
+  }
+
+  // The weapon asset (and the colours and edit of a copy) that goes with a pose, if any.
+  function weaponFor(pose) {
+    if (weapon === 'none' || pose.action !== 'attack') return null;
+    let name = weapon;
+    let copy = null;
+    if (weapon.startsWith('copy:')) {
+      copy = weaponCopies().find((c) => c.id === weapon.slice(5));
+      if (!copy) return null;
+      name = weaponAssets.find((a) => a.id === copy.asset).weapon;
+    }
+    const asset = weaponAssets.find((a) => a.weapon === name && a.facing === pose.facing);
+    if (!asset) return null;
+    // A copy is of one facing's strip; for the other facing the original weapon is used.
+    const own = copy && copy.asset === asset.id ? copy : null;
+    const rgb = { ...defaultRgb };
+    if (own) {
+      const map = (window.ASSETS.roles || roles).reduce((m, r) => { m[r.char] = toRgb(own.colors[r.id] || r.hex); return m; }, {});
+      Object.assign(rgb, map);
+    }
+    return { asset, rgb, edit: own && own.edits ? own.edits[asset.id] : null };
+  }
+
+  // The weapon's four frames as one canvas, laid out like the attack pose's sheet.
+  function weaponSheet(found) {
+    const { asset, rgb, edit } = found;
+    const w = asset.w * asset.cols;
+    const h = asset.h * asset.rows;
+    const c = document.createElement('canvas');
+    c.width = w;
+    c.height = h;
+    const ctx = c.getContext('2d');
     const image = ctx.createImageData(w, h);
-    const rgb = rgbOf(ch);
-    const edit = ch.edits[pose.id];
     if (edit) {
       edit.cells.forEach((value, i) => {
         if (!value) return;
-        const c = value.length === 1 ? rgb[value] : toRgb(value);
-        if (c) image.data.set([c[0], c[1], c[2], 255], i * 4);
+        const col = value.length === 1 ? rgb[value] : toRgb(value);
+        if (col) image.data.set([col[0], col[1], col[2], 255], i * 4);
       });
     } else {
-      baseById(ch.base).frames[pose.id].forEach((lines, i) => {
-        const ox = (i % pose.cols) * cell;
-        const oy = Math.floor(i / pose.cols) * cell;
+      asset.frames.forEach((lines, f) => {
+        const ox = (f % asset.cols) * asset.w;
+        const oy = Math.floor(f / asset.cols) * asset.h;
         lines.forEach((line, y) => {
-          for (let x = 0; x < cell; x++) {
-            const c = rgb[line[x]];
-            if (!c) continue;
-            image.data.set([c[0], c[1], c[2], 255], ((oy + y) * w + ox + x) * 4);
+          for (let x = 0; x < asset.w; x++) {
+            const col = rgb[line[x]];
+            if (col) image.data.set([col[0], col[1], col[2], 255], ((oy + y) * w + ox + x) * 4);
           }
         });
       });
     }
     ctx.putImageData(image, 0, 0);
+    return c;
+  }
+
+  // Paint every frame of a pose into one canvas, laid out like its source sheet.
+  // A pose the character has edited is drawn from the edit, not from its base. With
+  // `withWeapon`, the chosen weapon is drawn behind an attack pose. A weapon's cell is bigger than a
+  // character's, so each frame grows to the weapon's size with the character in the middle of it.
+  function drawPose(canvas, pose, ch, withWeapon = false) {
+    const found = withWeapon && weaponFor(pose);
+    const pad = found ? (found.asset.w - cell) / 2 : 0;
+    const out = cell + 2 * pad;                    // the size of one frame on the canvas
+    const w = pose.cols * out;
+    const h = pose.rows * out;
+    canvas.width = w;
+    canvas.height = h;
+    const ctx = canvas.getContext('2d');
+    const image = ctx.createImageData(w, h);
+    const rgb = rgbOf(ch);
+    const put = (frameIndex, x, y, c) => {
+      const px = (frameIndex % pose.cols) * out + pad + x;
+      const py = Math.floor(frameIndex / pose.cols) * out + pad + y;
+      image.data.set([c[0], c[1], c[2], 255], (py * w + px) * 4);
+    };
+    const edit = ch.edits[pose.id];
+    if (edit) {
+      const sheetW = pose.cols * cell;
+      edit.cells.forEach((value, i) => {
+        if (!value) return;
+        const c = value.length === 1 ? rgb[value] : toRgb(value);
+        if (!c) return;
+        const x = i % sheetW;
+        const y = Math.floor(i / sheetW);
+        put(Math.floor(y / cell) * pose.cols + Math.floor(x / cell), x % cell, y % cell, c);
+      });
+    } else {
+      baseById(ch.base).frames[pose.id].forEach((lines, i) => {
+        lines.forEach((line, y) => {
+          for (let x = 0; x < cell; x++) {
+            const c = rgb[line[x]];
+            if (c) put(i, x, y, c);
+          }
+        });
+      });
+    }
+    // The weapon goes behind the character, as it does in the game: the hand and the body cover it.
+    const figure = document.createElement('canvas');
+    figure.width = w;
+    figure.height = h;
+    figure.getContext('2d').putImageData(image, 0, 0);
+    if (found) ctx.drawImage(weaponSheet(found), 0, 0);
+    ctx.drawImage(figure, 0, 0);
+    return { out, pad };
   }
 
   function drawStage() {
     const canvas = el('stage');
-    const size = cell * STAGE_SCALE;
+    const sheet = document.createElement('canvas');
+    const { out, pad } = drawPose(sheet, selected, character, true);
+    const size = out * STAGE_SCALE;
     canvas.width = size;
     canvas.height = size;
     const ctx = canvas.getContext('2d');
@@ -120,14 +248,12 @@ function boot() {
       }
     }
 
-    const sheet = document.createElement('canvas');
-    drawPose(sheet, selected, character);
-    const sx = (frame % selected.cols) * cell;
-    const sy = Math.floor(frame / selected.cols) * cell;
-    ctx.drawImage(sheet, sx, sy, cell, cell, 0, 0, size, size);
+    const sx = (frame % selected.cols) * out;
+    const sy = Math.floor(frame / selected.cols) * out;
+    ctx.drawImage(sheet, sx, sy, out, out, 0, 0, size, size);
 
     if (el('showGround').checked) {
-      const y = (data.ground + 1) * STAGE_SCALE;
+      const y = (pad + data.ground + 1) * STAGE_SCALE;
       ctx.fillStyle = 'rgba(110,168,254,0.7)';
       ctx.fillRect(0, y - 1, size, 2);
     }
@@ -136,7 +262,11 @@ function boot() {
   function render() {
     document.querySelectorAll('.pose-card').forEach((card) => {
       const pose = poses.find((p) => p.id === card.dataset.id);
-      drawPose(card.querySelector('canvas'), pose, character);
+      const cardCanvas = card.querySelector('canvas');
+      drawPose(cardCanvas, pose, character, true);
+      // A bigger frame (with a weapon) keeps the same scale, so the card grows with it.
+      cardCanvas.style.width = cardCanvas.width * GALLERY_SCALE + 'px';
+      cardCanvas.style.height = cardCanvas.height * GALLERY_SCALE + 'px';
       card.classList.toggle('is-edited', Boolean(character.edits[pose.id]));
     });
     drawStage();
@@ -147,14 +277,26 @@ function boot() {
       ? `${selected.id} · frame ${frame + 1} of ${total}`
       : `${selected.id} · 1 frame`;
     el('play').hidden = total < 2;
+    el('stepPrev').hidden = total < 2;
+    el('stepNext').hidden = total < 2;
     el('play').textContent = playing ? 'Pause' : 'Play';
+    const shown = weaponFor(selected);
+    el('weaponNote').textContent = weapon === 'none' ? ''
+      : shown ? `${shown.asset.label} over frame ${frame + 1}.`
+        : selected.action === 'attack' ? 'No strip for this facing.' : 'The weapon shows on the attack poses.';
     el('revertPose').hidden = !edited;
   }
 
   function syncControls() {
     refreshInstances();
     el('charName').value = character.name;
+    el('browseNow').textContent = character.name || 'Untitled';
     el('baseSelect').value = character.base;
+    el('charName').disabled = character.readOnly;
+    el('reset').disabled = character.readOnly;
+    if (character.readOnly) {
+      el('charNote').textContent = `${character.name} is a base and never changes. Change anything to save it as your own copy.`;
+    }
     groups.forEach((g) => {
       const slider = document.querySelector(`input[data-hue="${g.id}"]`);
       if (slider) slider.value = character.hue[g.id] || 0;
@@ -187,27 +329,31 @@ function boot() {
     try {
       const raw = JSON.parse(localStorage.getItem(STORE_KEY) || 'null');
       if (raw && Array.isArray(raw.items)) {
+        // Everything already saved is a copy, however it got there.
         const items = raw.items.map((item) => normalize(item, true)).filter(Boolean);
-        if (items.length) return { current: items.some((i) => i.id === raw.current) ? raw.current : items[0].id, items };
+        const known = items.some((i) => i.id === raw.current) || (isBaseRef(raw.current) && characters.some((c) => c.id === baseIdOf(raw.current)));
+        return { current: known ? raw.current : (items.length ? items[0].id : baseRefOf(characters[0].id)), items };
       }
       const old = normalize(JSON.parse(localStorage.getItem(OLD_KEY) || 'null'), false);
       if (old) return { current: old.id, items: [old] };
     } catch { /* unreadable or blocked: start fresh */ }
-    const first = fresh();
-    return { current: first.id, items: [first] };
+    return { current: baseRefOf(characters[0].id), items: [] };
   }
 
   function refreshInstances() {
-    const select = el('instanceSelect');
-    select.textContent = '';
-    store.items.forEach((item) => {
-      const option = document.createElement('option');
-      option.value = item.id;
-      option.textContent = item.name || 'Untitled';
-      select.appendChild(option);
-    });
-    select.value = character.id;
-    el('deleteChar').disabled = store.items.length < 2;
+    fillPicker(el('instanceSelect'), characters, store.items, character.id);
+    el('deleteChar').disabled = character.readOnly;
+  }
+
+  // Call before changing the selected character. A base is swapped for a new copy
+  // of itself, so the change lands there and the base stays as it was.
+  function edit() {
+    if (!character.readOnly) return;
+    const copy = copyOf(character, newId(), `${character.name} copy`);
+    store.items.push(copy);
+    character = copy;
+    store.current = copy.id;
+    el('charNote').textContent = `Saved as "${copy.name}". The base is unchanged.`;
   }
 
   function switchTo(item) {
@@ -217,14 +363,13 @@ function boot() {
   }
 
   el('instanceSelect').addEventListener('change', (event) => {
-    switchTo(store.items.find((i) => i.id === event.target.value));
+    switchTo(resolve(event.target.value));
   });
 
   el('dupChar').addEventListener('click', () => {
-    const copy = JSON.parse(JSON.stringify(character));
-    copy.id = newId();
-    copy.name = `${character.name} copy`;
-    store.items.splice(store.items.indexOf(character) + 1, 0, copy);
+    const copy = copyOf(character, newId(), `${character.name} copy`);
+    const at = store.items.indexOf(character);
+    store.items.splice(at < 0 ? store.items.length : at + 1, 0, copy);
     switchTo(copy);
     el('charNote').textContent = `Copied to "${copy.name}". Its colours and edits are its own now.`;
   });
@@ -236,17 +381,19 @@ function boot() {
   });
 
   el('deleteChar').addEventListener('click', () => {
-    if (store.items.length < 2 || !window.confirm(`Delete "${character.name}" and its edits?`)) return;
+    if (character.readOnly || !window.confirm(`Delete "${character.name}" and its edits?`)) return;
     const at = store.items.indexOf(character);
     store.items.splice(at, 1);
-    switchTo(store.items[Math.min(at, store.items.length - 1)]);
+    // Fall back to a neighbouring copy, or to the base it came from.
+    switchTo(store.items.length ? store.items[Math.min(at, store.items.length - 1)] : viewOf(character.base));
   });
 
   // The editor saves into the same store from another page; pick its changes up.
   window.addEventListener('storage', (event) => {
+    if (event.key === 'pixel-creator.assets') refreshWeapons();
     if (event.key !== STORE_KEY) return;
     store = loadStore();
-    character = store.items.find((c) => c.id === store.current);
+    character = resolve(store.current);
     syncControls();
     render();
   });
@@ -268,6 +415,7 @@ function boot() {
       slider.dataset.hue = g.id;
       row.querySelector('[data-hue-readout]').dataset.hueReadout = g.id;
       slider.addEventListener('input', () => {
+        edit();
         setGroupHue(g.id, Number(slider.value));
         changed();
       });
@@ -283,6 +431,7 @@ function boot() {
       input.title = r.label;
       input.setAttribute('aria-label', r.label);
       input.addEventListener('input', () => {
+        edit();
         character.colors[r.id] = input.value;
         changed();
       });
@@ -300,6 +449,11 @@ function boot() {
   });
 
   el('baseSelect').addEventListener('change', (event) => {
+    // On a base this just looks at another base; on a copy it moves the copy to it.
+    if (character.readOnly) {
+      switchTo(viewOf(event.target.value));
+      return;
+    }
     // A character still carrying its base's default name follows it to the new base.
     const renamed = character.name === baseById(character.base).label;
     character.base = event.target.value;
@@ -320,11 +474,13 @@ function boot() {
   }
 
   el('reset').addEventListener('click', () => {
+    if (character.readOnly) return;
     resetColors();
     changed();
   });
 
   el('randomize').addEventListener('click', () => {
+    edit();
     resetColors();
     groups.forEach((g) => {
       if (g.hue) setGroupHue(g.id, Math.floor(Math.random() * 360) - 180);
@@ -375,7 +531,130 @@ function boot() {
   });
 
   el('showGround').addEventListener('change', render);
+
+  // Step through the frames by hand, which pauses the animation.
+  function step(by) {
+    const total = frameCount(selected);
+    if (total < 2) return;
+    playing = false;
+    frame = (frame + by + total) % total;
+    startTimer();
+    render();
+  }
+  el('stepPrev').addEventListener('click', () => step(-1));
+  el('stepNext').addEventListener('click', () => step(1));
+  document.addEventListener('keydown', (event) => {
+    if (event.target.matches('input, select, textarea') || event.metaKey || event.ctrlKey || event.altKey) return;
+    if (el('app').classList.contains('browsing')) return;
+    const key = event.key.toLowerCase();
+    if (key === 'arrowleft' || key === 'a') { event.preventDefault(); step(-1); }
+    if (key === 'arrowright' || key === 'd') { event.preventDefault(); step(1); }
+  });
+
+  // Choosing a weapon takes you to an attack pose, since that is where it shows.
+  el('weapon').addEventListener('change', (event) => {
+    weapon = event.target.value;
+    if (weapon !== 'none' && selected.action !== 'attack') select(poses.find((p) => p.id === 'attackSE') || selected);
+    else render();
+  });
   el('groundRow').textContent = data.ground;
+
+  /* ---------- browse ---------- */
+
+  // A small picture of every base and every copy, in its own colours, to pick from.
+  const BASES = 'Bases';
+  const COPIES = 'Your copies';
+  const THUMB_POSE = poses.find((p) => p.id === 'chargingSE') || poses[0];
+  const THUMB_SCALE = 2;
+  let browseCat = 'All';
+
+  function thumb(ch) {
+    const sheet = document.createElement('canvas');
+    drawPose(sheet, THUMB_POSE, ch);
+    const out = document.createElement('canvas');
+    out.width = cell * THUMB_SCALE;
+    out.height = cell * THUMB_SCALE;
+    const ctx = out.getContext('2d');
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(sheet, 0, 0, cell, cell, 0, 0, out.width, out.height);   // the first frame
+    return out;
+  }
+
+  function browseCard(label, ch, isCurrent, open) {
+    const card = document.createElement('button');
+    card.className = 'browse-card' + (isCurrent ? ' is-active' : '');
+    card.title = label;
+    card.setAttribute('aria-label', label);
+    card.appendChild(thumb(ch));
+    card.addEventListener('click', open);
+    card.addEventListener('mouseenter', () => { el('browseName').textContent = label; });
+    card.addEventListener('focus', () => { el('browseName').textContent = label; });
+    return card;
+  }
+
+  function renderBrowse() {
+    const query = el('browseSearch').value.trim().toLowerCase();
+    const matches = (label) => !query || label.toLowerCase().includes(query);
+
+    const chips = el('browseCats');
+    chips.textContent = '';
+    const names = ['All', BASES, ...(store.items.length ? [COPIES] : [])];
+    if (!names.includes(browseCat)) browseCat = 'All';
+    names.forEach((name) => {
+      const chip = document.createElement('button');
+      chip.className = 'chip' + (name === browseCat ? ' is-active' : '');
+      chip.textContent = name;
+      chip.addEventListener('click', () => { browseCat = name; renderBrowse(); });
+      chips.appendChild(chip);
+    });
+
+    const grid = el('browseGrid');
+    grid.textContent = '';
+    const section = (title, cards) => {
+      if (!cards.length) return;
+      const group = document.createElement('section');
+      group.className = 'browse-group';
+      const heading = document.createElement('h3');
+      heading.textContent = `${title} (${cards.length})`;
+      const row = document.createElement('div');
+      row.className = 'browse-row';
+      cards.forEach((c) => row.appendChild(c));
+      group.append(heading, row);
+      grid.appendChild(group);
+    };
+
+    if (browseCat === 'All' || browseCat === BASES) {
+      section(BASES, characters
+        .filter((b) => matches(b.label))
+        .map((b) => browseCard(b.label, viewOf(b.id), character.readOnly && character.base === b.id, () => { switchTo(viewOf(b.id)); closeBrowse(); })));
+    }
+    if (browseCat === 'All' || browseCat === COPIES) {
+      section(COPIES, store.items
+        .filter((c) => matches(c.name || ''))
+        .map((c) => browseCard(c.name || 'Untitled', c, c.id === character.id, () => { switchTo(c); closeBrowse(); })));
+    }
+    if (!grid.children.length) grid.textContent = 'Nothing matches that search.';
+  }
+
+  function openBrowse() {
+    el('app').classList.add('browsing');
+    el('browseName').textContent = '';
+    browseCat = 'All';          // each visit starts from everything
+    el('browseSearch').value = '';
+    renderBrowse();
+    el('browseSearch').focus();
+  }
+
+  function closeBrowse() {
+    el('app').classList.remove('browsing');
+  }
+
+  el('browseBtn').addEventListener('click', () => (el('app').classList.contains('browsing') ? closeBrowse() : openBrowse()));
+  el('browseClose').addEventListener('click', closeBrowse);
+  el('browseSearch').addEventListener('input', renderBrowse);
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && el('app').classList.contains('browsing')) closeBrowse();
+  });
 
   /* ---------- editing a pose ---------- */
 
@@ -392,8 +671,11 @@ function boot() {
     persist();
     try {
       localStorage.setItem(HANDOFF_KEY, JSON.stringify({
-        instanceId: character.id, name: character.name, poseId: selected.id, label: selected.label,
-        w: sheet.width, h: sheet.height, pixels, roleColors,
+        store: STORE_KEY, baseField: 'base', returnUrl: 'characters.html?open=1', returnLabel: 'Back to characters',
+        unitId: selected.id,
+        instanceId: character.readOnly ? null : character.id, baseId: character.base,
+        name: character.name, poseId: selected.id, label: selected.label,
+        w: sheet.width, h: sheet.height, frameCols: selected.cols, frameRows: selected.rows, pixels, roleColors,
       }));
     } catch {
       el('charNote').textContent = 'Could not open the editor: the browser storage is full or blocked.';
@@ -449,7 +731,10 @@ function boot() {
   }
 
   el('exportSet').addEventListener('click', () => exportSets([character], `${slug(character.name)}-set.zip`));
-  el('exportAll').addEventListener('click', () => exportSets(store.items, 'characters.zip'));
+  el('exportAll').addEventListener('click', () => {
+    if (!store.items.length) { el('charNote').textContent = 'No saved copies yet. Change a base to make one.'; return; }
+    exportSets(store.items, 'characters.zip');
+  });
 
   el('saveChar').addEventListener('click', () => {
     const { id, ...rest } = character;
@@ -505,6 +790,11 @@ function boot() {
 
   /* ---------- boot ---------- */
 
+  refreshWeapons();
   select(selected);
   syncControls();
+
+  // Arriving on the page starts in the browse view. Coming back from the editor
+  // (?open=1) goes straight to the character you were working on instead.
+  if (new URLSearchParams(window.location.search).get('open') !== '1') openBrowse();
 }

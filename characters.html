@@ -16,6 +16,7 @@
     <a href="index.html">Editor</a>
     <a href="characters.html" aria-current="page">Characters</a>
     <a href="assets.html">Assets</a>
+    <a href="terrain.html">Terrain</a>
   </nav>
 </header>
 
@@ -23,6 +24,8 @@
   <aside class="panel">
     <section class="group">
       <h2>Character</h2>
+      <button id="browseBtn" class="btn btn-primary">Browse characters&hellip;</button>
+      <p class="hint">Viewing: <strong id="browseNow"></strong></p>
       <label class="field wide">Saved characters<select id="instanceSelect"></select></label>
       <div class="row">
         <button id="dupChar" class="btn">Duplicate</button>
@@ -61,14 +64,29 @@
   </aside>
 
   <section class="stage">
+    <section class="browse" id="browse">
+      <div class="browse-bar">
+        <input id="browseSearch" type="search" placeholder="Search characters" aria-label="Search characters">
+        <span class="hint mono" id="browseName"></span>
+        <button id="browseClose" class="btn">Close</button>
+      </div>
+      <div class="chips" id="browseCats"></div>
+      <div class="browse-grid" id="browseGrid"></div>
+    </section>
     <div class="preview">
       <div class="canvas-wrap"><canvas id="stage" aria-label="Selected pose"></canvas></div>
       <div class="preview-side">
         <p class="pose-title" id="poseTitle"></p>
         <p class="hint" id="poseMeta"></p>
-        <div class="row">
+        <div class="btn-group">
           <button id="play" class="btn">Pause</button>
+          <button id="stepPrev" class="btn" title="Previous frame (&larr; or A)">&larr; Frame</button>
+          <button id="stepNext" class="btn" title="Next frame (&rarr; or D)">Frame &rarr;</button>
         </div>
+        <label class="field wide" id="weaponRow" hidden>Weapon overlay
+          <select id="weapon"><option value="none">None</option></select>
+        </label>
+        <p class="hint" id="weaponNote"></p>
         <button id="editPose" class="btn btn-primary">Edit in editor&hellip;</button>
         <button id="revertPose" class="btn" hidden>Revert edits</button>
         <label class="check"><input id="showGround" type="checkbox"> Show ground line (row <span id="groundRow"></span>)</label>
@@ -87,9 +105,11 @@
 </section>
 
 <script src="colors.js"></script>
+<script src="copies.js"></script>
 <script src="files.js"></script>
 <script src="zip.js"></script>
 <script src="poses/base.js"></script>
+<script src="assets/data.js"></script>
 <script src="characters.js"></script>
 </body>
 </html>

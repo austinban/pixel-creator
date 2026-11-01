@@ -10,12 +10,13 @@
 <header class="topbar">
   <div>
     <h1>Pixel Creator</h1>
-    <p class="tagline">Things that aren't characters: markers, effects, props.</p>
+    <p class="tagline">Things that aren't characters: markers, props and ground tiles.</p>
   </div>
   <nav class="nav">
     <a href="index.html">Editor</a>
     <a href="characters.html">Characters</a>
     <a href="assets.html" aria-current="page">Assets</a>
+    <a href="terrain.html">Terrain</a>
   </nav>
 </header>
 
@@ -23,8 +24,9 @@
   <aside class="panel">
     <section class="group">
       <h2>Asset</h2>
-      <label class="field wide">Asset<select id="assetSelect"></select></label>
-      <label class="field wide">Saved colours<select id="instanceSelect"></select></label>
+      <button id="browseBtn" class="btn btn-primary">Browse assets&hellip;</button>
+      <p class="hint">Viewing: <strong id="browseNow"></strong></p>
+      <label class="field wide">Your copies<select id="instanceSelect"></select></label>
       <div class="row">
         <button id="dupItem" class="btn">Duplicate</button>
         <button id="newItem" class="btn">New</button>
@@ -56,6 +58,15 @@
   </aside>
 
   <section class="stage">
+    <section class="browse" id="browse">
+      <div class="browse-bar">
+        <input id="browseSearch" type="search" placeholder="Search assets" aria-label="Search assets">
+        <span class="hint mono" id="browseName"></span>
+        <button id="browseClose" class="btn">Close</button>
+      </div>
+      <div class="chips" id="browseCats"></div>
+      <div class="browse-grid" id="browseGrid"></div>
+    </section>
     <div class="preview">
       <div class="canvas-wrap"><canvas id="stage" aria-label="Current frame"></canvas></div>
       <div class="preview-side">
@@ -73,9 +84,20 @@
             <option value="24">24 frames a second</option>
           </select>
         </label>
+        <button id="editAsset" class="btn btn-primary">Edit in editor&hellip;</button>
+        <button id="revertAsset" class="btn" hidden>Revert edits</button>
         <p class="hint" id="anchorNote"></p>
       </div>
     </div>
+
+    <section class="group over" id="swing" hidden>
+      <h2>Preview with character animation</h2>
+      <div class="row">
+        <label class="field wide">Character<select id="swingChar"></select></label>
+      </div>
+      <div class="canvas-wrap"><canvas id="swingCanvas" aria-label="The weapon over a character's attack"></canvas></div>
+      <p class="hint" id="swingNote"></p>
+    </section>
 
     <div class="canvas-wrap sheet-wrap"><canvas id="sheet" aria-label="All frames"></canvas></div>
 
@@ -99,6 +121,7 @@
 </section>
 
 <script src="colors.js"></script>
+<script src="copies.js"></script>
 <script src="files.js"></script>
 <script src="zip.js"></script>
 <script src="assets/data.js"></script>
