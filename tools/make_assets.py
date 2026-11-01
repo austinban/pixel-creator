@@ -19,6 +19,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import extract_poses as ep  # noqa: E402
+import make_ground  # noqa: E402
+import make_weapons  # noqa: E402
 
 # Roles used, by palette character: spark, then the green ramp, then the outline.
 SPARK, LIT, BASE, SHADE, DEEP, OUTLINE = 't', 'z', 'A', 'B', 's', 'O'
@@ -282,12 +284,12 @@ def sheet_layout(count):
     return min(count, SHEET_COLS), -(-count // SHEET_COLS)
 
 
-def build_assets():
+def build_assets(weapons_dir=make_weapons.DEFAULT_DIR):
     crystal = CRYSTAL
     crystal_frames = [render_crystal(crystal, f) for f in range(crystal['frames'])]
     cols, rows = sheet_layout(len(crystal_frames))
     crystal_asset = {
-        'id': crystal['id'], 'label': crystal['label'], 'kind': 'animation', 'place': 'above',
+        'id': crystal['id'], 'label': crystal['label'], 'category': 'Markers', 'kind': 'animation', 'place': 'above',
         'w': crystal['w'], 'h': crystal['h'], 'cols': cols, 'rows': rows, 'fps': crystal['fps'],
         # Where the tip hangs: the bottom edge of the lowest pixel, in the frame where it is at rest.
         'anchor': {'x': crystal['w'] // 2, 'y': 1 + max(y for y, row in enumerate(crystal_frames[0]) if row.strip('.'))},
@@ -298,26 +300,31 @@ def build_assets():
     rock_frames = [render_rock_variant(rock, v) for v in rock['variants']]
     cols, rows = sheet_layout(len(rock_frames))
     rock_asset = {
-        'id': rock['id'], 'label': rock['label'], 'kind': 'variants', 'place': 'ground',
+        'id': rock['id'], 'label': rock['label'], 'category': 'Nature', 'kind': 'variants', 'place': 'ground',
         'names': [v['name'] for v in rock['variants']],
         'w': rock['w'], 'h': rock['h'], 'cols': cols, 'rows': rows, 'fps': 0,
         # The middle of the base, on the ground row characters stand on.
         'anchor': {'x': rock['w'] // 2, 'y': GROUND_ROW + 1},
         'frames': rock_frames,
     }
-    return [crystal_asset, rock_asset]
+    # The ground tileset is sliced from a PNG rather than rendered.
+    # Weapon strips are read from PNGs too, if there are any.
+    return [crystal_asset, rock_asset] + make_ground.build_ground_assets() + make_weapons.build_weapon_assets(weapons_dir)
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__.split('\n')[0])
     parser.add_argument('--png-dir', type=Path, help='also write each asset as a PNG sheet here, and check it')
     parser.add_argument('--out', type=Path, default=Path(__file__).resolve().parent.parent / 'assets' / 'data.js')
+    parser.add_argument('--weapons', type=Path, default=make_weapons.DEFAULT_DIR, help='folder of NAME-attackNE.png / NAME-attackSE.png weapon strips')
     args = parser.parse_args()
 
-    assets = build_assets()
+    assets = build_assets(args.weapons)
     data = {
         'groups': [{'id': i, 'label': l, 'hue': i not in ('outline', 'neutral')} for i, l in ep.GROUPS],
         'roles': [{'char': c, 'id': i, 'label': l, 'group': g, 'hex': '#' + h} for c, i, l, g, h in ep.ROLES],
+        # The order the browse view lists them in: by first appearance.
+        'categories': list(dict.fromkeys(a['category'] for a in assets)),
         'assets': assets,
     }
     args.out.parent.mkdir(parents=True, exist_ok=True)

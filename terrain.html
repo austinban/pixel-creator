@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Terrain &middot; Pixel Creator</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div>
+    <h1>Pixel Creator</h1>
+    <p class="tagline">Lay the ground tiles out as a map.</p>
+  </div>
+  <nav class="nav">
+    <a href="index.html">Editor</a>
+    <a href="characters.html">Characters</a>
+    <a href="assets.html">Assets</a>
+    <a href="terrain.html" aria-current="page">Terrain</a>
+  </nav>
+</header>
+
+<main class="layout" id="app" hidden>
+  <aside class="panel">
+    <section class="group">
+      <h2>Map</h2>
+      <div class="btn-group wide">
+        <button id="regen" class="btn btn-primary">New map</button>
+      </div>
+      <label class="field wide">Seed<input id="seed" type="number" min="0" step="1"></label>
+      <label class="field wide">Size
+        <select id="size">
+          <option value="8">8 × 8</option>
+          <option value="12" selected>12 × 12</option>
+          <option value="16">16 × 16</option>
+          <option value="20">20 × 20</option>
+        </select>
+      </label>
+      <label class="field wide">Lake
+        <select id="lake">
+          <option value="0">None</option>
+          <option value="1">Pond</option>
+          <option value="2" selected>Lake</option>
+          <option value="3">Big lake</option>
+        </select>
+      </label>
+      <label class="field wide">Water level
+        <select id="level">
+          <option value="flush" selected>Level with the grass</option>
+          <option value="sunken">Sunken</option>
+        </select>
+      </label>
+      <label class="check"><input id="props" type="checkbox" checked> Scatter trees, bushes and rocks</label>
+    </section>
+
+    <section class="group">
+      <h2>Export</h2>
+      <label class="field wide">Pixel size
+        <select id="exportScale">
+          <option value="1">1× (true size)</option>
+          <option value="2">2×</option>
+          <option value="4" selected>4×</option>
+        </select>
+      </label>
+      <div class="btn-group wide"><button id="exportMap" class="btn">Export map PNG</button></div>
+      <p class="hint" id="note"></p>
+    </section>
+  </aside>
+
+  <section class="stage">
+    <div class="canvas-wrap"><canvas id="map" aria-label="Generated map"></canvas></div>
+    <p class="status" id="status"></p>
+  </section>
+</main>
+
+<section class="empty" id="missing" hidden>
+  <h2>No assets found</h2>
+  <p>This page reads <code>assets/data.js</code>, which is built by:</p>
+  <pre>python3 tools/make_assets.py</pre>
+  <p>Then reload.</p>
+</section>
+
+<script src="files.js"></script>
+<script src="assets/data.js"></script>
+<script src="terrain.js"></script>
+</body>
+</html>
