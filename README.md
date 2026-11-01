@@ -32,6 +32,22 @@ Then visit http://localhost:4321.
   than captured from the screen, so neither the grid lines nor the
   transparency checkerboard end up in the file.
 
+## Conventions
+
+Everything here follows one set of rules for cell sizes, facings, standing on the ground, outlines,
+size and weight, how characters lean into a movement, the attack swing, weapons and colour ramps.
+They were measured from the original bases. Read [CONVENTIONS.md](CONVENTIONS.md) before making a
+new character, creature or weapon, and check the whole project with:
+
+```bash
+python3 tools/check_conventions.py
+```
+
+Generating a character runs the same checks and stops, writing nothing, if a frame breaks one.
+Design in 3D first: `python3 tools/make_NAME.py --model previews/NAME-3d.png` shows the model from five
+angles in seconds, before any sprites are made.
+The checker has its own tests: `python3 -m unittest discover -s tools -p 'test_*.py'`.
+
 ## Characters
 
 `characters.html` recolours a set of base poses into new characters. Pixels in
@@ -44,10 +60,24 @@ the same slots.
 There can be several bases (cleric, fighter, mage, skeleton, zombie, knight) on the same poses. Pick one with
 **Base**; your colours carry over when you switch.
 
-Characters are saved in your browser as instances. **Duplicate** copies one (its
-colours and its edits), **New** starts from the base's original colours, and
-**Delete** removes one. Each has its own colours, so a copy can be recoloured
-without touching the original.
+Bases never change. They sit at the top of the picker as read-only entries, and
+the first time you change anything on one (a colour, Randomize, or saving an
+edited pose) the change goes into a new saved copy, which becomes the selection.
+Copies save themselves as you edit, and you can keep as many as you like.
+**Duplicate** copies a copy (its colours and edits), **New** starts a copy from
+the base's original colours, and **Delete** removes a copy. The Assets page works
+the same way, including **Edit in editor** (all frames of an asset, one at a time)
+and **Revert edits**.
+
+**Browse assets** opens a picture of every asset, grouped by category (Grass, Dirt,
+Stone, Water, Crates, Nature, Fences, Stairs, Markers) with a search box. Click one
+to open it; your own copies get a group of their own. The ground tiles are sliced
+from `sprites/assets/ground.png` (a sheet of 32 × 32 cells) by `tools/make_ground.py`,
+which `tools/make_assets.py` runs, so rebuild with `python3 tools/make_assets.py`.
+Each pixel maps to the shared palette. Three colours in the sheet (a brighter green
+and two highlights) snap to their nearest palette colour, and the faint see-through
+shadow sprites are left out, because assets are solid colour only. New kinds of item should reuse `copies.js` and the editor's
+hand-off (`store`, `baseField`, `unitId`, `returnUrl`) rather than add their own flow.
 
 **Edit in editor** opens the selected pose in the editor, at the pose's own size.
 **Save to character** writes your changes back to that character as an edit, and
@@ -167,3 +197,84 @@ character or `ground`ed beside one.
 | `tools/make_skeleton.py` | Paints the skeleton base on the cleric's poses |
 | `tools/make_zombie.py` | Paints the zombie base on the fighter's poses |
 | `tools/make_knight.py` | Paints the armoured knight base on the fighter's poses |
+
+## Terrain
+
+`terrain.html` lays the ground tiles out as an isometric map: grass with trees,
+bushes, rocks and flowers scattered over it, and a lake. The lake's edge tiles are
+chosen so the white foam sits on the sides that touch land, and the grass is a mix
+of plain cubes, cubes with a dirt patch and cubes with stepping stones. **New map**
+makes another; a seed makes the same map again. Water can sit level with the grass
+or sunken below it, and **Export map PNG** saves it with a transparent background.
+It uses the tiles' original colours and reads `assets/data.js`.
+
+## Creatures
+
+A base that isn't a repaint of the humanoid fighter, like the dog and the rat, is built from a small
+3D model: ellipsoids for the body parts, rendered from an isometric camera into the
+shared palette and written as the usual 14 poses. `tools/creature.py` is the shared
+renderer, `tools/make_dog.py` is the worked example to copy for the next creature, and
+`tools/make_rat.py` shows a smaller one with its own proportions and a long tail.
+
+```bash
+python3 tools/make_dog.py sprites/dog --preview dog.png
+python3 tools/extract_poses.py --merge dog=sprites/dog
+python3 tools/make_rat.py sprites/rat
+python3 tools/extract_poses.py --merge rat=sprites/rat
+```
+
+`--merge` adds the creature to the existing `poses/base.js` and leaves the other bases as
+they are, so it works without every base's sprite folder.
+
+## Humanoids
+
+A person is built the same way, from `tools/humanoid.py`: a torso, a big head, two arms and
+two legs as ellipsoids, with the arms and legs solved so hands go where a pose puts them and
+feet stay on the ground. It comes with all 14 poses, so a character is only a description.
+`tools/make_human.py` is the generic person; copy it and change the name, colours, hair,
+proportions or add accessories (a hat that follows the head, a staff that follows a hand).
+`tools/make_slim.py` is a second build of the same person with a lighter body: one script, with its
+own tuned numbers, and it passes the same checks (with a declared allowance for less weight).
+`tools/make_ninja.py` is the Slim restyled: the same body, so it borrows the Slim's tuned numbers,
+with a dark gi, red sash, hood, face mask and headband added through the builder's accessories hook.
+It is a model for dressing up any build without redrawing poses.
+
+```bash
+python3 tools/make_human.py sprites/human --preview human.png
+python3 tools/extract_poses.py --merge human=sprites/human
+```
+
+The options and how to add accessories are at the top of `tools/humanoid.py`.
+
+## Weapons
+
+Weapons are assets in a **Weapons** category, read from strips in `sprites/weapons/` (ignored by
+git like the other source art):
+
+```
+sprites/weapons/20240429weapons-IronAxeattackNE.png     4 frames of 48 x 48, side by side (192 x 48)
+sprites/weapons/20240429weapons-IronAxeattackSE.png
+```
+
+(`iron-axe-attackNE.png` works too.) A weapon cell is 48 x 48, bigger than a character's 32 x 32,
+so a swing can reach past the character's edge; the character sits in the middle of it, 8 pixels in
+from each side. Each frame has the weapon where it sits in that frame of an attack, so laying it
+behind the character's frame puts it in the hand. Rebuild the assets after adding strips:
+
+```bash
+python3 tools/make_assets.py
+```
+
+Each strip becomes an asset ("Iron axe NE", "Iron axe SE") that recolours and can be copied and
+edited like any other. On the Characters page, **Weapon overlay** draws the chosen weapon behind the
+attack poses frame by frame, as it sits in the game. The **Frame** buttons (or `←` `→`, `A` `D`) step through by hand, and
+Play runs it. A weapon copy you have made on the Assets page appears in the same menu, in its own
+colours; for the facing it has no strip for, the original weapon is used.
+
+When you are viewing a weapon on the Assets page, **Preview with character animation** draws it behind a
+character's matching attack (or one of your copies of a character), one frame at a time, in step with
+the weapon's own frames and in its own colours.
+
+To make a humanoid's attack hold the weapon properly, `python3 tools/fit_hands.py` finds where the
+strike hand has to go in each frame so it ends up at the weapon's grip, and prints the positions
+for the attack poses in `humanoid.py`.

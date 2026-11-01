@@ -5,3 +5,6 @@ poses/
 
 # Raw sprite PNGs, same reason as poses/
 sprites/
+
+# 3D previews made by tools/preview3d.py while designing a character; they are throwaway
+previews/
