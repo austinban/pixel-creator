@@ -138,6 +138,35 @@ body **bulky** (`bulk` 1.5) so it carries weight; the head ahead of the shoulder
 like it is shuffling in flippers. Scale is 1.05. The **slim** build is `bulk` 1.0 with narrower
 shoulders and hips.
 
+## Area-of-effect spells
+
+A spell that hits an area hits **five plots**: one in the middle and one out in each of the four directions.
+Every such spell is drawn on the same cell, **80 x 56**, with the middle plot's centre, on the ground, at
+(40, 38), which is the asset's anchor, so any of them can be dropped on a target tile and covers the same five
+plots (`tools/make_aoe.py` has the geometry: a plot is a 32 x 16 diamond, and a neighbour sits 16 across and
+8 up or down). Draw back to front (NW, NE, middle, SW, SE). **Eight frames**, in the Animations category: it
+starts at the middle, spreads out to the four plots, peaks on all five, then dies away. Draw the effect as one
+thing, with something linking the plots (the fire's low flames along the shared edges) and soft, rounded
+bases instead of flat ones. The fire burst (`tools/make_fire.py`) is the worked example.
+
+## The bow animation
+
+Every person has the bow animation: draw to the eyeline, release with a recoil, hold with the bow dropped
+slightly (four frames, in both facings). It is made on the person's own model with a separate, swappable bow
+(`tools/make_bow.py`), kept in the base set as the optional `bowNE` and `bowSE` poses, and shows up on the
+assets page as a "bow draw" animation for them. The checker refuses a generated person without it, so
+a new person is not finished until `python3 tools/make_bow.py --bases NAME` has been run. Someone who cannot
+draw a bow (the one-armed zombie) is listed with a reason in `BOW_EXEMPT` in `conventions.py`. Animals
+are not asked.
+
+## Eyes
+
+A person's open eyes are **tall, thin, vertical slits, 3 pixels tall**, like the original bases' and the
+other creatures' black eyes, never single dots. Every person built on the humanoid model has them (`tall_eyes`,
+on by default), and the checker refuses a build that turns them off. Shut eyes stay a short line. A build
+may add whites beside the slit (`eye_white`) or bring the face out of a hood (`eye_reach`), but the slit
+stays.
+
 ## Builds
 
 A person can be built **slim** instead of the standard heavy build, on purpose. A slim build keeps
@@ -178,6 +207,7 @@ check for anything worn on the head.
 
 ```bash
 python3 tools/make_NAME.py sprites/NAME
+python3 tools/make_bow.py --bases NAME            # every person has the bow animation
 python3 tools/extract_poses.py --merge NAME=sprites/NAME
 python3 tools/check_conventions.py
 ```

@@ -98,7 +98,8 @@ BODY = dict(
     shoulder_y=13.4, shoulder_z=3.7,
     head_fwd=1.5,                          # the head sits ahead of the shoulders, as in the originals
     bulk=1.5,
-    hand_mat='skin', neck_mat='skin',      # what the forearms, hands and neck are made of (gloves, a scarf...)
+    hand_mat='skin', neck_mat='skin',
+    sleeve_mat='shirt', ears=True, armless=(), torn_leg=None,         # what the upper arms are made of; whether there are ears; which arms are gone (a stump 'stump' material at the end); which leg's trouser is ripped away below the knee (the skin shows)      # what the forearms, hands and neck are made of (gloves, a scarf...)
     foot_rx=1.7, foot_ry=1.0, foot_rz=1.7, foot_toe=0.5,   # short, small feet, like the originals'                             # how thick the body and limbs are; weight, without height
     head_y=18.6, head_rx=4.8, head_ry=4.6, head_rz=4.5,
 )
@@ -115,14 +116,17 @@ BODY = dict(
 #   fwd     step forward, pixels
 #   head_pitch, head_yaw   the head, about the neck
 #   spread  how far the arms are held out from the body, pixels (clears the head when raised)
-#   elbows_down  True folds the arms with the elbows low, as in a ready stance
+#   elbow_up  sides whose elbow is raised instead of dropped, e.g. ('R',)
+#   pile    the build lays the figure out itself, in pieces (see make_bones.py)
+#   flare   how far the elbows are held out to the side, pixels
+#   foot_long  extra length for the shoes, pixels
 #   stance  how far each foot is set out to the side of its hip, pixels (a wide, low stance); the knees go out with it
 #   eyes    'open' or 'shut'
 #   hands   {'L': (dx, dy), 'R': (dx, dy)}  where each hand goes, from its own shoulder
 #   feet    {'L': (dx, lift), 'R': (dx, lift)}  where each foot goes: ahead of the hip, and how high
 #   A hand or foot given four numbers (0, 0, a1, a2) is bent by raw angles instead; this is for
 #   lying down.
-BASE = dict(elbows_down=False, stance=0, pitch=0, roll=0, twist=0, sway=0, lift=0, fwd=0, head_pitch=0, head_yaw=0, spread=0, eyes='open',
+BASE = dict(elbow_up=(), flare=0, foot_long=0, stance=0, pitch=0, roll=0, twist=0, sway=0, lift=0, fwd=0, head_pitch=0, head_yaw=0, spread=0, eyes='open',
             hands={'L': (0.3, -5.6), 'R': (0.3, -5.6)}, feet={'L': (0, 0), 'R': (0, 0)})
 
 
@@ -153,8 +157,8 @@ def walk(k, n=8):
             dx, lift = -3.1 + 6.2 * u, 0.9 * math.sin(math.pi * u)      # barely off the ground
         feet[side] = (dx, lift)
         # the arm on the same side swings against the leg
-        hands[side] = (0.3 - 0.6 * dx, -5.4 + 0.2 * abs(dx))
-    return pose(feet=feet, hands=hands, lift=-2.0 + 1.0 * math.cos(2 * math.pi * k / 4), pitch=-3)
+        hands[side] = (0.3 - 1.0 * dx, -5.4 + 0.3 * abs(dx))
+    return pose(feet=feet, hands=hands, lift=-2.0 + 1.0 * math.cos(2 * math.pi * k / 4), pitch=-3, foot_long=0.5)
 
 
 def mirrored(p):
@@ -185,6 +189,7 @@ def standard_poses():
         ]
         for frame, t in zip(frames, twist):
             frame['twist'] = t
+        frames[1]['elbow_up'] = ('R',)          # the guarding arm's elbow is lifted as the sword arm goes up
         return frames
 
     attack = swing([(-7.0, -1.0), (3.5, 3.0), (5.0, -5.0), (5.0, -5.0)], [0, 0, -40, -40])
@@ -192,17 +197,17 @@ def standard_poses():
     return {
         # gathering strength: a low wide stance, fists drawn in at the chest
         # (a deep, wide squat, feet set well apart, like powering up)
-        'charging': [pose(pitch=0, lift=-3.4, stance=2.0, elbows_down=True, head_pitch=8,
+        'charging': [pose(pitch=0, lift=-3.4, stance=2.0, head_pitch=8,
                           hands={'L': (3.8, -1.6), 'R': (2.5, -1.3)}, feet={'L': (-0.8, 0), 'R': (1.4, 0)})],
         # an overhand swing with the left hand, in both facings (see `attack` above)
         'attack': attack,
         'attackSE': attack_se,
-        # throwing power forward: both hands thrust out and up
-        'release': [pose(pitch=9, lift=-0.4, head_pitch=8, spread=2.5,
-                         hands={'L': (4.2, 1.2), 'R': (4.4, 1.9)}, feet={'L': (2.0, 0), 'R': (-2.0, 0)})],
+        # just jumped: both arms thrown up either side of the head, the feet off the ground
+        'release': [pose(pitch=5, lift=0.6, head_pitch=-20, spread=2.8, flare=1.3,
+                         hands={'L': (0.3, 6.4), 'R': (0.3, 6.4)}, feet={'L': (1.0, 1.9), 'R': (-1.0, 1.3)})],
         # a flinch: thrown back, head wrenched up and round, arms flung
-        'damage': [pose(pitch=10, lift=-5.0, fwd=-1.8, head_pitch=6, head_yaw=14, eyes='shut',
-                        hands={'L': (-2.8, -2.4), 'R': (-2.6, -1.0)}, feet={'L': (2.2, 0), 'R': (-2.4, 0)})],
+        'damage': [pose(pitch=-8, lift=-5.0, fwd=-1.8, head_pitch=6, head_yaw=14, eyes='shut', flare=2.4,
+                        hands={'L': (-2.6, -3.4), 'R': (-2.4, -2.6)}, feet={'L': (2.2, 0), 'R': (-2.4, 0)})],
         # worn out: down on one knee, the back foot behind, the front foot flat, head bowed about 45 degrees,
         # one hand on the front knee and the other hanging
         'weak': [pose(pitch=-10, lift=-2.3, head_pitch=-45, eyes='shut',
@@ -223,7 +228,7 @@ class Humanoid:
         self.tuning = tuning or name       # whose lean and hand numbers to use (data/NAME_lean.json, NAME_hands.json)
         self.kind = 'humanoid'
         self.tall_eyes = True             # open eyes are a 3-pixel vertical line, like the original bases'
-        self.airborne = set()
+        self.airborne = {('release', 0)}        # the release is a jump: its feet leave the ground
         self.ramps = dict(RAMPS, **(ramps or {}))
         self.hair = hair
         self.body = dict(BODY, **(body or {}))
@@ -275,9 +280,10 @@ class Humanoid:
         hy = b['head_y']
         head = [
             part((0, hy, 0), (b['head_rx'], b['head_ry'], b['head_rz']), 'skin', 'head'),
-            part((-0.1, hy - 0.2, b['head_rz'] - 0.2), (1.0, 1.5, 0.7), 'skin', 'ear'),
-            part((-0.1, hy - 0.2, -b['head_rz'] + 0.2), (1.0, 1.5, 0.7), 'skin', 'ear'),
         ]
+        if b['ears']:
+            head += [part((-0.1, hy - 0.2, b['head_rz'] - 0.2), (1.0, 1.5, 0.7), 'skin', 'ear'),
+                     part((-0.1, hy - 0.2, -b['head_rz'] + 0.2), (1.0, 1.5, 0.7), 'skin', 'ear')]
         if self.hair != 'none':
             # A shell a little bigger than the skull and set back, so it covers the top, back and
             # sides completely, and a fringe across the forehead for the hairline. Only the face
@@ -290,6 +296,9 @@ class Humanoid:
         return torso, head, decals
 
     def place(self, p):
+        if p.get('pile') and getattr(self, 'pile', None):          # a build that falls apart into pieces lays them out itself
+            self.last_joints = {}
+            return self.pile(p)
         b = self.body
         torso, head, decals = self.anatomy(p)
         pivot = (0.0, b['hip_y'] + 0.8, 0.0)         # the body turns about the hips
@@ -315,6 +324,7 @@ class Humanoid:
 
         # Legs: a hip, a knee that bends forward, an ankle on the ground, and a shoe.
         for side, z in (('L', -1), ('R', 1)):
+            shin = 'skin' if side == b['torn_leg'] else 'pants'      # a ripped trouser leg shows the skin
             hip = (0.0, b['hip_y'], z * b['hip_z'])
             hip_w = on_body(hip)
             spec = p['feet'][side]
@@ -329,11 +339,13 @@ class Humanoid:
                 toe = (foot[0] + b['foot_toe'], foot[1] + 0.9)
                 top = (hip_w[0], hip_w[1], hip_w[2])
                 placed.append(bone3(top, (knee[0], knee[1], hip_w[2] + kz), 1.75 * b['bulk'], 'pants', 'leg' + side))
-                placed.append(bone3((knee[0], knee[1], hip_w[2] + kz), (foot[0], foot[1], hip_w[2] + fz), 1.5 * b['bulk'], 'pants', 'leg' + side, grow=0.4))
+                placed.append(bone3((knee[0], knee[1], hip_w[2] + kz), (foot[0], foot[1], hip_w[2] + fz), 1.5 * b['bulk'], shin, 'leg' + side, grow=0.4))
+                if side == b['torn_leg']:
+                    placed.append(part((knee[0], knee[1], hip_w[2] + kz), (1.7 * b['bulk'], 1.0, 1.6 * b['bulk']), 'pants', 'leg' + side))   # a ragged cuff at the knee
                 placed.append(part((toe[0] + 0.3, toe[1], hip_w[2] + fz), (b['foot_rx'] + 0.5, b['foot_ry'], b['foot_rz']), 'shoes', 'leg' + side))   # a longer foot to plant in the squat
                 continue
             if len(spec) == 2:
-                knee, foot = two_bone(hip_w, (hip[0] + spec[0], spec[1]), b['leg_upper'], b['leg_lower'], True)
+                knee, foot = two_bone(hip_w, (hip[0] + spec[0], spec[1]), b['leg_upper'], b['leg_lower'], False)   # the knee goes forward
                 toe = (foot[0] + b['foot_toe'], foot[1] + 0.9)
             else:
                 a1, a2 = deg(spec[2]), deg(spec[3])
@@ -342,24 +354,48 @@ class Humanoid:
                 toe = (foot[0] + b['foot_toe'], foot[1] + 0.9)
                 knee, foot, toe = [on_body((k[0], k[1], hip[2]))[:2] for k in (knee, foot, toe)]
             placed.append(bone(hip_w[:2], knee, hip_w[2], 1.75 * b['bulk'], 'pants', 'leg' + side))
-            placed.append(bone(knee, foot, hip_w[2], 1.5 * b['bulk'], 'pants', 'leg' + side, grow=0.4))
-            placed.append(part((toe[0], toe[1], hip_w[2]), (b['foot_rx'], b['foot_ry'], b['foot_rz']), 'shoes', 'leg' + side))
+            placed.append(bone(knee, foot, hip_w[2], 1.5 * b['bulk'], shin, 'leg' + side, grow=0.4))
+            if side == b['torn_leg']:
+                placed.append(part((knee[0], knee[1], hip_w[2]), (1.7 * b['bulk'], 1.0, 1.6 * b['bulk']), 'pants', 'leg' + side))   # a ragged cuff at the knee
+            more = p.get('foot_long', 0)
+            placed.append(part((toe[0] + more * 0.6, toe[1], hip_w[2]), (b['foot_rx'] + more, b['foot_ry'], b['foot_rz']), 'shoes', 'leg' + side))
 
         # Arms: a shoulder, an elbow that bends back, a wrist, and a hand. Sleeves are short.
         hands_w = {}
         for side, z in (('L', -1), ('R', 1)):
             shoulder = (0.0, b['shoulder_y'], z * b['shoulder_z'])
             sh_w = on_body(shoulder)
+            if side in b['armless']:
+                # an arm that ends short: a torn sleeve and a stump, hanging at the side
+                tip = (sh_w[0] - 0.2, sh_w[1] - 0.45 * b['arm_upper'] * 1.6, sh_w[2])
+                placed.append(bone(sh_w[:2], tip[:2], sh_w[2], 1.45 * b['bulk'], b['sleeve_mat'], 'arm' + side, grow=0.3))
+                placed.append(part((tip[0], tip[1] - 0.3, tip[2]), (1.3 * b['bulk'], 0.8, 1.2 * b['bulk']), 'stump', 'arm' + side))
+                hands_w[side] = (tip[0], tip[1], tip[2])
+                continue
             spec = p['hands'][side]
+            flare = p.get('flare', 0) * z
+            if len(spec) == 2 and flare:
+                # the elbow held out to the side: solved in the arm's own plane with the bones shortened by
+                # what they reach sideways, so the arm is no longer than a straight one
+                upper = math.sqrt(b['arm_upper'] ** 2 - flare ** 2)
+                lower = math.sqrt(b['arm_lower'] ** 2 - flare ** 2)
+                elbow, wrist = two_bone(sh_w, (sh_w[0] + spec[0], sh_w[1] + spec[1]), upper, lower, True)
+                arm_z = sh_w[2] + z * p['spread']
+                out = (elbow[0], elbow[1], arm_z + flare)
+                placed.append(bone3((sh_w[0], sh_w[1], arm_z), out, 1.45 * b['bulk'], b['sleeve_mat'], 'arm' + side))
+                placed.append(bone3(out, (wrist[0], wrist[1], arm_z), 1.15 * b['bulk'], b['hand_mat'], 'arm' + side, grow=0.3))
+                placed.append(part((wrist[0], wrist[1] - 0.2, arm_z), (1.2 * b['bulk'], 1.2 * b['bulk'], 1.1 * b['bulk']), b['hand_mat'], 'arm' + side))
+                hands_w[side] = (wrist[0], wrist[1], arm_z)
+                continue
             if len(spec) == 2:
-                elbow, wrist = two_bone(sh_w, (sh_w[0] + spec[0], sh_w[1] + spec[1]), b['arm_upper'], b['arm_lower'], bool(p.get('elbows_down')))
+                elbow, wrist = two_bone(sh_w, (sh_w[0] + spec[0], sh_w[1] + spec[1]), b['arm_upper'], b['arm_lower'], side not in p.get('elbow_up', ()))   # the elbow goes back and down, unless raised
             else:
                 a1, a2 = deg(spec[2]), deg(spec[3])
                 elbow = (shoulder[0] + b['arm_upper'] * math.sin(a1), shoulder[1] - b['arm_upper'] * math.cos(a1))
                 wrist = (elbow[0] + b['arm_lower'] * math.sin(a1 + a2), elbow[1] - b['arm_lower'] * math.cos(a1 + a2))
                 elbow, wrist = [on_body((k[0], k[1], shoulder[2]))[:2] for k in (elbow, wrist)]
             arm_z = sh_w[2] + z * p['spread']
-            placed.append(bone(sh_w[:2], elbow, arm_z, 1.45 * b['bulk'], 'shirt', 'arm' + side))
+            placed.append(bone(sh_w[:2], elbow, arm_z, 1.45 * b['bulk'], b['sleeve_mat'], 'arm' + side))
             placed.append(bone(elbow, wrist, arm_z, 1.15 * b['bulk'], b['hand_mat'], 'arm' + side, grow=0.3))
             placed.append(part((wrist[0], wrist[1] - 0.2, arm_z), (1.2 * b['bulk'], 1.2 * b['bulk'], 1.1 * b['bulk']), b['hand_mat'], 'arm' + side))
             hands_w[side] = (wrist[0], wrist[1], arm_z)

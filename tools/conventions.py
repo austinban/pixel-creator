@@ -80,15 +80,16 @@ HEIGHT = {'attack': (22, 27), 'bow': (22, 27), 'charging': (24, 26), 'damage': (
 # The generated people kneel when worn out (down on one knee, head bowed), which is taller than the
 # originals' slump. Their own range, measured from their kneel; the originals keep theirs.
 KNEEL_HEIGHT = (22, 26)
-KNEELERS = {'human', 'slim', 'ninja', 'ranger'}
+KNEELERS = {'human', 'slim', 'ninja', 'ranger', 'bones', 'undead', 'paladin'}
 HEIGHT_SLACK = {'release': 2}    # one row either side of the originals' range (two for a cast, which
 HEIGHT_SLACK_DEFAULT = 1        # relies on arms thrown above the head that a shorter-armed figure cannot fully reach)
 MASS_SLACK = 0.92               # a little under the lightest original is still allowed
 # A person can be built slimmer on purpose. A slim build may carry up to 20% less than the lightest
 # original, which is still well above the floaty look of a figure with no body to it. Builds are
 # declared here so a slim character is a choice you can see, not a quiet loophole.
-BUILDS = {'standard': 0.92, 'slim': 0.78}
-BASE_BUILDS = {'slim': 'slim', 'ninja': 'slim', 'ranger': 'slim'}
+BUILDS = {'standard': 0.92, 'slim': 0.78, 'bony': 0.5,
+          'maimed': 0.65}      # a missing limb is less to paint
+BASE_BUILDS = {'slim': 'slim', 'ninja': 'slim', 'ranger': 'slim', 'bones': 'bony', 'undead': 'maimed', 'paladin': 'standard'}
 
 # --- the walk ----------------------------------------------------------------------------------
 # The originals share one walk, and it is a bob with sliding feet, not a rock forward and back. Over
@@ -110,9 +111,9 @@ RAMP_LENGTH = 4
 
 # The original six are humanoid; anything else is declared here. Anything not listed is checked as
 # a humanoid.
-BASE_KINDS = {'dog': 'creature', 'rat': 'creature'}
+BASE_KINDS = {'dog': 'creature', 'rat': 'creature', 'scorpion': 'creature'}
 # Which module describes how a generated base is built, so its poses can be checked at the source.
-CREATORS = {'human': 'make_human', 'slim': 'make_slim', 'ninja': 'make_ninja', 'ranger': 'make_ranger', 'dog': 'make_dog', 'rat': 'make_rat'}
+CREATORS = {'human': 'make_human', 'slim': 'make_slim', 'ninja': 'make_ninja', 'ranger': 'make_ranger', 'bones': 'make_bones', 'undead': 'make_undead', 'paladin': 'make_paladin', 'dog': 'make_dog', 'rat': 'make_rat', 'scorpion': 'make_scorpion'}
 
 UPRIGHT = {'attack', 'charging', 'damage', 'release', 'walking', 'weak'}
 
@@ -259,6 +260,19 @@ def check_standing(lines, kind):
     return problems
 
 
+# Every person has the bow animation: the draw, release and recoil (see make_bow.py), made on its own
+# model and kept in the base set as optional poses. Someone who cannot draw a bow is listed here, with why.
+BOW_EXEMPT = {'undead': 'has only one arm, so it cannot draw a bow'}
+
+
+def check_bow(base_id, frames_by_pose):
+    """A generated person has the bow animation, in both facings, unless it is exempt."""
+    if base_id not in CREATORS or kind_of(base_id) != 'humanoid' or base_id in BOW_EXEMPT:
+        return []
+    return [f'{base_id} has no {pose}: every person has the bow animation (python3 tools/make_bow.py --bases {base_id})'
+            for pose in ('bowNE', 'bowSE') if pose not in frames_by_pose]
+
+
 def check_base(base_id, frames_by_pose, kind=None, airborne=()):
     """Every problem in one base's poses, as 'pose frame N: problem' lines.
 
@@ -286,6 +300,13 @@ def luminance(char):
     hex_ = next(h for c, _, _, _, h in ep.ROLES if c == char)
     r, g, b = (int(hex_[i:i + 2], 16) for i in (0, 2, 4))
     return 0.299 * r + 0.587 * g + 0.114 * b
+
+
+def check_eyes(creature, owner=''):
+    """A person's open eyes are tall, thin, vertical slits (3 pixels tall), never dots (see CONVENTIONS.md)."""
+    if getattr(creature, 'kind', 'humanoid') == 'humanoid' and not getattr(creature, 'tall_eyes', False):
+        return [f'{owner} has dot eyes; every person has tall vertical slit eyes, 3 pixels tall (set tall_eyes, the default for a Humanoid)']
+    return []
 
 
 def check_ramps(ramps, owner=''):

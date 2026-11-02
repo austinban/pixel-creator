@@ -200,3 +200,41 @@ class TheHeldWeapon(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+class EyesAreTallSlits(unittest.TestCase):
+    """Every person's open eyes are tall vertical slits, not dots."""
+
+    def test_every_person_has_tall_eyes(self):
+        for name in cv.CREATORS:
+            creator = cv.creator_of(name)
+            if getattr(creator, 'kind', 'humanoid') == 'humanoid':
+                self.assertEqual(cv.check_eyes(creator, name), [], name)
+
+    def test_dot_eyes_are_caught(self):
+        class Dotty:
+            kind = 'humanoid'
+            tall_eyes = False
+        self.assertTrue(cv.check_eyes(Dotty(), 'dotty'))
+
+    def test_other_creatures_are_not_asked(self):
+        class Beast:
+            kind = 'creature'
+        self.assertEqual(cv.check_eyes(Beast(), 'beast'), [])
+
+
+class EveryPersonHasTheBow(unittest.TestCase):
+    """The bow animation is standard: a generated person without it is caught."""
+
+    def test_generated_people_have_it(self):
+        for name, ch in ((c['id'], c) for c in cv.load_bases()['characters']):
+            self.assertEqual(cv.check_bow(name, ch['frames']), [], name)
+
+    def test_missing_bow_is_caught(self):
+        frames = {k: v for k, v in bases()['slim']['frames'].items() if not k.startswith('bow')}
+        self.assertTrue(cv.check_bow('slim', frames))
+
+    def test_exempt_and_original_characters_are_not_asked(self):
+        self.assertEqual(cv.check_bow('undead', {}), [])
+        self.assertEqual(cv.check_bow('knight', {}), [])
+        self.assertEqual(cv.check_bow('rat', {}), [])

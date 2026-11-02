@@ -126,7 +126,10 @@ def render_view(parts, decals, ramps, yaw_deg, size=300, scale=1.0, eye=(0, 0, 0
         if 0 <= row < n and 0 <= col < n and covered[row, col] and names[part_id[row, col]] == 'head' and best_t[row, col] - cam[2] < cr.EYE_REACH:
             rad = int(px * (0.55 if shape == 'open' else 0.4))
             yy, xx = np.ogrid[:n, :n]
-            disc_mask = (yy - row) ** 2 + (xx - col) ** 2 <= rad * rad
+            if shape == 'open' and cr.TALL_EYES:       # a tall thin slit, three pixels tall like the sprites'
+                disc_mask = ((xx - col) / max(1.0, rad * 0.5)) ** 2 + ((yy - row) / (rad * 1.7)) ** 2 <= 1.0
+            else:
+                disc_mask = (yy - row) ** 2 + (xx - col) ** 2 <= rad * rad
             if shape != 'open':
                 disc_mask = disc_mask & (np.abs(yy - row) <= max(1, rad // 3))
             img[disc_mask & covered] = _rgb(cr.EYE)
@@ -147,6 +150,7 @@ def render_sheet(creature, pose, views=None, size=300):
     from PIL import Image, ImageDraw
     names = views or list(VIEWS)
     cr.EYE_REACH = getattr(creature, 'eye_reach', 0.9)
+    cr.TALL_EYES = getattr(creature, 'tall_eyes', False)
     parts, decals = creature.place(pose)
     tiles = []
     for name in names:

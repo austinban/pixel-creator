@@ -24,6 +24,10 @@ import make_facing  # noqa: E402
 import make_arrow  # noqa: E402
 import make_bow  # noqa: E402
 import make_ground  # noqa: E402
+import make_overlay  # noqa: E402
+import make_fire  # noqa: E402
+import make_ui  # noqa: E402
+import make_aoe  # noqa: E402
 import make_vine  # noqa: E402
 import make_weapons  # noqa: E402
 
@@ -335,6 +339,56 @@ def build_assets(weapons_dir=make_weapons.DEFAULT_DIR):
         'anchor': {'x': make_vine.ANCHOR[0], 'y': make_vine.ANCHOR[1]},
         'frames': vine_frames,
     }
+    # Tile overlays: flat animated highlights over a tile's top face; blue is for choosing where to move.
+    overlay_assets = []
+    for id_, label, colours in make_overlay.COLOURWAYS:
+        overlay_assets.append({
+            'id': id_, 'label': label, 'category': 'Overlays', 'kind': 'still', 'place': 'ground',
+            'opacity': make_overlay.OPACITY,       # see-through: it tones the tile underneath
+            'w': make_overlay.CELL_W, 'h': make_overlay.CELL_H, 'cols': 1, 'rows': 1, 'fps': 0,
+            # The middle of the diamond, on the ground.
+            'anchor': {'x': make_overlay.MIDDLE[0], 'y': make_overlay.MIDDLE[1]},
+            'frames': [make_overlay.render_pixels(colours)],
+        })
+    # The solid overlays, for hovering: they cover the whole top face, in the same three colours.
+    for id_, label, colours in make_overlay.SOLID_COLOURWAYS:
+        solid_frames = [make_overlay.render_solid(f, colours) for f in range(make_overlay.FRAMES)]
+        cols, rows = sheet_layout(len(solid_frames))
+        overlay_assets.append({
+            'id': id_, 'label': label, 'category': 'Overlays', 'kind': 'animation', 'place': 'ground',
+            'w': make_overlay.CELL_W, 'h': make_overlay.CELL_H, 'cols': cols, 'rows': rows, 'fps': 3,
+            'anchor': {'x': make_overlay.MIDDLE[0], 'y': make_overlay.MIDDLE[1]},
+            'frames': solid_frames,
+        })
+    # The fire burst: an area spell on five plots (see make_aoe.py), the template for the others.
+    fire_frames = [make_fire.render_pixels(f) for f in range(make_fire.FRAMES)]
+    cols, rows = sheet_layout(len(fire_frames))
+    fire_asset = {
+        'id': 'fire-burst', 'label': 'Fire burst spell (five plots)', 'category': 'Animations', 'kind': 'animation', 'place': 'ground',
+        'w': make_aoe.CELL_W, 'h': make_aoe.CELL_H, 'cols': cols, 'rows': rows, 'fps': 8,
+        # The middle of the middle plot, on the ground.
+        'anchor': {'x': make_aoe.MIDDLE[0], 'y': make_aoe.MIDDLE[1]},
+        'frames': fire_frames,
+    }
+    # The dots for the UI: filled for a point left, empty for a point spent. Blue is the movement point; red is its twin.
+    dot_assets = [{
+        'id': id_, 'label': label, 'category': 'UI', 'kind': 'variants', 'place': 'none',
+        'names': ['Filled', 'Empty'],
+        'w': make_ui.DOT, 'h': make_ui.DOT, 'cols': 2, 'rows': 1, 'fps': 0,
+        'anchor': {'x': make_ui.MIDDLE[0], 'y': make_ui.MIDDLE[1]},
+        'frames': [make_ui.render_pixels('filled', colours), make_ui.render_pixels('empty', colours)],
+    } for id_, label, colours in make_ui.COLOURWAYS]
+    # The dots bursting as a point is spent: full to empty, played once.
+    for id_, label, colours in make_ui.COLOURWAYS:
+        burst_frames = [make_ui.render_burst(f, colours) for f in range(make_ui.BURST_FRAMES)]
+        cols, rows = sheet_layout(len(burst_frames))
+        dot_assets.append({
+            'id': id_ + '-burst', 'label': label.replace(' (filled and empty)', '') + ' - burst (full to empty)', 'category': 'UI',
+            'kind': 'animation', 'place': 'none',
+            'w': make_ui.BURST, 'h': make_ui.BURST, 'cols': cols, 'rows': rows, 'fps': 14,
+            'anchor': {'x': make_ui.BURST_MIDDLE[0], 'y': make_ui.BURST_MIDDLE[1]},
+            'frames': burst_frames,
+        })
     # The arrow, two ways to try: one frame flying to the right to rotate and mirror, and two frames
     # already angled the way the game's camera sees a NE and an SE flight.
     arrow_side = {
@@ -353,7 +407,7 @@ def build_assets(weapons_dir=make_weapons.DEFAULT_DIR):
     # The bow: the slim human's pull-and-release as an animation, and the bow itself as a weapon strip that
     # goes behind it. Built apart, so either can change; they are laid over each other frame by frame.
     bow_assets = []
-    for who in ('human', 'slim', 'ninja', 'ranger'):                          # every person built from the humanoid model
+    for who in ('human', 'slim', 'ninja', 'ranger', 'bones', 'paladin'):                          # every person built from the humanoid model
         creature = getattr(importlib.import_module(f'make_{who}'), 'CREATURE')
         bow = make_bow.build_frames(make_bow.with_bow(creature))
         for facing in ('NE', 'SE'):
@@ -374,7 +428,7 @@ def build_assets(weapons_dir=make_weapons.DEFAULT_DIR):
                 })
     # The ground tileset is sliced from a PNG rather than rendered.
     # Weapon strips are read from PNGs too, if there are any.
-    return [crystal_asset] + facing_assets + [vine_asset, arrow_side, arrow_angled] + bow_assets + [rock_asset] + make_ground.build_ground_assets() + make_weapons.build_weapon_assets(weapons_dir)
+    return [crystal_asset] + facing_assets + overlay_assets + dot_assets + [vine_asset, fire_asset, arrow_side, arrow_angled] + bow_assets + [rock_asset] + make_ground.build_ground_assets() + make_weapons.build_weapon_assets(weapons_dir)
 
 
 def main():

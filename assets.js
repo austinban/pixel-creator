@@ -195,6 +195,8 @@ function boot() {
 
   function frameImage(ctx, asset, index, rgb, edit) {
     const image = ctx.createImageData(asset.w, asset.h);
+    // A see-through asset (a tile overlay) is painted at its own opacity, so it tints what is under it.
+    const alpha = Math.round(255 * (asset.opacity === undefined ? 1 : asset.opacity));
     if (edit) {
       const ox = (index % asset.cols) * asset.w;
       const oy = Math.floor(index / asset.cols) * asset.h;
@@ -203,7 +205,7 @@ function boot() {
           const v = edit.cells[(oy + y) * edit.w + ox + x];
           if (!v) continue;
           const c = v.length === 1 ? rgb[v] : toRgb(v);
-          if (c) image.data.set([c[0], c[1], c[2], 255], (y * asset.w + x) * 4);
+          if (c) image.data.set([c[0], c[1], c[2], alpha], (y * asset.w + x) * 4);
         }
       }
       return image;
@@ -211,7 +213,7 @@ function boot() {
     asset.frames[index].forEach((line, y) => {
       for (let x = 0; x < asset.w; x++) {
         const c = rgb[line[x]];
-        if (c) image.data.set([c[0], c[1], c[2], 255], (y * asset.w + x) * 4);
+        if (c) image.data.set([c[0], c[1], c[2], alpha], (y * asset.w + x) * 4);
       }
     });
     return image;

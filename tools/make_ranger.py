@@ -26,7 +26,7 @@ HOOD_BACK = 1.7                       # how far back from the head's middle the 
 RIM_X = 2.6                           # how far forward the ring sits
 RIM_RADIUS = 4.1                      # and how wide it is there
 RIM_PIECES = 26                       # the hood's edge round the face is a ring of small pieces
-CAPE_PIECES = 5
+CAPE_PIECES = 4
 
 
 def hood(j):

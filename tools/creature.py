@@ -356,7 +356,7 @@ def run(creature):
     origins = {f: calibrate(creature, f) for f in ('NE', 'SE')}
     airborne = getattr(creature, 'airborne', set())
     kind = getattr(creature, 'kind', 'humanoid')
-    built, problems = {}, conventions.check_ramps(creature.ramps, creature.name)
+    built, problems = {}, conventions.check_ramps(creature.ramps, creature.name) + conventions.check_eyes(creature, creature.name)
     for action, facing, cols, rows in ep.POSES:
         frames = []
         # A creature can give one facing its own frames, e.g. 'attackSE' beside 'attack'.

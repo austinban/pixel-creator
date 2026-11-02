@@ -34,6 +34,7 @@ def main():
         creator = cv.creator_of(ch['id'])
         airborne = getattr(creator, 'airborne', set())
         section(f"{ch['id']} ({cv.kind_of(ch['id'])})", cv.check_base(ch['id'], ch['frames'], airborne=airborne), f"{len(ch['frames'])} poses")
+        section(f"{ch['id']} bow animation", cv.check_bow(ch['id'], ch['frames']), 'bow poses')
 
     weapons = cv.ROOT / 'sprites' / 'weapons'
     if weapons.is_dir():
@@ -45,6 +46,7 @@ def main():
     for name in cv.CREATORS:
         creator = cv.creator_of(name)
         section(f'{name} colour ramps', cv.check_ramps(creator.ramps, name), f'{len(creator.ramps)} materials')
+        section(f'{name} eyes', cv.check_eyes(creator, name), 'tall slits')
 
     if problems:
         print(f'\n{len(problems)} problem{"s" if len(problems) != 1 else ""}:', file=sys.stderr)

@@ -153,6 +153,24 @@ of its foot on the ground. It is made from a small 3D model in the bush and tree
 model first with `python3 tools/make_vine.py --model previews/vine-3d.png`. The frame list (`FRAMES` in
 `tools/make_vine.py`) says what each frame does, so a frame can be added or held by editing one line.
 
+The **fire burst** is an area spell on five plots, one in the middle and one out in each direction: it
+ignites at the middle, bursts out onto the four around it, burns at full strength and dies to embers
+and smoke. It is 8 frames at 8 a second in an 80 × 56 cell, anchored on the middle plot, and is the template for other
+area spells (`tools/make_aoe.py` has the shared footprint; see Area-of-effect spells in CONVENTIONS.md).
+Preview it over five ground tiles with `python3 tools/make_fire.py --preview previews/fire-burst.png`.
+
+The **tile overlays** are flat tones laid over a ground tile's top face (a 32 × 16 diamond): blue for choosing where
+to move, plus yellow and red. They cover the whole tile but are **see-through** (an asset's `opacity` is applied when
+it is drawn and in its PNG export), so they tone the grass underneath instead of hiding it. They are a single still frame
+for now. Each also has a solid version for hovering, which animates (eight slow frames). They are in the **Overlays**
+category, in colours already in the ground tiles' palette (`tools/make_overlay.py`).
+
+The **movement point dot** is a small UI element, 7 × 7 pixels, in the **UI** category: a filled dot (the move
+blue, with a highlight) for each point left, and an empty one (the same shape as a dim socket) for each spent
+(`tools/make_ui.py`; `--preview` shows a row of them). There is a red twin of it, with a plum socket for the empty one, and a yellow one for spirit, and each has a **burst**
+animation (7 frames, in a 13 × 13 cell, played once) for the moment a point is spent: it swells, flashes, bursts into bits that fly out
+and fade, and leaves the empty socket behind.
+
 The **facing marker** is the yellow arrowhead that shows which way a character will face. It
 lies flat on the ground and has two frames, NE and SE (20 × 14 cell, not animated); NW and SW are
 those mirrored about the anchor, which is the arrow's middle on the ground. The unchosen ones are
