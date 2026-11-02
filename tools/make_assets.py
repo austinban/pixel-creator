@@ -19,7 +19,10 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import extract_poses as ep  # noqa: E402
+import make_facing  # noqa: E402
+import make_arrow  # noqa: E402
 import make_ground  # noqa: E402
+import make_vine  # noqa: E402
 import make_weapons  # noqa: E402
 
 # Roles used, by palette character: spark, then the green ramp, then the outline.
@@ -307,9 +310,47 @@ def build_assets(weapons_dir=make_weapons.DEFAULT_DIR):
         'anchor': {'x': rock['w'] // 2, 'y': GROUND_ROW + 1},
         'frames': rock_frames,
     }
+    # The facing marker: a flat arrowhead on the ground, NE and SE. NW and SW are those mirrored.
+    # Two colourways: yellow for the chosen direction, and pale blue for the others.
+    facing_assets = []
+    for id_, label, ramp, edge in (('facing', 'Facing marker (yellow)', make_facing.YELLOW, make_facing.EDGE),
+                                   ('facing-pale', 'Facing marker (pale blue)', make_facing.PALE, make_facing.PALE_EDGE)):
+        facing_assets.append({
+            'id': id_, 'label': label, 'category': 'Markers', 'kind': 'variants', 'place': 'ground',
+            'names': ['NE', 'SE'],
+            'w': make_facing.CELL_W, 'h': make_facing.CELL_H, 'cols': 2, 'rows': 1, 'fps': 0,
+            # The arrow's middle on the ground: mirrored left or right, it stays put.
+            'anchor': {'x': make_facing.MIDDLE[0], 'y': make_facing.MIDDLE[1]},
+            'frames': [make_facing.render_pixels(d, ramp, edge) for d in ('NE', 'SE')],
+        })
+    # The vine spell: shoots up out of the ground, swells, hangs a frame, and slams back down.
+    vine_frames = [make_vine.render_pixels(f) for f in make_vine.FRAMES]
+    cols, rows = sheet_layout(len(vine_frames))
+    vine_asset = {
+        'id': 'vine', 'label': 'Vine spell', 'category': 'Animations', 'kind': 'animation', 'place': 'ground',
+        'w': make_vine.CELL_W, 'h': make_vine.CELL_H, 'cols': cols, 'rows': rows, 'fps': 8,
+        # The middle of the vine's foot, on the ground.
+        'anchor': {'x': make_vine.ANCHOR[0], 'y': make_vine.ANCHOR[1]},
+        'frames': vine_frames,
+    }
+    # The arrow, two ways to try: one frame flying to the right to rotate and mirror, and two frames
+    # already angled the way the game's camera sees a NE and an SE flight.
+    arrow_side = {
+        'id': 'arrow', 'label': 'Arrow - single frame (rotate and mirror)', 'category': 'Weapons', 'kind': 'still', 'place': 'none',
+        'w': make_arrow.CELL_W, 'h': make_arrow.SIDE['h'], 'cols': 1, 'rows': 1, 'fps': 0,
+        'anchor': make_arrow.anchor('side'),
+        'frames': [make_arrow.render_pixels('side')],
+    }
+    arrow_angled = {
+        'id': 'arrow-iso', 'label': 'Arrow - two frames (NE and SE)', 'category': 'Weapons', 'kind': 'variants', 'place': 'none',
+        'names': ['NE', 'SE'],
+        'w': make_arrow.CELL_W, 'h': make_arrow.ANGLED['h'], 'cols': 2, 'rows': 1, 'fps': 0,
+        'anchor': make_arrow.anchor('NE'),
+        'frames': [make_arrow.render_pixels('NE'), make_arrow.render_pixels('SE')],
+    }
     # The ground tileset is sliced from a PNG rather than rendered.
     # Weapon strips are read from PNGs too, if there are any.
-    return [crystal_asset, rock_asset] + make_ground.build_ground_assets() + make_weapons.build_weapon_assets(weapons_dir)
+    return [crystal_asset] + facing_assets + [vine_asset, arrow_side, arrow_angled, rock_asset] + make_ground.build_ground_assets() + make_weapons.build_weapon_assets(weapons_dir)
 
 
 def main():

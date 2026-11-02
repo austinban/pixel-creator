@@ -44,8 +44,12 @@ def _colour(ramp, shade):
     return out
 
 
-def render_view(parts, decals, ramps, yaw_deg, size=300, scale=1.0, eye=(0, 0, 0)):
-    """One view as an RGBA image, `size` pixels square, the model fitted to it."""
+def render_view(parts, decals, ramps, yaw_deg, size=300, scale=1.0, eye=(0, 0, 0), fit_points=()):
+    """One view as an RGBA image, `size` pixels square, the model fitted to it.
+
+    `fit_points` are extra model points the picture must have room for, so a set of views of a
+    changing model (an animation) can share one scale and position.
+    """
     yaw = np.radians(yaw_deg)
     tilt = cr.TILT
     M = np.array([[1, 0, 0], [0, np.cos(tilt), -np.sin(tilt)], [0, np.sin(tilt), np.cos(tilt)]])
@@ -63,8 +67,8 @@ def render_view(parts, decals, ramps, yaw_deg, size=300, scale=1.0, eye=(0, 0, 0
         placed.append((q, c, r, R, R.T))
 
     # Fit the model to the picture: the screen extent of every ellipsoid's bounding sphere.
-    centres = np.array([B @ p[1] for p in placed])
-    radii = np.array([p[2].max() for p in placed])
+    centres = np.array([B @ p[1] for p in placed] + [B @ (np.array(q) * scale) for q in fit_points])
+    radii = np.array([p[2].max() for p in placed] + [0.0] * len(fit_points))
     lo = (centres[:, :2] - radii[:, None]).min(axis=0)
     hi = (centres[:, :2] + radii[:, None]).max(axis=0)
     span = max(hi[0] - lo[0], hi[1] - lo[1]) * 1.08

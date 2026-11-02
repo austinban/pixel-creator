@@ -146,6 +146,20 @@ colour roles, so they recolour the same way, and each saved item has its own
 colours, so you can keep a crystal per player. There are the same Duplicate, New
 and Delete buttons, and exports as PNG sheets or ZIPs of every frame.
 
+The **vine spell** is the first of the **Animations** category: a vine shoots up out of the ground,
+swells and opens its leaves, hangs a frame, then slams straight back down in a burst of earth. It is 8
+frames at 8 a second in a 32 × 48 cell (the vine is taller than a character), anchored at the middle
+of its foot on the ground. It is made from a small 3D model in the bush and tree's greens; look at the
+model first with `python3 tools/make_vine.py --model previews/vine-3d.png`. The frame list (`FRAMES` in
+`tools/make_vine.py`) says what each frame does, so a frame can be added or held by editing one line.
+
+The **facing marker** is the yellow arrowhead that shows which way a character will face. It
+lies flat on the ground and has two frames, NE and SE (20 × 14 cell, not animated); NW and SW are
+those mirrored about the anchor, which is the arrow's middle on the ground. The unchosen ones are
+the same sprite recoloured pale. Look at the model with
+`python3 tools/make_facing.py --model previews/facing-3d.png`; the sprites come from the same
+model in `tools/make_assets.py`.
+
 The first asset is the **turn crystal**: a Sims-style marker for whose turn it is,
 hovering above the active character and turning as it bobs. It is rendered from a
 small 3D model (a stretched octahedron, flat-shaded) by `tools/make_assets.py`, so
