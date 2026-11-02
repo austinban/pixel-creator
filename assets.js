@@ -276,7 +276,7 @@ function boot() {
     const poses = window.BASE_POSES;
     const base = poses.characters.find((c) => c.id === el('overBase').value);
     const pose = poses.poses.find((p) => p.id === el('overPose').value);
-    const frames = base.frames[pose.id];
+    const frames = base.frames[pose.id] || base.frames.chargingSE;     // a base without that pose stands
     const lines = frames[frameIndex % frames.length];
     const figure = document.createElement('canvas');
     figure.width = CHARACTER_CELL;
@@ -375,12 +375,16 @@ function boot() {
     const choice = el('swingChar').value;
     const canvas = el('swingCanvas');
     const note = el('swingNote');
+    // A weapon with its own animation (the bow) goes over that animation's frames, in the colours of the
+    // chosen character; any other goes over the character's attack.
     const poseId = `attack${asset.facing}`;
-    const poseData = window.BASE_POSES.poses.find((p) => p.id === poseId);
     const { bases, copies } = swingCharacters();
     const copy = choice.startsWith('copy:') ? copies.find((c) => c.id === choice.slice(5)) : null;
     const base = bases.find((b) => b.id === (copy ? copy.base : choice.slice(5)));
-    if (choice === 'none' || !base || !poseData || !base.frames[poseId]) {
+    const poseData = asset.animation ? (base ? { label: 'bow draw', cols: 4 } : null) : window.BASE_POSES.poses.find((p) => p.id === poseId);
+    const animFor = (who) => assetById(`${asset.animation}-${who}-${asset.facing.toLowerCase()}`);
+    const anim = asset.animation && base ? (animFor(base.id) || animFor('slim')) : null;
+    if (choice === 'none' || !base || !poseData || (!anim && !base.frames[poseId])) {
       canvas.width = canvas.height = 0;
       canvas.hidden = true;
       note.textContent = choice === 'none' ? 'Pick a character to see this weapon over its attack, one frame at a time.' : 'That character has no attack for this facing.';
@@ -402,7 +406,7 @@ function boot() {
     figure.width = figure.height = cell;
     const fctx = figure.getContext('2d');
     const image = fctx.createImageData(cell, cell);
-    const edit = copy && copy.edits && copy.edits[poseId];
+    const edit = !anim && copy && copy.edits && copy.edits[poseId];
     if (edit) {
       const sheetW = poseData.cols * cell;
       for (let y = 0; y < cell; y++) {
@@ -414,7 +418,7 @@ function boot() {
         }
       }
     } else {
-      base.frames[poseId][frame].forEach((line, y) => {
+      (anim ? anim.frames[frame] : base.frames[poseId][frame]).forEach((line, y) => {
         for (let x = 0; x < cell; x++) {
           const c = chRgb[line[x]];
           if (c) image.data.set([c[0], c[1], c[2], 255], (y * cell + x) * 4);

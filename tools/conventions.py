@@ -69,13 +69,18 @@ LEAN = {
 LEAN_TOLERANCE = 2.5            # the originals differ from each other by up to 4; stay within this of their average
 # "Weight": how much of the cell a figure fills, as painted pixels. A light figure reads as floating.
 MASS = {                        # (fewest, most) painted pixels in a frame of this action
+    'bow': (267, 388),     # the bow animation is held to the attack's numbers
     'attack': (267, 388), 'charging': (274, 380), 'damage': (250, 363), 'release': (297, 373),
     'walking': (258, 394), 'weak': (220, 286), 'dead': (225, 312),
 }
 # How tall a figure stands in each pose, in rows, top of the outline to the lowest pixel. A flinch is
 # hunched, a slump is low, a cast has the arms thrown up. Measured from the originals.
-HEIGHT = {'attack': (22, 27), 'charging': (24, 26), 'damage': (21, 24), 'release': (27, 28),
+HEIGHT = {'attack': (22, 27), 'bow': (22, 27), 'charging': (24, 26), 'damage': (21, 24), 'release': (27, 28),
           'walking': (23, 28), 'weak': (16, 18), 'dead': (16, 19)}
+# The generated people kneel when worn out (down on one knee, head bowed), which is taller than the
+# originals' slump. Their own range, measured from their kneel; the originals keep theirs.
+KNEEL_HEIGHT = (22, 26)
+KNEELERS = {'human', 'slim', 'ninja', 'ranger'}
 HEIGHT_SLACK = {'release': 2}    # one row either side of the originals' range (two for a cast, which
 HEIGHT_SLACK_DEFAULT = 1        # relies on arms thrown above the head that a shorter-armed figure cannot fully reach)
 MASS_SLACK = 0.92               # a little under the lightest original is still allowed
@@ -83,7 +88,7 @@ MASS_SLACK = 0.92               # a little under the lightest original is still 
 # original, which is still well above the floaty look of a figure with no body to it. Builds are
 # declared here so a slim character is a choice you can see, not a quiet loophole.
 BUILDS = {'standard': 0.92, 'slim': 0.78}
-BASE_BUILDS = {'slim': 'slim', 'ninja': 'slim'}
+BASE_BUILDS = {'slim': 'slim', 'ninja': 'slim', 'ranger': 'slim'}
 
 # --- the walk ----------------------------------------------------------------------------------
 # The originals share one walk, and it is a bob with sliding feet, not a rock forward and back. Over
@@ -107,7 +112,7 @@ RAMP_LENGTH = 4
 # a humanoid.
 BASE_KINDS = {'dog': 'creature', 'rat': 'creature'}
 # Which module describes how a generated base is built, so its poses can be checked at the source.
-CREATORS = {'human': 'make_human', 'slim': 'make_slim', 'ninja': 'make_ninja', 'dog': 'make_dog', 'rat': 'make_rat'}
+CREATORS = {'human': 'make_human', 'slim': 'make_slim', 'ninja': 'make_ninja', 'ranger': 'make_ranger', 'dog': 'make_dog', 'rat': 'make_rat'}
 
 UPRIGHT = {'attack', 'charging', 'damage', 'release', 'walking', 'weak'}
 
@@ -174,10 +179,10 @@ def check_movement(base_id, frames_by_pose):
         for i, lines in enumerate(frames):
             ys = [p[1] for p in painted(lines)]
             height = max(ys) - min(ys) + 1
-            h_lo, h_hi = HEIGHT[action]
+            h_lo, h_hi = KNEEL_HEIGHT if (action == 'weak' and base_id in KNEELERS) else HEIGHT[action]
             slack = HEIGHT_SLACK.get(action, HEIGHT_SLACK_DEFAULT)
             if not h_lo - slack <= height <= h_hi + slack:
-                out.append(f'{base_id} {pose_id} frame {i + 1}: {height} rows tall; this pose is {h_lo}-{h_hi} in the originals')
+                out.append(f'{base_id} {pose_id} frame {i + 1}: {height} rows tall; this pose is {h_lo}-{h_hi} for this build')
             mass = len(painted(lines))
             lo, hi = MASS[action]
             if mass < lo * BUILDS[BASE_BUILDS.get(base_id, 'standard')]:

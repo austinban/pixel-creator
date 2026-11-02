@@ -57,6 +57,22 @@ from creature import add, bone, deg, mm, mv, part, run, rx, ry, rz, sub, two_bon
 DATA = Path(__file__).resolve().parent / 'data'
 
 
+def bone3(a, b, radius, mat, name, grow=0.6):
+    """Like bone(), but between two points that may differ in depth too (a leg splayed to the side)."""
+    d = sub(b, a)
+    length = math.sqrt(sum(v * v for v in d))
+    y = [v / length for v in d]
+    ref = (1.0, 0.0, 0.0) if abs(y[0]) < 0.9 else (0.0, 0.0, 1.0)
+    dot = sum(r * v for r, v in zip(ref, y))
+    x = [r - dot * v for r, v in zip(ref, y)]
+    n = math.sqrt(sum(v * v for v in x))
+    x = [v / n for v in x]
+    z = [x[1] * y[2] - x[2] * y[1], x[2] * y[0] - x[0] * y[2], x[0] * y[1] - x[1] * y[0]]
+    R = [[x[i], y[i], z[i]] for i in range(3)]
+    mid = tuple((a[i] + b[i]) / 2 for i in range(3))
+    return part(mid, (radius, length / 2 + grow, radius * 0.95), mat, name, R)
+
+
 def tuned(name):
     """Numbers worked out by a tool and kept as data: see tune_lean.py and fit_hands.py."""
     path = DATA / name
@@ -99,12 +115,14 @@ BODY = dict(
 #   fwd     step forward, pixels
 #   head_pitch, head_yaw   the head, about the neck
 #   spread  how far the arms are held out from the body, pixels (clears the head when raised)
+#   elbows_down  True folds the arms with the elbows low, as in a ready stance
+#   stance  how far each foot is set out to the side of its hip, pixels (a wide, low stance); the knees go out with it
 #   eyes    'open' or 'shut'
 #   hands   {'L': (dx, dy), 'R': (dx, dy)}  where each hand goes, from its own shoulder
 #   feet    {'L': (dx, lift), 'R': (dx, lift)}  where each foot goes: ahead of the hip, and how high
 #   A hand or foot given four numbers (0, 0, a1, a2) is bent by raw angles instead; this is for
 #   lying down.
-BASE = dict(pitch=0, roll=0, twist=0, sway=0, lift=0, fwd=0, head_pitch=0, head_yaw=0, spread=0, eyes='open',
+BASE = dict(elbows_down=False, stance=0, pitch=0, roll=0, twist=0, sway=0, lift=0, fwd=0, head_pitch=0, head_yaw=0, spread=0, eyes='open',
             hands={'L': (0.3, -5.6), 'R': (0.3, -5.6)}, feet={'L': (0, 0), 'R': (0, 0)})
 
 
@@ -173,8 +191,9 @@ def standard_poses():
     attack_se = swing([(-6.5, 2.5), (4.0, 5.5), (5.0, -5.0), (5.0, -5.0)], [10, 0, 0, -10])
     return {
         # gathering strength: a low wide stance, fists drawn in at the chest
-        'charging': [pose(pitch=4, lift=-1.1, head_pitch=12,
-                          hands={'L': (2.2, -1.8), 'R': (2.5, -1.3)}, feet={'L': (-1.4, 0), 'R': (2.0, 0)})],
+        # (a deep, wide squat, feet set well apart, like powering up)
+        'charging': [pose(pitch=0, lift=-3.4, stance=2.0, elbows_down=True, head_pitch=8,
+                          hands={'L': (3.8, -1.6), 'R': (2.5, -1.3)}, feet={'L': (-0.8, 0), 'R': (1.4, 0)})],
         # an overhand swing with the left hand, in both facings (see `attack` above)
         'attack': attack,
         'attackSE': attack_se,
@@ -184,9 +203,10 @@ def standard_poses():
         # a flinch: thrown back, head wrenched up and round, arms flung
         'damage': [pose(pitch=10, lift=-5.0, fwd=-1.8, head_pitch=6, head_yaw=14, eyes='shut',
                         hands={'L': (-2.8, -2.4), 'R': (-2.6, -1.0)}, feet={'L': (2.2, 0), 'R': (-2.4, 0)})],
-        # worn out: knees bent, slumped forward, head hanging, arms dangling
-        'weak': [pose(pitch=-55, lift=-7.2, head_pitch=-22, eyes='shut',
-                      hands={'L': (0.9, -5.2), 'R': (0.5, -5.2)}, feet={'L': (0.8, 0), 'R': (-0.8, 0)})],
+        # worn out: down on one knee, the back foot behind, the front foot flat, head bowed about 45 degrees,
+        # one hand on the front knee and the other hanging
+        'weak': [pose(pitch=-10, lift=-2.3, head_pitch=-45, eyes='shut',
+                      hands={'L': (0.6, -5.2), 'R': (3.0, -4.2)}, feet={'L': (0, 0, 6, -86), 'R': (0, 0, 75, -70)})],
         # flat on the back, head behind, legs and arms out
         'dead': [pose(pitch=90, lift=-1.6, head_pitch=-6, eyes='shut',
                       hands={'L': (0, 0, 22, 6), 'R': (0, 0, -16, 4)}, feet={'L': (0, 0, 8, 2), 'R': (0, 0, -9, 3)})],
@@ -202,6 +222,7 @@ class Humanoid:
         self.tweaks = tweaks or {}         # pose id -> values to fix for this build, e.g. {'weakNE': {'pitch': -48}}
         self.tuning = tuning or name       # whose lean and hand numbers to use (data/NAME_lean.json, NAME_hands.json)
         self.kind = 'humanoid'
+        self.tall_eyes = True             # open eyes are a 3-pixel vertical line, like the original bases'
         self.airborne = set()
         self.ramps = dict(RAMPS, **(ramps or {}))
         self.hair = hair
@@ -290,13 +311,27 @@ class Humanoid:
         placed += [dict(q, c=on_head(q['c']), R=mm(g, mm(h, q['R']))) for q in head]
 
         joints = {'body': lambda x, y, z: on_body((x, y, z)), 'head': lambda x, y, z: on_head((x, y, z)),
-                  'head_R': mm(g, h)}        # how the head is turned, so a mask or hat can turn with it
+                  'head_R': mm(g, h), 'body_R': g}        # how the head is turned, so a mask or hat can turn with it
 
         # Legs: a hip, a knee that bends forward, an ankle on the ground, and a shoe.
         for side, z in (('L', -1), ('R', 1)):
             hip = (0.0, b['hip_y'], z * b['hip_z'])
             hip_w = on_body(hip)
             spec = p['feet'][side]
+            wide = p.get('stance', 0) * z
+            if len(spec) == 2 and wide:
+                # set out to the side: solved in the leg's own plane, with the bones' lengths shortened by
+                # what they reach sideways, so the leg is no longer than a straight one
+                kz, fz = wide * 0.8, wide
+                upper = math.sqrt(b['leg_upper'] ** 2 - kz ** 2)
+                lower = math.sqrt(b['leg_lower'] ** 2 - (fz - kz) ** 2)
+                knee, foot = two_bone(hip_w, (hip[0] + spec[0], spec[1]), upper, lower, False)   # the knee goes forward
+                toe = (foot[0] + b['foot_toe'], foot[1] + 0.9)
+                top = (hip_w[0], hip_w[1], hip_w[2])
+                placed.append(bone3(top, (knee[0], knee[1], hip_w[2] + kz), 1.75 * b['bulk'], 'pants', 'leg' + side))
+                placed.append(bone3((knee[0], knee[1], hip_w[2] + kz), (foot[0], foot[1], hip_w[2] + fz), 1.5 * b['bulk'], 'pants', 'leg' + side, grow=0.4))
+                placed.append(part((toe[0] + 0.3, toe[1], hip_w[2] + fz), (b['foot_rx'] + 0.5, b['foot_ry'], b['foot_rz']), 'shoes', 'leg' + side))   # a longer foot to plant in the squat
+                continue
             if len(spec) == 2:
                 knee, foot = two_bone(hip_w, (hip[0] + spec[0], spec[1]), b['leg_upper'], b['leg_lower'], True)
                 toe = (foot[0] + b['foot_toe'], foot[1] + 0.9)
@@ -317,7 +352,7 @@ class Humanoid:
             sh_w = on_body(shoulder)
             spec = p['hands'][side]
             if len(spec) == 2:
-                elbow, wrist = two_bone(sh_w, (sh_w[0] + spec[0], sh_w[1] + spec[1]), b['arm_upper'], b['arm_lower'], False)
+                elbow, wrist = two_bone(sh_w, (sh_w[0] + spec[0], sh_w[1] + spec[1]), b['arm_upper'], b['arm_lower'], bool(p.get('elbows_down')))
             else:
                 a1, a2 = deg(spec[2]), deg(spec[3])
                 elbow = (shoulder[0] + b['arm_upper'] * math.sin(a1), shoulder[1] - b['arm_upper'] * math.cos(a1))

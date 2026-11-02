@@ -89,7 +89,7 @@ function boot() {
   // Weapons are assets in the Weapons category: one strip of four frames per facing, each frame
   // in the cell of the attack frame it goes with. Choosing one draws its frame behind the
   // character's, as in the game, so you can see how it sits against the hand frame by frame.
-  const weaponAssets = ((window.ASSETS && window.ASSETS.assets) || []).filter((a) => a.weapon);
+  const weaponAssets = ((window.ASSETS && window.ASSETS.assets) || []).filter((a) => a.weapon && !a.animation);   // a weapon with its own animation (the bow) is not for the attack
   const defaultRgb = Object.fromEntries(roles.map((r) => [r.char, toRgb(r.hex)]));
   let weapon = 'none';   // 'none', a weapon's name, or 'copy:<id>' for one of your saved copies
 
@@ -182,7 +182,11 @@ function boot() {
   // A pose the character has edited is drawn from the edit, not from its base. With
   // `withWeapon`, the chosen weapon is drawn behind an attack pose. A weapon's cell is bigger than a
   // character's, so each frame grows to the weapon's size with the character in the middle of it.
+  // Not every base has every pose: the bow draw is only for the people built from the 3D model.
+  const hasPose = (ch, pose) => Boolean(baseById(ch.base).frames[pose.id]);
+
   function drawPose(canvas, pose, ch, withWeapon = false) {
+    if (!hasPose(ch, pose)) { canvas.width = canvas.height = 0; return; }
     const found = withWeapon && weaponFor(pose);
     const pad = found ? (found.asset.w - cell) / 2 : 0;
     const out = cell + 2 * pad;                    // the size of one frame on the canvas
@@ -260,8 +264,11 @@ function boot() {
   }
 
   function render() {
+    if (!hasPose(character, selected)) selected = poses.find((p) => p.id === 'chargingSE') || poses[0];
     document.querySelectorAll('.pose-card').forEach((card) => {
       const pose = poses.find((p) => p.id === card.dataset.id);
+      card.hidden = !hasPose(character, pose);
+      if (card.hidden) return;
       const cardCanvas = card.querySelector('canvas');
       drawPose(cardCanvas, pose, character, true);
       // A bigger frame (with a weapon) keeps the same scale, so the card grows with it.
@@ -722,6 +729,7 @@ function boot() {
       folders.set(name, used + 1);
       if (used) name = `${name}-${used + 1}`;
       for (const pose of poses) {
+        if (!hasPose(ch, pose)) continue;
         const folder = items.length > 1 ? `${name}/` : '';
         files.push({ name: `${folder}${name}-${pose.id}.png`, data: await pngBytes(ch, pose, scale) });
       }

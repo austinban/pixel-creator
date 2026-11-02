@@ -26,9 +26,6 @@ CREATURE = Humanoid(
         'hair': ('b', 'a', 'e', 'f'),       # ginger
     },
     body={'bulk': 1.0, 'shoulder_z': 3.2, 'hip_z': 1.4},
-    # With less body to fold, the slump seen from behind has to be folded further and turned a little
-    # to be as low as the originals' while still leaning like them. Found by searching that one pose.
-    tweaks={'weakNE': {'pitch': -70, 'lift': -6.6, 'sway': 4, 'twist': -15, 'head_pitch': -10}},
 )
 
 if __name__ == '__main__':

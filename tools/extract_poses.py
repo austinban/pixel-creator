@@ -96,6 +96,13 @@ POSES = [
     ('weak', 'SE', 1, 1),
 ]
 
+# Poses only some bases have (the humanoids built from the 3D model): taken from the folder when its PNGs
+# are there, and listed with the others but marked optional, so a base without them is still complete.
+OPTIONAL_POSES = [
+    ('bow', 'NE', 4, 1),
+    ('bow', 'SE', 4, 1),
+]
+
 
 def find_source(folder, pose_id):
     matches = sorted(folder.glob(f'*-{pose_id}.png'))
@@ -161,6 +168,11 @@ def main():
             frames = extract_frames(find_source(Path(folder), pose_id), cols, rows, by_colour, to_colour)
             frames_by_pose[pose_id] = frames
             frames_checked += len(frames)
+        for action, facing, cols, rows in OPTIONAL_POSES:
+            matches = sorted(Path(folder).glob(f'*-{action}{facing}.png'))
+            if matches:
+                frames_by_pose[action + facing] = extract_frames(matches[0], cols, rows, by_colour, to_colour)
+                frames_checked += len(frames_by_pose[action + facing])
         characters.append({'id': name.lower(), 'label': name.capitalize(), 'frames': frames_by_pose})
 
     kept = []
@@ -168,7 +180,7 @@ def main():
         if not args.out.exists():
             sys.exit(f'--merge needs an existing {args.out}')
         existing = json.loads(args.out.read_text()[len('window.BASE_POSES = '):].rstrip().rstrip(';'))
-        if existing.get('cell') != CELL or [p['id'] for p in existing.get('poses', [])] != [a + f for a, f, _, _ in POSES]:
+        if existing.get('cell') != CELL or [p['id'] for p in existing.get('poses', [])] not in ([a + f for a, f, _, _ in POSES], [a + f for a, f, _, _ in POSES + OPTIONAL_POSES]):
             sys.exit(f'{args.out} was built from a different pose list; rebuild it from all the bases instead of merging')
         replaced = {c['id'] for c in characters}
         kept = [c for c in existing['characters'] if c['id'] not in replaced]
@@ -179,8 +191,9 @@ def main():
         'groups': [{'id': i, 'label': l, 'hue': i not in ('outline', 'neutral')} for i, l in GROUPS],
         'roles': [{'char': c, 'id': i, 'label': l, 'group': g, 'hex': '#' + h} for c, i, l, g, h in ROLES],
         'poses': [
-            {'id': a + f, 'label': f'{a.capitalize()} {f}', 'action': a, 'facing': f, 'cols': c, 'rows': r}
-            for a, f, c, r in POSES
+            {'id': a + f, 'label': f'{a.capitalize()} {f}', 'action': a, 'facing': f, 'cols': c, 'rows': r,
+             **({'optional': True} if (a, f, c, r) in OPTIONAL_POSES else {})}
+            for a, f, c, r in POSES + OPTIONAL_POSES
         ],
         'characters': kept + characters,
     }

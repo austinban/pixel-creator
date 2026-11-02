@@ -12,6 +12,7 @@ Writes assets/data.js. With --png-dir it also writes each asset's sheet as a PNG
 and every frame is checked to re-render identically from its roles.
 """
 import argparse
+import importlib
 import json
 import math
 import sys
@@ -21,6 +22,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import extract_poses as ep  # noqa: E402
 import make_facing  # noqa: E402
 import make_arrow  # noqa: E402
+import make_bow  # noqa: E402
 import make_ground  # noqa: E402
 import make_vine  # noqa: E402
 import make_weapons  # noqa: E402
@@ -348,9 +350,31 @@ def build_assets(weapons_dir=make_weapons.DEFAULT_DIR):
         'anchor': make_arrow.anchor('NE'),
         'frames': [make_arrow.render_pixels('NE'), make_arrow.render_pixels('SE')],
     }
+    # The bow: the slim human's pull-and-release as an animation, and the bow itself as a weapon strip that
+    # goes behind it. Built apart, so either can change; they are laid over each other frame by frame.
+    bow_assets = []
+    for who in ('human', 'slim', 'ninja', 'ranger'):                          # every person built from the humanoid model
+        creature = getattr(importlib.import_module(f'make_{who}'), 'CREATURE')
+        bow = make_bow.build_frames(make_bow.with_bow(creature))
+        for facing in ('NE', 'SE'):
+            bow_assets.append({
+                'id': f'bow-draw-{who}-{facing.lower()}', 'label': f'Bow draw {facing} ({who.capitalize()})', 'category': 'Animations',
+                'kind': 'animation', 'place': 'none', 'w': 32, 'h': 32, 'cols': 4, 'rows': 1, 'fps': 4,
+                'anchor': {'x': 16, 'y': GROUND_ROW + 1},
+                'frames': bow['person'][facing],
+            })
+        if who == 'slim':       # the bow is drawn once, on the Slim, and shared: builds differ by under a pixel in the hand
+            for facing in ('NE', 'SE'):
+                bow_assets.append({
+                    'id': f'weapon-bow-{facing.lower()}', 'label': f'Bow {facing}', 'category': 'Weapons', 'kind': 'animation',
+                    'place': 'none', 'weapon': 'Bow', 'facing': facing, 'animation': 'bow-draw',
+                    'w': make_bow.WEAPON_CELL, 'h': make_bow.WEAPON_CELL, 'cols': 4, 'rows': 1, 'fps': 4,
+                    'anchor': {'x': make_bow.WEAPON_CELL // 2, 'y': make_bow.WEAPON_CELL},
+                    'frames': bow['bow'][facing],
+                })
     # The ground tileset is sliced from a PNG rather than rendered.
     # Weapon strips are read from PNGs too, if there are any.
-    return [crystal_asset] + facing_assets + [vine_asset, arrow_side, arrow_angled, rock_asset] + make_ground.build_ground_assets() + make_weapons.build_weapon_assets(weapons_dir)
+    return [crystal_asset] + facing_assets + [vine_asset, arrow_side, arrow_angled] + bow_assets + [rock_asset] + make_ground.build_ground_assets() + make_weapons.build_weapon_assets(weapons_dir)
 
 
 def main():

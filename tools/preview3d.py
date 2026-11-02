@@ -123,7 +123,7 @@ def render_view(parts, decals, ramps, yaw_deg, size=300, scale=1.0, eye=(0, 0, 0
         cam = B @ (np.array(pt) * scale)
         col = int(round((cam[0] - mid[0]) * px + n / 2))
         row = int(round(-(cam[1] - mid[1]) * px + n / 2))
-        if 0 <= row < n and 0 <= col < n and covered[row, col] and names[part_id[row, col]] == 'head' and best_t[row, col] - cam[2] < 0.9:
+        if 0 <= row < n and 0 <= col < n and covered[row, col] and names[part_id[row, col]] == 'head' and best_t[row, col] - cam[2] < cr.EYE_REACH:
             rad = int(px * (0.55 if shape == 'open' else 0.4))
             yy, xx = np.ogrid[:n, :n]
             disc_mask = (yy - row) ** 2 + (xx - col) ** 2 <= rad * rad
@@ -146,6 +146,7 @@ def render_sheet(creature, pose, views=None, size=300):
     """The model of a pose from several views, side by side with their names."""
     from PIL import Image, ImageDraw
     names = views or list(VIEWS)
+    cr.EYE_REACH = getattr(creature, 'eye_reach', 0.9)
     parts, decals = creature.place(pose)
     tiles = []
     for name in names:
