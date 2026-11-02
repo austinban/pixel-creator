@@ -27,6 +27,7 @@ import make_ground  # noqa: E402
 import make_overlay  # noqa: E402
 import make_fire  # noqa: E402
 import make_ui  # noqa: E402
+import make_bridge  # noqa: E402
 import make_aoe  # noqa: E402
 import make_vine  # noqa: E402
 import make_weapons  # noqa: E402
@@ -389,6 +390,16 @@ def build_assets(weapons_dir=make_weapons.DEFAULT_DIR):
             'anchor': {'x': make_ui.BURST_MIDDLE[0], 'y': make_ui.BURST_MIDDLE[1]},
             'frames': burst_frames,
         })
+    # The rickety bridge: four one-tile sprites to span a gap, flat and sloped, running either way. The slopes going
+    # NW and SW are the SE and NE ones flipped, as the facing marker's are.
+    bridge_asset = {
+        'id': 'bridge', 'label': 'Rickety bridge', 'category': 'Bridges', 'kind': 'variants', 'place': 'ground',
+        'names': ['Flat NE-SW', 'Flat NW-SE', 'Slope down NE', 'Slope down SE'],
+        'w': make_bridge.W, 'h': make_bridge.H, 'cols': 4, 'rows': 1, 'fps': 0,
+        # The middle of the land-level top face, on the ground: a bridge tile sits where a ground tile would.
+        'anchor': {'x': make_bridge.ANCHOR[0], 'y': make_bridge.ANCHOR[1]},
+        'frames': [make_bridge.render_pixels(axis, kind) for _, _, axis, kind in make_bridge.SPRITES],
+    }
     # The arrow, two ways to try: one frame flying to the right to rotate and mirror, and two frames
     # already angled the way the game's camera sees a NE and an SE flight.
     arrow_side = {
@@ -428,7 +439,7 @@ def build_assets(weapons_dir=make_weapons.DEFAULT_DIR):
                 })
     # The ground tileset is sliced from a PNG rather than rendered.
     # Weapon strips are read from PNGs too, if there are any.
-    return [crystal_asset] + facing_assets + overlay_assets + dot_assets + [vine_asset, fire_asset, arrow_side, arrow_angled] + bow_assets + [rock_asset] + make_ground.build_ground_assets() + make_weapons.build_weapon_assets(weapons_dir)
+    return [crystal_asset] + facing_assets + overlay_assets + dot_assets + [bridge_asset, vine_asset, fire_asset, arrow_side, arrow_angled] + bow_assets + [rock_asset] + make_ground.build_ground_assets() + make_weapons.build_weapon_assets(weapons_dir)
 
 
 def main():

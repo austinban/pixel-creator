@@ -62,6 +62,28 @@ function boot() {
 
   /* ---------- drawing ---------- */
 
+  // One frame of an asset (the bridge has four), drawn as is or flipped left to right.
+  const frameCache = {};
+  function frameCanvas(id, index, flip) {
+    const key = `${id}:${index}:${flip}`;
+    if (frameCache[key]) return frameCache[key];
+    const asset = byId[id];
+    const c = document.createElement('canvas');
+    c.width = asset.w;
+    c.height = asset.h;
+    const ctx = c.getContext('2d');
+    const image = ctx.createImageData(asset.w, asset.h);
+    asset.frames[index].forEach((line, y) => {
+      for (let x = 0; x < asset.w; x++) {
+        const rgb = rgbOf[line[x]];
+        if (rgb) image.data.set([rgb[0], rgb[1], rgb[2], 255], (y * asset.w + (flip ? asset.w - 1 - x : x)) * 4);
+      }
+    });
+    ctx.putImageData(image, 0, 0);
+    frameCache[key] = c;
+    return c;
+  }
+
   const cache = {};
   function tileCanvas(id) {
     if (cache[id]) return cache[id];
@@ -150,6 +172,50 @@ function boot() {
     return best[Math.floor(rand() * best.length)];
   }
 
+  // A bridge across the water: a straight run of water cells with land at both ends, along either grid axis. Its first and last
+  // cells are slopes (the last one flipped) and the cells between are flat. It is only drawn over sunken water, since the deck
+  // hangs a little below the land. Returns a map of 'x,y' to the bridge frame to draw there, and whether to flip it.
+  const BRIDGE = 'bridge';
+  const FLAT_NE_SW = 0, FLAT_NW_SE = 1, SLOPE_NE = 2, SLOPE_SE = 3;
+  function makeBridge(n, isWater, rand) {
+    const runs = [];
+    for (let line = 1; line < n - 1; line++) {
+      for (const along of ['x', 'y']) {
+        const at = (i) => (along === 'x' ? [i, line] : [line, i]);
+        let i = 1;
+        while (i < n - 1) {
+          const [x, y] = at(i);
+          if (!isWater(x, y)) { i++; continue; }
+          let j = i;
+          while (j + 1 < n && isWater(...at(j + 1))) j++;
+          const before = at(i - 1);
+          const after = at(j + 1);
+          const length = j - i + 1;
+          if (j + 1 < n && !isWater(...before) && !isWater(...after) && length >= 2 && length <= 7) runs.push({ along, line, from: i, to: j, length });
+          i = j + 1;
+        }
+      }
+    }
+    if (!runs.length) return null;
+    const shortest = Math.min(...runs.map((r) => r.length));
+    const choices = runs.filter((r) => r.length === shortest);
+    const run = choices[Math.floor(rand() * choices.length)];
+    const cells = new Map();
+    for (let i = run.from; i <= run.to; i++) {
+      const key = run.along === 'x' ? `${i},${run.line}` : `${run.line},${i}`;
+      // Along x the bridge runs NW-SE (the first cell, nearest the NW land, takes the SE slope); along y it runs NE-SW (the
+      // first cell, nearest the NE land, takes the SE slope flipped, and the last one the NE slope).
+      if (run.along === 'x') {
+        if (i === run.from) cells.set(key, { frame: SLOPE_SE, flip: false });
+        else if (i === run.to) cells.set(key, { frame: SLOPE_NE, flip: true });
+        else cells.set(key, { frame: FLAT_NW_SE, flip: false });
+      } else if (i === run.from) cells.set(key, { frame: SLOPE_SE, flip: true });
+      else if (i === run.to) cells.set(key, { frame: SLOPE_NE, flip: false });
+      else cells.set(key, { frame: FLAT_NE_SW, flip: false });
+    }
+    return cells;
+  }
+
   function build() {
     const seed = Number(el('seed').value) || 0;
     const n = Number(el('size').value);
@@ -158,6 +224,8 @@ function boot() {
     const set = WATER[el('level').value];
     const withProps = el('props').checked;
     const isWater = (x, y) => Boolean(water[y] && water[y][x]);
+    // Its own random numbers, so adding a bridge never changes the rest of a map made from the same seed.
+    const bridge = el('bridge').checked && el('level').value === 'sunken' && byId[BRIDGE] ? makeBridge(n, isWater, rng(seed ^ 0x9e3779b9)) : null;
 
     const width = n * 2 * STEP_X;
     const height = n * 2 * STEP_Y + TILE + HEADROOM;
@@ -166,7 +234,7 @@ function boot() {
     art.height = height;
     const ctx = art.getContext('2d');
 
-    let counts = { grass: 0, water: 0, props: 0 };
+    let counts = { grass: 0, water: 0, props: 0, bridge: 0 };
     // Back to front: the cells furthest from the viewer first.
     for (let d = 0; d <= (n - 1) * 2; d++) {
       for (let x = 0; x < n; x++) {
@@ -178,6 +246,12 @@ function boot() {
           const want = Object.entries(SIDES).filter(([, [dx, dy]]) => !isWater(x + dx, y + dy) && x + dx >= 0 && y + dy >= 0 && x + dx < n && y + dy < n).map(([s]) => s);
           ctx.drawImage(tileCanvas(waterTile(want, set, rand)), sx, sy);
           counts.water++;
+          const span = bridge && bridge.get(`${x},${y}`);
+          if (span) {
+            // The sprite's anchor is the middle of the land-level top face, 18 down from its top.
+            ctx.drawImage(frameCanvas(BRIDGE, span.frame, span.flip), sx, sy + TOP_CENTRE_Y - byId[BRIDGE].anchor.y);
+            counts.bridge++;
+          }
         } else {
           ctx.drawImage(tileCanvas(pick(rand, GRASS)), sx, sy);
           counts.grass++;
@@ -210,7 +284,7 @@ function boot() {
     ctx.clearRect(0, 0, view.width, view.height);
     ctx.drawImage(art, 0, 0, view.width, view.height);
     const { counts } = current;
-    el('status').textContent = `Seed ${current.seed} · ${current.n} × ${current.n} · ${counts.grass} grass, ${counts.water} water, ${counts.props} props`;
+    el('status').textContent = `Seed ${current.seed} · ${current.n} × ${current.n} · ${counts.grass} grass, ${counts.water} water, ${counts.props} props` + (counts.bridge ? `, a bridge of ${counts.bridge}` : '');
   }
 
   function regenerate() {
@@ -221,7 +295,7 @@ function boot() {
   /* ---------- controls ---------- */
 
   el('regen').addEventListener('click', regenerate);
-  ['seed', 'size', 'lake', 'level', 'props'].forEach((id) => el(id).addEventListener('change', render));
+  ['seed', 'size', 'lake', 'level', 'props', 'bridge'].forEach((id) => el(id).addEventListener('change', render));
 
   el('exportMap').addEventListener('click', () => {
     const scale = Number(el('exportScale').value);
@@ -237,5 +311,12 @@ function boot() {
     }, 'image/png');
   });
 
-  regenerate();
+  // A link can name its map: terrain.html?seed=7
+  const fromLink = new URLSearchParams(window.location.search).get('seed');
+  if (fromLink !== null && fromLink !== '') {
+    el('seed').value = fromLink;
+    render();
+  } else {
+    regenerate();
+  }
 }

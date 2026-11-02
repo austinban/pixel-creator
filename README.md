@@ -165,6 +165,16 @@ it is drawn and in its PNG export), so they tone the grass underneath instead of
 for now. Each also has a solid version for hovering, which animates (eight slow frames). They are in the **Overlays**
 category, in colours already in the ground tiles' palette (`tools/make_overlay.py`).
 
+The **rickety bridge** spans a gap between two pieces of land, and is in the **Bridges** category as one asset with four
+one-tile sprites (32 × 40, anchored on the middle of the land-level top face, so it sits where a ground tile would): a flat section
+and the sloped start of a bridge, each running NE-SW or NW-SE. The deck hangs a few pixels below the land, and a slope joins
+it to the land. The slopes going NW and SW are the NE and SE ones flipped left to right, so a bridge is built as land, slope,
+flat sections, the flipped slope, land: a NE-SW bridge starts with the NE slope and ends with the flipped SE slope, and a NW-SE
+one starts with the SE slope and ends with the flipped NE one. It has a rope rail along the back side only, so a character crossing it is never hidden by a front rail. The planks are uneven on
+purpose, with a missing one, a frayed rope and a leaning post. `python3 tools/make_bridge.py --preview previews/bridge.png` shows a whole bridge each way over sunken water.
+The terrain page lays one across the lake where land is close on both sides (tick "Bridge across the water"; it needs sunken water, now the default), and
+`terrain.html?seed=7` opens a particular map.
+
 The **movement point dot** is a small UI element, 7 × 7 pixels, in the **UI** category: a filled dot (the move
 blue, with a highlight) for each point left, and an empty one (the same shape as a dim socket) for each spent
 (`tools/make_ui.py`; `--preview` shows a row of them). There is a red twin of it, with a plum socket for the empty one, and a yellow one for spirit, and each has a **burst**
