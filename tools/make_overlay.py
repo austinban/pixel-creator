@@ -86,12 +86,94 @@ def render_solid(frame, colours=SOLID_BLUE):
     return [''.join(row) for row in grid]
 
 
+# --- the shaped overlays: one 32 x 32 cell per ground tile, lined up with the tile -----------------------------------------
+# Ground tiles come in a few shapes (flat tops at two heights, ramps, stepped ramps, half blocks), and an overlay has to
+# follow the walkable surface of the tile it covers. These are cut to the same 32 x 32 cell as the tiles, so an overlay is
+# drawn at the same place as the tile it lies on, whatever the tile's height. The angled shapes are read from the ground sheet
+# (tools/extract_overlay_shapes.py); the grass, dirt and stone tiles with the same silhouette share a shape.
+SHAPES_PATH = Path(__file__).resolve().parent / 'data' / 'overlay_shapes.json'
+
+
+def diamond_mask(top):
+    """The flat top face as a 32 x 32 mask, its upper corner `top` rows down from the top of the cell."""
+    return [[abs(x + 0.5 - 16) / 16 + abs(y - top + 0.5 - 8) / 8 <= 1.0 + 1e-9 for x in range(32)] for y in range(32)]
+
+
+def shapes():
+    """All the overlay shapes: (name, mask) pairs. The two flat ones first, then the angled ones, by grass tile number."""
+    import json
+    out = [('Flat (a full block)', diamond_mask(0)), ('Flat, low (8 rows down)', diamond_mask(8))]
+    for entry in json.loads(SHAPES_PATH.read_text()):
+        out.append((entry['name'], [[ch == '#' for ch in row] for row in entry['rows']]))
+    return out
+
+
+def _edge(mask):
+    """Each outline pixel of a mask, and whether it is lit (a top edge) or shaded (a bottom edge)."""
+    h, w = len(mask), len(mask[0])
+    on = lambda x, y: 0 <= x < w and 0 <= y < h and mask[y][x]
+    out = []
+    for y in range(h):
+        for x in range(w):
+            if not mask[y][x]:
+                continue
+            up, down, left, right = (not on(x, y - 1), not on(x, y + 1), not on(x - 1, y), not on(x + 1, y))
+            if up or down or left or right:
+                out.append((x, y, up or (left and not down)))
+    return out
+
+
+def _depth(mask):
+    """How far each pixel is from the edge, in steps (a flood in from the outline)."""
+    h, w = len(mask), len(mask[0])
+    depth = [[None] * w for _ in range(h)]
+    frontier = [(x, y) for x, y, _ in _edge(mask)]
+    for x, y in frontier:
+        depth[y][x] = 0
+    while frontier:
+        nxt = []
+        for x, y in frontier:
+            for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+                a, b = x + dx, y + dy
+                if 0 <= a < w and 0 <= b < h and mask[b][a] and depth[b][a] is None:
+                    depth[b][a] = depth[y][x] + 1
+                    nxt.append((a, b))
+        frontier = nxt
+    return depth
+
+
+def render_shape(mask, colours=BLUE):
+    """The see-through wash cut to a shape: one even tone and a soft two-tone edge."""
+    grid = [['.'] * 32 for _ in range(32)]
+    for y in range(32):
+        for x in range(32):
+            if mask[y][x]:
+                grid[y][x] = colours['base']
+    for x, y, lit in _edge(mask):
+        grid[y][x] = colours['lit'] if lit else colours['shade']
+    return [''.join(row) for row in grid]
+
+
+def render_shape_solid(mask, colours=SOLID_BLUE, glow=3):
+    """The solid hover version cut to a shape, still: a fill, a brighter middle, and a two-tone edge."""
+    grid = [['.'] * 32 for _ in range(32)]
+    depth = _depth(mask)
+    for y in range(32):
+        for x in range(32):
+            if mask[y][x]:
+                grid[y][x] = colours['glow'] if depth[y][x] >= glow else colours['fill']
+    for x, y, lit in _edge(mask):
+        grid[y][x] = colours['lit'] if lit else colours['shade']
+    return [''.join(row) for row in grid]
+
+
 def main():
     import argparse
     import extract_poses as ep
     from PIL import Image
     parser = argparse.ArgumentParser(description=__doc__.split('\n')[0])
     parser.add_argument('--preview', type=Path, help='write the four frames over a grass tile here')
+    parser.add_argument('--shapes', type=Path, help='write the shaped overlays, over the ground tiles they fit, here')
     args = parser.parse_args()
     rgb = {c: tuple(int(h[i:i + 2], 16) for i in (0, 2, 4)) for c, _, _, _, h in ep.ROLES}
     ground = Image.open(Path(__file__).resolve().parent.parent / 'sprites' / 'assets' / 'ground.png').convert('RGBA').crop((0, 0, 32, 32))
@@ -114,7 +196,30 @@ def main():
     if args.preview:
         sheet.save(args.preview)
         print('wrote', args.preview)
-
+    if args.shapes:
+        sheet_full = Image.open(Path(__file__).resolve().parent.parent / 'sprites' / 'assets' / 'ground.png').convert('RGBA')
+        tiles = [(0, 0), (1, 0), (2, 0), (3, 0), (4, 0), (5, 0), (6, 0), (7, 0), (2, 1), (3, 1), (4, 1), (5, 1), (6, 1), (7, 1)]
+        washes = (BLUE, YELLOW, RED)
+        solids = (SOLID_BLUE, SOLID_YELLOW, SOLID_RED)
+        scale = 4
+        count = len(tiles)
+        out = Image.new('RGBA', (count * 34 * scale, 6 * 34 * scale), (36, 38, 56, 255))
+        for i, ((name, mask), (c, r)) in enumerate(zip(shapes(), tiles)):
+            tile = sheet_full.crop((c * 32, r * 32, c * 32 + 32, r * 32 + 32))
+            for k in range(6):
+                lines = render_shape(mask, washes[k]) if k < 3 else render_shape_solid(mask, solids[k - 3])
+                opacity = round(255 * OPACITY) if k < 3 else 255
+                over = Image.new('RGBA', (32, 32), (0, 0, 0, 0))
+                for y, line in enumerate(lines):
+                    for x, ch in enumerate(line):
+                        if ch != '.':
+                            over.putpixel((x, y), rgb[ch] + (opacity,))
+                cell = Image.new('RGBA', (32, 32), (0, 0, 0, 0))
+                cell.alpha_composite(tile)
+                cell.alpha_composite(over)
+                out.alpha_composite(cell.resize((32 * scale, 32 * scale), Image.NEAREST), ((i * 34 + 1) * scale, (k * 34 + 1) * scale))
+        out.save(args.shapes)
+        print('wrote', args.shapes)
 
 if __name__ == '__main__':
     main()

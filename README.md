@@ -153,6 +153,12 @@ of its foot on the ground. It is made from a small 3D model in the bush and tree
 model first with `python3 tools/make_vine.py --model previews/vine-3d.png`. The frame list (`FRAMES` in
 `tools/make_vine.py`) says what each frame does, so a frame can be added or held by editing one line.
 
+The overlays also come **cut to the ground tiles' shapes**: each colour has a see-through and a solid set of 14 shapes (a flat top on a
+full block, a flat top 8 rows lower, and the twelve ramps, stepped ramps and half blocks of Grass 3 to 8 and 15 to 20), 32 × 32 and lined up with
+the tile, so an overlay is drawn where the tile is. Grass, dirt, stone, water, crates and stairs share these shapes, and every ground
+tile has an `overlay` number in `assets/data.js` saying which one fits it. The angled shapes are read from the ground sheet with
+`tools/extract_overlay_shapes.py`, and `python3 tools/make_overlay.py --shapes previews/overlay-shapes.png` shows them over their tiles.
+
 The **fire burst** is an area spell on five plots, one in the middle and one out in each direction: it
 ignites at the middle, bursts out onto the four around it, burns at full strength and dies to embers
 and smoke. It is 8 frames at 8 a second in an 80 × 56 cell, anchored on the middle plot, and is the template for other

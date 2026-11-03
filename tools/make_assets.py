@@ -351,6 +351,20 @@ def build_assets(weapons_dir=make_weapons.DEFAULT_DIR):
             'anchor': {'x': make_overlay.MIDDLE[0], 'y': make_overlay.MIDDLE[1]},
             'frames': [make_overlay.render_pixels(colours)],
         })
+    # The shaped overlays: one cell per ground tile shape (flat at two heights, ramps, stepped ramps, half blocks), 32 x 32 and lined
+    # up with the tile, so an overlay is drawn where the tile is. The same shapes serve the grass, dirt and stone tiles.
+    shape_list = make_overlay.shapes()
+    for (id_, label, colours), (_, _, solid_colours) in zip(make_overlay.COLOURWAYS, make_overlay.SOLID_COLOURWAYS):
+        for suffix, wording, frames, opacity in (
+                ('-shapes', ' - ground shapes', [make_overlay.render_shape(m, colours) for _, m in shape_list], make_overlay.OPACITY),
+                ('-solid-shapes', ' - solid, ground shapes', [make_overlay.render_shape_solid(m, solid_colours) for _, m in shape_list], 1)):
+            overlay_assets.append({
+                'id': id_ + suffix, 'label': label.replace('Tile overlay', 'Tile overlay' + wording, 1), 'category': 'Overlays', 'kind': 'variants', 'place': 'ground',
+                'names': [n for n, _ in shape_list], 'opacity': opacity,
+                'w': 32, 'h': 32, 'cols': 7, 'rows': 2, 'fps': 0,
+                'anchor': {'x': 16, 'y': 8},       # the middle of a full block's top face
+                'frames': frames,
+            })
     # The solid overlays, for hovering: they cover the whole top face, in the same three colours.
     for id_, label, colours in make_overlay.SOLID_COLOURWAYS:
         solid_frames = [make_overlay.render_solid(f, colours) for f in range(make_overlay.FRAMES)]
@@ -439,7 +453,43 @@ def build_assets(weapons_dir=make_weapons.DEFAULT_DIR):
                 })
     # The ground tileset is sliced from a PNG rather than rendered.
     # Weapon strips are read from PNGs too, if there are any.
-    return [crystal_asset] + facing_assets + overlay_assets + dot_assets + [bridge_asset, vine_asset, fire_asset, arrow_side, arrow_angled] + bow_assets + [rock_asset] + make_ground.build_ground_assets() + make_weapons.build_weapon_assets(weapons_dir)
+    assets = [crystal_asset] + facing_assets + overlay_assets + dot_assets + [bridge_asset, vine_asset, fire_asset, arrow_side, arrow_angled] + bow_assets + [rock_asset] + make_ground.build_ground_assets() + make_weapons.build_weapon_assets(weapons_dir)
+    tag_overlay_shapes(assets)
+    return assets
+
+
+def tag_overlay_shapes(assets):
+    """Say which overlay shape fits each ground tile, as an `overlay` index into the shaped overlays' variants.
+
+    The shapes: 0 is a flat top on a full block, 1 a flat top 8 rows lower, and 2 onward the angled ones (the grass tile each was
+    read from names it in tools/data/overlay_shapes.json). A tile with the same silhouette as an angled shape's grass tile uses
+    that shape; any other tile uses one of the flat ones if its whole flat top fits inside it. A tile that fits none (stairs) has no
+    `overlay` yet.
+    """
+    import json
+    entries = json.loads(make_overlay.SHAPES_PATH.read_text())
+    by_id = {a['id']: a for a in assets}
+    silhouette = lambda a: tuple(''.join('#' if ch != '.' else '.' for ch in row) for row in a['frames'][0])
+    angled = [silhouette(by_id[e['tile']]) for e in entries]
+    flat = [[row for row in m] for m in (make_overlay.diamond_mask(0), make_overlay.diamond_mask(8))]
+    for a in assets:
+        if not a['id'].startswith('ground-') or a['category'] not in ('Grass', 'Dirt', 'Stone', 'Water', 'Crates', 'Stairs'):
+            continue
+        sil = silhouette(a)
+        shape = next((2 + k for k, other in enumerate(angled) if other == sil), None)
+        if shape is None:
+            top = next(y for y, row in enumerate(sil) if '#' in row)
+            for k, mask in enumerate(flat):
+                if top == 8 * k and all(sil[y][x] == '#' for y in range(32) for x in range(32) if mask[y][x]):
+                    shape = k
+                    break
+        if shape is None and a['category'] == 'Stairs':
+            # Stairs climb like a ramp: the biggest angled shape that lies wholly inside the tile fits the flight of steps.
+            masks = [[[ch == '#' for ch in row] for row in e['rows']] for e in entries]
+            fits = [(sum(map(sum, m)), 2 + k) for k, m in enumerate(masks) if all(sil[y][x] == '#' for y in range(32) for x in range(32) if m[y][x])]
+            shape = max(fits)[1] if fits else None
+        if shape is not None:
+            a['overlay'] = shape
 
 
 def main():
