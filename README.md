@@ -167,6 +167,10 @@ and smoke. It is 8 frames at 8 a second in an 80 × 56 cell, anchored on the mid
 area spells (`tools/make_aoe.py` has the shared footprint; see Area-of-effect spells in CONVENTIONS.md).
 Preview it over five ground tiles with `python3 tools/make_fire.py --preview previews/fire-burst.png`.
 
+The **healing spell** is pink rose petals that appear above a character and drift down over them and are gone by the last frame (nothing
+touches the ground): 8 frames at 8 a second in a 32 × 48 cell (like the vine), anchored at the middle of the feet on the ground
+(`tools/make_heal.py`; `--preview` shows the frames over a character).
+
 The **tile overlays** are flat tones laid over a ground tile's top face (a 32 × 16 diamond): blue for choosing where
 to move, plus yellow and red. They cover the whole tile but are **see-through** (an asset's `opacity` is applied when
 it is drawn and in its PNG export), so they tone the grass underneath instead of hiding it. They are a single still frame

@@ -1111,6 +1111,24 @@
    "frames": 8
   },
   {
+   "id": "heal-petals",
+   "label": "Healing spell (rose petals)",
+   "category": "Animations",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 48,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 16,
+    "y": 41
+   },
+   "file": "heal-petals.png",
+   "frames": 8
+  },
+  {
    "id": "arrow",
    "label": "Arrow - single frame (rotate and mirror)",
    "category": "Weapons",
@@ -1364,6 +1382,42 @@
     "y": 28
    },
    "file": "bow-draw-paladin-se.png",
+   "frames": 4
+  },
+  {
+   "id": "bow-draw-blossom-ne",
+   "label": "Bow draw NE (Blossom)",
+   "category": "Animations",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 4,
+   "rows": 1,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 28
+   },
+   "file": "bow-draw-blossom-ne.png",
+   "frames": 4
+  },
+  {
+   "id": "bow-draw-blossom-se",
+   "label": "Bow draw SE (Blossom)",
+   "category": "Animations",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 4,
+   "rows": 1,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 28
+   },
+   "file": "bow-draw-blossom-se.png",
    "frames": 4
   },
   {

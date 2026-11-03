@@ -26,6 +26,7 @@ import make_bow  # noqa: E402
 import make_ground  # noqa: E402
 import make_overlay  # noqa: E402
 import make_fire  # noqa: E402
+import make_heal  # noqa: E402
 import make_ui  # noqa: E402
 import make_bridge  # noqa: E402
 import make_aoe  # noqa: E402
@@ -436,6 +437,16 @@ def build_assets(weapons_dir=make_weapons.DEFAULT_DIR):
         'anchor': {'x': make_bridge.ANCHOR[0], 'y': make_bridge.ANCHOR[1]},
         'frames': [make_bridge.render_pixels(axis, kind) for _, _, axis, kind in make_bridge.SPRITES],
     }
+    # The healing spell: rose petals appear above a character and drift down over them.
+    heal_frames = [make_heal.render_pixels(f) for f in range(make_heal.FRAMES)]
+    cols, rows = sheet_layout(len(heal_frames))
+    heal_asset = {
+        'id': 'heal-petals', 'label': 'Healing spell (rose petals)', 'category': 'Animations', 'kind': 'animation', 'place': 'ground',
+        'w': make_heal.CELL_W, 'h': make_heal.CELL_H, 'cols': cols, 'rows': rows, 'fps': 8,
+        # The middle of the character's feet, on the ground.
+        'anchor': {'x': make_heal.ANCHOR[0], 'y': make_heal.ANCHOR[1]},
+        'frames': heal_frames,
+    }
     # The arrow, two ways to try: one frame flying to the right to rotate and mirror, and two frames
     # already angled the way the game's camera sees a NE and an SE flight.
     arrow_side = {
@@ -454,7 +465,7 @@ def build_assets(weapons_dir=make_weapons.DEFAULT_DIR):
     # The bow: the slim human's pull-and-release as an animation, and the bow itself as a weapon strip that
     # goes behind it. Built apart, so either can change; they are laid over each other frame by frame.
     bow_assets = []
-    for who in ('human', 'slim', 'ninja', 'ranger', 'bones', 'paladin'):                          # every person built from the humanoid model
+    for who in ('human', 'slim', 'ninja', 'ranger', 'bones', 'paladin', 'blossom'):                          # every person built from the humanoid model
         creature = getattr(importlib.import_module(f'make_{who}'), 'CREATURE')
         bow = make_bow.build_frames(make_bow.with_bow(creature))
         for facing in ('NE', 'SE'):
@@ -475,7 +486,7 @@ def build_assets(weapons_dir=make_weapons.DEFAULT_DIR):
                 })
     # The ground tileset is sliced from a PNG rather than rendered.
     # Weapon strips are read from PNGs too, if there are any.
-    assets = [crystal_asset] + facing_assets + overlay_assets + dot_assets + [bridge_asset, vine_asset, fire_asset, arrow_side, arrow_angled] + bow_assets + [rock_asset] + make_ground.build_ground_assets() + make_weapons.build_weapon_assets(weapons_dir)
+    assets = [crystal_asset] + facing_assets + overlay_assets + dot_assets + [bridge_asset, vine_asset, fire_asset, heal_asset, arrow_side, arrow_angled] + bow_assets + [rock_asset] + make_ground.build_ground_assets() + make_weapons.build_weapon_assets(weapons_dir)
     tag_overlay_shapes(assets)
     return assets
 

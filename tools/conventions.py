@@ -80,7 +80,7 @@ HEIGHT = {'attack': (22, 27), 'bow': (22, 27), 'charging': (24, 26), 'damage': (
 # The generated people kneel when worn out (down on one knee, head bowed), which is taller than the
 # originals' slump. Their own range, measured from their kneel; the originals keep theirs.
 KNEEL_HEIGHT = (22, 26)
-KNEELERS = {'human', 'slim', 'ninja', 'ranger', 'bones', 'undead', 'paladin'}
+KNEELERS = {'human', 'slim', 'ninja', 'ranger', 'bones', 'undead', 'paladin', 'blossom'}
 HEIGHT_SLACK = {'release': 2}    # one row either side of the originals' range (two for a cast, which
 HEIGHT_SLACK_DEFAULT = 1        # relies on arms thrown above the head that a shorter-armed figure cannot fully reach)
 MASS_SLACK = 0.92               # a little under the lightest original is still allowed
@@ -88,8 +88,9 @@ MASS_SLACK = 0.92               # a little under the lightest original is still 
 # original, which is still well above the floaty look of a figure with no body to it. Builds are
 # declared here so a slim character is a choice you can see, not a quiet loophole.
 BUILDS = {'standard': 0.92, 'slim': 0.78, 'bony': 0.5,
-          'maimed': 0.65}      # a missing limb is less to paint
-BASE_BUILDS = {'slim': 'slim', 'ninja': 'slim', 'ranger': 'slim', 'bones': 'bony', 'undead': 'maimed', 'paladin': 'standard'}
+          'maimed': 0.65,
+          'delicate': 0.6}      # a fairy: slim, with little body and no heavy clothes      # a missing limb is less to paint
+BASE_BUILDS = {'slim': 'slim', 'ninja': 'slim', 'ranger': 'slim', 'bones': 'bony', 'undead': 'maimed', 'paladin': 'standard', 'blossom': 'delicate'}
 
 # --- the walk ----------------------------------------------------------------------------------
 # The originals share one walk, and it is a bob with sliding feet, not a rock forward and back. Over
@@ -113,7 +114,7 @@ RAMP_LENGTH = 4
 # a humanoid.
 BASE_KINDS = {'dog': 'creature', 'rat': 'creature', 'scorpion': 'creature'}
 # Which module describes how a generated base is built, so its poses can be checked at the source.
-CREATORS = {'human': 'make_human', 'slim': 'make_slim', 'ninja': 'make_ninja', 'ranger': 'make_ranger', 'bones': 'make_bones', 'undead': 'make_undead', 'paladin': 'make_paladin', 'dog': 'make_dog', 'rat': 'make_rat', 'scorpion': 'make_scorpion'}
+CREATORS = {'human': 'make_human', 'slim': 'make_slim', 'ninja': 'make_ninja', 'ranger': 'make_ranger', 'bones': 'make_bones', 'undead': 'make_undead', 'paladin': 'make_paladin', 'blossom': 'make_blossom', 'dog': 'make_dog', 'rat': 'make_rat', 'scorpion': 'make_scorpion'}
 
 UPRIGHT = {'attack', 'charging', 'damage', 'release', 'walking', 'weak'}
 
