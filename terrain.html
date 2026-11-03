@@ -81,8 +81,10 @@
   <p>Then reload.</p>
 </section>
 
-<script src="files.js"></script>
-<script src="assets/data.js"></script>
-<script src="terrain.js"></script>
+<script>
+  // Load the newest copy of every script. A plain static server lets the browser keep old copies, so a rebuilt asset or an edit
+  // would not show until a hard refresh; a changing ?v= on each address makes it fetch them fresh every time the page opens.
+  ['files.js', 'assets/data.js', 'terrain.js'].forEach(function (src) { document.write('<script src="' + src + '?v=' + Date.now() + '"><\/script>'); });
+</script>
 </body>
 </html>

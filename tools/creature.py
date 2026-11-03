@@ -53,6 +53,8 @@ LIGHT = (-0.45, 0.62, 0.64)   # in camera space: from the upper left, in front
 TILT = math.radians(30)       # how far the camera looks down
 YAW = {'SE': math.radians(-45), 'NE': math.radians(45)}
 EYE_REACH = 0.9              # how far in front of an eye the surface may be and still show it (a face that stands out of a hood needs more); set by run()
+EYE_PUPIL = None             # a role for a pupil in the middle of each open eye; set by run() from the creature
+EYE_COLOUR = None            # a role for the eyes themselves, if not the usual dark one; set by run() from the creature
 EYE_WHITE = None             # a role to paint beside each open eye, for whites; set by run() from the creature
 TALL_EYES = False             # open eyes as a short vertical line, 3 pixels tall, like the original bases'; set by run() from the creature
 GROUND_ROW = 26               # lowest painted (not outline) row of a standing creature
@@ -217,15 +219,17 @@ def render_frame(parts, decals, facing, origin, ramps, scale=1.0, decal_part='he
         px, py = int(sx), int(sy)
         if 0 <= px < CELL and 0 <= py < CELL and grid[py][px] and grid[py][px][1] == decal_part and depth[py][px] - dz < EYE_REACH:
             if shape == 'open':
-                out[py][px] = EYE
+                out[py][px] = EYE_COLOUR or EYE
                 if TALL_EYES:
                     for ey in (py - 1, py + 1):          # up and down, only where it is still the face
                         if 0 <= ey < CELL and grid[ey][px] and grid[ey][px][1] == decal_part:
-                            out[ey][px] = EYE
+                            out[ey][px] = EYE_COLOUR or EYE
+                if EYE_PUPIL:
+                    out[py][px] = EYE_PUPIL           # the pupil, in the middle of the slit
             else:
                 for dx in (0, 1):
                     if px + dx < CELL and grid[py][px + dx]:
-                        out[py][px + dx] = EYE
+                        out[py][px + dx] = EYE_COLOUR or EYE
 
     # Whites of the eyes: a pixel either side of each open eye's middle, where it is still the face.
     if EYE_WHITE:
@@ -349,7 +353,9 @@ def run(creature):
     if not args.out:
         parser.error('say where to write the sprites, or use --model to see the 3D model first')
 
-    global TALL_EYES, EYE_WHITE, EYE_REACH
+    global TALL_EYES, EYE_WHITE, EYE_REACH, EYE_COLOUR, EYE_PUPIL
+    EYE_PUPIL = getattr(creature, 'eye_pupil', None)
+    EYE_COLOUR = getattr(creature, 'eye_colour', None)
     EYE_REACH = getattr(creature, 'eye_reach', 0.9)
     TALL_EYES = getattr(creature, 'tall_eyes', False)
     EYE_WHITE = getattr(creature, 'eye_white', None)

@@ -36,6 +36,11 @@ def main():
         section(f"{ch['id']} ({cv.kind_of(ch['id'])})", cv.check_base(ch['id'], ch['frames'], airborne=airborne), f"{len(ch['frames'])} poses")
         section(f"{ch['id']} bow animation", cv.check_bow(ch['id'], ch['frames']), 'bow poses')
 
+    emperor = cv.ROOT / 'sprites' / 'scorpion-emperor'
+    if emperor.is_dir():
+        found = cv.load_boss_frames(emperor, 'scorpion-emperor')
+        section('scorpion-emperor (boss)', cv.check_boss('scorpion-emperor', found), f'{sum(len(v) for v in found.values())} frames')
+
     weapons = cv.ROOT / 'sprites' / 'weapons'
     if weapons.is_dir():
         section('weapons', cv.check_weapons(weapons), f"{len(list(weapons.glob('*.png')))} strips")

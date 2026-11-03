@@ -9,10 +9,12 @@ a transparent background.
 Open `index.html` in a browser, or serve the folder:
 
 ```bash
-python3 -m http.server 4321
+python3 tools/serve.py
 ```
 
-Then visit http://localhost:4321.
+Then visit http://localhost:4321. (`tools/serve.py` tells the browser never to keep old copies of the files, so a
+rebuilt asset shows on a normal reload. Each page also loads its scripts with a changing `?v=` on the address, so it
+shows the newest copy even from a plain `python3 -m http.server` or by opening the file directly.)
 
 ## What it does
 

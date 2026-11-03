@@ -8,6 +8,8 @@ poses/
 # tile sheet in that folder is not ours, so it stays out.
 sprites/*
 !sprites/assets/
+!sprites/scorpion-emperor/
+sprites/scorpion-emperor/raw.json
 sprites/assets/ground.png
 
 # 3D previews made by tools/preview3d.py while designing a character; they are throwaway

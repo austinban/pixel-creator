@@ -931,6 +931,330 @@
    "frames": 8
   },
   {
+   "id": "ropes-bound-ne",
+   "label": "Ropes - bound, charging pose (NE)",
+   "category": "Overlays",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 27
+   },
+   "file": "ropes-bound-ne.png",
+   "frames": 1
+  },
+  {
+   "id": "ropes-cut-ne",
+   "label": "Ropes - being cut, charging pose (NE)",
+   "category": "Overlays",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 6,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 16,
+    "y": 27
+   },
+   "file": "ropes-cut-ne.png",
+   "frames": 6
+  },
+  {
+   "id": "ropes-bound-se",
+   "label": "Ropes - bound, charging pose (SE)",
+   "category": "Overlays",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 27
+   },
+   "file": "ropes-bound-se.png",
+   "frames": 1
+  },
+  {
+   "id": "ropes-cut-se",
+   "label": "Ropes - being cut, charging pose (SE)",
+   "category": "Overlays",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 6,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 16,
+    "y": 27
+   },
+   "file": "ropes-cut-se.png",
+   "frames": 6
+  },
+  {
+   "id": "emperor-charging-ne",
+   "label": "Scorpion emperor - charging (NE)",
+   "category": "Bosses",
+   "kind": "still",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 48,
+    "y": 72
+   },
+   "file": "emperor-charging-ne.png",
+   "frames": 1
+  },
+  {
+   "id": "emperor-charging-se",
+   "label": "Scorpion emperor - charging (SE)",
+   "category": "Bosses",
+   "kind": "still",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 48,
+    "y": 72
+   },
+   "file": "emperor-charging-se.png",
+   "frames": 1
+  },
+  {
+   "id": "emperor-attack-ne",
+   "label": "Scorpion emperor - attack (NE)",
+   "category": "Bosses",
+   "kind": "animation",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 4,
+   "rows": 1,
+   "fps": 6,
+   "anchor": {
+    "x": 48,
+    "y": 72
+   },
+   "file": "emperor-attack-ne.png",
+   "frames": 4
+  },
+  {
+   "id": "emperor-attack-se",
+   "label": "Scorpion emperor - attack (SE)",
+   "category": "Bosses",
+   "kind": "animation",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 4,
+   "rows": 1,
+   "fps": 6,
+   "anchor": {
+    "x": 48,
+    "y": 72
+   },
+   "file": "emperor-attack-se.png",
+   "frames": 4
+  },
+  {
+   "id": "emperor-release-ne",
+   "label": "Scorpion emperor - release (NE)",
+   "category": "Bosses",
+   "kind": "still",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 48,
+    "y": 72
+   },
+   "file": "emperor-release-ne.png",
+   "frames": 1
+  },
+  {
+   "id": "emperor-release-se",
+   "label": "Scorpion emperor - release (SE)",
+   "category": "Bosses",
+   "kind": "still",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 48,
+    "y": 72
+   },
+   "file": "emperor-release-se.png",
+   "frames": 1
+  },
+  {
+   "id": "emperor-damage-ne",
+   "label": "Scorpion emperor - damage (NE)",
+   "category": "Bosses",
+   "kind": "still",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 48,
+    "y": 72
+   },
+   "file": "emperor-damage-ne.png",
+   "frames": 1
+  },
+  {
+   "id": "emperor-damage-se",
+   "label": "Scorpion emperor - damage (SE)",
+   "category": "Bosses",
+   "kind": "still",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 48,
+    "y": 72
+   },
+   "file": "emperor-damage-se.png",
+   "frames": 1
+  },
+  {
+   "id": "emperor-weak-ne",
+   "label": "Scorpion emperor - weak (NE)",
+   "category": "Bosses",
+   "kind": "still",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 48,
+    "y": 72
+   },
+   "file": "emperor-weak-ne.png",
+   "frames": 1
+  },
+  {
+   "id": "emperor-weak-se",
+   "label": "Scorpion emperor - weak (SE)",
+   "category": "Bosses",
+   "kind": "still",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 48,
+    "y": 72
+   },
+   "file": "emperor-weak-se.png",
+   "frames": 1
+  },
+  {
+   "id": "emperor-dead-ne",
+   "label": "Scorpion emperor - dead (NE)",
+   "category": "Bosses",
+   "kind": "still",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 48,
+    "y": 72
+   },
+   "file": "emperor-dead-ne.png",
+   "frames": 1
+  },
+  {
+   "id": "emperor-dead-se",
+   "label": "Scorpion emperor - dead (SE)",
+   "category": "Bosses",
+   "kind": "still",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 48,
+    "y": 72
+   },
+   "file": "emperor-dead-se.png",
+   "frames": 1
+  },
+  {
+   "id": "emperor-walking-ne",
+   "label": "Scorpion emperor - walking (NE)",
+   "category": "Bosses",
+   "kind": "animation",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 48,
+    "y": 72
+   },
+   "file": "emperor-walking-ne.png",
+   "frames": 8
+  },
+  {
+   "id": "emperor-walking-se",
+   "label": "Scorpion emperor - walking (SE)",
+   "category": "Bosses",
+   "kind": "animation",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 48,
+    "y": 72
+   },
+   "file": "emperor-walking-se.png",
+   "frames": 8
+  },
+  {
    "id": "ui-movement-dot",
    "label": "Movement point dot (filled and empty)",
    "category": "UI",
@@ -1418,6 +1742,42 @@
     "y": 28
    },
    "file": "bow-draw-blossom-se.png",
+   "frames": 4
+  },
+  {
+   "id": "bow-draw-earthbender-ne",
+   "label": "Bow draw NE (Earthbender)",
+   "category": "Animations",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 4,
+   "rows": 1,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 28
+   },
+   "file": "bow-draw-earthbender-ne.png",
+   "frames": 4
+  },
+  {
+   "id": "bow-draw-earthbender-se",
+   "label": "Bow draw SE (Earthbender)",
+   "category": "Animations",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 4,
+   "rows": 1,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 28
+   },
+   "file": "bow-draw-earthbender-se.png",
    "frames": 4
   },
   {

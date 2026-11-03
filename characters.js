@@ -448,11 +448,19 @@ function boot() {
     el('groups').appendChild(section);
   });
 
-  characters.forEach((c) => {
-    const option = document.createElement('option');
-    option.value = c.id;
-    option.textContent = c.label;
-    el('baseSelect').appendChild(option);
+  // The bases, in two groups: the people (humanoids) and the creatures. A base's `kind` says which; one without is a person.
+  [['humanoid', 'Humanoids'], ['creature', 'Creatures']].forEach(([kind, title]) => {
+    const group = characters.filter((c) => (c.kind || 'humanoid') === kind);
+    if (!group.length) return;
+    const optgroup = document.createElement('optgroup');
+    optgroup.label = `${title} (${group.length})`;
+    group.forEach((c) => {
+      const option = document.createElement('option');
+      option.value = c.id;
+      option.textContent = c.label;
+      optgroup.appendChild(option);
+    });
+    el('baseSelect').appendChild(optgroup);
   });
 
   el('baseSelect').addEventListener('change', (event) => {

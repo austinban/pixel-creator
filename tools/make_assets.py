@@ -27,6 +27,8 @@ import make_ground  # noqa: E402
 import make_overlay  # noqa: E402
 import make_fire  # noqa: E402
 import make_heal  # noqa: E402
+import make_ropes  # noqa: E402
+import conventions  # noqa: E402
 import make_ui  # noqa: E402
 import make_bridge  # noqa: E402
 import make_aoe  # noqa: E402
@@ -447,6 +449,45 @@ def build_assets(weapons_dir=make_weapons.DEFAULT_DIR):
         'anchor': {'x': make_heal.ANCHOR[0], 'y': make_heal.ANCHOR[1]},
         'frames': heal_frames,
     }
+    # The ropes: a coil of thick rope wound round a captive in the charging pose, one generic overlay for every humanoid (cut to the widest),
+    # and the animation of it being cut.
+    rope_assets = []
+    base_poses = Path(__file__).resolve().parent.parent / 'poses' / 'base.js'
+    if base_poses.exists():
+        masks = make_ropes.character_masks()
+        for facing in ('NE', 'SE'):
+            mask = masks[make_ropes.widest(masks, facing)][facing]      # one generic coil, cut to the widest humanoid
+            rope_assets.append({
+                'id': f'ropes-bound-{facing.lower()}', 'label': f'Ropes - bound, charging pose ({facing})', 'category': 'Overlays',
+                'kind': 'still', 'place': 'none', 'w': 32, 'h': 32, 'cols': 1, 'rows': 1, 'fps': 0,
+                'anchor': {'x': 16, 'y': conventions.GROUND_ROW},     # the same cell and ground row as the character it covers
+                'frames': [make_ropes.render_bound(mask)],
+            })
+            rope_assets.append({
+                'id': f'ropes-cut-{facing.lower()}', 'label': f'Ropes - being cut, charging pose ({facing})', 'category': 'Overlays',
+                'kind': 'animation', 'place': 'none', 'w': 32, 'h': 32, 'cols': make_ropes.CUT_FRAMES, 'rows': 1, 'fps': 8,
+                'anchor': {'x': 16, 'y': conventions.GROUND_ROW},
+                'frames': [make_ropes.render_cut(mask, f) for f in range(make_ropes.CUT_FRAMES)],
+            })
+    # The scorpion emperor, a final boss on a 2 x 2 footprint: 96 x 96 frames, one asset for each action and facing.
+    boss_assets = []
+    boss_dir = Path(__file__).resolve().parent.parent / 'sprites' / 'scorpion-emperor'
+    if boss_dir.is_dir():
+        found = conventions.load_boss_frames(boss_dir, 'scorpion-emperor')
+        for action, count in conventions.BOSS_FRAMES.items():
+            for facing in ('NE', 'SE'):
+                frames = found.get(action + facing)
+                if not frames:
+                    continue
+                cols = min(count, 8)
+                boss_assets.append({
+                    'id': f'emperor-{action}-{facing.lower()}', 'label': f'Scorpion emperor - {action} ({facing})', 'category': 'Bosses',
+                    'kind': 'animation' if count > 1 else 'still', 'place': 'ground',
+                    'w': conventions.BOSS_CELL, 'h': conventions.BOSS_CELL, 'cols': cols, 'rows': -(-count // cols),
+                    'fps': {'attack': 6, 'walking': 8}.get(action, 0),
+                    'anchor': {'x': conventions.BOSS_ANCHOR[0], 'y': conventions.BOSS_ANCHOR[1]},     # the middle of the 2 x 2 footprint
+                    'frames': frames,
+                })
     # The arrow, two ways to try: one frame flying to the right to rotate and mirror, and two frames
     # already angled the way the game's camera sees a NE and an SE flight.
     arrow_side = {
@@ -465,7 +506,7 @@ def build_assets(weapons_dir=make_weapons.DEFAULT_DIR):
     # The bow: the slim human's pull-and-release as an animation, and the bow itself as a weapon strip that
     # goes behind it. Built apart, so either can change; they are laid over each other frame by frame.
     bow_assets = []
-    for who in ('human', 'slim', 'ninja', 'ranger', 'bones', 'paladin', 'blossom'):                          # every person built from the humanoid model
+    for who in ('human', 'slim', 'ninja', 'ranger', 'bones', 'paladin', 'blossom', 'earthbender'):                          # every person built from the humanoid model
         creature = getattr(importlib.import_module(f'make_{who}'), 'CREATURE')
         bow = make_bow.build_frames(make_bow.with_bow(creature))
         for facing in ('NE', 'SE'):
@@ -486,7 +527,7 @@ def build_assets(weapons_dir=make_weapons.DEFAULT_DIR):
                 })
     # The ground tileset is sliced from a PNG rather than rendered.
     # Weapon strips are read from PNGs too, if there are any.
-    assets = [crystal_asset] + facing_assets + overlay_assets + dot_assets + [bridge_asset, vine_asset, fire_asset, heal_asset, arrow_side, arrow_angled] + bow_assets + [rock_asset] + make_ground.build_ground_assets() + make_weapons.build_weapon_assets(weapons_dir)
+    assets = [crystal_asset] + facing_assets + overlay_assets + rope_assets + boss_assets + dot_assets + [bridge_asset, vine_asset, fire_asset, heal_asset, arrow_side, arrow_angled] + bow_assets + [rock_asset] + make_ground.build_ground_assets() + make_weapons.build_weapon_assets(weapons_dir)
     tag_overlay_shapes(assets)
     return assets
 

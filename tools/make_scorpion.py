@@ -60,6 +60,15 @@ def anatomy(p):
     for i, (x, rx_, rz_) in enumerate(((-0.8, 2.5, 2.45), (-2.8, 2.0, 1.95))):
         body += [part((x, 2.35 - 0.1 * i, 0), (rx_, 1.55 - 0.1 * i, rz_), 'shell', 'body'),
                  part((x, 2.95 - 0.1 * i, 0), (rx_ * 0.85, 0.7, rz_ * 0.7), 'plate', 'body')]
+    if p.get('crown'):
+        # a crown on the back of the head-plate, clear of the eyes: a gold band round it, five points rising from it, a jewel at the front
+        for k in range(8):
+            t = 2 * math.pi * k / 8
+            head.append(part((2.0 + 1.35 * math.cos(t), 4.3, 1.8 * math.sin(t)), (0.7, 0.5, 0.62), 'crown', 'crownband', ry(-t)))
+        for k in range(5):
+            t = 2 * math.pi * (k + 0.5) / 5 + math.pi
+            head.append(part((2.0 + 1.35 * math.cos(t), 5.45, 1.8 * math.sin(t)), (0.42, 1.3, 0.42), 'crown', f'point{k}'))
+        head.append(part((3.3, 4.3, 0.0), (0.5, 0.5, 0.5), 'jewel', 'jewel'))
     for side in (-1, 1):
         decals.append(((4.15, 3.85, side * 1.0), p['eyes']))
     return body, head, decals
@@ -105,22 +114,23 @@ def wisps(tip, p):
 
 def pincers(on_body, p):
     """Two big pincers reaching out in front: an arm of two bones, and a claw that opens."""
-    out = []
     reach, spread, opening = p['claws']
+    cs = p.get('claw_scale', 1.0)                      # a bigger-clawed scorpion sets this above 1
+    out = []
     for side, z in (('L', -1), ('R', 1)):
         shoulder = (4.6, 2.2, z * 1.6)
         elbow = (6.0 + reach * 0.4, 2.4, z * (3.3 + spread))
         wrist = (7.6 + reach, 2.2, z * (2.4 + spread * 0.5))
         s, e, w = on_body(shoulder), on_body(elbow), on_body(wrist)
-        out.append(bone3(s, e, 0.75, 'claw', 'arm' + side))
-        out.append(bone3(e, w, 0.65, 'claw', 'arm' + side))
-        out.append(part(add(w, (0.2, 0.0, 0.0)), (1.15, 0.8, 0.95), 'claw', 'arm' + side))
+        out.append(bone3(s, e, 0.75 * cs, 'claw', 'arm' + side))
+        out.append(bone3(e, w, 0.65 * cs, 'claw', 'arm' + side))
+        out.append(part(add(w, (0.2, 0.0, 0.0)), (1.15 * cs, 0.8 * cs, 0.95 * cs), 'claw', 'arm' + side))
         # the pincer's two fingers, a V that opens
         for sign in (-1, 1):
             ang = deg(8 + opening) * sign * z
             R = ry(ang)
-            tipv = mv(R, (1.55, 0.0, 0.0))
-            out.append(part(add(w, (tipv[0] + 0.5, tipv[1] + 0.05, tipv[2])), (1.35, 0.42, 0.5), 'claw', 'pincer' + side + str(sign), R))
+            tipv = mv(R, (1.55 * cs, 0.0, 0.0))
+            out.append(part(add(w, (tipv[0] + 0.5 * cs, tipv[1] + 0.05, tipv[2])), (1.35 * cs, 0.42 * cs, 0.5 * cs), 'claw', 'pincer' + side + str(sign), R))
     return out
 
 

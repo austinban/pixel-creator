@@ -185,6 +185,13 @@ def main():
         replaced = {c['id'] for c in characters}
         kept = [c for c in existing['characters'] if c['id'] not in replaced]
 
+    def kind_of(base_id):
+        import conventions            # imported here: conventions itself imports this module
+        return conventions.kind_of(base_id)
+    # Each base says whether it is a person or a creature, so a list of them can tell the two apart.
+    for c in kept + characters:
+        c['kind'] = kind_of(c['id'])
+
     data = {
         'cell': CELL,
         'ground': GROUND,

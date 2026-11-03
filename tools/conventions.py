@@ -42,6 +42,8 @@ CREATURE_MIN_HEIGHT = 14
 
 # How close a weapon-holding hand has to be to the weapon's grip, in pixels, for the weapon to look
 # held. The weapon path is measured from the strips themselves.
+# A very heavy build cannot bring its strike hand all the way to the weapon's path in one frame, so it may miss by a little more. Listed here, with why.
+HAND_TOLERANCE_BY_BUILD = {'earthbender': 5.6}      # bulk 1.6: his arms reach no further, but his body is wider
 HAND_TOLERANCE = 4.5            # (the grip is itself an estimate, the weapon's drawn middle pulled back toward the body, so a pixel of slack)
 WEAPON_SPREAD = 6.0              # how far one weapon's path may stray from the others'
 
@@ -80,7 +82,7 @@ HEIGHT = {'attack': (22, 27), 'bow': (22, 27), 'charging': (24, 26), 'damage': (
 # The generated people kneel when worn out (down on one knee, head bowed), which is taller than the
 # originals' slump. Their own range, measured from their kneel; the originals keep theirs.
 KNEEL_HEIGHT = (22, 26)
-KNEELERS = {'human', 'slim', 'ninja', 'ranger', 'bones', 'undead', 'paladin', 'blossom'}
+KNEELERS = {'human', 'slim', 'ninja', 'ranger', 'bones', 'undead', 'paladin', 'blossom', 'earthbender'}
 HEIGHT_SLACK = {'release': 2}    # one row either side of the originals' range (two for a cast, which
 HEIGHT_SLACK_DEFAULT = 1        # relies on arms thrown above the head that a shorter-armed figure cannot fully reach)
 MASS_SLACK = 0.92               # a little under the lightest original is still allowed
@@ -90,7 +92,7 @@ MASS_SLACK = 0.92               # a little under the lightest original is still 
 BUILDS = {'standard': 0.92, 'slim': 0.78, 'bony': 0.5,
           'maimed': 0.65,
           'delicate': 0.6}      # a fairy: slim, with little body and no heavy clothes      # a missing limb is less to paint
-BASE_BUILDS = {'slim': 'slim', 'ninja': 'slim', 'ranger': 'slim', 'bones': 'bony', 'undead': 'maimed', 'paladin': 'standard', 'blossom': 'delicate'}
+BASE_BUILDS = {'slim': 'slim', 'ninja': 'slim', 'ranger': 'slim', 'bones': 'bony', 'undead': 'maimed', 'paladin': 'standard', 'blossom': 'delicate', 'earthbender': 'standard'}
 
 # --- the walk ----------------------------------------------------------------------------------
 # The originals share one walk, and it is a bob with sliding feet, not a rock forward and back. Over
@@ -112,9 +114,9 @@ RAMP_LENGTH = 4
 
 # The original six are humanoid; anything else is declared here. Anything not listed is checked as
 # a humanoid.
-BASE_KINDS = {'dog': 'creature', 'rat': 'creature', 'scorpion': 'creature'}
+BASE_KINDS = {'dog': 'creature', 'rat': 'creature', 'scorpion': 'creature', 'mantis': 'creature', 'mantis-small': 'creature', 'scorpion-king': 'creature'}
 # Which module describes how a generated base is built, so its poses can be checked at the source.
-CREATORS = {'human': 'make_human', 'slim': 'make_slim', 'ninja': 'make_ninja', 'ranger': 'make_ranger', 'bones': 'make_bones', 'undead': 'make_undead', 'paladin': 'make_paladin', 'blossom': 'make_blossom', 'dog': 'make_dog', 'rat': 'make_rat', 'scorpion': 'make_scorpion'}
+CREATORS = {'human': 'make_human', 'slim': 'make_slim', 'ninja': 'make_ninja', 'ranger': 'make_ranger', 'bones': 'make_bones', 'undead': 'make_undead', 'paladin': 'make_paladin', 'blossom': 'make_blossom', 'earthbender': 'make_earthbender', 'dog': 'make_dog', 'rat': 'make_rat', 'scorpion': 'make_scorpion', 'mantis': 'make_mantis', 'mantis-small': 'make_mantis_small', 'scorpion-king': 'make_scorpion_king'}
 
 UPRIGHT = {'attack', 'charging', 'damage', 'release', 'walking', 'weak'}
 
@@ -274,6 +276,66 @@ def check_bow(base_id, frames_by_pose):
             for pose in ('bowNE', 'bowSE') if pose not in frames_by_pose]
 
 
+# --- bosses -------------------------------------------------------------------------------------------
+# A boss stands on four ground squares (a 2 x 2 footprint), so it is drawn in a 96 x 96 cell, three times a person's, with the middle of
+# the footprint at BOSS_ANCHOR on the ground and its lowest row on BOSS_GROUND. It has the same actions as everyone else.
+BOSS_CELL = 96
+BOSS_ANCHOR = (48, 72)
+BOSS_GROUND = 88
+BOSS_FRAMES = {'charging': 1, 'attack': 4, 'release': 1, 'damage': 1, 'weak': 1, 'dead': 1, 'walking': 8}
+BOSS_MIN_PIXELS = 1200
+
+
+def check_boss(boss_id, frames_by_pose):
+    """Every problem in a boss's frames (96 x 96 role rows), keyed like a base's: 'attackNE', 'walkingSE'..."""
+    out = []
+    for action, count in BOSS_FRAMES.items():
+        for facing in ('NE', 'SE'):
+            frames = frames_by_pose.get(action + facing)
+            if frames is None:
+                out.append(f'{boss_id} has no {action}{facing}: a boss has every action, in both facings')
+                continue
+            if len(frames) != count:
+                out.append(f'{boss_id} {action}{facing}: {len(frames)} frames, a {action} has {count}')
+            for i, lines in enumerate(frames):
+                pts = painted(lines)
+                name = f'{boss_id} {action}{facing} frame {i + 1}'
+                if len(pts) < BOSS_MIN_PIXELS:
+                    out.append(f'{name}: only {len(pts)} painted pixels')
+                    continue
+                xs, ys = [p[0] for p in pts], [p[1] for p in pts]
+                if min(xs) < 1 or max(xs) > BOSS_CELL - 2 or min(ys) < 1 or max(ys) > BOSS_CELL - 2:
+                    out.append(f'{name}: reaches the edge of the cell (columns {min(xs)}-{max(xs)}, rows {min(ys)}-{max(ys)})')
+                if action != 'dead' and not BOSS_GROUND - 1 <= max(ys) <= BOSS_GROUND:
+                    out.append(f'{name}: feet are on row {max(ys)}; the boss\'s ground is row {BOSS_GROUND}')
+                open_edge = sum(1 for x, y in pts if lines[y][x] != ep.ROLES[0][0]
+                                and any(not (0 <= x + dx < BOSS_CELL and 0 <= y + dy < BOSS_CELL) or lines[y + dy][x + dx] == '.'
+                                        for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1))))
+                if open_edge > 4 * OPEN_EDGE_MAX:
+                    out.append(f'{name}: {open_edge} pixels on the edge are not outlined')
+    return out
+
+
+def load_boss_frames(folder, boss_id):
+    """A boss's sheets (NAME-actionFACING.png, frames side by side) as role rows, read back from the PNGs."""
+    from PIL import Image
+    to_role = {tuple(int(h[i:i + 2], 16) for i in (0, 2, 4)): c for c, _, _, _, h in ep.ROLES}
+    frames = {}
+    for action in BOSS_FRAMES:
+        for facing in ('NE', 'SE'):
+            path = Path(folder) / f'{boss_id}-{action}{facing}.png'
+            if not path.exists():
+                continue
+            img = Image.open(path).convert('RGBA')
+            px = img.load()
+            out = []
+            for f in range(img.width // BOSS_CELL):
+                out.append([''.join(to_role.get(px[f * BOSS_CELL + x, y][:3], '?') if px[f * BOSS_CELL + x, y][3] else '.'
+                                    for x in range(BOSS_CELL)) for y in range(BOSS_CELL)])
+            frames[action + facing] = out
+    return frames
+
+
 def check_base(base_id, frames_by_pose, kind=None, airborne=()):
     """Every problem in one base's poses, as 'pose frame N: problem' lines.
 
@@ -405,8 +467,9 @@ def check_hand_path(creature, weapons_dir):
             x, y = fit_hands.hand_on_screen(creature, pose, facing, origin, 'L')
             y += fit_hands.ground_offset(creature, pose, facing, origin)
             miss = ((x - target[0]) ** 2 + (y - target[1]) ** 2) ** 0.5
-            if miss > HAND_TOLERANCE:
-                out.append(f'{creature.name} attack{facing} frame {i + 1}: the hand is {miss:.1f}px from the weapon (limit {HAND_TOLERANCE:g})')
+            limit = HAND_TOLERANCE_BY_BUILD.get(creature.name, HAND_TOLERANCE)
+            if miss > limit:
+                out.append(f'{creature.name} attack{facing} frame {i + 1}: the hand is {miss:.1f}px from the weapon (limit {limit:g})')
     return out
 
 

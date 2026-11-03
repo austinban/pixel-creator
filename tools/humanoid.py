@@ -57,6 +57,13 @@ from creature import add, bone, deg, mm, mv, part, run, rx, ry, rz, sub, two_bon
 DATA = Path(__file__).resolve().parent / 'data'
 
 
+def band(a, b, t0, t1, radius, mat, name):
+    """A ring round a limb between two points, from t0 to t1 of the way along: a bangle or a cuff."""
+    pa = tuple(a[i] + (b[i] - a[i]) * t0 for i in range(3))
+    pb = tuple(a[i] + (b[i] - a[i]) * t1 for i in range(3))
+    return bone3(pa, pb, radius, mat, name, grow=0.55)
+
+
 def bone3(a, b, radius, mat, name, grow=0.6):
     """Like bone(), but between two points that may differ in depth too (a leg splayed to the side)."""
     d = sub(b, a)
@@ -99,7 +106,7 @@ BODY = dict(
     head_fwd=1.5,                          # the head sits ahead of the shoulders, as in the originals
     bulk=1.5,
     hand_mat='skin', neck_mat='skin',
-    sleeve_mat='shirt', ears=True, armless=(), torn_leg=None,         # what the upper arms are made of; whether there are ears; which arms are gone (a stump 'stump' material at the end); which leg's trouser is ripped away below the knee (the skin shows)      # what the forearms, hands and neck are made of (gloves, a scarf...)
+    sleeve_mat='shirt', ears=True, armless=(), torn_leg=None, shin_mat='pants', bangles=None,         # what the upper arms are made of; whether there are ears; which arms are gone (a stump 'stump' material at the end); which leg's trouser is ripped away below the knee (the skin shows); what the lower leg is made of (skin, for shorts); the material of arm and ankle bangles      # what the forearms, hands and neck are made of (gloves, a scarf...)
     foot_rx=1.7, foot_ry=1.0, foot_rz=1.7, foot_toe=0.5,   # short, small feet, like the originals'                             # how thick the body and limbs are; weight, without height
     head_y=18.6, head_rx=4.8, head_ry=4.6, head_rz=4.5,
 )
@@ -324,7 +331,7 @@ class Humanoid:
 
         # Legs: a hip, a knee that bends forward, an ankle on the ground, and a shoe.
         for side, z in (('L', -1), ('R', 1)):
-            shin = 'skin' if side == b['torn_leg'] else 'pants'      # a ripped trouser leg shows the skin
+            shin = 'skin' if side == b['torn_leg'] else b['shin_mat']      # a ripped trouser leg shows the skin
             hip = (0.0, b['hip_y'], z * b['hip_z'])
             hip_w = on_body(hip)
             spec = p['feet'][side]
@@ -338,10 +345,13 @@ class Humanoid:
                 knee, foot = two_bone(hip_w, (hip[0] + spec[0], spec[1]), upper, lower, False)   # the knee goes forward
                 toe = (foot[0] + b['foot_toe'], foot[1] + 0.9)
                 top = (hip_w[0], hip_w[1], hip_w[2])
+                joints['leg_' + side] = (top, (knee[0], knee[1], hip_w[2] + kz), (foot[0], foot[1], hip_w[2] + fz))
                 placed.append(bone3(top, (knee[0], knee[1], hip_w[2] + kz), 1.75 * b['bulk'], 'pants', 'leg' + side))
                 placed.append(bone3((knee[0], knee[1], hip_w[2] + kz), (foot[0], foot[1], hip_w[2] + fz), 1.5 * b['bulk'], shin, 'leg' + side, grow=0.4))
                 if side == b['torn_leg']:
                     placed.append(part((knee[0], knee[1], hip_w[2] + kz), (1.7 * b['bulk'], 1.0, 1.6 * b['bulk']), 'pants', 'leg' + side))   # a ragged cuff at the knee
+                if b['bangles']:
+                    placed.append(band((knee[0], knee[1], hip_w[2] + kz), (foot[0], foot[1], hip_w[2] + fz), 0.6, 0.9, 1.5 * b['bulk'] + 0.4, b['bangles'], 'bangleLeg' + side))
                 placed.append(part((toe[0] + 0.3, toe[1], hip_w[2] + fz), (b['foot_rx'] + 0.5, b['foot_ry'], b['foot_rz']), 'shoes', 'leg' + side))   # a longer foot to plant in the squat
                 continue
             if len(spec) == 2:
@@ -353,10 +363,13 @@ class Humanoid:
                 foot = (knee[0] + b['leg_lower'] * math.sin(a1 + a2), knee[1] - b['leg_lower'] * math.cos(a1 + a2))
                 toe = (foot[0] + b['foot_toe'], foot[1] + 0.9)
                 knee, foot, toe = [on_body((k[0], k[1], hip[2]))[:2] for k in (knee, foot, toe)]
+            joints['leg_' + side] = (tuple(hip_w), (knee[0], knee[1], hip_w[2]), (foot[0], foot[1], hip_w[2]))     # for things that wrap a limb (ropes)
             placed.append(bone(hip_w[:2], knee, hip_w[2], 1.75 * b['bulk'], 'pants', 'leg' + side))
             placed.append(bone(knee, foot, hip_w[2], 1.5 * b['bulk'], shin, 'leg' + side, grow=0.4))
             if side == b['torn_leg']:
                 placed.append(part((knee[0], knee[1], hip_w[2]), (1.7 * b['bulk'], 1.0, 1.6 * b['bulk']), 'pants', 'leg' + side))   # a ragged cuff at the knee
+            if b['bangles']:
+                placed.append(band((knee[0], knee[1], hip_w[2]), (foot[0], foot[1], hip_w[2]), 0.6, 0.9, 1.5 * b['bulk'] + 0.4, b['bangles'], 'bangleLeg' + side))
             more = p.get('foot_long', 0)
             placed.append(part((toe[0] + more * 0.6, toe[1], hip_w[2]), (b['foot_rx'] + more, b['foot_ry'], b['foot_rz']), 'shoes', 'leg' + side))
 
@@ -384,8 +397,12 @@ class Humanoid:
                 out = (elbow[0], elbow[1], arm_z + flare)
                 placed.append(bone3((sh_w[0], sh_w[1], arm_z), out, 1.45 * b['bulk'], b['sleeve_mat'], 'arm' + side))
                 placed.append(bone3(out, (wrist[0], wrist[1], arm_z), 1.15 * b['bulk'], b['hand_mat'], 'arm' + side, grow=0.3))
+                if b['bangles']:
+                    placed.append(band((sh_w[0], sh_w[1], arm_z), out, 0.38, 0.66, 1.45 * b['bulk'] + 0.4, b['bangles'], 'bangleUp' + side))
+                    placed.append(band(out, (wrist[0], wrist[1], arm_z), 0.56, 0.9, 1.15 * b['bulk'] + 0.4, b['bangles'], 'bangleWrist' + side))
                 placed.append(part((wrist[0], wrist[1] - 0.2, arm_z), (1.2 * b['bulk'], 1.2 * b['bulk'], 1.1 * b['bulk']), b['hand_mat'], 'arm' + side))
                 hands_w[side] = (wrist[0], wrist[1], arm_z)
+                joints['arm_' + side] = ((sh_w[0], sh_w[1], arm_z), out, (wrist[0], wrist[1], arm_z))
                 continue
             if len(spec) == 2:
                 elbow, wrist = two_bone(sh_w, (sh_w[0] + spec[0], sh_w[1] + spec[1]), b['arm_upper'], b['arm_lower'], side not in p.get('elbow_up', ()))   # the elbow goes back and down, unless raised
@@ -397,8 +414,12 @@ class Humanoid:
             arm_z = sh_w[2] + z * p['spread']
             placed.append(bone(sh_w[:2], elbow, arm_z, 1.45 * b['bulk'], b['sleeve_mat'], 'arm' + side))
             placed.append(bone(elbow, wrist, arm_z, 1.15 * b['bulk'], b['hand_mat'], 'arm' + side, grow=0.3))
+            if b['bangles']:
+                placed.append(band((sh_w[0], sh_w[1], arm_z), (elbow[0], elbow[1], arm_z), 0.38, 0.66, 1.45 * b['bulk'] + 0.4, b['bangles'], 'bangleUp' + side))
+                placed.append(band((elbow[0], elbow[1], arm_z), (wrist[0], wrist[1], arm_z), 0.56, 0.9, 1.15 * b['bulk'] + 0.4, b['bangles'], 'bangleWrist' + side))
             placed.append(part((wrist[0], wrist[1] - 0.2, arm_z), (1.2 * b['bulk'], 1.2 * b['bulk'], 1.1 * b['bulk']), b['hand_mat'], 'arm' + side))
             hands_w[side] = (wrist[0], wrist[1], arm_z)
+            joints['arm_' + side] = ((sh_w[0], sh_w[1], arm_z), (elbow[0], elbow[1], arm_z), (wrist[0], wrist[1], arm_z))
         joints['hand_L'], joints['hand_R'] = hands_w['L'], hands_w['R']
         self.last_joints = joints          # so a tool can ask where the hands ended up
 

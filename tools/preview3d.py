@@ -132,7 +132,10 @@ def render_view(parts, decals, ramps, yaw_deg, size=300, scale=1.0, eye=(0, 0, 0
                 disc_mask = (yy - row) ** 2 + (xx - col) ** 2 <= rad * rad
             if shape != 'open':
                 disc_mask = disc_mask & (np.abs(yy - row) <= max(1, rad // 3))
-            img[disc_mask & covered] = _rgb(cr.EYE)
+            img[disc_mask & covered] = _rgb(cr.EYE_COLOUR or cr.EYE)
+            if shape == 'open' and cr.EYE_PUPIL:
+                pupil = (yy - row) ** 2 + (xx - col) ** 2 <= (rad * 0.62) ** 2
+                img[pupil & covered] = _rgb(cr.EYE_PUPIL)
 
     # Outline round the silhouette.
     grown = covered.copy()
@@ -151,6 +154,8 @@ def render_sheet(creature, pose, views=None, size=300):
     names = views or list(VIEWS)
     cr.EYE_REACH = getattr(creature, 'eye_reach', 0.9)
     cr.TALL_EYES = getattr(creature, 'tall_eyes', False)
+    cr.EYE_COLOUR = getattr(creature, 'eye_colour', None)
+    cr.EYE_PUPIL = getattr(creature, 'eye_pupil', None)
     parts, decals = creature.place(pose)
     tiles = []
     for name in names:
