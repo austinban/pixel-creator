@@ -537,7 +537,12 @@ def main():
         from PIL import Image
         to_rgb = {c: tuple(int(h[i:i + 2], 16) for i in (0, 2, 4)) for c, _, _, _, h in ep.ROLES}
         args.png_dir.mkdir(parents=True, exist_ok=True)
-        for asset in assets:
+        # The ground tiles are cut from sprites/assets/ground.png and the weapons are strips in sprites/weapons, so they are not written again.
+        written = [a for a in assets if not a['id'].startswith(('ground-', 'weapon-'))]
+        manifest = []
+        for asset in written:
+            # A see-through asset (a tile overlay) is written with its opacity in the alpha channel, ready to lay over a tile.
+            alpha = round(255 * asset.get('opacity', 1))
             sheet = Image.new('RGBA', (asset['w'] * asset['cols'], asset['h'] * asset['rows']), (0, 0, 0, 0))
             px = sheet.load()
             origin = lambda f: ((f % asset['cols']) * asset['w'], (f // asset['cols']) * asset['h'])
@@ -546,7 +551,7 @@ def main():
                 for y, row in enumerate(rows):
                     for x, ch in enumerate(row):
                         if ch != '.':
-                            px[ox + x, oy + y] = (*to_rgb[ch], 255)
+                            px[ox + x, oy + y] = (*to_rgb[ch], alpha)
             path = args.png_dir / f'{asset["id"]}.png'
             sheet.save(path)
             # Re-read the PNG and compare every pixel with what the roles say it should be.
@@ -555,11 +560,23 @@ def main():
                 ox, oy = origin(f)
                 for y, row in enumerate(rows):
                     for x, ch in enumerate(row):
-                        want = (0, 0, 0, 0) if ch == '.' else (*to_rgb[ch], 255)
+                        want = (0, 0, 0, 0) if ch == '.' else (*to_rgb[ch], alpha)
                         if back[ox + x, oy + y] != want:
                             sys.exit(f'{path}: round trip differs at frame {f} ({x}, {y})')
             print(f'{asset["id"]}: {len(asset["frames"])} frames written and re-read identical -> {path}')
-
+            manifest.append({k: asset[k] for k in ('id', 'label', 'category', 'kind', 'place', 'w', 'h', 'cols', 'rows', 'fps', 'anchor') if k in asset}
+                            | {'file': path.name, 'frames': len(asset['frames'])}
+                            | ({'names': asset['names']} if 'names' in asset else {}) | ({'opacity': asset['opacity']} if 'opacity' in asset else {}))
+        # Which overlay shape fits each ground tile, by the tile's place on ground.png, and where the shapes are in the overlay sheets.
+        ground_overlays = {a['id'][len('ground-'):]: a['overlay'] for a in assets if a['id'].startswith('ground-') and 'overlay' in a}
+        (args.png_dir / 'manifest.json').write_text(json.dumps({
+            'about': 'Every asset sheet in this folder: frames run left to right, then down, in w x h cells (cols x rows). anchor is the point '
+                     'that sits on the ground tile or the character; opacity (if any) is already in the PNG\'s alpha. groundOverlays says which frame '
+                     'of the "-shapes" overlay sheets fits each ground tile of ground.png, by its column-row.',
+            'assets': manifest,
+            'groundOverlays': ground_overlays,
+        }, indent=1))
+        print(f'{len(manifest)} sheets and manifest.json -> {args.png_dir}')
 
 if __name__ == '__main__':
     main()

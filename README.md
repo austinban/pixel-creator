@@ -225,8 +225,10 @@ so `assets/data.js` is committed. To change the crystal, edit `CRYSTAL` in
 python3 tools/make_assets.py
 ```
 
-Add `--png-dir sprites/assets` to also write each sheet as a PNG and check that it
-re-reads identical. To add another asset, add a renderer beside the crystal and the rock. An asset says
+Add `--png-dir sprites/assets` to also write each asset as a PNG sheet (frames left to right, then down; a see-through overlay carries its
+opacity in the alpha) and a `manifest.json` beside them (size, columns and rows, frame rate, anchor, variant names, and which
+overlay shape fits each ground tile), and check that each sheet re-reads identical. The ground tiles and the weapons are not written again, since they are already
+the ground sheet and the weapon strips. To add another asset, add a renderer beside the crystal and the rock. An asset says
 whether it is an `animation` or a set of `variants`, and whether it sits `above` a
 character or `ground`ed beside one.
 

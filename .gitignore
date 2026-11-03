@@ -3,8 +3,12 @@
 # Built from sprite PNGs that aren't ours to republish; see tools/extract_poses.py
 poses/
 
-# Raw sprite PNGs, same reason as poses/
-sprites/
+# Raw sprite PNGs, same reason as poses/. The exception is sprites/assets/: the sheets there are made by
+# tools/make_assets.py from our own code (the overlays, bridge, dots, fire...) so the game can pull them in; the ground
+# tile sheet in that folder is not ours, so it stays out.
+sprites/*
+!sprites/assets/
+sprites/assets/ground.png
 
 # 3D previews made by tools/preview3d.py while designing a character; they are throwaway
 previews/
