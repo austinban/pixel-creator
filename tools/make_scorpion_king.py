@@ -18,7 +18,8 @@ import make_scorpion  # noqa: E402
 
 CREATURE = make_scorpion.Scorpion()
 CREATURE.name = 'scorpion-king'
-CREATURE.scale = 1.05                                    # the spirit scorpion is 0.95; any larger and the big claws run off the cell
+SCALE = 1.25
+CREATURE.scale = SCALE                                   # the spirit scorpion is 0.95; any larger and the big claws run off the cell
 CREATURE.ramps = dict(make_scorpion.RAMPS,
                       shell=('a', 'e', 'f', 'g'),        # a red-orange shell: orange lit, coral, orchid, plum in the shade
                       plate=('b', 'a', 'e', 'f'),        # lighter plates down the back: amber over the red
@@ -29,9 +30,23 @@ CREATURE.ramps = dict(make_scorpion.RAMPS,
                       jewel=('j', 'i', 'h', 'w'))        # with a red-pink jewel
 
 # big claws and a crown: every pose carries them, and the scorpion model reads them
-CLAW_SCALE = 1.7
+CLAW_SCALE = 1.6
+LUNGE = 0.5
+DEAD_ROLL = 150
+DEAD_LIFT = 0.0         # the dead pose is raised in the model so its legs are not cut off at the bottom of the cell while it is drawn              # how much of the spirit scorpion's attack travel it keeps: a bigger body has less room to lunge
 CREATURE.stand = dict(CREATURE.stand, claw_scale=CLAW_SCALE, crown=True)
-CREATURE.poses = {name: [dict(frame, claw_scale=CLAW_SCALE, crown=True) for frame in frames] for name, frames in make_scorpion.Scorpion.poses.items()}
+def _pose(frame):
+    f = dict(frame, claw_scale=CLAW_SCALE, crown=True)
+    f['fwd'] = frame['fwd'] * LUNGE
+    f['elongate'] = 1 + (frame['elongate'] - 1) * LUNGE
+    f['claws'] = (frame['claws'][0] * LUNGE, frame['claws'][1], frame['claws'][2])
+    return f
+
+
+CREATURE.poses = {name: [_pose(frame) for frame in frames] for name, frames in make_scorpion.Scorpion.poses.items()}
+# lying down, the big claws and the long tail would run off the cell, so the tail is curled in closer and the claws are tucked
+CREATURE.poses['weak'] = [dict(f, tail=(10, 70, 4), claws=(-1.2, -0.6, 4)) for f in CREATURE.poses['weak']]
+CREATURE.poses['dead'] = [dict(f, tail=(60, 112, 5), claws=(-1.2, -0.6, 4), roll=DEAD_ROLL, curl=0.6, lift=f['lift'] + DEAD_LIFT) for f in CREATURE.poses['dead']]
 
 if __name__ == '__main__':
     run(CREATURE)

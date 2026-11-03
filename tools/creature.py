@@ -307,18 +307,29 @@ def shift_rows(lines, dy):
 def render_centred(parts, decals, facing, origin, ramps, scale):
     """A single-frame pose drawn centred in its cell, as the originals' are, whatever its lean did.
 
-    The camera moves, not the pixels, so nothing is clipped at the edge on the way.
+    The camera moves, not the pixels, so nothing is clipped at the edge on the way: a pose that would run off the top or bottom
+    of the cell is drawn again from a camera moved clear of the edge (it is put on the ground row afterwards).
     """
     ox, oy = origin
-    for _ in range(3):
+    for _ in range(4):
         lines = render_frame(parts, decals, facing, (ox, oy), ramps, scale)
         xs = [x for line in lines for x, ch in enumerate(line) if ch != '.']
+        ys = [y for y, line in enumerate(lines) if line.strip('.')]
         if not xs:
             break
         miss = conventions.CENTRE_X - (min(xs) + max(xs) + 1) / 2
-        if abs(miss) < 0.5:
+        moved = False
+        if abs(miss) >= 0.5:
+            ox += round(miss)
+            moved = True
+        if max(ys) >= CELL - 2:
+            oy -= max(ys) - (CELL - 4)
+            moved = True
+        elif min(ys) <= 1:
+            oy += 3 - min(ys)
+            moved = True
+        if not moved:
             break
-        ox += round(miss)
     return lines
 
 
