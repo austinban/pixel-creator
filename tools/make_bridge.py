@@ -178,6 +178,19 @@ def render_pixels(axis, kind):
     return cv.lines()
 
 
+def deck_mask(axis, kind):
+    """The walkable deck of a bridge sprite as a W x H mask: the strip of planks, from one edge of the tile to the other."""
+    ne = axis == 'NE'
+    drop = lambda t: -SINK if kind == 'flat' else -SINK * (t + 0.5)
+
+    def at(t, w, h):
+        return project(w, t, h) if ne else project(t, w, h)
+    corners = [at(-0.5, -DECK, drop(-0.5)), at(0.5, -DECK, drop(0.5)), at(0.5, DECK, drop(0.5)), at(-0.5, DECK, drop(-0.5))]
+    cv = Canvas()
+    cv.polygon(corners, '#')
+    return [[cv.grid[y][x] == '#' for x in range(W)] for y in range(H)]
+
+
 SPRITES = [
     ('bridge-flat-ne', 'Bridge - flat, NE-SW', 'NE', 'flat'),
     ('bridge-flat-se', 'Bridge - flat, NW-SE', 'SE', 'flat'),

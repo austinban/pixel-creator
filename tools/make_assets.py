@@ -365,6 +365,28 @@ def build_assets(weapons_dir=make_weapons.DEFAULT_DIR):
                 'anchor': {'x': 16, 'y': 8},       # the middle of a full block's top face
                 'frames': frames,
             })
+    # The animated hover overlays for the ground shapes: each colour is one sheet, a row for each shape and the eight breathing frames across.
+    # The bridge decks have their own overlays, in the bridge's own 32 x 40 cell, in the same order as the bridge's four sprites.
+    bridge_list = make_overlay.bridge_shapes()
+    for (id_, label, colours), (_, _, solid_colours) in zip(make_overlay.COLOURWAYS, make_overlay.SOLID_COLOURWAYS):
+        overlay_assets.append({
+            'id': id_ + '-solid-shapes-animated', 'label': label.replace('Tile overlay', 'Tile overlay - solid, ground shapes, animated', 1), 'category': 'Overlays',
+            'kind': 'variants', 'place': 'ground',
+            'names': [f'{n}, frame {f + 1}' for n, _ in shape_list for f in range(make_overlay.FRAMES)],
+            'w': 32, 'h': 32, 'cols': make_overlay.FRAMES, 'rows': len(shape_list), 'fps': 3,
+            'anchor': {'x': 16, 'y': 8},
+            'frames': [make_overlay.render_shape_breath(m, f, solid_colours) for _, m in shape_list for f in range(make_overlay.FRAMES)],
+        })
+        for suffix, wording, frames, opacity in (
+                ('-bridge', ' - bridge', [make_overlay.render_shape(m, colours) for _, m in bridge_list], make_overlay.OPACITY),
+                ('-solid-bridge', ' - solid, bridge', [make_overlay.render_shape_solid(m, solid_colours) for _, m in bridge_list], 1)):
+            overlay_assets.append({
+                'id': id_ + suffix, 'label': label.replace('Tile overlay', 'Tile overlay' + wording, 1), 'category': 'Overlays', 'kind': 'variants', 'place': 'ground',
+                'names': [n for n, _ in bridge_list], 'opacity': opacity,
+                'w': make_bridge.W, 'h': make_bridge.H, 'cols': 4, 'rows': 1, 'fps': 0,
+                'anchor': {'x': make_bridge.ANCHOR[0], 'y': make_bridge.ANCHOR[1]},      # the same cell and anchor as the bridge sprites
+                'frames': frames,
+            })
     # The solid overlays, for hovering: they cover the whole top face, in the same three colours.
     for id_, label, colours in make_overlay.SOLID_COLOURWAYS:
         solid_frames = [make_overlay.render_solid(f, colours) for f in range(make_overlay.FRAMES)]

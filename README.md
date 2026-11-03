@@ -156,7 +156,9 @@ model first with `python3 tools/make_vine.py --model previews/vine-3d.png`. The 
 The overlays also come **cut to the ground tiles' shapes**: each colour has a see-through and a solid set of 14 shapes (a flat top on a
 full block, a flat top 8 rows lower, and the twelve ramps, stepped ramps and half blocks of Grass 3 to 8 and 15 to 20), 32 × 32 and lined up with
 the tile, so an overlay is drawn where the tile is. Grass, dirt, stone, water, crates and stairs share these shapes, and every ground
-tile has an `overlay` number in `assets/data.js` saying which one fits it. The angled shapes are read from the ground sheet with
+tile has an `overlay` number in `assets/data.js` saying which one fits it. Each colour also has an **animated** solid set for hovering (a row for each shape and the eight breathing frames across, so a
+hover plays one row), and its own overlays for the **bridge** decks, in the bridge's own 32 × 40 cell and in the order of its four sprites (see-through
+and solid). The angled shapes are read from the ground sheet with
 `tools/extract_overlay_shapes.py`, and `python3 tools/make_overlay.py --shapes previews/overlay-shapes.png` shows them over their tiles.
 
 The **fire burst** is an area spell on five plots, one in the middle and one out in each direction: it

@@ -144,9 +144,9 @@ def _depth(mask):
 
 def render_shape(mask, colours=BLUE):
     """The see-through wash cut to a shape: one even tone and a soft two-tone edge."""
-    grid = [['.'] * 32 for _ in range(32)]
-    for y in range(32):
-        for x in range(32):
+    grid = [['.'] * len(mask[0]) for _ in mask]
+    for y in range(len(mask)):
+        for x in range(len(mask[0])):
             if mask[y][x]:
                 grid[y][x] = colours['base']
     for x, y, lit in _edge(mask):
@@ -154,17 +154,31 @@ def render_shape(mask, colours=BLUE):
     return [''.join(row) for row in grid]
 
 
-def render_shape_solid(mask, colours=SOLID_BLUE, glow=3):
-    """The solid hover version cut to a shape, still: a fill, a brighter middle, and a two-tone edge."""
-    grid = [['.'] * 32 for _ in range(32)]
-    depth = _depth(mask)
-    for y in range(32):
-        for x in range(32):
+def render_shape_solid(mask, colours=SOLID_BLUE, glow=3, depth=None):
+    """The solid hover version cut to a shape: a fill, a brighter middle (every pixel at least `glow` steps in), and a two-tone edge."""
+    grid = [['.'] * len(mask[0]) for _ in mask]
+    depth = depth or _depth(mask)
+    for y in range(len(mask)):
+        for x in range(len(mask[0])):
             if mask[y][x]:
                 grid[y][x] = colours['glow'] if depth[y][x] >= glow else colours['fill']
     for x, y, lit in _edge(mask):
         grid[y][x] = colours['lit'] if lit else colours['shade']
     return [''.join(row) for row in grid]
+
+
+def render_shape_breath(mask, frame, colours=SOLID_BLUE):
+    """One frame of the solid overlay breathing: the bright middle swells and shrinks, as a share of how deep the shape is."""
+    depth = _depth(mask)
+    deepest = max(v for row in depth for v in row if v is not None)
+    glow = max(1, round(deepest * (1 - BREATH[frame])))
+    return render_shape_solid(mask, colours, glow, depth)
+
+
+def bridge_shapes():
+    """The four bridge decks as masks in the bridge's own cell (32 x 40): flat NE-SW, flat NW-SE, slope down NE, slope down SE."""
+    import make_bridge
+    return [(name, make_bridge.deck_mask(axis, kind)) for _, name, axis, kind in make_bridge.SPRITES]
 
 
 def main():
