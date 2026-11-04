@@ -22,6 +22,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import extract_poses as ep  # noqa: E402
 import make_facing  # noqa: E402
 import make_arrow  # noqa: E402
+import make_amulets  # noqa: E402
 import make_bow  # noqa: E402
 import make_ground  # noqa: E402
 import make_overlay  # noqa: E402
@@ -34,6 +35,7 @@ import make_bridge  # noqa: E402
 import make_aoe  # noqa: E402
 import make_vine  # noqa: E402
 import make_weapons  # noqa: E402
+import make_weapon_icons  # noqa: E402
 
 # Roles used, by palette character: spark, then the green ramp, then the outline.
 SPARK, LIT, BASE, SHADE, DEEP, OUTLINE = 't', 'z', 'A', 'B', 's', 'O'
@@ -320,6 +322,16 @@ def build_assets(weapons_dir=make_weapons.DEFAULT_DIR):
         'anchor': {'x': rock['w'] // 2, 'y': GROUND_ROW + 1},
         'frames': rock_frames,
     }
+    # Amulets: pendant icons for the shop, one image each (nothing is worn), as the variants of one asset.
+    amulet_frames = [make() for _, _, make in make_amulets.AMULETS]
+    cols, rows = sheet_layout(len(amulet_frames))
+    amulet_asset = {
+        'id': 'amulets', 'label': 'Amulets (shop icons)', 'category': 'Amulets', 'kind': 'variants', 'place': 'none',
+        'names': [label for _, label, _ in make_amulets.AMULETS],
+        'w': make_amulets.CELL, 'h': make_amulets.CELL, 'cols': cols, 'rows': rows, 'fps': 0,
+        'anchor': {'x': make_amulets.CELL // 2, 'y': make_amulets.CELL // 2},
+        'frames': amulet_frames,
+    }
     # The facing marker: a flat arrowhead on the ground, NE and SE. NW and SW are those mirrored.
     # Two colourways: yellow for the chosen direction, and pale blue for the others.
     facing_assets = []
@@ -525,10 +537,26 @@ def build_assets(weapons_dir=make_weapons.DEFAULT_DIR):
                     'anchor': {'x': make_bow.WEAPON_CELL // 2, 'y': make_bow.WEAPON_CELL},
                     'frames': bow['bow'][facing],
                 })
+            # The other bows: the same model with its own size, curve, tips and colours, drawn with the same animation.
+            for spec_id, spec in make_bow.SPECS.items():
+                other = make_bow.build_frames(make_bow.with_bow(creature), spec=spec_id)
+                for facing in ('NE', 'SE'):
+                    bow_assets.append({
+                        'id': f'weapon-{spec_id}-{facing.lower()}', 'label': f"{spec['label']} {facing}", 'category': 'Weapons', 'kind': 'animation',
+                        'place': 'none', 'weapon': spec['label'], 'facing': facing, 'animation': 'bow-draw',
+                        'w': make_bow.WEAPON_CELL, 'h': make_bow.WEAPON_CELL, 'cols': 4, 'rows': 1, 'fps': 4,
+                        'anchor': {'x': make_bow.WEAPON_CELL // 2, 'y': make_bow.WEAPON_CELL},
+                        'frames': other['bow'][facing],
+                    })
     # The ground tileset is sliced from a PNG rather than rendered.
     # Weapon strips are read from PNGs too, if there are any.
-    assets = [crystal_asset] + facing_assets + overlay_assets + rope_assets + boss_assets + dot_assets + [bridge_asset, vine_asset, fire_asset, heal_asset, arrow_side, arrow_angled] + bow_assets + [rock_asset] + make_ground.build_ground_assets() + make_weapons.build_weapon_assets(weapons_dir)
+    assets = [crystal_asset] + facing_assets + overlay_assets + rope_assets + boss_assets + dot_assets + [bridge_asset, vine_asset, fire_asset, heal_asset, arrow_side, arrow_angled] + bow_assets + [amulet_asset, rock_asset] + make_ground.build_ground_assets() + make_weapons.build_weapon_assets(weapons_dir)
     tag_overlay_shapes(assets)
+    # Each weapon's display icon, linked both ways by the weapon's name (see make_weapon_icons.py): it fails the build if they do not match.
+    assets += make_weapon_icons.build_icon_assets()
+    problems = make_weapon_icons.link_icons(assets)
+    if problems:
+        sys.exit('weapon display icons:\n  ' + '\n  '.join(problems))
     return assets
 
 

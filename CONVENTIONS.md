@@ -118,6 +118,19 @@ through the air.
   swing, so their paths agree frame by frame (within 6 px).
 - **A weapon is drawn behind the character**, as it will be in the game. The hand and body cover
   its grip.
+- Melee weapons can be drawn by code instead of by hand: `tools/make_melee.py` reads the shared swing back from the existing
+  strips (each frame's middle, which way the sword points, how foreshortened it looks) and draws a weapon as a list of parts along its
+  axis, with the grip at 0, so it is held at the grip and its middle is on the swing's path. Add one to `WEAPONS` there and run
+  `python3 tools/make_melee.py --out sprites/weapons`.
+- **Bows** are variants of the one bow model in `tools/make_bow.py` (`SPECS`: size, curve, tips, colours), all drawn with the same
+  draw animation, as weapon assets `weapon-NAME-ne` and `-se`. Look at them in 3D first: `python3 tools/make_bow.py --variants previews/bows-3d.png`.
+- **Every weapon has a display icon**: one 32 x 32 image in the amulets' style, in the "Weapon icons" category, for the shop and any list.
+  It is tied to its weapon by **name**, the weapon's asset id without its prefix and facing (`weapon-iron-sword-ne` and `-se` are
+  `iron-sword`; the icon is `icon-weapon-iron-sword`). The data says so at both ends: the icon has `icon_for: 'iron-sword'` and each of the weapon's
+  assets has `icon: 'icon-weapon-iron-sword'`. `ICONS` in `tools/make_weapon_icons.py` is the one list, and the build stops, naming the weapon,
+  if a weapon has no icon or an icon names a weapon that is not there. A new weapon is not finished until it has its line in `ICONS`.
+- **Amulets** are shop images only: 32 x 32 pendants on a chain in the "Amulets" category, never worn or animated
+  (`tools/make_amulets.py`; add one as a short function and list it in `AMULETS`).
 
 ## Colour
 

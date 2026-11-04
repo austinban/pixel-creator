@@ -143,6 +143,10 @@ check it matches the source exactly.
 
 ## Assets
 
+On the Characters and Assets pages the address says what is on screen: the browse grid has no `?item=`, and an opened one is `?item=ID`
+(`assets.html?item=base:crystal`). Clicking into something, or going back to the grid, is a step in the browser history, so **Back** returns to
+what you had before and **Forward** goes on again, and a link to an item opens straight on it.
+
 `assets.html` is for things that aren't characters. They are painted in the same
 colour roles, so they recolour the same way, and each saved item has its own
 colours, so you can keep a crystal per player. There are the same Duplicate, New
@@ -322,6 +326,15 @@ behind the character's frame puts it in the hand. Rebuild the assets after addin
 ```bash
 python3 tools/make_assets.py
 ```
+
+Eleven more melee weapons (dagger, stiletto, kris, bone dagger, greatsword, scimitar, battle axe, war hammer, spiked mace, spear and
+crystal staff) are drawn by `tools/make_melee.py` along the same swing and written into that folder: `python3 tools/make_melee.py --out sprites/weapons`.
+The bows are the one 3D bow model in several shapes (`tools/make_bow.py`: longbow, shortbow, recurve, elven), and the **Amulets** category holds eight
+shop pendants (`tools/make_amulets.py`), images only.
+
+Every weapon also has a 32 x 32 **display icon** (category "Weapon icons", `tools/make_weapon_icons.py`), tied to it by name: the weapon's assets are
+`weapon-NAME-ne` and `-se`, its icon is `icon-weapon-NAME`, and each side carries the other's id (`icon` on the weapon, `icon_for` on the icon). The
+`ICONS` list there is the one place to add one, and the asset build fails if a weapon and its icon do not match.
 
 Each strip becomes an asset ("Iron axe NE", "Iron axe SE") that recolours and can be copied and
 edited like any other. On the Characters page, **Weapon overlay** draws the chosen weapon behind the

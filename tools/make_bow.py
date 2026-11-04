@@ -35,6 +35,21 @@ RAMPS = {
 }
 
 
+# The bows. Each is the same bow model with its own size, curve, tips and colours; `bend` scales how far the limbs curve back, `flare` how far the
+# tips whip forward again (a recurve), `radius` how thick the limbs are. `grip` and `leaf` add a wrapped grip, a gem and leaf-shaped tips.
+SPECS = {
+    'longbow': dict(label='Longbow', half=11.6, bend=0.62, flare=0.0, radius=0.85,
+                    ramps={'bow': ('a', 'e', 'f', 'g'), 'grip': ('e', 'f', 'h', 'g')}),
+    'shortbow': dict(label='Shortbow', half=6.0, bend=1.5, flare=0.0, radius=1.1,
+                     ramps={'bow': ('t', 'C', 'b', 'a'), 'grip': ('e', 'f', 'h', 'g')}),
+    'recurve': dict(label='Recurve bow', half=8.8, bend=1.0, flare=3.4, radius=1.0,
+                    ramps={'bow': ('b', 'a', 'e', 'g'), 'grip': ('t', 'd', 'b', 'a')}),
+    'elven': dict(label='Elven bow', half=10.2, bend=0.9, flare=2.2, radius=0.9, gem=True, leaf=True,
+                  ramps={'bow': ('t', 'd', 'b', 'a'), 'grip': ('r', 'q', 'p', 'l'), 'gem': ('c', 'j', 'i', 'h'), 'leaf': ('r', 'A', 'B', 's')}),
+}
+ACTIVE = {}                      # the bow being drawn, one of SPECS (empty for the original)
+
+
 def unit(v):
     n = math.sqrt(sum(c * c for c in v)) or 1.0
     return tuple(c / n for c in v)
@@ -60,19 +75,29 @@ def bow(j, p):
     along = unit((grip[0] - nock_hand[0], 0.0, grip[2] - nock_hand[2]))       # the way it is aimed, level
     back = (-along[0], 0.0, -along[2])
     pull = p.get('draw', 0.0)
-    bend = p.get('bend', 1.0 + 2.6 * pull)                                   # how far the tips curve back
+    half = ACTIVE.get('half', BOW_HALF)
+    bend = p.get('bend', 1.0 + 2.6 * pull) * ACTIVE.get('bend', 1.0)         # how far the tips curve back
+    flare = ACTIVE.get('flare', 0.0)
+    thick = ACTIVE.get('radius', 1.0)
     parts = []
     # the limbs: an arc from tip to tip through the grip, belly to the front
     count = 9
     arc = []
     for i in range(count + 1):
         t = -1 + 2 * i / count
-        arc.append(tuple(grip[k] + (0.0, t * BOW_HALF, 0.0)[k] + back[k] * bend * t * t for k in range(3)))
+        off = bend * t * t - flare * max(0.0, (abs(t) - 0.6) / 0.4) ** 2        # a recurve's tips whip forward again
+        arc.append(tuple(grip[k] + (0.0, t * half, 0.0)[k] + back[k] * off for k in range(3)))
     for i in range(count):
         t = -1 + 2 * (i + 0.5) / count
-        radius = 0.95 - 0.45 * abs(t) + (0.35 if abs(t) < 0.12 else 0)
-        parts.append(segment(arc[i], arc[i + 1], radius, 'bow', 'bow', grow=0.9))
+        radius = (0.95 - 0.45 * abs(t) + (0.35 if abs(t) < 0.12 else 0)) * thick
+        parts.append(segment(arc[i], arc[i + 1], radius, 'grip' if 'grip' in ACTIVE.get('ramps', {}) and abs(t) < 0.16 else 'bow', 'bow', grow=0.9))
     tips = (arc[0], arc[-1])
+    if ACTIVE.get('gem'):
+        parts.append(part((grip[0] - along[0] * 0.9, grip[1] + 0.2, grip[2] - along[2] * 0.9), (0.9, 0.9, 0.9), 'gem', 'gem'))
+    if ACTIVE.get('leaf'):
+        for tip, sign in ((arc[0], -1), (arc[-1], 1)):
+            beyond = (tip[0], tip[1] + sign * 2.4, tip[2])
+            parts.append(segment(tip, beyond, 0.9, 'leaf', 'leaf', grow=0.5))
     mid_tips = tuple((tips[0][k] + tips[1][k]) / 2 for k in range(3))
     # the string: tip to the nock and nock to the other tip (straight if it is not held)
     nock = tuple(nock_hand[k] + (0.0, 0.2, 0.0)[k] for k in range(3)) if p.get('held', True) else mid_tips
@@ -120,7 +145,7 @@ PERSON = with_bow(make_slim.CREATURE)
 WEAPON_CELL = 48
 
 
-def build_frames(person=None):
+def build_frames(person=None, spec=None):
     """{'person': {facing: 4 frames of 32 x 32}, 'bow': {facing: 4 frames of 48 x 48}} as colour-role rows.
 
     The bow is drawn on its own in the weapon cell, with the person's grid inside it 8 pixels in, so laid
@@ -131,6 +156,9 @@ def build_frames(person=None):
     import conventions
     out = {'person': {}, 'bow': {}}
     person = person or PERSON
+    ACTIVE.clear()
+    ACTIVE.update(SPECS[spec] if spec else {})
+    ramps = dict(RAMPS, **ACTIVE.get('ramps', {}))
     cr.TALL_EYES = person.tall_eyes             # the same eyes as the person's own sprites
     for facing in ('NE', 'SE'):
         origin = cr.calibrate(person, facing)
@@ -145,10 +173,11 @@ def build_frames(person=None):
             old = cr.CELL
             cr.CELL = WEAPON_CELL
             try:
-                bows.append(cr.render_frame(bow_parts, [], facing, (origin[0] + 8, origin[1] + 8 + dy), RAMPS, person.scale))
+                bows.append(cr.render_frame(bow_parts, [], facing, (origin[0] + 8, origin[1] + 8 + dy), ramps, person.scale))
             finally:
                 cr.CELL = old
         out['person'][facing], out['bow'][facing] = people, bows
+    ACTIVE.clear()
     return out
 
 
@@ -177,6 +206,38 @@ def render_sheet(size=330):
             tile = pv.render_view(parts, decals, CREATURE.ramps, pv.VIEWS[view], size, fit_points=fit)
             sheet.alpha_composite(tile, (i * size, 20 + row * (size + 20)))
             draw.text((i * size + 6, 5 + row * (size + 20)), f'{view}  {i + 1} {names[i]}', fill=(235, 238, 245, 255))
+    return sheet
+
+
+def render_variants(size=300):
+    """The four new bows in 3D: undrawn, drawn and held, from the SE and the NE, each with the person's hands on it."""
+    from PIL import Image, ImageDraw
+    import preview3d as pv
+    names = list(SPECS)
+    frames_ = (1, 3)               # draw, hold
+    sheet = Image.new('RGBA', (size * len(names), (size + 20) * 2 * len(frames_)), (60, 64, 74, 255))
+    draw = ImageDraw.Draw(sheet)
+    for col, name in enumerate(names):
+        ACTIVE.clear()
+        ACTIVE.update(SPECS[name])
+        import copy
+        person = copy.copy(CREATURE)                 # the model that carries the bow
+        person.ramps = dict(CREATURE.ramps, **SPECS[name]['ramps'])
+        placed = [person.place(person.poses['bow'][f])[0] for f in frames_]
+        fit = []
+        for parts in placed:
+            for q in parts:
+                r = max(q['r'])
+                fit += [(q['c'][0] + dx * r, q['c'][1] + dy * r, q['c'][2] + dz * r) for dx in (-1, 1) for dy in (-1, 1) for dz in (-1, 1)]
+        row = 0
+        for view in ('SE', 'NE'):
+            for f, parts in zip(frames_, placed):
+                _, decals = person.place(person.poses['bow'][f])
+                tile = pv.render_view(parts, decals, person.ramps, pv.VIEWS[view], size, fit_points=fit)
+                sheet.alpha_composite(tile, (col * size, 20 + row * (size + 20)))
+                draw.text((col * size + 6, 5 + row * (size + 20)), f"{SPECS[name]['label']}  {view}  {'draw' if f == 1 else 'hold'}", fill=(235, 238, 245, 255))
+                row += 1
+    ACTIVE.clear()
     return sheet
 
 
@@ -225,12 +286,18 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__.split('\n')[0])
     parser.add_argument('--model', type=Path, help='write the 3D preview of the four frames here instead of making sprites')
     parser.add_argument('--bases', help='add the bow poses to these bases\' sprite folders, e.g. human,slim,ninja')
+    parser.add_argument('--variants', type=Path, help='write the 3D preview of the new bows here')
     parser.add_argument('--out', type=Path, help='write the sprites (the person and the bow strips) here, e.g. previews/bow')
     args = parser.parse_args()
     if args.model:
         args.model.parent.mkdir(parents=True, exist_ok=True)
         render_sheet().save(args.model)
         print(f'3D preview of the bow animation -> {args.model}; no sprites were made')
+        return
+    if args.variants:
+        args.variants.parent.mkdir(parents=True, exist_ok=True)
+        render_variants().save(args.variants)
+        print(f'3D preview of the new bows -> {args.variants}; no sprites were made')
         return
     if args.bases:
         import importlib

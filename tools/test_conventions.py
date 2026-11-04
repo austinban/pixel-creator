@@ -198,6 +198,43 @@ class TheHeldWeapon(unittest.TestCase):
         self.assertTrue(any('attackSE frame 3' in p for p in cv.check_hand_path(human, folder)))
 
 
+class WeaponIcons(unittest.TestCase):
+    """Every weapon has a 32 x 32 display icon, tied to it by name, and an icon is never left without its weapon."""
+
+    def test_each_icon_is_a_painted_32_square_inside_the_cell(self):
+        import make_weapon_icons as wi
+        for a in wi.build_icon_assets():
+            rows = a['frames'][0]
+            self.assertEqual((len(rows), {len(r) for r in rows}), (32, {32}), a['id'])
+            painted = [(x, y) for y, r in enumerate(rows) for x, ch in enumerate(r) if ch != '.']
+            self.assertGreater(len(painted), 80, a['id'])
+            self.assertTrue(all(0 <= x < 32 and 0 <= y < 32 for x, y in painted), a['id'])
+            self.assertIn('O', ''.join(rows), f"{a['id']} has no outline")
+
+    def test_a_weapon_without_an_icon_and_an_icon_without_a_weapon_are_both_caught(self):
+        import make_weapon_icons as wi
+        strips = [{'id': f'weapon-axe-{f}', 'weapon': 'Axe', 'category': 'Weapons'} for f in ('ne', 'se')]
+        icon = {'id': 'icon-weapon-axe', 'icon_for': 'axe'}
+        self.assertEqual(wi.link_icons(strips + [icon]), [])
+        self.assertEqual({a['icon'] for a in strips}, {'icon-weapon-axe'})
+        self.assertTrue(any('has no display icon' in p for p in wi.link_icons([dict(a) for a in strips])))
+        self.assertTrue(any('no such weapon' in p for p in wi.link_icons([icon])))
+
+    def test_every_weapon_in_the_built_assets_has_its_icon(self):
+        import json
+        path = cv.ROOT / 'assets' / 'data.js'
+        if not path.exists():
+            self.skipTest('assets are not built')
+        text = path.read_text()
+        data = json.loads(text[text.index('{'):text.rindex('}') + 1])
+        by_id = {a['id']: a for a in data['assets']}
+        weapons = [a for a in data['assets'] if a.get('weapon')]
+        self.assertTrue(weapons)
+        for a in weapons:
+            self.assertIn(a.get('icon'), by_id, f"{a['id']} has no display icon")
+            self.assertEqual(by_id[a['icon']]['icon_for'], a['id'][len('weapon-'):-3], a['id'])
+
+
 if __name__ == '__main__':
     unittest.main()
 

@@ -1781,6 +1781,34 @@
    "frames": 4
   },
   {
+   "id": "amulets",
+   "label": "Amulets (shop icons)",
+   "category": "Amulets",
+   "kind": "variants",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "amulets.png",
+   "frames": 8,
+   "names": [
+    "Ruby heart",
+    "Sapphire",
+    "Emerald",
+    "Sunstone",
+    "Moon",
+    "Bone skull",
+    "Rose",
+    "Rune stone"
+   ]
+  },
+  {
    "id": "rock",
    "label": "Rock barrier",
    "category": "Nature",
@@ -1803,6 +1831,402 @@
     "Twin rocks",
     "Slab"
    ]
+  },
+  {
+   "id": "icon-weapon-hatchet",
+   "label": "Hatchet (display icon)",
+   "category": "Weapon icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "icon-weapon-hatchet.png",
+   "frames": 1
+  },
+  {
+   "id": "icon-weapon-iron-axe",
+   "label": "Iron axe (display icon)",
+   "category": "Weapon icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "icon-weapon-iron-axe.png",
+   "frames": 1
+  },
+  {
+   "id": "icon-weapon-iron-sword",
+   "label": "Iron sword (display icon)",
+   "category": "Weapon icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "icon-weapon-iron-sword.png",
+   "frames": 1
+  },
+  {
+   "id": "icon-weapon-scepter",
+   "label": "Scepter (display icon)",
+   "category": "Weapon icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "icon-weapon-scepter.png",
+   "frames": 1
+  },
+  {
+   "id": "icon-weapon-wooden-staff",
+   "label": "Wooden staff (display icon)",
+   "category": "Weapon icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "icon-weapon-wooden-staff.png",
+   "frames": 1
+  },
+  {
+   "id": "icon-weapon-wooden-sword",
+   "label": "Wooden sword (display icon)",
+   "category": "Weapon icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "icon-weapon-wooden-sword.png",
+   "frames": 1
+  },
+  {
+   "id": "icon-weapon-dagger",
+   "label": "Dagger (display icon)",
+   "category": "Weapon icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "icon-weapon-dagger.png",
+   "frames": 1
+  },
+  {
+   "id": "icon-weapon-stiletto",
+   "label": "Stiletto (display icon)",
+   "category": "Weapon icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "icon-weapon-stiletto.png",
+   "frames": 1
+  },
+  {
+   "id": "icon-weapon-kris",
+   "label": "Kris (display icon)",
+   "category": "Weapon icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "icon-weapon-kris.png",
+   "frames": 1
+  },
+  {
+   "id": "icon-weapon-bone-dagger",
+   "label": "Bone dagger (display icon)",
+   "category": "Weapon icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "icon-weapon-bone-dagger.png",
+   "frames": 1
+  },
+  {
+   "id": "icon-weapon-greatsword",
+   "label": "Greatsword (display icon)",
+   "category": "Weapon icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "icon-weapon-greatsword.png",
+   "frames": 1
+  },
+  {
+   "id": "icon-weapon-scimitar",
+   "label": "Scimitar (display icon)",
+   "category": "Weapon icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "icon-weapon-scimitar.png",
+   "frames": 1
+  },
+  {
+   "id": "icon-weapon-battle-axe",
+   "label": "Battle axe (display icon)",
+   "category": "Weapon icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "icon-weapon-battle-axe.png",
+   "frames": 1
+  },
+  {
+   "id": "icon-weapon-war-hammer",
+   "label": "War hammer (display icon)",
+   "category": "Weapon icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "icon-weapon-war-hammer.png",
+   "frames": 1
+  },
+  {
+   "id": "icon-weapon-spiked-mace",
+   "label": "Spiked mace (display icon)",
+   "category": "Weapon icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "icon-weapon-spiked-mace.png",
+   "frames": 1
+  },
+  {
+   "id": "icon-weapon-spear",
+   "label": "Spear (display icon)",
+   "category": "Weapon icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "icon-weapon-spear.png",
+   "frames": 1
+  },
+  {
+   "id": "icon-weapon-crystal-staff",
+   "label": "Crystal staff (display icon)",
+   "category": "Weapon icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "icon-weapon-crystal-staff.png",
+   "frames": 1
+  },
+  {
+   "id": "icon-weapon-bow",
+   "label": "Bow (display icon)",
+   "category": "Weapon icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "icon-weapon-bow.png",
+   "frames": 1
+  },
+  {
+   "id": "icon-weapon-longbow",
+   "label": "Longbow (display icon)",
+   "category": "Weapon icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "icon-weapon-longbow.png",
+   "frames": 1
+  },
+  {
+   "id": "icon-weapon-shortbow",
+   "label": "Shortbow (display icon)",
+   "category": "Weapon icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "icon-weapon-shortbow.png",
+   "frames": 1
+  },
+  {
+   "id": "icon-weapon-recurve",
+   "label": "Recurve bow (display icon)",
+   "category": "Weapon icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "icon-weapon-recurve.png",
+   "frames": 1
+  },
+  {
+   "id": "icon-weapon-elven",
+   "label": "Elven bow (display icon)",
+   "category": "Weapon icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "icon-weapon-elven.png",
+   "frames": 1
   }
  ],
  "groundOverlays": {
