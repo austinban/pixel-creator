@@ -1,0 +1,81 @@
+{
+ "about": "How an app uses the node-map sheets in this folder. See README.md beside this file for the whole story.",
+ "tile": 16,
+ "bits": {
+  "TL": 1,
+  "TR": 2,
+  "BL": 4,
+  "BR": 8
+ },
+ "tileIndex": "in a shore sheet, the tile for corner bits n is at column n % 4, row n // 4 (16 x 16 px); 0 is empty, 15 is all land",
+ "tilePosition": "the tile on the corner between cells (i-1, j-1), (i, j-1), (i-1, j) and (i, j) is drawn with its top left at (i * 16 - 8, j * 16 - 8)",
+ "skins": {
+  "grass": {
+   "label": "Grass islands",
+   "shore": "nodemap-grass-shore.png",
+   "sea": "nodemap-grass-sea.png",
+   "routeDot": {
+    "on": 2,
+    "off": 1,
+    "width": 1,
+    "role": "g",
+    "hex": "#7d426e"
+   }
+  },
+  "parchment": {
+   "label": "Parchment chart",
+   "shore": "nodemap-parchment-shore.png",
+   "sea": "nodemap-parchment-sea.png",
+   "routeDot": {
+    "on": 2,
+    "off": 1,
+    "width": 1,
+    "role": "g",
+    "hex": "#7d426e"
+   }
+  }
+ },
+ "sea": {
+  "frames": 4,
+  "fps": 4,
+  "size": 16,
+  "note": "every sea tile shows the same frame at the same time; it tiles the whole map, shore tiles go over it"
+ },
+ "pins": {
+  "sheet": "nodemap-pins.png",
+  "names": [
+   "green",
+   "blue",
+   "red"
+  ],
+  "size": [
+   16,
+   24
+  ],
+  "anchor": [
+   8,
+   20
+  ],
+  "note": "put the anchor (the point) on the middle of the node: ((x + 0.5) * 16, (y + 0.5) * 16)"
+ },
+ "layout": {
+  "laneSpacing": 9,
+  "floorSpacing": 8,
+  "margin": 8,
+  "nodeRadius": [
+   2.6,
+   2.9,
+   3.2
+  ],
+  "bossRadius": 5.0,
+  "pathRadius": 0.78,
+  "jitter": 1
+ },
+ "drawOrder": [
+  "sea (whole map)",
+  "shore tiles",
+  "routes (dotted)",
+  "pins",
+  "your node icons"
+ ]
+}
