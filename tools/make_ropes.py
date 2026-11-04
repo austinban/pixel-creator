@@ -21,6 +21,8 @@ THICK = 3                  # how many rows thick each cord is: heavy rope
 PITCH = 4                  # rows from one turn to the next
 SAG = 2.0                  # how far a turn bows down across the front
 TILT = 1.4                 # how much a turn climbs from one side to the other, as a spiral does
+BULGE = 2                  # how far the middle turns swell out past the body on each side, so the whole coil is rounded like a barrel
+ENDS = 1                   # how far the top and bottom turns pull in from the body
 CUT_FRAMES = 6
 PIECES = 4                 # the pieces each turn breaks into when cut
 
@@ -50,13 +52,19 @@ def render_coils(mask, phase=0):
         xs = [x for x in range(32) if mask[mid][x]] or [x for x in range(32) if mask[min(31, mid + 2)][x]]
         if xs:
             left, right = min(xs), max(xs)
+            body_left, body_right = left, right
+            # a barrel: the middle turns reach out past the body, the first and last pull in a little
+            t = (y0 - start) / max(1, end - start)
+            swell = BULGE * (1 - (2 * t - 1) ** 2) - ENDS * (2 * t - 1) ** 4
+            left, right = left - int(round(swell)), right + int(round(swell))
             cx, hw = (left + right) / 2, max(1.0, (right - left) / 2)
-            for x in range(left, right + 1):
+            for x in range(max(0, left), min(31, right) + 1):
                 u = (x - cx) / hw
                 centre = y0 + SAG * (1 - u * u) + TILT * u
                 for dy in range(-THICK // 2 - 1, THICK // 2 + 2):
                     y = int(round(centre)) + dy
-                    if not (0 <= y < 32 and mask[y][x]):
+                    # the body clips the cord, except where the swell takes it out beyond the body's sides
+                    if not (0 <= y < 32 and (mask[y][x] or x < body_left or x > body_right)):
                         continue
                     top = dy == -THICK // 2 - 1 + 1
                     bottom_ = dy == THICK // 2 + 1 - 1
