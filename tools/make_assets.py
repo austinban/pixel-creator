@@ -23,6 +23,8 @@ import extract_poses as ep  # noqa: E402
 import make_facing  # noqa: E402
 import make_arrow  # noqa: E402
 import make_amulets  # noqa: E402
+import make_buildings  # noqa: E402
+import make_nodemap  # noqa: E402
 import make_bow  # noqa: E402
 import make_ground  # noqa: E402
 import make_overlay  # noqa: E402
@@ -550,7 +552,7 @@ def build_assets(weapons_dir=make_weapons.DEFAULT_DIR):
                     })
     # The ground tileset is sliced from a PNG rather than rendered.
     # Weapon strips are read from PNGs too, if there are any.
-    assets = [crystal_asset] + facing_assets + overlay_assets + rope_assets + boss_assets + dot_assets + [bridge_asset, vine_asset, fire_asset, heal_asset, arrow_side, arrow_angled] + bow_assets + [amulet_asset, rock_asset] + make_ground.build_ground_assets() + make_weapons.build_weapon_assets(weapons_dir)
+    assets = [crystal_asset] + facing_assets + overlay_assets + rope_assets + boss_assets + dot_assets + [bridge_asset, vine_asset, fire_asset, heal_asset, arrow_side, arrow_angled] + bow_assets + [amulet_asset, rock_asset] + make_nodemap.build_assets() + make_buildings.build_assets() + make_ground.build_ground_assets() + make_weapons.build_weapon_assets(weapons_dir)
     tag_overlay_shapes(assets)
     # Each weapon's display icon, linked both ways by the weapon's name (see make_weapon_icons.py): it fails the build if they do not match.
     assets += make_weapon_icons.build_icon_assets()
@@ -632,7 +634,9 @@ def main():
                     for x, ch in enumerate(row):
                         if ch != '.':
                             px[ox + x, oy + y] = (*to_rgb[ch], alpha)
-            path = args.png_dir / f'{asset["id"]}.png'
+            # An asset that belongs to a group (the node map) goes in that group's own folder inside the PNG folder.
+            path = args.png_dir / asset.get('folder', '') / f'{asset["id"]}.png'
+            path.parent.mkdir(parents=True, exist_ok=True)
             sheet.save(path)
             # Re-read the PNG and compare every pixel with what the roles say it should be.
             back = Image.open(path).convert('RGBA').load()
@@ -645,7 +649,7 @@ def main():
                             sys.exit(f'{path}: round trip differs at frame {f} ({x}, {y})')
             print(f'{asset["id"]}: {len(asset["frames"])} frames written and re-read identical -> {path}')
             manifest.append({k: asset[k] for k in ('id', 'label', 'category', 'kind', 'place', 'w', 'h', 'cols', 'rows', 'fps', 'anchor') if k in asset}
-                            | {'file': path.name, 'frames': len(asset['frames'])}
+                            | {'file': str(path.relative_to(args.png_dir)), 'frames': len(asset['frames'])}
                             | ({'names': asset['names']} if 'names' in asset else {}) | ({'opacity': asset['opacity']} if 'opacity' in asset else {}))
         # Which overlay shape fits each ground tile, by the tile's place on ground.png, and where the shapes are in the overlay sheets.
         ground_overlays = {a['id'][len('ground-'):]: a['overlay'] for a in assets if a['id'].startswith('ground-') and 'overlay' in a}
@@ -656,6 +660,8 @@ def main():
             'assets': manifest,
             'groundOverlays': ground_overlays,
         }, indent=1))
+        make_nodemap.write_package(args.png_dir / make_nodemap.FOLDER)
+        make_buildings.write_package(args.png_dir / make_buildings.FOLDER)
         print(f'{len(manifest)} sheets and manifest.json -> {args.png_dir}')
 
 if __name__ == '__main__':

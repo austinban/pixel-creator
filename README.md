@@ -260,6 +260,20 @@ character or `ground`ed beside one.
 | `tools/make_zombie.py` | Paints the zombie base on the fighter's poses |
 | `tools/make_knight.py` | Paints the armoured knight base on the fighter's poses |
 
+## Node map
+
+Top-down tiles for a Slay-the-Spire-style floor map: branching islands with water between, and pins on the nodes. It is its own group: the **Node map**
+category on the Assets page, ids `nodemap-*`, and the folder `sprites/assets/nodemap/`, which has a **README.md for the app that uses it** (how to pick
+tiles, the layers, the layout recipe), a `nodemap.json` with the numbers, and an example map with its layout. Two skins (Grass islands and Parchment chart)
+share the same 16 tiles; `tools/make_nodemap.py` is the generator and the reference for making a layout.
+
+## Buildings
+
+A kit of building tiles to build houses, towers and whole streets from: 33 pieces plus 36 worn, damaged and overgrown versions, each drawn twice (NE and SE), 32 x 32 like the ground tiles
+(two spires are 32 x 48). They are one-cell, one-level pieces you stack and set side by side, in the **Buildings** category, ids `bld-*`, and the folder `sprites/assets/buildings/`, which has a
+**README.md for the app that uses it** (placement, NE and SE, how to make walls, doors, roofs and towers), a `buildings.json` with every piece and the rules in numbers, and an example street with its piece list.
+`tools/buildings.py` is the renderer and `tools/make_buildings.py` the kit and a `Town` helper that builds with it.
+
 ## Terrain
 
 `terrain.html` lays the ground tiles out as an isometric map: grass with trees,

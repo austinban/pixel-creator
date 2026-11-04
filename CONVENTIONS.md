@@ -162,6 +162,20 @@ starts at the middle, spreads out to the four plots, peaks on all five, then die
 thing, with something linking the plots (the fire's low flames along the shared edges) and soft, rounded
 bases instead of flat ones. The fire burst (`tools/make_fire.py`) is the worked example.
 
+## The node map
+
+A group of assets of its own: top-down, **16 x 16 tiles on a dual grid** (a tile for every corner of four land-or-water cells, 16 shapes), an animated sea
+under them, and map pins. Everything is category **Node map**, ids `nodemap-*`, folder `sprites/assets/nodemap/`, and the rules for using it are in that
+folder's README.md. A new skin changes only colours and textures (`BIOMES` in `tools/make_nodemap.py`); its 16 tiles keep their numbers (corner bits:
+top left 1, top right 2, bottom left 4, bottom right 8), repeat their texture every 16 pixels, and join their neighbours, which the tests check.
+
+## Buildings
+
+The building tiles are one-cell, one-level **32 x 32 cubes** in the ground tiles' projection (16 across and 8 down a cell, 16 pixels a level, a storey of two levels), drawn in the quieter palette roles
+so they do not fight the ground. Every piece with a direction is drawn **NE and SE** (the feature on the wall that runs NE-SW, or the one that runs NW-SE); a piece without one is the same picture
+in both. Textures **repeat every 16 pixels** so stacked and neighbouring pieces line up. Everything is category **Buildings**, ids `bld-*`, folder `sprites/assets/buildings/`, and that folder's README.md says
+how to use it. Add a piece with one `add(...)` line in `tools/make_buildings.py`; the tests check the sizes, NE and SE, and that the README's placement recipe redraws the example street.
+
 ## The bow animation
 
 Every person has the bow animation: draw to the eyeline, release with a recoil, hold with the bow dropped

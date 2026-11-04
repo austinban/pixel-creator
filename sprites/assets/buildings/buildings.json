@@ -1,0 +1,1666 @@
+{
+"about": "How an app uses the building tiles in this folder. See README.md beside this file for the whole story.",
+"cell": 32,
+"level": 16,
+"placement": "a piece at cell (x, y), level k, whose ground tile has its top left at (gx, gy): draw its picture with its top left at (gx, gy - 16 * (k + levels)), levels being 1 (a 32 x 32 picture) or 2 (a 32 x 48 one)",
+"groundTile": "the cell's ground tile top left is (16 * (x - y), 8 * (x + y)) plus the map's own offset, as the terrain page draws it",
+"drawOrder": "sort by x + y, then by level, and draw in that order, after the ground tiles",
+"storey": 2,
+"sheetColumns": 8,
+"frameOrder": "in a sheet, each piece is its NE picture then its SE picture; the frame is col + row * columns",
+"orientation": {
+"NE": "the feature or slope is on the wall or run that goes NE-SW (the right-hand wall as seen)",
+"SE": "the feature or slope is on the wall or run that goes NW-SE (the left-hand wall as seen)",
+"NW and SW": "flip the NE and SE pictures left to right, as for the characters"
+},
+"roof": {
+"rise": "one level over one cell",
+"endsMatch": {
+"tile": "timber plaster",
+"slate": "stone",
+"teal": "stone"
+}
+},
+"sheets": {
+"bld-stone-wall": {
+"file": "bld-stone-wall.png",
+"label": "Stone walls",
+"cell": [
+32,
+32
+],
+"cols": 8,
+"levels": 1
+},
+"bld-timber-wall": {
+"file": "bld-timber-wall.png",
+"label": "Timber-framed walls",
+"cell": [
+32,
+32
+],
+"cols": 8,
+"levels": 1
+},
+"bld-roof-terracotta": {
+"file": "bld-roof-terracotta.png",
+"label": "Terracotta roof",
+"cell": [
+32,
+32
+],
+"cols": 8,
+"levels": 1
+},
+"bld-roof-slate": {
+"file": "bld-roof-slate.png",
+"label": "Slate roof",
+"cell": [
+32,
+32
+],
+"cols": 8,
+"levels": 1
+},
+"bld-roof-teal": {
+"file": "bld-roof-teal.png",
+"label": "Teal roof",
+"cell": [
+32,
+32
+],
+"cols": 8,
+"levels": 1
+},
+"bld-stone-wall-aged": {
+"file": "bld-stone-wall-aged.png",
+"label": "Stone walls - worn, damaged, overgrown",
+"cell": [
+32,
+32
+],
+"cols": 8,
+"levels": 1
+},
+"bld-timber-wall-aged": {
+"file": "bld-timber-wall-aged.png",
+"label": "Timber-framed walls - worn, damaged, overgrown",
+"cell": [
+32,
+32
+],
+"cols": 8,
+"levels": 1
+},
+"bld-roof-terracotta-aged": {
+"file": "bld-roof-terracotta-aged.png",
+"label": "Terracotta roof - mossy, broken",
+"cell": [
+32,
+32
+],
+"cols": 8,
+"levels": 1
+},
+"bld-roof-slate-aged": {
+"file": "bld-roof-slate-aged.png",
+"label": "Slate roof - mossy, broken",
+"cell": [
+32,
+32
+],
+"cols": 8,
+"levels": 1
+},
+"bld-roof-teal-aged": {
+"file": "bld-roof-teal-aged.png",
+"label": "Teal roof - mossy, broken",
+"cell": [
+32,
+32
+],
+"cols": 8,
+"levels": 1
+},
+"bld-extras": {
+"file": "bld-extras.png",
+"label": "Extras: chimney, pinnacle, rubble",
+"cell": [
+32,
+32
+],
+"cols": 8,
+"levels": 1
+},
+"bld-spires": {
+"file": "bld-spires.png",
+"label": "Spires (two levels tall)",
+"cell": [
+32,
+48
+],
+"cols": 8,
+"levels": 2
+}
+},
+"pieces": {
+"stone-plain-ne": {
+"sheet": "bld-stone-wall",
+"frame": 0,
+"col": 0,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "plain block",
+"group": "Stone wall",
+"sameInBoth": true
+},
+"stone-plain-se": {
+"sheet": "bld-stone-wall",
+"frame": 1,
+"col": 1,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "plain block",
+"group": "Stone wall",
+"sameInBoth": true
+},
+"stone-window-ne": {
+"sheet": "bld-stone-wall",
+"frame": 2,
+"col": 2,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "window",
+"group": "Stone wall",
+"sameInBoth": false
+},
+"stone-window-se": {
+"sheet": "bld-stone-wall",
+"frame": 3,
+"col": 3,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "window",
+"group": "Stone wall",
+"sameInBoth": false
+},
+"stone-corner-window-ne": {
+"sheet": "bld-stone-wall",
+"frame": 4,
+"col": 4,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "window on both walls (a corner)",
+"group": "Stone wall",
+"sameInBoth": true
+},
+"stone-corner-window-se": {
+"sheet": "bld-stone-wall",
+"frame": 5,
+"col": 5,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "window on both walls (a corner)",
+"group": "Stone wall",
+"sameInBoth": true
+},
+"stone-door-low-ne": {
+"sheet": "bld-stone-wall",
+"frame": 6,
+"col": 6,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "door, lower half",
+"group": "Stone wall",
+"sameInBoth": false
+},
+"stone-door-low-se": {
+"sheet": "bld-stone-wall",
+"frame": 7,
+"col": 7,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "door, lower half",
+"group": "Stone wall",
+"sameInBoth": false
+},
+"stone-door-up-ne": {
+"sheet": "bld-stone-wall",
+"frame": 8,
+"col": 0,
+"row": 1,
+"levels": 1,
+"orient": "NE",
+"label": "door, upper half (arched)",
+"group": "Stone wall",
+"sameInBoth": false
+},
+"stone-door-up-se": {
+"sheet": "bld-stone-wall",
+"frame": 9,
+"col": 1,
+"row": 1,
+"levels": 1,
+"orient": "SE",
+"label": "door, upper half (arched)",
+"group": "Stone wall",
+"sameInBoth": false
+},
+"stone-slit-ne": {
+"sheet": "bld-stone-wall",
+"frame": 10,
+"col": 2,
+"row": 1,
+"levels": 1,
+"orient": "NE",
+"label": "arrow slit",
+"group": "Stone wall",
+"sameInBoth": false
+},
+"stone-slit-se": {
+"sheet": "bld-stone-wall",
+"frame": 11,
+"col": 3,
+"row": 1,
+"levels": 1,
+"orient": "SE",
+"label": "arrow slit",
+"group": "Stone wall",
+"sameInBoth": false
+},
+"stone-corner-slit-ne": {
+"sheet": "bld-stone-wall",
+"frame": 12,
+"col": 4,
+"row": 1,
+"levels": 1,
+"orient": "NE",
+"label": "arrow slit on both walls",
+"group": "Stone wall",
+"sameInBoth": true
+},
+"stone-corner-slit-se": {
+"sheet": "bld-stone-wall",
+"frame": 13,
+"col": 5,
+"row": 1,
+"levels": 1,
+"orient": "SE",
+"label": "arrow slit on both walls",
+"group": "Stone wall",
+"sameInBoth": true
+},
+"stone-open-ne": {
+"sheet": "bld-stone-wall",
+"frame": 14,
+"col": 6,
+"row": 1,
+"levels": 1,
+"orient": "NE",
+"label": "belfry arch",
+"group": "Stone wall",
+"sameInBoth": false
+},
+"stone-open-se": {
+"sheet": "bld-stone-wall",
+"frame": 15,
+"col": 7,
+"row": 1,
+"levels": 1,
+"orient": "SE",
+"label": "belfry arch",
+"group": "Stone wall",
+"sameInBoth": false
+},
+"stone-corner-open-ne": {
+"sheet": "bld-stone-wall",
+"frame": 16,
+"col": 0,
+"row": 2,
+"levels": 1,
+"orient": "NE",
+"label": "belfry arch on both walls",
+"group": "Stone wall",
+"sameInBoth": true
+},
+"stone-corner-open-se": {
+"sheet": "bld-stone-wall",
+"frame": 17,
+"col": 1,
+"row": 2,
+"levels": 1,
+"orient": "SE",
+"label": "belfry arch on both walls",
+"group": "Stone wall",
+"sameInBoth": true
+},
+"stone-gate-ne": {
+"sheet": "bld-stone-wall",
+"frame": 18,
+"col": 2,
+"row": 2,
+"levels": 1,
+"orient": "NE",
+"label": "gate arch",
+"group": "Stone wall",
+"sameInBoth": false
+},
+"stone-gate-se": {
+"sheet": "bld-stone-wall",
+"frame": 19,
+"col": 3,
+"row": 2,
+"levels": 1,
+"orient": "SE",
+"label": "gate arch",
+"group": "Stone wall",
+"sameInBoth": false
+},
+"stone-battlement-ne": {
+"sheet": "bld-stone-wall",
+"frame": 20,
+"col": 4,
+"row": 2,
+"levels": 1,
+"orient": "NE",
+"label": "battlement",
+"group": "Stone wall",
+"sameInBoth": true
+},
+"stone-battlement-se": {
+"sheet": "bld-stone-wall",
+"frame": 21,
+"col": 5,
+"row": 2,
+"levels": 1,
+"orient": "SE",
+"label": "battlement",
+"group": "Stone wall",
+"sameInBoth": true
+},
+"timber-plain-ne": {
+"sheet": "bld-timber-wall",
+"frame": 0,
+"col": 0,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "plain block",
+"group": "Timber-framed wall",
+"sameInBoth": true
+},
+"timber-plain-se": {
+"sheet": "bld-timber-wall",
+"frame": 1,
+"col": 1,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "plain block",
+"group": "Timber-framed wall",
+"sameInBoth": true
+},
+"timber-brace-ne": {
+"sheet": "bld-timber-wall",
+"frame": 2,
+"col": 2,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "braced block",
+"group": "Timber-framed wall",
+"sameInBoth": true
+},
+"timber-brace-se": {
+"sheet": "bld-timber-wall",
+"frame": 3,
+"col": 3,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "braced block",
+"group": "Timber-framed wall",
+"sameInBoth": true
+},
+"timber-window-ne": {
+"sheet": "bld-timber-wall",
+"frame": 4,
+"col": 4,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "window",
+"group": "Timber-framed wall",
+"sameInBoth": false
+},
+"timber-window-se": {
+"sheet": "bld-timber-wall",
+"frame": 5,
+"col": 5,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "window",
+"group": "Timber-framed wall",
+"sameInBoth": false
+},
+"timber-corner-window-ne": {
+"sheet": "bld-timber-wall",
+"frame": 6,
+"col": 6,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "window on both walls (a corner)",
+"group": "Timber-framed wall",
+"sameInBoth": true
+},
+"timber-corner-window-se": {
+"sheet": "bld-timber-wall",
+"frame": 7,
+"col": 7,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "window on both walls (a corner)",
+"group": "Timber-framed wall",
+"sameInBoth": true
+},
+"timber-door-low-ne": {
+"sheet": "bld-timber-wall",
+"frame": 8,
+"col": 0,
+"row": 1,
+"levels": 1,
+"orient": "NE",
+"label": "door, lower half",
+"group": "Timber-framed wall",
+"sameInBoth": false
+},
+"timber-door-low-se": {
+"sheet": "bld-timber-wall",
+"frame": 9,
+"col": 1,
+"row": 1,
+"levels": 1,
+"orient": "SE",
+"label": "door, lower half",
+"group": "Timber-framed wall",
+"sameInBoth": false
+},
+"timber-door-up-ne": {
+"sheet": "bld-timber-wall",
+"frame": 10,
+"col": 2,
+"row": 1,
+"levels": 1,
+"orient": "NE",
+"label": "door, upper half (arched)",
+"group": "Timber-framed wall",
+"sameInBoth": false
+},
+"timber-door-up-se": {
+"sheet": "bld-timber-wall",
+"frame": 11,
+"col": 3,
+"row": 1,
+"levels": 1,
+"orient": "SE",
+"label": "door, upper half (arched)",
+"group": "Timber-framed wall",
+"sameInBoth": false
+},
+"roof-tile-slope-ne": {
+"sheet": "bld-roof-terracotta",
+"frame": 0,
+"col": 0,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "front slope",
+"group": "Terracotta roof",
+"sameInBoth": false
+},
+"roof-tile-slope-se": {
+"sheet": "bld-roof-terracotta",
+"frame": 1,
+"col": 1,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "front slope",
+"group": "Terracotta roof",
+"sameInBoth": false
+},
+"roof-tile-back-ne": {
+"sheet": "bld-roof-terracotta",
+"frame": 2,
+"col": 2,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "back slope (its end shows)",
+"group": "Terracotta roof",
+"sameInBoth": false
+},
+"roof-tile-back-se": {
+"sheet": "bld-roof-terracotta",
+"frame": 3,
+"col": 3,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "back slope (its end shows)",
+"group": "Terracotta roof",
+"sameInBoth": false
+},
+"roof-tile-hip-ne": {
+"sheet": "bld-roof-terracotta",
+"frame": 4,
+"col": 4,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "hip slope",
+"group": "Terracotta roof",
+"sameInBoth": false
+},
+"roof-tile-hip-se": {
+"sheet": "bld-roof-terracotta",
+"frame": 5,
+"col": 5,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "hip slope",
+"group": "Terracotta roof",
+"sameInBoth": false
+},
+"roof-tile-corner-ne": {
+"sheet": "bld-roof-terracotta",
+"frame": 6,
+"col": 6,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "hip corner",
+"group": "Terracotta roof",
+"sameInBoth": true
+},
+"roof-tile-corner-se": {
+"sheet": "bld-roof-terracotta",
+"frame": 7,
+"col": 7,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "hip corner",
+"group": "Terracotta roof",
+"sameInBoth": true
+},
+"roof-slate-slope-ne": {
+"sheet": "bld-roof-slate",
+"frame": 0,
+"col": 0,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "front slope",
+"group": "Slate roof",
+"sameInBoth": false
+},
+"roof-slate-slope-se": {
+"sheet": "bld-roof-slate",
+"frame": 1,
+"col": 1,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "front slope",
+"group": "Slate roof",
+"sameInBoth": false
+},
+"roof-slate-back-ne": {
+"sheet": "bld-roof-slate",
+"frame": 2,
+"col": 2,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "back slope (its end shows)",
+"group": "Slate roof",
+"sameInBoth": false
+},
+"roof-slate-back-se": {
+"sheet": "bld-roof-slate",
+"frame": 3,
+"col": 3,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "back slope (its end shows)",
+"group": "Slate roof",
+"sameInBoth": false
+},
+"roof-slate-hip-ne": {
+"sheet": "bld-roof-slate",
+"frame": 4,
+"col": 4,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "hip slope",
+"group": "Slate roof",
+"sameInBoth": false
+},
+"roof-slate-hip-se": {
+"sheet": "bld-roof-slate",
+"frame": 5,
+"col": 5,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "hip slope",
+"group": "Slate roof",
+"sameInBoth": false
+},
+"roof-slate-corner-ne": {
+"sheet": "bld-roof-slate",
+"frame": 6,
+"col": 6,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "hip corner",
+"group": "Slate roof",
+"sameInBoth": true
+},
+"roof-slate-corner-se": {
+"sheet": "bld-roof-slate",
+"frame": 7,
+"col": 7,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "hip corner",
+"group": "Slate roof",
+"sameInBoth": true
+},
+"roof-teal-slope-ne": {
+"sheet": "bld-roof-teal",
+"frame": 0,
+"col": 0,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "front slope",
+"group": "Teal roof",
+"sameInBoth": false
+},
+"roof-teal-slope-se": {
+"sheet": "bld-roof-teal",
+"frame": 1,
+"col": 1,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "front slope",
+"group": "Teal roof",
+"sameInBoth": false
+},
+"roof-teal-back-ne": {
+"sheet": "bld-roof-teal",
+"frame": 2,
+"col": 2,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "back slope (its end shows)",
+"group": "Teal roof",
+"sameInBoth": false
+},
+"roof-teal-back-se": {
+"sheet": "bld-roof-teal",
+"frame": 3,
+"col": 3,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "back slope (its end shows)",
+"group": "Teal roof",
+"sameInBoth": false
+},
+"roof-teal-hip-ne": {
+"sheet": "bld-roof-teal",
+"frame": 4,
+"col": 4,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "hip slope",
+"group": "Teal roof",
+"sameInBoth": false
+},
+"roof-teal-hip-se": {
+"sheet": "bld-roof-teal",
+"frame": 5,
+"col": 5,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "hip slope",
+"group": "Teal roof",
+"sameInBoth": false
+},
+"roof-teal-corner-ne": {
+"sheet": "bld-roof-teal",
+"frame": 6,
+"col": 6,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "hip corner",
+"group": "Teal roof",
+"sameInBoth": true
+},
+"roof-teal-corner-se": {
+"sheet": "bld-roof-teal",
+"frame": 7,
+"col": 7,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "hip corner",
+"group": "Teal roof",
+"sameInBoth": true
+},
+"stone-worn-ne": {
+"sheet": "bld-stone-wall-aged",
+"frame": 0,
+"col": 0,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "worn: cracked and stained",
+"group": "Stone wall - worn, damaged, overgrown",
+"sameInBoth": false
+},
+"stone-worn-se": {
+"sheet": "bld-stone-wall-aged",
+"frame": 1,
+"col": 1,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "worn: cracked and stained",
+"group": "Stone wall - worn, damaged, overgrown",
+"sameInBoth": false
+},
+"stone-mossy-ne": {
+"sheet": "bld-stone-wall-aged",
+"frame": 2,
+"col": 2,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "mossy",
+"group": "Stone wall - worn, damaged, overgrown",
+"sameInBoth": false
+},
+"stone-mossy-se": {
+"sheet": "bld-stone-wall-aged",
+"frame": 3,
+"col": 3,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "mossy",
+"group": "Stone wall - worn, damaged, overgrown",
+"sameInBoth": false
+},
+"stone-hole-ne": {
+"sheet": "bld-stone-wall-aged",
+"frame": 4,
+"col": 4,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "damaged: a hole",
+"group": "Stone wall - worn, damaged, overgrown",
+"sameInBoth": false
+},
+"stone-hole-se": {
+"sheet": "bld-stone-wall-aged",
+"frame": 5,
+"col": 5,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "damaged: a hole",
+"group": "Stone wall - worn, damaged, overgrown",
+"sameInBoth": false
+},
+"stone-vines-ne": {
+"sheet": "bld-stone-wall-aged",
+"frame": 6,
+"col": 6,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "vines growing up",
+"group": "Stone wall - worn, damaged, overgrown",
+"sameInBoth": false
+},
+"stone-vines-se": {
+"sheet": "bld-stone-wall-aged",
+"frame": 7,
+"col": 7,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "vines growing up",
+"group": "Stone wall - worn, damaged, overgrown",
+"sameInBoth": false
+},
+"stone-vines-hang-ne": {
+"sheet": "bld-stone-wall-aged",
+"frame": 8,
+"col": 0,
+"row": 1,
+"levels": 1,
+"orient": "NE",
+"label": "vines hanging down",
+"group": "Stone wall - worn, damaged, overgrown",
+"sameInBoth": false
+},
+"stone-vines-hang-se": {
+"sheet": "bld-stone-wall-aged",
+"frame": 9,
+"col": 1,
+"row": 1,
+"levels": 1,
+"orient": "SE",
+"label": "vines hanging down",
+"group": "Stone wall - worn, damaged, overgrown",
+"sameInBoth": false
+},
+"stone-vines-heavy-ne": {
+"sheet": "bld-stone-wall-aged",
+"frame": 10,
+"col": 2,
+"row": 1,
+"levels": 1,
+"orient": "NE",
+"label": "covered in vines",
+"group": "Stone wall - worn, damaged, overgrown",
+"sameInBoth": false
+},
+"stone-vines-heavy-se": {
+"sheet": "bld-stone-wall-aged",
+"frame": 11,
+"col": 3,
+"row": 1,
+"levels": 1,
+"orient": "SE",
+"label": "covered in vines",
+"group": "Stone wall - worn, damaged, overgrown",
+"sameInBoth": false
+},
+"stone-window-vines-ne": {
+"sheet": "bld-stone-wall-aged",
+"frame": 12,
+"col": 4,
+"row": 1,
+"levels": 1,
+"orient": "NE",
+"label": "window with vines round it",
+"group": "Stone wall - worn, damaged, overgrown",
+"sameInBoth": false
+},
+"stone-window-vines-se": {
+"sheet": "bld-stone-wall-aged",
+"frame": 13,
+"col": 5,
+"row": 1,
+"levels": 1,
+"orient": "SE",
+"label": "window with vines round it",
+"group": "Stone wall - worn, damaged, overgrown",
+"sameInBoth": false
+},
+"stone-corner-vines-ne": {
+"sheet": "bld-stone-wall-aged",
+"frame": 14,
+"col": 6,
+"row": 1,
+"levels": 1,
+"orient": "NE",
+"label": "vines on both walls (a corner)",
+"group": "Stone wall - worn, damaged, overgrown",
+"sameInBoth": true
+},
+"stone-corner-vines-se": {
+"sheet": "bld-stone-wall-aged",
+"frame": 15,
+"col": 7,
+"row": 1,
+"levels": 1,
+"orient": "SE",
+"label": "vines on both walls (a corner)",
+"group": "Stone wall - worn, damaged, overgrown",
+"sameInBoth": true
+},
+"stone-ruined-ne": {
+"sheet": "bld-stone-wall-aged",
+"frame": 16,
+"col": 0,
+"row": 2,
+"levels": 1,
+"orient": "NE",
+"label": "ruined: broken off along the top",
+"group": "Stone wall - worn, damaged, overgrown",
+"sameInBoth": true
+},
+"stone-ruined-se": {
+"sheet": "bld-stone-wall-aged",
+"frame": 17,
+"col": 1,
+"row": 2,
+"levels": 1,
+"orient": "SE",
+"label": "ruined: broken off along the top",
+"group": "Stone wall - worn, damaged, overgrown",
+"sameInBoth": true
+},
+"timber-peeled-ne": {
+"sheet": "bld-timber-wall-aged",
+"frame": 0,
+"col": 0,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "plaster peeling off",
+"group": "Timber-framed wall - worn, damaged, overgrown",
+"sameInBoth": false
+},
+"timber-peeled-se": {
+"sheet": "bld-timber-wall-aged",
+"frame": 1,
+"col": 1,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "plaster peeling off",
+"group": "Timber-framed wall - worn, damaged, overgrown",
+"sameInBoth": false
+},
+"timber-hole-ne": {
+"sheet": "bld-timber-wall-aged",
+"frame": 2,
+"col": 2,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "damaged: a hole",
+"group": "Timber-framed wall - worn, damaged, overgrown",
+"sameInBoth": false
+},
+"timber-hole-se": {
+"sheet": "bld-timber-wall-aged",
+"frame": 3,
+"col": 3,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "damaged: a hole",
+"group": "Timber-framed wall - worn, damaged, overgrown",
+"sameInBoth": false
+},
+"timber-vines-ne": {
+"sheet": "bld-timber-wall-aged",
+"frame": 4,
+"col": 4,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "vines growing up",
+"group": "Timber-framed wall - worn, damaged, overgrown",
+"sameInBoth": false
+},
+"timber-vines-se": {
+"sheet": "bld-timber-wall-aged",
+"frame": 5,
+"col": 5,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "vines growing up",
+"group": "Timber-framed wall - worn, damaged, overgrown",
+"sameInBoth": false
+},
+"timber-vines-hang-ne": {
+"sheet": "bld-timber-wall-aged",
+"frame": 6,
+"col": 6,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "vines hanging down",
+"group": "Timber-framed wall - worn, damaged, overgrown",
+"sameInBoth": false
+},
+"timber-vines-hang-se": {
+"sheet": "bld-timber-wall-aged",
+"frame": 7,
+"col": 7,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "vines hanging down",
+"group": "Timber-framed wall - worn, damaged, overgrown",
+"sameInBoth": false
+},
+"timber-vines-heavy-ne": {
+"sheet": "bld-timber-wall-aged",
+"frame": 8,
+"col": 0,
+"row": 1,
+"levels": 1,
+"orient": "NE",
+"label": "covered in vines",
+"group": "Timber-framed wall - worn, damaged, overgrown",
+"sameInBoth": false
+},
+"timber-vines-heavy-se": {
+"sheet": "bld-timber-wall-aged",
+"frame": 9,
+"col": 1,
+"row": 1,
+"levels": 1,
+"orient": "SE",
+"label": "covered in vines",
+"group": "Timber-framed wall - worn, damaged, overgrown",
+"sameInBoth": false
+},
+"timber-window-vines-ne": {
+"sheet": "bld-timber-wall-aged",
+"frame": 10,
+"col": 2,
+"row": 1,
+"levels": 1,
+"orient": "NE",
+"label": "window with vines round it",
+"group": "Timber-framed wall - worn, damaged, overgrown",
+"sameInBoth": false
+},
+"timber-window-vines-se": {
+"sheet": "bld-timber-wall-aged",
+"frame": 11,
+"col": 3,
+"row": 1,
+"levels": 1,
+"orient": "SE",
+"label": "window with vines round it",
+"group": "Timber-framed wall - worn, damaged, overgrown",
+"sameInBoth": false
+},
+"timber-corner-vines-ne": {
+"sheet": "bld-timber-wall-aged",
+"frame": 12,
+"col": 4,
+"row": 1,
+"levels": 1,
+"orient": "NE",
+"label": "vines on both walls (a corner)",
+"group": "Timber-framed wall - worn, damaged, overgrown",
+"sameInBoth": true
+},
+"timber-corner-vines-se": {
+"sheet": "bld-timber-wall-aged",
+"frame": 13,
+"col": 5,
+"row": 1,
+"levels": 1,
+"orient": "SE",
+"label": "vines on both walls (a corner)",
+"group": "Timber-framed wall - worn, damaged, overgrown",
+"sameInBoth": true
+},
+"timber-ruined-ne": {
+"sheet": "bld-timber-wall-aged",
+"frame": 14,
+"col": 6,
+"row": 1,
+"levels": 1,
+"orient": "NE",
+"label": "ruined: broken off along the top",
+"group": "Timber-framed wall - worn, damaged, overgrown",
+"sameInBoth": true
+},
+"timber-ruined-se": {
+"sheet": "bld-timber-wall-aged",
+"frame": 15,
+"col": 7,
+"row": 1,
+"levels": 1,
+"orient": "SE",
+"label": "ruined: broken off along the top",
+"group": "Timber-framed wall - worn, damaged, overgrown",
+"sameInBoth": true
+},
+"roof-tile-slope-mossy-ne": {
+"sheet": "bld-roof-terracotta-aged",
+"frame": 0,
+"col": 0,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "front slope, mossy",
+"group": "Terracotta roof - mossy, broken",
+"sameInBoth": false
+},
+"roof-tile-slope-mossy-se": {
+"sheet": "bld-roof-terracotta-aged",
+"frame": 1,
+"col": 1,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "front slope, mossy",
+"group": "Terracotta roof - mossy, broken",
+"sameInBoth": false
+},
+"roof-tile-slope-broken-ne": {
+"sheet": "bld-roof-terracotta-aged",
+"frame": 2,
+"col": 2,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "front slope, tiles missing",
+"group": "Terracotta roof - mossy, broken",
+"sameInBoth": false
+},
+"roof-tile-slope-broken-se": {
+"sheet": "bld-roof-terracotta-aged",
+"frame": 3,
+"col": 3,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "front slope, tiles missing",
+"group": "Terracotta roof - mossy, broken",
+"sameInBoth": false
+},
+"roof-tile-hip-mossy-ne": {
+"sheet": "bld-roof-terracotta-aged",
+"frame": 4,
+"col": 4,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "hip slope, mossy",
+"group": "Terracotta roof - mossy, broken",
+"sameInBoth": false
+},
+"roof-tile-hip-mossy-se": {
+"sheet": "bld-roof-terracotta-aged",
+"frame": 5,
+"col": 5,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "hip slope, mossy",
+"group": "Terracotta roof - mossy, broken",
+"sameInBoth": false
+},
+"roof-tile-hip-broken-ne": {
+"sheet": "bld-roof-terracotta-aged",
+"frame": 6,
+"col": 6,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "hip slope, tiles missing",
+"group": "Terracotta roof - mossy, broken",
+"sameInBoth": false
+},
+"roof-tile-hip-broken-se": {
+"sheet": "bld-roof-terracotta-aged",
+"frame": 7,
+"col": 7,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "hip slope, tiles missing",
+"group": "Terracotta roof - mossy, broken",
+"sameInBoth": false
+},
+"roof-tile-corner-mossy-ne": {
+"sheet": "bld-roof-terracotta-aged",
+"frame": 8,
+"col": 0,
+"row": 1,
+"levels": 1,
+"orient": "NE",
+"label": "hip corner, mossy",
+"group": "Terracotta roof - mossy, broken",
+"sameInBoth": true
+},
+"roof-tile-corner-mossy-se": {
+"sheet": "bld-roof-terracotta-aged",
+"frame": 9,
+"col": 1,
+"row": 1,
+"levels": 1,
+"orient": "SE",
+"label": "hip corner, mossy",
+"group": "Terracotta roof - mossy, broken",
+"sameInBoth": true
+},
+"roof-tile-corner-broken-ne": {
+"sheet": "bld-roof-terracotta-aged",
+"frame": 10,
+"col": 2,
+"row": 1,
+"levels": 1,
+"orient": "NE",
+"label": "hip corner, tiles missing",
+"group": "Terracotta roof - mossy, broken",
+"sameInBoth": true
+},
+"roof-tile-corner-broken-se": {
+"sheet": "bld-roof-terracotta-aged",
+"frame": 11,
+"col": 3,
+"row": 1,
+"levels": 1,
+"orient": "SE",
+"label": "hip corner, tiles missing",
+"group": "Terracotta roof - mossy, broken",
+"sameInBoth": true
+},
+"roof-slate-slope-mossy-ne": {
+"sheet": "bld-roof-slate-aged",
+"frame": 0,
+"col": 0,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "front slope, mossy",
+"group": "Slate roof - mossy, broken",
+"sameInBoth": false
+},
+"roof-slate-slope-mossy-se": {
+"sheet": "bld-roof-slate-aged",
+"frame": 1,
+"col": 1,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "front slope, mossy",
+"group": "Slate roof - mossy, broken",
+"sameInBoth": false
+},
+"roof-slate-slope-broken-ne": {
+"sheet": "bld-roof-slate-aged",
+"frame": 2,
+"col": 2,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "front slope, tiles missing",
+"group": "Slate roof - mossy, broken",
+"sameInBoth": false
+},
+"roof-slate-slope-broken-se": {
+"sheet": "bld-roof-slate-aged",
+"frame": 3,
+"col": 3,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "front slope, tiles missing",
+"group": "Slate roof - mossy, broken",
+"sameInBoth": false
+},
+"roof-slate-hip-mossy-ne": {
+"sheet": "bld-roof-slate-aged",
+"frame": 4,
+"col": 4,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "hip slope, mossy",
+"group": "Slate roof - mossy, broken",
+"sameInBoth": false
+},
+"roof-slate-hip-mossy-se": {
+"sheet": "bld-roof-slate-aged",
+"frame": 5,
+"col": 5,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "hip slope, mossy",
+"group": "Slate roof - mossy, broken",
+"sameInBoth": false
+},
+"roof-slate-hip-broken-ne": {
+"sheet": "bld-roof-slate-aged",
+"frame": 6,
+"col": 6,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "hip slope, tiles missing",
+"group": "Slate roof - mossy, broken",
+"sameInBoth": false
+},
+"roof-slate-hip-broken-se": {
+"sheet": "bld-roof-slate-aged",
+"frame": 7,
+"col": 7,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "hip slope, tiles missing",
+"group": "Slate roof - mossy, broken",
+"sameInBoth": false
+},
+"roof-slate-corner-mossy-ne": {
+"sheet": "bld-roof-slate-aged",
+"frame": 8,
+"col": 0,
+"row": 1,
+"levels": 1,
+"orient": "NE",
+"label": "hip corner, mossy",
+"group": "Slate roof - mossy, broken",
+"sameInBoth": true
+},
+"roof-slate-corner-mossy-se": {
+"sheet": "bld-roof-slate-aged",
+"frame": 9,
+"col": 1,
+"row": 1,
+"levels": 1,
+"orient": "SE",
+"label": "hip corner, mossy",
+"group": "Slate roof - mossy, broken",
+"sameInBoth": true
+},
+"roof-slate-corner-broken-ne": {
+"sheet": "bld-roof-slate-aged",
+"frame": 10,
+"col": 2,
+"row": 1,
+"levels": 1,
+"orient": "NE",
+"label": "hip corner, tiles missing",
+"group": "Slate roof - mossy, broken",
+"sameInBoth": true
+},
+"roof-slate-corner-broken-se": {
+"sheet": "bld-roof-slate-aged",
+"frame": 11,
+"col": 3,
+"row": 1,
+"levels": 1,
+"orient": "SE",
+"label": "hip corner, tiles missing",
+"group": "Slate roof - mossy, broken",
+"sameInBoth": true
+},
+"roof-teal-slope-mossy-ne": {
+"sheet": "bld-roof-teal-aged",
+"frame": 0,
+"col": 0,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "front slope, mossy",
+"group": "Teal roof - mossy, broken",
+"sameInBoth": false
+},
+"roof-teal-slope-mossy-se": {
+"sheet": "bld-roof-teal-aged",
+"frame": 1,
+"col": 1,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "front slope, mossy",
+"group": "Teal roof - mossy, broken",
+"sameInBoth": false
+},
+"roof-teal-slope-broken-ne": {
+"sheet": "bld-roof-teal-aged",
+"frame": 2,
+"col": 2,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "front slope, tiles missing",
+"group": "Teal roof - mossy, broken",
+"sameInBoth": false
+},
+"roof-teal-slope-broken-se": {
+"sheet": "bld-roof-teal-aged",
+"frame": 3,
+"col": 3,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "front slope, tiles missing",
+"group": "Teal roof - mossy, broken",
+"sameInBoth": false
+},
+"roof-teal-hip-mossy-ne": {
+"sheet": "bld-roof-teal-aged",
+"frame": 4,
+"col": 4,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "hip slope, mossy",
+"group": "Teal roof - mossy, broken",
+"sameInBoth": false
+},
+"roof-teal-hip-mossy-se": {
+"sheet": "bld-roof-teal-aged",
+"frame": 5,
+"col": 5,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "hip slope, mossy",
+"group": "Teal roof - mossy, broken",
+"sameInBoth": false
+},
+"roof-teal-hip-broken-ne": {
+"sheet": "bld-roof-teal-aged",
+"frame": 6,
+"col": 6,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "hip slope, tiles missing",
+"group": "Teal roof - mossy, broken",
+"sameInBoth": false
+},
+"roof-teal-hip-broken-se": {
+"sheet": "bld-roof-teal-aged",
+"frame": 7,
+"col": 7,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "hip slope, tiles missing",
+"group": "Teal roof - mossy, broken",
+"sameInBoth": false
+},
+"roof-teal-corner-mossy-ne": {
+"sheet": "bld-roof-teal-aged",
+"frame": 8,
+"col": 0,
+"row": 1,
+"levels": 1,
+"orient": "NE",
+"label": "hip corner, mossy",
+"group": "Teal roof - mossy, broken",
+"sameInBoth": true
+},
+"roof-teal-corner-mossy-se": {
+"sheet": "bld-roof-teal-aged",
+"frame": 9,
+"col": 1,
+"row": 1,
+"levels": 1,
+"orient": "SE",
+"label": "hip corner, mossy",
+"group": "Teal roof - mossy, broken",
+"sameInBoth": true
+},
+"roof-teal-corner-broken-ne": {
+"sheet": "bld-roof-teal-aged",
+"frame": 10,
+"col": 2,
+"row": 1,
+"levels": 1,
+"orient": "NE",
+"label": "hip corner, tiles missing",
+"group": "Teal roof - mossy, broken",
+"sameInBoth": true
+},
+"roof-teal-corner-broken-se": {
+"sheet": "bld-roof-teal-aged",
+"frame": 11,
+"col": 3,
+"row": 1,
+"levels": 1,
+"orient": "SE",
+"label": "hip corner, tiles missing",
+"group": "Teal roof - mossy, broken",
+"sameInBoth": true
+},
+"rubble-ne": {
+"sheet": "bld-extras",
+"frame": 0,
+"col": 0,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "rubble",
+"group": "Extras",
+"sameInBoth": true
+},
+"rubble-se": {
+"sheet": "bld-extras",
+"frame": 1,
+"col": 1,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "rubble",
+"group": "Extras",
+"sameInBoth": true
+},
+"chimney-ne": {
+"sheet": "bld-extras",
+"frame": 2,
+"col": 2,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "chimney",
+"group": "Extras",
+"sameInBoth": true
+},
+"chimney-se": {
+"sheet": "bld-extras",
+"frame": 3,
+"col": 3,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "chimney",
+"group": "Extras",
+"sameInBoth": true
+},
+"pinnacle-ne": {
+"sheet": "bld-extras",
+"frame": 4,
+"col": 4,
+"row": 0,
+"levels": 1,
+"orient": "NE",
+"label": "pinnacle",
+"group": "Extras",
+"sameInBoth": true
+},
+"pinnacle-se": {
+"sheet": "bld-extras",
+"frame": 5,
+"col": 5,
+"row": 0,
+"levels": 1,
+"orient": "SE",
+"label": "pinnacle",
+"group": "Extras",
+"sameInBoth": true
+},
+"spire-dark-ne": {
+"sheet": "bld-spires",
+"frame": 0,
+"col": 0,
+"row": 0,
+"levels": 2,
+"orient": "NE",
+"label": "spire, dark (2 levels)",
+"group": "Extras",
+"sameInBoth": true
+},
+"spire-dark-se": {
+"sheet": "bld-spires",
+"frame": 1,
+"col": 1,
+"row": 0,
+"levels": 2,
+"orient": "SE",
+"label": "spire, dark (2 levels)",
+"group": "Extras",
+"sameInBoth": true
+},
+"spire-teal-ne": {
+"sheet": "bld-spires",
+"frame": 2,
+"col": 2,
+"row": 0,
+"levels": 2,
+"orient": "NE",
+"label": "spire, teal (2 levels)",
+"group": "Extras",
+"sameInBoth": true
+},
+"spire-teal-se": {
+"sheet": "bld-spires",
+"frame": 3,
+"col": 3,
+"row": 0,
+"levels": 2,
+"orient": "SE",
+"label": "spire, teal (2 levels)",
+"group": "Extras",
+"sameInBoth": true
+}
+}
+}
