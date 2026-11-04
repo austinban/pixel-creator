@@ -363,10 +363,11 @@ function boot() {
     el('charNote').textContent = `Saved as "${copy.name}". The base is unchanged.`;
   }
 
-  function switchTo(item) {
+  function switchTo(item, how = 'replace') {
     character = item;
     store.current = item.id;
     changed();
+    syncUrl(how);
   }
 
   el('instanceSelect').addEventListener('change', (event) => {
@@ -641,18 +642,19 @@ function boot() {
     if (browseCat === 'All' || browseCat === BASES) {
       section(BASES, characters
         .filter((b) => matches(b.label))
-        .map((b) => browseCard(b.label, viewOf(b.id), character.readOnly && character.base === b.id, () => { switchTo(viewOf(b.id)); closeBrowse(); })));
+        .map((b) => browseCard(b.label, viewOf(b.id), character.readOnly && character.base === b.id, () => { switchTo(viewOf(b.id), 'none'); closeBrowse(); })));
     }
     if (browseCat === 'All' || browseCat === COPIES) {
       section(COPIES, store.items
         .filter((c) => matches(c.name || ''))
-        .map((c) => browseCard(c.name || 'Untitled', c, c.id === character.id, () => { switchTo(c); closeBrowse(); })));
+        .map((c) => browseCard(c.name || 'Untitled', c, c.id === character.id, () => { switchTo(c, 'none'); closeBrowse(); })));
     }
     if (!grid.children.length) grid.textContent = 'Nothing matches that search.';
   }
 
-  function openBrowse() {
+  function openBrowse(how = 'push') {
     el('app').classList.add('browsing');
+    syncUrl(how);
     el('browseName').textContent = '';
     browseCat = 'All';          // each visit starts from everything
     el('browseSearch').value = '';
@@ -660,9 +662,41 @@ function boot() {
     el('browseSearch').focus();
   }
 
-  function closeBrowse() {
+  function closeBrowse(how = 'push') {
     el('app').classList.remove('browsing');
+    syncUrl(how);
   }
+
+  /* ---------- the address bar ---------- */
+
+  // The address says what the page is showing: the browse grid (no ?item=), or one character (?item=ID). Going into one from the grid, or
+  // back to the grid, is a step in the browser's history, so Back returns to what was on screen before; Forward goes on again.
+  const browsing = () => el('app').classList.contains('browsing');
+  function addressNow() {
+    const url = new URL(window.location.href);
+    url.search = '';
+    url.hash = '';
+    if (!browsing()) url.searchParams.set('item', character.id);
+    return url.toString();
+  }
+
+  // how: 'push' adds a step, 'replace' fixes the current one, 'none' leaves the address alone.
+  function syncUrl(how = 'push') {
+    if (how === 'none') return;
+    const next = addressNow();
+    if (next !== window.location.href) window.history[how + 'State'](null, '', next);
+  }
+
+  // Back and Forward: show whatever the address now says.
+  window.addEventListener('popstate', () => {
+    const ref = new URLSearchParams(window.location.search).get('item');
+    if (ref) {
+      switchTo(resolve(ref), 'none');
+      closeBrowse('none');
+    } else {
+      openBrowse('none');
+    }
+  });
 
   el('browseBtn').addEventListener('click', () => (el('app').classList.contains('browsing') ? closeBrowse() : openBrowse()));
   el('browseClose').addEventListener('click', closeBrowse);
@@ -812,5 +846,12 @@ function boot() {
 
   // Arriving on the page starts in the browse view. Coming back from the editor
   // (?open=1) goes straight to the character you were working on instead.
-  if (new URLSearchParams(window.location.search).get('open') !== '1') openBrowse();
+  const asked = new URLSearchParams(window.location.search);
+  if (asked.get('item')) {
+    switchTo(resolve(asked.get('item')), 'replace');          // a link to one character opens on it
+  } else if (asked.get('open') !== '1') {
+    openBrowse('replace');
+  } else {
+    syncUrl('replace');
+  }
 }
