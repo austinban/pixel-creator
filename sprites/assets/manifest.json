@@ -1565,6 +1565,78 @@
    "frames": 4
   },
   {
+   "id": "bow-draw-human-sleek-ne",
+   "label": "Bow draw NE (Human-sleek)",
+   "category": "Animations",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 4,
+   "rows": 1,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 28
+   },
+   "file": "bow-draw-human-sleek-ne.png",
+   "frames": 4
+  },
+  {
+   "id": "bow-draw-human-sleek-se",
+   "label": "Bow draw SE (Human-sleek)",
+   "category": "Animations",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 4,
+   "rows": 1,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 28
+   },
+   "file": "bow-draw-human-sleek-se.png",
+   "frames": 4
+  },
+  {
+   "id": "bow-draw-slim-sleek-ne",
+   "label": "Bow draw NE (Slim-sleek)",
+   "category": "Animations",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 4,
+   "rows": 1,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 28
+   },
+   "file": "bow-draw-slim-sleek-ne.png",
+   "frames": 4
+  },
+  {
+   "id": "bow-draw-slim-sleek-se",
+   "label": "Bow draw SE (Slim-sleek)",
+   "category": "Animations",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 4,
+   "rows": 1,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 28
+   },
+   "file": "bow-draw-slim-sleek-se.png",
+   "frames": 4
+  },
+  {
    "id": "bow-draw-ninja-ne",
    "label": "Bow draw NE (Ninja)",
    "category": "Animations",
@@ -2484,6 +2556,834 @@
    },
    "file": "traps/trap-beartrap-triggered.png",
    "frames": 6
+  },
+  {
+   "id": "burst-blood",
+   "label": "Blood burst - five plots",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 80,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 40,
+    "y": 38
+   },
+   "file": "abilities/burst-blood.png",
+   "frames": 8
+  },
+  {
+   "id": "burst-blood-tile",
+   "label": "Blood burst - one plot",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 16,
+    "y": 44
+   },
+   "file": "abilities/burst-blood-tile.png",
+   "frames": 8
+  },
+  {
+   "id": "burst-spore",
+   "label": "Spore cloud - five plots",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 80,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 40,
+    "y": 38
+   },
+   "file": "abilities/burst-spore.png",
+   "frames": 8
+  },
+  {
+   "id": "burst-spore-tile",
+   "label": "Spore cloud - one plot",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 16,
+    "y": 44
+   },
+   "file": "abilities/burst-spore-tile.png",
+   "frames": 8
+  },
+  {
+   "id": "burst-static",
+   "label": "Static surge - five plots",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 80,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 40,
+    "y": 38
+   },
+   "file": "abilities/burst-static.png",
+   "frames": 8
+  },
+  {
+   "id": "burst-static-tile",
+   "label": "Static surge - one plot",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 16,
+    "y": 44
+   },
+   "file": "abilities/burst-static-tile.png",
+   "frames": 8
+  },
+  {
+   "id": "burst-rain",
+   "label": "Downpour - five plots",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 80,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 40,
+    "y": 38
+   },
+   "file": "abilities/burst-rain.png",
+   "frames": 8
+  },
+  {
+   "id": "burst-rain-tile",
+   "label": "Downpour - one plot",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 16,
+    "y": 44
+   },
+   "file": "abilities/burst-rain-tile.png",
+   "frames": 8
+  },
+  {
+   "id": "burst-dust",
+   "label": "Dust burst - five plots",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 80,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 40,
+    "y": 38
+   },
+   "file": "abilities/burst-dust.png",
+   "frames": 8
+  },
+  {
+   "id": "burst-dust-tile",
+   "label": "Dust burst - one plot",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 16,
+    "y": 44
+   },
+   "file": "abilities/burst-dust-tile.png",
+   "frames": 8
+  },
+  {
+   "id": "burst-dust-small-tile",
+   "label": "Dust puff (small) - one plot",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 16,
+    "y": 44
+   },
+   "file": "abilities/burst-dust-small-tile.png",
+   "frames": 8
+  },
+  {
+   "id": "burst-crimson-tile",
+   "label": "Crimson bolt - one plot",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 16,
+    "y": 44
+   },
+   "file": "abilities/burst-crimson-tile.png",
+   "frames": 8
+  },
+  {
+   "id": "ring-rally",
+   "label": "Rally ring (gold, radius 2)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 112,
+   "h": 72,
+   "cols": 8,
+   "rows": 1,
+   "fps": 10,
+   "anchor": {
+    "x": 56,
+    "y": 52
+   },
+   "file": "abilities/ring-rally.png",
+   "frames": 8
+  },
+  {
+   "id": "ring-inspire",
+   "label": "Inspire ring (bright yellow)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 64,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 10,
+   "anchor": {
+    "x": 32,
+    "y": 40
+   },
+   "file": "abilities/ring-inspire.png",
+   "frames": 8
+  },
+  {
+   "id": "ring-cleanse",
+   "label": "Cleanse ring (white-green)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 64,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 10,
+   "anchor": {
+    "x": 32,
+    "y": 40
+   },
+   "file": "abilities/ring-cleanse.png",
+   "frames": 8
+  },
+  {
+   "id": "ring-sever",
+   "label": "Sever (a white ring breaking)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 64,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 10,
+   "anchor": {
+    "x": 32,
+    "y": 40
+   },
+   "file": "abilities/ring-sever.png",
+   "frames": 8
+  },
+  {
+   "id": "ring-ward-form",
+   "label": "Ward - the bubble forming",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 64,
+   "h": 56,
+   "cols": 6,
+   "rows": 1,
+   "fps": 10,
+   "anchor": {
+    "x": 32,
+    "y": 40
+   },
+   "file": "abilities/ring-ward-form.png",
+   "frames": 6
+  },
+  {
+   "id": "ring-ward-hold",
+   "label": "Ward - the bubble holding (loops)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 64,
+   "h": 56,
+   "cols": 6,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 32,
+    "y": 40
+   },
+   "file": "abilities/ring-ward-hold.png",
+   "frames": 6
+  },
+  {
+   "id": "ring-ward-break",
+   "label": "Ward - the bubble breaking",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 64,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 10,
+   "anchor": {
+    "x": 32,
+    "y": 40
+   },
+   "file": "abilities/ring-ward-break.png",
+   "frames": 8
+  },
+  {
+   "id": "ring-climb",
+   "label": "Climb (light blue rings rising)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 64,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 10,
+   "anchor": {
+    "x": 32,
+    "y": 40
+   },
+   "file": "abilities/ring-climb.png",
+   "frames": 8
+  },
+  {
+   "id": "ring-status-soaked",
+   "label": "Soaked status (blue ring, loops)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 64,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 32,
+    "y": 40
+   },
+   "file": "abilities/ring-status-soaked.png",
+   "frames": 8
+  },
+  {
+   "id": "ring-status-shocked",
+   "label": "Shocked status (yellow ring, loops)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 64,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 32,
+    "y": 40
+   },
+   "file": "abilities/ring-status-shocked.png",
+   "frames": 8
+  },
+  {
+   "id": "ring-status-spored",
+   "label": "Spored status (green ring, loops)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 64,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 32,
+    "y": 40
+   },
+   "file": "abilities/ring-status-spored.png",
+   "frames": 8
+  },
+  {
+   "id": "ring-dash-ne",
+   "label": "Dash NE (speed lines; NW is this flipped)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 64,
+   "h": 56,
+   "cols": 6,
+   "rows": 1,
+   "fps": 12,
+   "anchor": {
+    "x": 32,
+    "y": 40
+   },
+   "file": "abilities/ring-dash-ne.png",
+   "frames": 6
+  },
+  {
+   "id": "ring-dash-se",
+   "label": "Dash SE (speed lines; SW is this flipped)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 64,
+   "h": 56,
+   "cols": 6,
+   "rows": 1,
+   "fps": 12,
+   "anchor": {
+    "x": 32,
+    "y": 40
+   },
+   "file": "abilities/ring-dash-se.png",
+   "frames": 6
+  },
+  {
+   "id": "icon-mark-pop",
+   "label": "Mark (crosshair) - pop-up above the head (once)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "above",
+   "w": 24,
+   "h": 32,
+   "cols": 8,
+   "rows": 1,
+   "fps": 10,
+   "anchor": {
+    "x": 12,
+    "y": 30
+   },
+   "file": "abilities/icon-mark-pop.png",
+   "frames": 8
+  },
+  {
+   "id": "icon-mark-loop",
+   "label": "Mark (crosshair) - status icon (loops)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "above",
+   "w": 24,
+   "h": 32,
+   "cols": 6,
+   "rows": 1,
+   "fps": 6,
+   "anchor": {
+    "x": 12,
+    "y": 30
+   },
+   "file": "abilities/icon-mark-loop.png",
+   "frames": 6
+  },
+  {
+   "id": "icon-silence-pop",
+   "label": "Silence (sealed lips) - pop-up above the head (once)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "above",
+   "w": 24,
+   "h": 32,
+   "cols": 8,
+   "rows": 1,
+   "fps": 10,
+   "anchor": {
+    "x": 12,
+    "y": 30
+   },
+   "file": "abilities/icon-silence-pop.png",
+   "frames": 8
+  },
+  {
+   "id": "icon-silence-loop",
+   "label": "Silence (sealed lips) - status icon (loops)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "above",
+   "w": 24,
+   "h": 32,
+   "cols": 6,
+   "rows": 1,
+   "fps": 6,
+   "anchor": {
+    "x": 12,
+    "y": 30
+   },
+   "file": "abilities/icon-silence-loop.png",
+   "frames": 6
+  },
+  {
+   "id": "icon-stun-pop",
+   "label": "Stun (stars) - pop-up above the head (once)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "above",
+   "w": 24,
+   "h": 32,
+   "cols": 8,
+   "rows": 1,
+   "fps": 10,
+   "anchor": {
+    "x": 12,
+    "y": 30
+   },
+   "file": "abilities/icon-stun-pop.png",
+   "frames": 8
+  },
+  {
+   "id": "icon-stun-loop",
+   "label": "Stun (stars) - status icon (loops)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "above",
+   "w": 24,
+   "h": 32,
+   "cols": 6,
+   "rows": 1,
+   "fps": 6,
+   "anchor": {
+    "x": 12,
+    "y": 30
+   },
+   "file": "abilities/icon-stun-loop.png",
+   "frames": 6
+  },
+  {
+   "id": "icon-charm-pop",
+   "label": "Charm (heart) - pop-up above the head (once)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "above",
+   "w": 24,
+   "h": 32,
+   "cols": 8,
+   "rows": 1,
+   "fps": 10,
+   "anchor": {
+    "x": 12,
+    "y": 30
+   },
+   "file": "abilities/icon-charm-pop.png",
+   "frames": 8
+  },
+  {
+   "id": "icon-charm-loop",
+   "label": "Charm (heart) - status icon (loops)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "above",
+   "w": 24,
+   "h": 32,
+   "cols": 6,
+   "rows": 1,
+   "fps": 6,
+   "anchor": {
+    "x": 12,
+    "y": 30
+   },
+   "file": "abilities/icon-charm-loop.png",
+   "frames": 6
+  },
+  {
+   "id": "icon-confuse-pop",
+   "label": "Confuse (spiral) - pop-up above the head (once)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "above",
+   "w": 24,
+   "h": 32,
+   "cols": 8,
+   "rows": 1,
+   "fps": 10,
+   "anchor": {
+    "x": 12,
+    "y": 30
+   },
+   "file": "abilities/icon-confuse-pop.png",
+   "frames": 8
+  },
+  {
+   "id": "icon-confuse-loop",
+   "label": "Confuse (spiral) - status icon (loops)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "above",
+   "w": 24,
+   "h": 32,
+   "cols": 6,
+   "rows": 1,
+   "fps": 6,
+   "anchor": {
+    "x": 12,
+    "y": 30
+   },
+   "file": "abilities/icon-confuse-loop.png",
+   "frames": 6
+  },
+  {
+   "id": "vanish-violet",
+   "label": "Vanish - Violet (blink, swap)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 48,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 12,
+   "anchor": {
+    "x": 24,
+    "y": 44
+   },
+   "file": "abilities/vanish-violet.png",
+   "frames": 8
+  },
+  {
+   "id": "appear-violet",
+   "label": "Appear - Violet (blink, swap)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 48,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 12,
+   "anchor": {
+    "x": 24,
+    "y": 44
+   },
+   "file": "abilities/appear-violet.png",
+   "frames": 8
+  },
+  {
+   "id": "vanish-blue",
+   "label": "Vanish - Pale blue (call wolf)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 48,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 12,
+   "anchor": {
+    "x": 24,
+    "y": 44
+   },
+   "file": "abilities/vanish-blue.png",
+   "frames": 8
+  },
+  {
+   "id": "appear-blue",
+   "label": "Appear - Pale blue (call wolf)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 48,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 12,
+   "anchor": {
+    "x": 24,
+    "y": 44
+   },
+   "file": "abilities/appear-blue.png",
+   "frames": 8
+  },
+  {
+   "id": "vanish-yellow",
+   "label": "Vanish - Yellow (call decoy)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 48,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 12,
+   "anchor": {
+    "x": 24,
+    "y": 44
+   },
+   "file": "abilities/vanish-yellow.png",
+   "frames": 8
+  },
+  {
+   "id": "appear-yellow",
+   "label": "Appear - Yellow (call decoy)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 48,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 12,
+   "anchor": {
+    "x": 24,
+    "y": 44
+   },
+   "file": "abilities/appear-yellow.png",
+   "frames": 8
+  },
+  {
+   "id": "vanish-stone",
+   "label": "Vanish - Stone grey (raise guardian)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 48,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 12,
+   "anchor": {
+    "x": 24,
+    "y": 44
+   },
+   "file": "abilities/vanish-stone.png",
+   "frames": 8
+  },
+  {
+   "id": "appear-stone",
+   "label": "Appear - Stone grey (raise guardian)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 48,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 12,
+   "anchor": {
+    "x": 24,
+    "y": 44
+   },
+   "file": "abilities/appear-stone.png",
+   "frames": 8
+  },
+  {
+   "id": "surface-mire",
+   "label": "Ground loop - Mire (brown-yellow mud)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 16,
+    "y": 44
+   },
+   "file": "abilities/surface-mire.png",
+   "frames": 8
+  },
+  {
+   "id": "surface-slick",
+   "label": "Ground loop - Slick ground (blue, wet)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 16,
+    "y": 44
+   },
+   "file": "abilities/surface-slick.png",
+   "frames": 8
+  },
+  {
+   "id": "surface-firewall",
+   "label": "Ground loop - Fire wall (flames, for a line of three)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 16,
+    "y": 44
+   },
+   "file": "abilities/surface-firewall.png",
+   "frames": 8
   },
   {
    "id": "icon-weapon-hatchet",

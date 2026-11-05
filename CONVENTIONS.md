@@ -143,6 +143,13 @@ through the air.
 - **Amulets** are shop images only: 32 x 32 pendants on a chain in the "Amulets" category, never worn or animated
   (`tools/make_amulets.py`; add one as a short function and list it in `AMULETS`).
 
+## Weapon style
+
+Weapons are slim and sharp, not blocky: thin shafts, **curved lens-shaped guards** and pommels instead of straight bars, blades that taper long to a point, slender heads, and bows with thin limbs. Their
+materials are the spirit realm's: **dark twisted bark** for wood (orchid, plum, grape, eggplant), indigo for wraps, dull bronze for trim, corrupted magenta for gems, and the teal steel, bone and sapphire kept.
+Every melee weapon, including the six that began as hand-drawn strips (the originals are kept in `sprites/weapons-original/`), is made from parts in `tools/make_melee.py` on the swing in
+`tools/data/weapon_swing.json`, which is a fixed reference so remaking the weapons never moves the hand fits. The display icons (`make_weapon_icons.py`) and the bows (`make_bow.py`) use the same materials.
+
 ## Colour
 
 - Everything is painted in the shared palette's colour **roles**, never in raw colours, so a
@@ -176,6 +183,15 @@ plots (`tools/make_aoe.py` has the geometry: a plot is a 32 x 16 diamond, and a 
 starts at the middle, spreads out to the four plots, peaks on all five, then dies away. Draw the effect as one
 thing, with something linking the plots (the fire's low flames along the shared edges) and soft, rounded
 bases instead of flat ones. The fire burst (`tools/make_fire.py`) is the worked example.
+
+## Ability animations
+
+The animations for abilities are their own group: category **Abilities**, folder `sprites/assets/abilities/`, five families that each share a cell size and a placement rule: **bursts** (ground, on the aimed
+cell; a five-plot sheet on the 80 x 56 cell of the fire burst for radius 1, and a one-plot **tile** to place on every cell of any other shape), **rings** (round a unit's feet), **icons** (over a head, a pop-up that
+plays once and a status icon that loops), **vanish and appear** (a shimmer; appear is vanish reversed) and **ground loops** (a tile per cell that loops). Every sheet is one row of equal frames with an anchor. The
+folder's README.md and `abilities.json` are **generated** from `ABILITIES` in `tools/make_abilities.py`, which says for each ability which sheets it plays, where and how, so the game reads one table instead of guessing
+from names. The rules the tests check: a burst starts small, grows and fades away; a ground loop that is meant to join its neighbours does (the same pattern repeats from plot to plot); a loop comes back to its first frame; every
+sheet an ability names exists. A new ability is one entry in `ABILITIES`; a new colour or style is one entry in its family's module.
 
 ## The node map
 
@@ -223,6 +239,12 @@ the same head, limbs and reach (so every pose and the weapon hand carry over) bu
 through the body, and may carry up to **20% less** weight than the lightest original (the standard
 build: 8% less). Builds are declared in `BUILDS` and `BASE_BUILDS` in `conventions.py`, so a slim
 character is a choice you can see, not a loophole. A figure lighter than that reads as floating.
+
+### The sleek build and the four humans
+
+There are four generic people: **Human** and **Slim** (the first two, unchanged) and **Human (sleek)** and **Slim (sleek)**, which are narrower and less blocky (bulk 1.1 and 0.75 against 1.5 and 1.0, narrower
+shoulders and hips and a slightly narrower head) and a little larger overall, in the spirit realm's colours: ashen skin, and violet or teal hair. The sleek build is declared in `BUILDS` (it may carry
+less weight, 0.6 of the lightest original), and a build can say its own `scale` in its body. The sleek people have their own tuned numbers (`tools/data/human-sleek_*.json`, `slim-sleek_*.json`).
 
 ## Look at the 3D model before making sprites
 

@@ -10,6 +10,7 @@ on the shared path.
     python3 tools/make_melee.py --preview previews/melee-new.png     the eight weapons, in the slim human's hand
     python3 tools/make_melee.py --out sprites/weapons                 write the strips (after they are approved)
 """
+import json
 import math
 import sys
 from pathlib import Path
@@ -26,18 +27,32 @@ GRIP_BACK = 4.0                # the hand is this far from the weapon's middle, 
 RAMPS = {
     'steel': ('r', 'q', 'p', 'l'),
     'iron': ('q', 'p', 'l', 'k'),
-    'wood': ('b', 'a', 'e', 'g'),
-    'leather': ('e', 'f', 'h', 'g'),
-    'gold': ('t', 'd', 'b', 'a'),
-    'ruby': ('c', 'j', 'i', 'h'),
+    'wood': ('f', 'g', 'w', 'x'),             # twisted dark bark: orchid, plum, grape, eggplant (the spirit realm's wood, not orange)
+    'leather': ('l', 'k', 'w', 'x'),          # indigo wraps
+    'gold': ('b', 'a', 'g', 'w'),             # a dull bronze: amber, orange, plum, grape
+    'ruby': ('y', 'i', 'h', 'u'),             # corrupted magenta gems
     'sapphire': ('r', 'o', 'n', 'm'),
     'bone': ('t', 'C', 'c', 'e'),
+    'emerald': ('r', 'A', 'B', 's'),
 }
 
 
 # --- the swing, read back from the existing weapons ------------------------------------------------
+SWING_FILE = ROOT / 'tools' / 'data' / 'weapon_swing.json'
+
+
 def swing():
-    """{facing: [{'centre': (x, y), 'dir': (dx, dy) hilt to tip, 'scale': foreshortening 0..1} per frame]}"""
+    """{facing: [{'centre': (x, y), 'dir': (dx, dy) hilt to tip, 'scale': foreshortening 0..1, 'travel': (dx, dy)} per frame]}
+
+    Read from tools/data/weapon_swing.json, which was measured once from the first set of weapon strips. It is kept as data so that remaking the weapons does not move the reference they are
+    drawn on (and with it every hand fit). Delete the file to measure it again from sprites/weapons."""
+    if SWING_FILE.exists():
+        raw = json.loads(SWING_FILE.read_text())
+        return {f: [{'centre': tuple(fr['centre']), 'dir': tuple(fr['dir']), 'scale': fr['scale'], 'travel': tuple(fr['travel'])} for fr in frames] for f, frames in raw.items()}
+    return measure_swing()
+
+
+def measure_swing():
     from PIL import Image
     folder = ROOT / 'sprites' / 'weapons'
     paths = cv.weapon_paths(folder)
@@ -187,46 +202,51 @@ def crescent(t0, t1, reach, ramp, both=True):
     return part(t0, t1, shape, ramp)
 
 
-WEAPONS = {
-    'dagger': dict(label='Dagger', parts=[
-        rod(-1.4, 3.0, 1.6, 'leather'), rod(-2.0, -1.0, 2.4, 'gold'),
-        rod(3.0, 3.9, 4.6, 'gold'), taper(3.9, 10.0, 2.8, 0.2, 'steel')]),
-    'stiletto': dict(label='Stiletto', parts=[
-        rod(-1.6, 2.6, 1.4, 'leather'), rod(-2.4, -1.5, 2.2, 'gold'),
-        rod(2.6, 3.3, 3.6, 'gold'), taper(3.3, 12.2, 1.8, 0.2, 'steel')]),
-    'kris': dict(label='Kris', parts=[
-        rod(-1.8, 2.4, 1.5, 'leather'), rod(-2.6, -1.6, 2.4, 'gold'), rod(2.4, 3.2, 3.8, 'gold'),
-        part(3.2, 11.6, lambda t: (0.95 * math.sin((t - 3.2) * 1.55) - (2.5 * (1 - (t - 3.2) / 8.4) + 0.2) / 2, 0.95 * math.sin((t - 3.2) * 1.55) + (2.5 * (1 - (t - 3.2) / 8.4) + 0.2) / 2), 'steel')]),
-    'bone-dagger': dict(label='Bone dagger', parts=[
-        rod(-1.6, 2.4, 1.8, 'leather'), rod(-2.4, -1.4, 2.8, 'bone'),
-        rod(2.4, 3.0, 3.4, 'bone'),
-        part(3.0, 11.0, lambda t: (-0.07 * (t - 3.0) ** 1.6 - 1.5 * (1 - ((t - 3.0) / 8.0) ** 1.4), -0.07 * (t - 3.0) ** 1.6 + 1.5 * (1 - ((t - 3.0) / 8.0) ** 1.4)), 'bone')]),
-    'greatsword': dict(label='Greatsword', parts=[
-        rod(-4.0, 2.0, 1.8, 'leather'), rod(-5.0, -3.6, 2.8, 'gold'),
-        rod(2.0, 3.2, 7.0, 'gold'), taper(3.2, 12.6, 4.2, 3.4, 'steel'), taper(12.6, 14.6, 3.4, 0.2, 'steel')]),
-    'scimitar': dict(label='Scimitar', parts=[
-        rod(-2.0, 2.4, 1.6, 'leather'), rod(-2.8, -1.8, 2.6, 'gold'), rod(2.4, 3.2, 4.4, 'gold'),
-        part(3.2, 12.5, lambda t: (-0.075 * (t - 3.2) ** 1.5 - 1.2 * (1 - ((t - 3.2) / 9.3) ** 3), -0.075 * (t - 3.2) ** 1.5 + 1.7 * (1 - ((t - 3.2) / 9.3) ** 3.4)), 'steel')]),
-    'battle-axe': dict(label='Battle axe', parts=[
-        rod(-5.5, 9.5, 1.6, 'wood'), rod(-5.5, -4.6, 2.4, 'iron'), rod(7.0, 8.4, 2.4, 'gold'),
-        crescent(8.0, 12.5, 3.4, 'steel'), rod(9.2, 11.2, 2.0, 'gold')]),
-    'war-hammer': dict(label='War hammer', parts=[
-        rod(-5.0, 10.0, 1.6, 'wood'), rod(-5.0, -4.0, 2.4, 'iron'),
-        rod(9.0, 13.0, 6.0, 'iron'), rod(8.6, 9.4, 3.0, 'gold'),
-        part(10.2, 11.8, lambda t: (-(1.6 + 3.4 * max(0.0, 1 - abs(t - 11.0) / 0.8)), 0.0), 'iron')]),
-    'spiked-mace': dict(label='Spiked mace', parts=[
-        rod(-6.0, 9.0, 1.7, 'wood'), rod(-6.0, -5.0, 2.6, 'iron'), rod(5.0, 7.0, 2.2, 'leather'),
-        part(8.8, 14.8, lambda t: (-math.sqrt(max(0, 3.0 ** 2 - (t - 11.8) ** 2)), math.sqrt(max(0, 3.0 ** 2 - (t - 11.8) ** 2))), 'iron'),
-        part(10.9, 12.7, lambda t: (-5.2 + abs(t - 11.8) * 3, 5.2 - abs(t - 11.8) * 3), 'iron'),
-        taper(14.8, 17.2, 1.8, 0.2, 'iron')]),
-    'spear': dict(label='Spear', parts=[
-        rod(-6.5, 10.5, 1.4, 'wood'), rod(-6.5, -5.6, 2.2, 'iron'), rod(8.6, 9.6, 3.4, 'gold'),
-        swell(9.6, 15.6, 3.8, 'steel', 0.8)]),
-    'crystal-staff': dict(label='Crystal staff', parts=[
-        rod(-5.5, 11.0, 1.6, 'wood'), rod(-5.5, -4.5, 2.6, 'gold'), rod(10.2, 11.6, 3.6, 'gold'),
-        swell(10.6, 17.6, 4.8, 'sapphire', 0.9), rod(11.4, 13.2, 0.9, 'sapphire')]),
-}
+def guard(t, w, ramp='gold'):
+    """A thin curved cross-piece: a lens, not a bar."""
+    return swell(t - 0.6, t + 0.6, w, ramp, 0.5)
 
+
+def pommel(t, w, ramp='gold'):
+    return swell(t - 0.7, t + 0.7, w, ramp, 0.6)
+
+
+# Sleek: slim shafts, curved guards, long tapers to a point, slender heads. (The first set had straight wide bars and blunt heads.)
+WEAPONS = {
+    'dagger': dict(label='Dagger', parts=[rod(-1.6, 3.0, 1.1, 'leather'), pommel(-1.8, 1.9), guard(3.4, 5.2), taper(3.8, 11.4, 2.2, 0.2, 'steel')]),
+    'stiletto': dict(label='Stiletto', parts=[rod(-1.8, 2.6, 1.0, 'leather'), pommel(-2.0, 1.7), guard(3.0, 4.0), taper(3.4, 13.2, 1.5, 0.2, 'steel')]),
+    'kris': dict(label='Kris', parts=[
+        rod(-1.8, 2.4, 1.1, 'leather'), pommel(-2.0, 1.8), guard(2.8, 4.2),
+        part(3.2, 12.4, lambda t: (0.55 * math.sin((t - 3.2) * 1.0) - (2.3 * (1 - (t - 3.2) / 9.2) + 0.2) / 2, 0.55 * math.sin((t - 3.2) * 1.0) + (2.3 * (1 - (t - 3.2) / 9.2) + 0.2) / 2), 'steel')]),
+    'bone-dagger': dict(label='Bone dagger', parts=[
+        rod(-1.6, 2.4, 1.2, 'leather'), pommel(-1.8, 2.0, 'bone'), guard(2.7, 3.6, 'bone'),
+        part(3.0, 11.6, lambda t: (-0.07 * (t - 3.0) ** 1.6 - 1.2 * (1 - ((t - 3.0) / 8.6) ** 1.4), -0.07 * (t - 3.0) ** 1.6 + 1.2 * (1 - ((t - 3.0) / 8.6) ** 1.4)), 'bone')]),
+    'greatsword': dict(label='Greatsword', parts=[rod(-4.0, 2.0, 1.3, 'leather'), pommel(-4.4, 2.4), guard(2.6, 7.6), taper(3.2, 15.4, 3.0, 0.2, 'steel')]),
+    'scimitar': dict(label='Scimitar', parts=[
+        rod(-2.0, 2.4, 1.1, 'leather'), pommel(-2.2, 1.9), guard(2.8, 4.6),
+        part(3.2, 12.8, lambda t: (-0.075 * (t - 3.2) ** 1.5 - 0.95 * (1 - ((t - 3.2) / 9.6) ** 3), -0.075 * (t - 3.2) ** 1.5 + 1.35 * (1 - ((t - 3.2) / 9.6) ** 3.4)), 'steel')]),
+    'battle-axe': dict(label='Battle axe', parts=[rod(-5.5, 9.5, 1.2, 'wood'), pommel(-5.2, 1.9, 'iron'), crescent(8.4, 13.0, 3.6, 'steel'), taper(8.4, 12.2, 1.5, 0.2, 'iron')]),
+    'war-hammer': dict(label='War hammer', parts=[
+        rod(-5.0, 10.0, 1.2, 'wood'), pommel(-4.7, 1.9, 'iron'), swell(8.8, 13.8, 5.8, 'iron', 0.28), taper(11.2, 15.8, 1.8, 0.2, 'steel'), guard(8.4, 2.6)]),
+    'spiked-mace': dict(label='Spiked mace', parts=[
+        rod(-6.0, 9.0, 1.3, 'wood'), pommel(-5.7, 2.0, 'iron'),
+        part(9.0, 14.8, lambda t: (-math.sqrt(max(0, 3.0 ** 2 - (t - 11.9) ** 2)), math.sqrt(max(0, 3.0 ** 2 - (t - 11.9) ** 2))), 'iron'),
+        part(10.4, 13.4, lambda t: (-5.2 + abs(t - 11.9) * 2.8, 5.2 - abs(t - 11.9) * 2.8), 'iron'), taper(14.6, 18.0, 1.4, 0.2, 'iron')]),
+    'spear': dict(label='Spear', parts=[rod(-6.5, 10.5, 1.1, 'wood'), pommel(-6.2, 1.7, 'iron'), guard(9.2, 3.0), swell(9.6, 17.2, 2.7, 'steel', 0.7)]),
+    'crystal-staff': dict(label='Crystal staff', parts=[
+        rod(-5.5, 11.0, 1.2, 'wood'), pommel(-5.2, 1.9), swell(9.6, 12.0, 3.4, 'gold', 0.5), taper(10.6, 18.4, 3.0, 0.3, 'sapphire'), rod(11.2, 13.4, 0.8, 'sapphire')]),
+    # the six that began as hand-drawn strips are made the same way now
+    'hatchet': dict(label='Hatchet', parts=[rod(-6, 7.5, 1.3, 'wood'), pommel(-5.7, 1.9, 'iron'), crescent(5.2, 10.8, 2.8, 'steel', both=False), taper(5.4, 8.0, 1.8, 0.2, 'iron')]),
+    'iron-axe': dict(label='Iron axe', parts=[rod(-6.5, 10.5, 1.3, 'wood'), pommel(-6.2, 1.9, 'iron'), crescent(6.8, 13.2, 3.6, 'iron', both=False), guard(8.6, 2.8)]),
+    'iron-sword': dict(label='Iron sword', parts=[rod(-1.6, 2.4, 1.2, 'leather'), pommel(-1.8, 2.0, 'iron'), guard(2.9, 6.4, 'iron'), taper(3.4, 15.6, 2.8, 0.2, 'steel')]),
+    'wooden-sword': dict(label='Wooden sword', parts=[rod(-1.6, 2.4, 1.2, 'leather'), pommel(-1.8, 2.0, 'iron'), guard(2.9, 6.0, 'wood'), taper(3.4, 15.2, 2.8, 0.2, 'wood')]),
+    'scepter': dict(label='Scepter', parts=[
+        rod(-5, 9.5, 1.2, 'leather'), pommel(-4.7, 1.9), guard(9.2, 3.8),
+        part(9.8, 14.0, lambda t: (2.0, 2.6), 'gold'), part(9.8, 14.0, lambda t: (-2.6, -2.0), 'gold'), part(10.0, 14.8, lambda t: (-2.1 * math.sqrt(max(0, 1 - ((t - 12.4) / 2.4) ** 2)), 2.1 * math.sqrt(max(0, 1 - ((t - 12.4) / 2.4) ** 2))), 'emerald')]),
+    'wooden-staff': dict(label='Wooden staff', parts=[
+        rod(-7, 10, 1.3, 'wood'), pommel(-6.7, 1.9, 'iron'), swell(8.2, 9.4, 2.6, 'gold', 0.5),
+        part(9.4, 14.2, lambda t: (-2.0 * math.sqrt(max(0, 1 - ((t - 11.8) / 2.4) ** 2)), 2.0 * math.sqrt(max(0, 1 - ((t - 11.8) / 2.4) ** 2))), 'wood'), taper(12.6, 15.6, 1.0, 0.2, 'wood')]),
+}
 
 def build(name, ref):
     out = {}

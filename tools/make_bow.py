@@ -27,9 +27,9 @@ from humanoid import Humanoid, pose  # noqa: E402
 BOW_HALF = 8.6                   # grip to tip, in pixels: a bow about as tall as the figure's head and shoulders and more
 ARROW_LENGTH = 10.5
 RAMPS = {
-    'bow': ('b', 'a', 'e', 'g'),          # amber, orange, coral, plum: the wooden weapons' tones
-    'string': ('t', 'C', 'c', 'e'),       # cream
-    'arrow': ('b', 'a', 'e', 'g'),
+    'bow': ('f', 'g', 'w', 'x'),          # twisted dark bark, like the other wooden weapons
+    'string': ('t', 'r', 'q', 'p'),       # a pale spectral thread, bright enough to read against the dark limbs
+    'arrow': ('f', 'g', 'w', 'x'),
     'head': ('t', 'q', 'p', 'l'),
     'vane': ('c', 'j', 'i', 'h'),
 }
@@ -38,14 +38,14 @@ RAMPS = {
 # The bows. Each is the same bow model with its own size, curve, tips and colours; `bend` scales how far the limbs curve back, `flare` how far the
 # tips whip forward again (a recurve), `radius` how thick the limbs are. `grip` and `leaf` add a wrapped grip, a gem and leaf-shaped tips.
 SPECS = {
-    'longbow': dict(label='Longbow', half=11.6, bend=0.62, flare=0.0, radius=0.85,
-                    ramps={'bow': ('a', 'e', 'f', 'g'), 'grip': ('e', 'f', 'h', 'g')}),
-    'shortbow': dict(label='Shortbow', half=6.0, bend=1.5, flare=0.0, radius=1.1,
-                     ramps={'bow': ('t', 'C', 'b', 'a'), 'grip': ('e', 'f', 'h', 'g')}),
-    'recurve': dict(label='Recurve bow', half=8.8, bend=1.0, flare=3.4, radius=1.0,
-                    ramps={'bow': ('b', 'a', 'e', 'g'), 'grip': ('t', 'd', 'b', 'a')}),
-    'elven': dict(label='Elven bow', half=10.2, bend=0.9, flare=2.2, radius=0.9, gem=True, leaf=True,
-                  ramps={'bow': ('t', 'd', 'b', 'a'), 'grip': ('r', 'q', 'p', 'l'), 'gem': ('c', 'j', 'i', 'h'), 'leaf': ('r', 'A', 'B', 's')}),
+    'longbow': dict(label='Longbow', half=11.6, bend=0.62, flare=0.0, radius=0.7,
+                    ramps={'bow': ('g', 'w', 'x', 'x'), 'grip': ('l', 'k', 'w', 'x')}),
+    'shortbow': dict(label='Shortbow', half=6.0, bend=1.5, flare=0.0, radius=0.9,
+                     ramps={'bow': ('t', 'C', 'c', 'e'), 'grip': ('l', 'k', 'w', 'x')}),         # a bone bow
+    'recurve': dict(label='Recurve bow', half=8.8, bend=1.0, flare=3.4, radius=0.8,
+                    ramps={'bow': ('f', 'g', 'w', 'x'), 'grip': ('b', 'a', 'g', 'w')}),
+    'elven': dict(label='Elven bow', half=10.2, bend=0.9, flare=2.2, radius=0.72, gem=True, leaf=True,
+                  ramps={'bow': ('r', 'q', 'p', 'l'), 'grip': ('l', 'k', 'w', 'x'), 'gem': ('y', 'i', 'h', 'u'), 'leaf': ('r', 'A', 'B', 's')}),
 }
 ACTIVE = {}                      # the bow being drawn, one of SPECS (empty for the original)
 
@@ -78,7 +78,7 @@ def bow(j, p):
     half = ACTIVE.get('half', BOW_HALF)
     bend = p.get('bend', 1.0 + 2.6 * pull) * ACTIVE.get('bend', 1.0)         # how far the tips curve back
     flare = ACTIVE.get('flare', 0.0)
-    thick = ACTIVE.get('radius', 1.0)
+    thick = ACTIVE.get('radius', 0.8)
     parts = []
     # the limbs: an arc from tip to tip through the grip, belly to the front
     count = 9
@@ -302,7 +302,7 @@ def main():
     if args.bases:
         import importlib
         for who in args.bases.split(','):
-            write_base_poses(who, getattr(importlib.import_module(f'make_{who}'), 'CREATURE'))
+            write_base_poses(who, getattr(importlib.import_module('make_' + who.replace('-', '_')), 'CREATURE'))
             print(f'{who}: bow poses -> sprites/{who}')
         return
     if not args.out:

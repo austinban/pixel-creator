@@ -49,7 +49,8 @@ FLOAT_BOB_MAX = 3                # across a walk, the lowest row changes by at m
 # How close a weapon-holding hand has to be to the weapon's grip, in pixels, for the weapon to look
 # held. The weapon path is measured from the strips themselves.
 # A very heavy build cannot bring its strike hand all the way to the weapon's path in one frame, so it may miss by a little more. Listed here, with why.
-HAND_TOLERANCE_BY_BUILD = {'earthbender': 5.6}      # bulk 1.6: his arms reach no further, but his body is wider
+# (The slim-sleek's shoulders are narrower than the Slim's, so its arm reaches a little less far: one frame misses by 0.4px more.)
+HAND_TOLERANCE_BY_BUILD = {'earthbender': 5.6, 'slim-sleek': 5.0}      # bulk 1.6: his arms reach no further, but his body is wider
 HAND_TOLERANCE = 4.5            # (the grip is itself an estimate, the weapon's drawn middle pulled back toward the body, so a pixel of slack)
 WEAPON_SPREAD = 6.0              # how far one weapon's path may stray from the others'
 
@@ -88,17 +89,17 @@ HEIGHT = {'attack': (22, 27), 'bow': (22, 27), 'charging': (24, 26), 'damage': (
 # The generated people kneel when worn out (down on one knee, head bowed), which is taller than the
 # originals' slump. Their own range, measured from their kneel; the originals keep theirs.
 KNEEL_HEIGHT = (22, 26)
-KNEELERS = {'human', 'slim', 'ninja', 'ranger', 'verdant', 'fey', 'bones', 'undead', 'paladin', 'blossom', 'earthbender'}
+KNEELERS = {'human', 'slim', 'human-sleek', 'slim-sleek', 'ninja', 'ranger', 'verdant', 'fey', 'bones', 'undead', 'paladin', 'blossom', 'earthbender'}
 HEIGHT_SLACK = {'release': 2}    # one row either side of the originals' range (two for a cast, which
 HEIGHT_SLACK_DEFAULT = 1        # relies on arms thrown above the head that a shorter-armed figure cannot fully reach)
 MASS_SLACK = 0.92               # a little under the lightest original is still allowed
 # A person can be built slimmer on purpose. A slim build may carry up to 20% less than the lightest
 # original, which is still well above the floaty look of a figure with no body to it. Builds are
 # declared here so a slim character is a choice you can see, not a quiet loophole.
-BUILDS = {'standard': 0.92, 'slim': 0.78, 'bony': 0.5,
+BUILDS = {'standard': 0.92, 'slim': 0.78, 'sleek': 0.6, 'bony': 0.5,
           'maimed': 0.65,
           'delicate': 0.6}      # a fairy: slim, with little body and no heavy clothes      # a missing limb is less to paint
-BASE_BUILDS = {'slim': 'slim', 'ninja': 'slim', 'ranger': 'slim', 'verdant': 'slim', 'fey': 'slim', 'bones': 'bony', 'undead': 'maimed', 'paladin': 'standard', 'blossom': 'delicate', 'earthbender': 'standard'}
+BASE_BUILDS = {'human-sleek': 'sleek', 'slim-sleek': 'sleek', 'slim': 'slim', 'ninja': 'slim', 'ranger': 'slim', 'verdant': 'slim', 'fey': 'slim', 'bones': 'bony', 'undead': 'maimed', 'paladin': 'standard', 'blossom': 'delicate', 'earthbender': 'standard'}
 
 # --- the walk ----------------------------------------------------------------------------------
 # The originals share one walk, and it is a bob with sliding feet, not a rock forward and back. Over
@@ -120,9 +121,9 @@ RAMP_LENGTH = 4
 
 # The original six are humanoid; anything else is declared here. Anything not listed is checked as
 # a humanoid.
-BASE_KINDS = {'spirit': 'floater', 'dog': 'creature', 'alpaca': 'creature', 'blight-alpaca': 'creature', 'rat': 'creature', 'scorpion': 'creature', 'mantis': 'creature', 'mantis-small': 'creature', 'scorpion-king': 'creature'}
+BASE_KINDS = {'spirit': 'floater', 'dog': 'creature', 'alpaca': 'creature', 'blight-alpaca': 'creature', 'mushroom-small': 'creature', 'mushroom-large': 'creature', 'rat': 'creature', 'scorpion': 'creature', 'mantis': 'creature', 'mantis-small': 'creature', 'scorpion-king': 'creature'}
 # Which module describes how a generated base is built, so its poses can be checked at the source.
-CREATORS = {'human': 'make_human', 'slim': 'make_slim', 'ninja': 'make_ninja', 'ranger': 'make_ranger', 'verdant': 'make_verdant', 'fey': 'make_fey', 'alpaca': 'make_alpaca', 'blight-alpaca': 'make_blight_alpaca', 'bones': 'make_bones', 'undead': 'make_undead', 'paladin': 'make_paladin', 'blossom': 'make_blossom', 'earthbender': 'make_earthbender', 'dog': 'make_dog', 'rat': 'make_rat', 'scorpion': 'make_scorpion', 'mantis': 'make_mantis', 'mantis-small': 'make_mantis_small', 'scorpion-king': 'make_scorpion_king'}
+CREATORS = {'human': 'make_human', 'human-sleek': 'make_human_sleek', 'slim': 'make_slim', 'slim-sleek': 'make_slim_sleek', 'ninja': 'make_ninja', 'ranger': 'make_ranger', 'verdant': 'make_verdant', 'fey': 'make_fey', 'alpaca': 'make_alpaca', 'blight-alpaca': 'make_blight_alpaca', 'mushroom-small': 'make_mushroom', 'mushroom-large': 'make_mushroom_large', 'bones': 'make_bones', 'undead': 'make_undead', 'paladin': 'make_paladin', 'blossom': 'make_blossom', 'earthbender': 'make_earthbender', 'dog': 'make_dog', 'rat': 'make_rat', 'scorpion': 'make_scorpion', 'mantis': 'make_mantis', 'mantis-small': 'make_mantis_small', 'scorpion-king': 'make_scorpion_king'}
 
 UPRIGHT = {'attack', 'charging', 'damage', 'release', 'walking', 'weak'}
 

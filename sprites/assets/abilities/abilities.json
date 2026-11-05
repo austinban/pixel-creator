@@ -1,0 +1,1365 @@
+{
+ "about": "The ability animations in this folder, and which ability plays which. See README.md beside this file. The ability names and areas come from scripts/content/ability_kit.gd in the game.",
+ "frameRule": "every sheet is one row of equal frames, left to right; play them in order at `fps`; `loops` sheets repeat, the others play once and are done",
+ "cellStep": [
+  16,
+  8
+ ],
+ "offsets": {
+  "radius1": [
+   {
+    "dx": -1,
+    "dy": 0,
+    "px": -16,
+    "py": -8,
+    "distance": 1
+   },
+   {
+    "dx": 0,
+    "dy": -1,
+    "px": 16,
+    "py": -8,
+    "distance": 1
+   },
+   {
+    "dx": 0,
+    "dy": 0,
+    "px": 0,
+    "py": 0,
+    "distance": 0
+   },
+   {
+    "dx": 0,
+    "dy": 1,
+    "px": -16,
+    "py": 8,
+    "distance": 1
+   },
+   {
+    "dx": 1,
+    "dy": 0,
+    "px": 16,
+    "py": 8,
+    "distance": 1
+   }
+  ],
+  "radius2": [
+   {
+    "dx": -2,
+    "dy": 0,
+    "px": -32,
+    "py": -16,
+    "distance": 2
+   },
+   {
+    "dx": -1,
+    "dy": -1,
+    "px": 0,
+    "py": -16,
+    "distance": 2
+   },
+   {
+    "dx": -1,
+    "dy": 0,
+    "px": -16,
+    "py": -8,
+    "distance": 1
+   },
+   {
+    "dx": -1,
+    "dy": 1,
+    "px": -32,
+    "py": 0,
+    "distance": 2
+   },
+   {
+    "dx": 0,
+    "dy": -2,
+    "px": 32,
+    "py": -16,
+    "distance": 2
+   },
+   {
+    "dx": 0,
+    "dy": -1,
+    "px": 16,
+    "py": -8,
+    "distance": 1
+   },
+   {
+    "dx": 0,
+    "dy": 0,
+    "px": 0,
+    "py": 0,
+    "distance": 0
+   },
+   {
+    "dx": 0,
+    "dy": 1,
+    "px": -16,
+    "py": 8,
+    "distance": 1
+   },
+   {
+    "dx": 0,
+    "dy": 2,
+    "px": -32,
+    "py": 16,
+    "distance": 2
+   },
+   {
+    "dx": 1,
+    "dy": -1,
+    "px": 32,
+    "py": 0,
+    "distance": 2
+   },
+   {
+    "dx": 1,
+    "dy": 0,
+    "px": 16,
+    "py": 8,
+    "distance": 1
+   },
+   {
+    "dx": 1,
+    "dy": 1,
+    "px": 0,
+    "py": 16,
+    "distance": 2
+   },
+   {
+    "dx": 2,
+    "dy": 0,
+    "px": 32,
+    "py": 16,
+    "distance": 2
+   }
+  ]
+ },
+ "tileDelay": "for a radius-2 burst made of tiles, start each tile (distance from the aimed cell) frames after the middle one, at 1 frame a step",
+ "sheets": {
+  "burst-blood": {
+   "file": "burst-blood.png",
+   "frames": 8,
+   "cell": [
+    80,
+    56
+   ],
+   "fps": 8,
+   "loops": false,
+   "anchor": [
+    40,
+    38
+   ],
+   "label": "Blood burst - five plots"
+  },
+  "burst-blood-tile": {
+   "file": "burst-blood-tile.png",
+   "frames": 8,
+   "cell": [
+    32,
+    56
+   ],
+   "fps": 8,
+   "loops": false,
+   "anchor": [
+    16,
+    44
+   ],
+   "label": "Blood burst - one plot"
+  },
+  "burst-spore": {
+   "file": "burst-spore.png",
+   "frames": 8,
+   "cell": [
+    80,
+    56
+   ],
+   "fps": 8,
+   "loops": false,
+   "anchor": [
+    40,
+    38
+   ],
+   "label": "Spore cloud - five plots"
+  },
+  "burst-spore-tile": {
+   "file": "burst-spore-tile.png",
+   "frames": 8,
+   "cell": [
+    32,
+    56
+   ],
+   "fps": 8,
+   "loops": false,
+   "anchor": [
+    16,
+    44
+   ],
+   "label": "Spore cloud - one plot"
+  },
+  "burst-static": {
+   "file": "burst-static.png",
+   "frames": 8,
+   "cell": [
+    80,
+    56
+   ],
+   "fps": 8,
+   "loops": false,
+   "anchor": [
+    40,
+    38
+   ],
+   "label": "Static surge - five plots"
+  },
+  "burst-static-tile": {
+   "file": "burst-static-tile.png",
+   "frames": 8,
+   "cell": [
+    32,
+    56
+   ],
+   "fps": 8,
+   "loops": false,
+   "anchor": [
+    16,
+    44
+   ],
+   "label": "Static surge - one plot"
+  },
+  "burst-rain": {
+   "file": "burst-rain.png",
+   "frames": 8,
+   "cell": [
+    80,
+    56
+   ],
+   "fps": 8,
+   "loops": false,
+   "anchor": [
+    40,
+    38
+   ],
+   "label": "Downpour - five plots"
+  },
+  "burst-rain-tile": {
+   "file": "burst-rain-tile.png",
+   "frames": 8,
+   "cell": [
+    32,
+    56
+   ],
+   "fps": 8,
+   "loops": false,
+   "anchor": [
+    16,
+    44
+   ],
+   "label": "Downpour - one plot"
+  },
+  "burst-dust": {
+   "file": "burst-dust.png",
+   "frames": 8,
+   "cell": [
+    80,
+    56
+   ],
+   "fps": 8,
+   "loops": false,
+   "anchor": [
+    40,
+    38
+   ],
+   "label": "Dust burst - five plots"
+  },
+  "burst-dust-tile": {
+   "file": "burst-dust-tile.png",
+   "frames": 8,
+   "cell": [
+    32,
+    56
+   ],
+   "fps": 8,
+   "loops": false,
+   "anchor": [
+    16,
+    44
+   ],
+   "label": "Dust burst - one plot"
+  },
+  "burst-dust-small-tile": {
+   "file": "burst-dust-small-tile.png",
+   "frames": 8,
+   "cell": [
+    32,
+    56
+   ],
+   "fps": 8,
+   "loops": false,
+   "anchor": [
+    16,
+    44
+   ],
+   "label": "Dust puff (small) - one plot"
+  },
+  "burst-crimson-tile": {
+   "file": "burst-crimson-tile.png",
+   "frames": 8,
+   "cell": [
+    32,
+    56
+   ],
+   "fps": 8,
+   "loops": false,
+   "anchor": [
+    16,
+    44
+   ],
+   "label": "Crimson bolt - one plot"
+  },
+  "ring-rally": {
+   "file": "ring-rally.png",
+   "frames": 8,
+   "cell": [
+    112,
+    72
+   ],
+   "fps": 10,
+   "loops": false,
+   "anchor": [
+    56,
+    52
+   ],
+   "label": "Rally ring (gold, radius 2)"
+  },
+  "ring-inspire": {
+   "file": "ring-inspire.png",
+   "frames": 8,
+   "cell": [
+    64,
+    56
+   ],
+   "fps": 10,
+   "loops": false,
+   "anchor": [
+    32,
+    40
+   ],
+   "label": "Inspire ring (bright yellow)"
+  },
+  "ring-cleanse": {
+   "file": "ring-cleanse.png",
+   "frames": 8,
+   "cell": [
+    64,
+    56
+   ],
+   "fps": 10,
+   "loops": false,
+   "anchor": [
+    32,
+    40
+   ],
+   "label": "Cleanse ring (white-green)"
+  },
+  "ring-sever": {
+   "file": "ring-sever.png",
+   "frames": 8,
+   "cell": [
+    64,
+    56
+   ],
+   "fps": 10,
+   "loops": false,
+   "anchor": [
+    32,
+    40
+   ],
+   "label": "Sever (a white ring breaking)"
+  },
+  "ring-ward-form": {
+   "file": "ring-ward-form.png",
+   "frames": 6,
+   "cell": [
+    64,
+    56
+   ],
+   "fps": 10,
+   "loops": false,
+   "anchor": [
+    32,
+    40
+   ],
+   "label": "Ward - the bubble forming"
+  },
+  "ring-ward-hold": {
+   "file": "ring-ward-hold.png",
+   "frames": 6,
+   "cell": [
+    64,
+    56
+   ],
+   "fps": 8,
+   "loops": true,
+   "anchor": [
+    32,
+    40
+   ],
+   "label": "Ward - the bubble holding (loops)"
+  },
+  "ring-ward-break": {
+   "file": "ring-ward-break.png",
+   "frames": 8,
+   "cell": [
+    64,
+    56
+   ],
+   "fps": 10,
+   "loops": false,
+   "anchor": [
+    32,
+    40
+   ],
+   "label": "Ward - the bubble breaking"
+  },
+  "ring-climb": {
+   "file": "ring-climb.png",
+   "frames": 8,
+   "cell": [
+    64,
+    56
+   ],
+   "fps": 10,
+   "loops": false,
+   "anchor": [
+    32,
+    40
+   ],
+   "label": "Climb (light blue rings rising)"
+  },
+  "ring-status-soaked": {
+   "file": "ring-status-soaked.png",
+   "frames": 8,
+   "cell": [
+    64,
+    56
+   ],
+   "fps": 8,
+   "loops": true,
+   "anchor": [
+    32,
+    40
+   ],
+   "label": "Soaked status (blue ring, loops)"
+  },
+  "ring-status-shocked": {
+   "file": "ring-status-shocked.png",
+   "frames": 8,
+   "cell": [
+    64,
+    56
+   ],
+   "fps": 8,
+   "loops": true,
+   "anchor": [
+    32,
+    40
+   ],
+   "label": "Shocked status (yellow ring, loops)"
+  },
+  "ring-status-spored": {
+   "file": "ring-status-spored.png",
+   "frames": 8,
+   "cell": [
+    64,
+    56
+   ],
+   "fps": 8,
+   "loops": true,
+   "anchor": [
+    32,
+    40
+   ],
+   "label": "Spored status (green ring, loops)"
+  },
+  "ring-dash-ne": {
+   "file": "ring-dash-ne.png",
+   "frames": 6,
+   "cell": [
+    64,
+    56
+   ],
+   "fps": 12,
+   "loops": false,
+   "anchor": [
+    32,
+    40
+   ],
+   "label": "Dash NE (speed lines; NW is this flipped)"
+  },
+  "ring-dash-se": {
+   "file": "ring-dash-se.png",
+   "frames": 6,
+   "cell": [
+    64,
+    56
+   ],
+   "fps": 12,
+   "loops": false,
+   "anchor": [
+    32,
+    40
+   ],
+   "label": "Dash SE (speed lines; SW is this flipped)"
+  },
+  "icon-mark-pop": {
+   "file": "icon-mark-pop.png",
+   "frames": 8,
+   "cell": [
+    24,
+    32
+   ],
+   "fps": 10,
+   "loops": false,
+   "anchor": [
+    12,
+    30
+   ],
+   "label": "Mark (crosshair) - pop-up above the head (once)"
+  },
+  "icon-mark-loop": {
+   "file": "icon-mark-loop.png",
+   "frames": 6,
+   "cell": [
+    24,
+    32
+   ],
+   "fps": 6,
+   "loops": true,
+   "anchor": [
+    12,
+    30
+   ],
+   "label": "Mark (crosshair) - status icon (loops)"
+  },
+  "icon-silence-pop": {
+   "file": "icon-silence-pop.png",
+   "frames": 8,
+   "cell": [
+    24,
+    32
+   ],
+   "fps": 10,
+   "loops": false,
+   "anchor": [
+    12,
+    30
+   ],
+   "label": "Silence (sealed lips) - pop-up above the head (once)"
+  },
+  "icon-silence-loop": {
+   "file": "icon-silence-loop.png",
+   "frames": 6,
+   "cell": [
+    24,
+    32
+   ],
+   "fps": 6,
+   "loops": true,
+   "anchor": [
+    12,
+    30
+   ],
+   "label": "Silence (sealed lips) - status icon (loops)"
+  },
+  "icon-stun-pop": {
+   "file": "icon-stun-pop.png",
+   "frames": 8,
+   "cell": [
+    24,
+    32
+   ],
+   "fps": 10,
+   "loops": false,
+   "anchor": [
+    12,
+    30
+   ],
+   "label": "Stun (stars) - pop-up above the head (once)"
+  },
+  "icon-stun-loop": {
+   "file": "icon-stun-loop.png",
+   "frames": 6,
+   "cell": [
+    24,
+    32
+   ],
+   "fps": 6,
+   "loops": true,
+   "anchor": [
+    12,
+    30
+   ],
+   "label": "Stun (stars) - status icon (loops)"
+  },
+  "icon-charm-pop": {
+   "file": "icon-charm-pop.png",
+   "frames": 8,
+   "cell": [
+    24,
+    32
+   ],
+   "fps": 10,
+   "loops": false,
+   "anchor": [
+    12,
+    30
+   ],
+   "label": "Charm (heart) - pop-up above the head (once)"
+  },
+  "icon-charm-loop": {
+   "file": "icon-charm-loop.png",
+   "frames": 6,
+   "cell": [
+    24,
+    32
+   ],
+   "fps": 6,
+   "loops": true,
+   "anchor": [
+    12,
+    30
+   ],
+   "label": "Charm (heart) - status icon (loops)"
+  },
+  "icon-confuse-pop": {
+   "file": "icon-confuse-pop.png",
+   "frames": 8,
+   "cell": [
+    24,
+    32
+   ],
+   "fps": 10,
+   "loops": false,
+   "anchor": [
+    12,
+    30
+   ],
+   "label": "Confuse (spiral) - pop-up above the head (once)"
+  },
+  "icon-confuse-loop": {
+   "file": "icon-confuse-loop.png",
+   "frames": 6,
+   "cell": [
+    24,
+    32
+   ],
+   "fps": 6,
+   "loops": true,
+   "anchor": [
+    12,
+    30
+   ],
+   "label": "Confuse (spiral) - status icon (loops)"
+  },
+  "vanish-violet": {
+   "file": "vanish-violet.png",
+   "frames": 8,
+   "cell": [
+    48,
+    56
+   ],
+   "fps": 12,
+   "loops": false,
+   "anchor": [
+    24,
+    44
+   ],
+   "label": "Vanish - Violet (blink, swap)"
+  },
+  "appear-violet": {
+   "file": "appear-violet.png",
+   "frames": 8,
+   "cell": [
+    48,
+    56
+   ],
+   "fps": 12,
+   "loops": false,
+   "anchor": [
+    24,
+    44
+   ],
+   "label": "Appear - Violet (blink, swap)"
+  },
+  "vanish-blue": {
+   "file": "vanish-blue.png",
+   "frames": 8,
+   "cell": [
+    48,
+    56
+   ],
+   "fps": 12,
+   "loops": false,
+   "anchor": [
+    24,
+    44
+   ],
+   "label": "Vanish - Pale blue (call wolf)"
+  },
+  "appear-blue": {
+   "file": "appear-blue.png",
+   "frames": 8,
+   "cell": [
+    48,
+    56
+   ],
+   "fps": 12,
+   "loops": false,
+   "anchor": [
+    24,
+    44
+   ],
+   "label": "Appear - Pale blue (call wolf)"
+  },
+  "vanish-yellow": {
+   "file": "vanish-yellow.png",
+   "frames": 8,
+   "cell": [
+    48,
+    56
+   ],
+   "fps": 12,
+   "loops": false,
+   "anchor": [
+    24,
+    44
+   ],
+   "label": "Vanish - Yellow (call decoy)"
+  },
+  "appear-yellow": {
+   "file": "appear-yellow.png",
+   "frames": 8,
+   "cell": [
+    48,
+    56
+   ],
+   "fps": 12,
+   "loops": false,
+   "anchor": [
+    24,
+    44
+   ],
+   "label": "Appear - Yellow (call decoy)"
+  },
+  "vanish-stone": {
+   "file": "vanish-stone.png",
+   "frames": 8,
+   "cell": [
+    48,
+    56
+   ],
+   "fps": 12,
+   "loops": false,
+   "anchor": [
+    24,
+    44
+   ],
+   "label": "Vanish - Stone grey (raise guardian)"
+  },
+  "appear-stone": {
+   "file": "appear-stone.png",
+   "frames": 8,
+   "cell": [
+    48,
+    56
+   ],
+   "fps": 12,
+   "loops": false,
+   "anchor": [
+    24,
+    44
+   ],
+   "label": "Appear - Stone grey (raise guardian)"
+  },
+  "surface-mire": {
+   "file": "surface-mire.png",
+   "frames": 8,
+   "cell": [
+    32,
+    56
+   ],
+   "fps": 8,
+   "loops": true,
+   "anchor": [
+    16,
+    44
+   ],
+   "label": "Ground loop - Mire (brown-yellow mud)"
+  },
+  "surface-slick": {
+   "file": "surface-slick.png",
+   "frames": 8,
+   "cell": [
+    32,
+    56
+   ],
+   "fps": 8,
+   "loops": true,
+   "anchor": [
+    16,
+    44
+   ],
+   "label": "Ground loop - Slick ground (blue, wet)"
+  },
+  "surface-firewall": {
+   "file": "surface-firewall.png",
+   "frames": 8,
+   "cell": [
+    32,
+    56
+   ],
+   "fps": 8,
+   "loops": true,
+   "anchor": [
+    16,
+    44
+   ],
+   "label": "Ground loop - Fire wall (flames, for a line of three)"
+  }
+ },
+ "abilities": {
+  "crimson-bolt": {
+   "label": "Crimson Bolt",
+   "area": "1 tile",
+   "family": "burst",
+   "effects": [
+    {
+     "sheet": "burst-crimson-tile",
+     "at": "aimed",
+     "how": "once"
+    }
+   ]
+  },
+  "sanguine-burst": {
+   "label": "Sanguine Burst",
+   "area": "radius 1",
+   "family": "burst",
+   "effects": [
+    {
+     "sheet": "burst-blood",
+     "at": "aimed",
+     "how": "once",
+     "note": "the five-plot sheet covers the whole area"
+    }
+   ]
+  },
+  "spore-cloud": {
+   "label": "Spore Cloud",
+   "area": "radius 1",
+   "family": "burst",
+   "effects": [
+    {
+     "sheet": "burst-spore",
+     "at": "aimed",
+     "how": "once",
+     "note": "the five-plot sheet covers the whole area"
+    }
+   ]
+  },
+  "static-surge": {
+   "label": "Static Surge",
+   "area": "radius 2",
+   "family": "burst",
+   "effects": [
+    {
+     "sheet": "burst-static-tile",
+     "at": "cells:radius2",
+     "how": "once",
+     "note": "one tile on each of the 13 cells; start each a frame later for each step from the aimed cell"
+    }
+   ]
+  },
+  "downpour": {
+   "label": "Downpour",
+   "area": "radius 2",
+   "family": "burst",
+   "effects": [
+    {
+     "sheet": "burst-rain-tile",
+     "at": "cells:radius2",
+     "how": "once",
+     "note": "one tile on each of the 13 cells; start each a frame later for each step from the aimed cell"
+    }
+   ]
+  },
+  "quake": {
+   "label": "Quake",
+   "area": "radius 1",
+   "family": "burst",
+   "effects": [
+    {
+     "sheet": "burst-dust",
+     "at": "aimed",
+     "how": "once",
+     "note": "the five-plot sheet covers the whole area"
+    }
+   ]
+  },
+  "tremor": {
+   "label": "Tremor (boss)",
+   "area": "radius 2",
+   "family": "burst",
+   "effects": [
+    {
+     "sheet": "burst-dust-tile",
+     "at": "cells:radius2",
+     "how": "once",
+     "note": "one tile on each of the 13 cells; start each a frame later for each step from the aimed cell"
+    }
+   ]
+  },
+  "raise": {
+   "label": "Raise",
+   "area": "1 tile",
+   "family": "burst",
+   "effects": [
+    {
+     "sheet": "burst-dust-tile",
+     "at": "aimed",
+     "how": "once",
+     "note": "the game changes the terrain itself on the same frame as the dust peaks (frame 4)"
+    }
+   ]
+  },
+  "lower": {
+   "label": "Lower",
+   "area": "1 tile",
+   "family": "burst",
+   "effects": [
+    {
+     "sheet": "burst-dust-tile",
+     "at": "aimed",
+     "how": "once",
+     "note": "the game changes the terrain itself on the same frame as the dust peaks (frame 4)"
+    }
+   ]
+  },
+  "stone-wall": {
+   "label": "Stone Wall",
+   "area": "line of 3, 1 wide",
+   "family": "burst",
+   "effects": [
+    {
+     "sheet": "burst-dust-tile",
+     "at": "cells:line3",
+     "how": "once",
+     "note": "one tile on each of the three cells"
+    }
+   ]
+  },
+  "shove": {
+   "label": "Shove",
+   "area": "1 tile",
+   "family": "burst",
+   "effects": [
+    {
+     "sheet": "burst-dust-small-tile",
+     "at": "target",
+     "how": "once",
+     "note": "a small puff where the unit was pushed from"
+    }
+   ]
+  },
+  "rally": {
+   "label": "Rally",
+   "area": "radius 2, centred on the caster",
+   "family": "ring",
+   "effects": [
+    {
+     "sheet": "ring-rally",
+     "at": "caster",
+     "how": "once",
+     "note": "the large ring spreads over the whole radius"
+    }
+   ]
+  },
+  "inspire": {
+   "label": "Inspire",
+   "area": "1 tile",
+   "family": "ring",
+   "effects": [
+    {
+     "sheet": "ring-inspire",
+     "at": "target",
+     "how": "once"
+    }
+   ]
+  },
+  "cleanse": {
+   "label": "Cleanse",
+   "area": "1 tile",
+   "family": "ring",
+   "effects": [
+    {
+     "sheet": "ring-cleanse",
+     "at": "target",
+     "how": "once"
+    }
+   ]
+  },
+  "sever": {
+   "label": "Sever",
+   "area": "1 tile",
+   "family": "ring",
+   "effects": [
+    {
+     "sheet": "ring-sever",
+     "at": "target",
+     "how": "once",
+     "note": "the ring forms and breaks into pieces"
+    }
+   ]
+  },
+  "ward": {
+   "label": "Ward",
+   "area": "1 tile",
+   "family": "ring",
+   "effects": [
+    {
+     "sheet": "ring-ward-form",
+     "at": "target",
+     "how": "once",
+     "note": "when it is cast"
+    },
+    {
+     "sheet": "ring-ward-hold",
+     "at": "target",
+     "how": "loop",
+     "note": "while the ward stands, over the unit"
+    },
+    {
+     "sheet": "ring-ward-break",
+     "at": "target",
+     "how": "once",
+     "note": "when it absorbs a hit, in place of the hold; the same break as Sever"
+    }
+   ]
+  },
+  "climb": {
+   "label": "Climb",
+   "area": "caster only",
+   "family": "ring",
+   "effects": [
+    {
+     "sheet": "ring-climb",
+     "at": "caster",
+     "how": "once"
+    }
+   ]
+  },
+  "dash": {
+   "label": "Dash",
+   "area": "caster only",
+   "family": "ring",
+   "effects": [
+    {
+     "sheet": "ring-dash-ne",
+     "at": "caster",
+     "how": "once",
+     "note": "when the dash goes up the screen (NE); NW is this sheet flipped left to right"
+    },
+    {
+     "sheet": "ring-dash-se",
+     "at": "caster",
+     "how": "once",
+     "note": "when the dash goes down the screen (SE); SW is this sheet flipped left to right"
+    }
+   ]
+  },
+  "mark": {
+   "label": "Mark",
+   "area": "1 tile",
+   "family": "icon",
+   "effects": [
+    {
+     "sheet": "icon-mark-pop",
+     "at": "target-head",
+     "how": "once"
+    }
+   ]
+  },
+  "silence": {
+   "label": "Silence",
+   "area": "1 tile",
+   "family": "icon",
+   "effects": [
+    {
+     "sheet": "icon-silence-pop",
+     "at": "target-head",
+     "how": "once"
+    }
+   ]
+  },
+  "stun": {
+   "label": "Stun",
+   "area": "1 tile",
+   "family": "icon",
+   "effects": [
+    {
+     "sheet": "icon-stun-pop",
+     "at": "target-head",
+     "how": "once"
+    }
+   ]
+  },
+  "charm": {
+   "label": "Charm",
+   "area": "1 tile",
+   "family": "icon",
+   "effects": [
+    {
+     "sheet": "icon-charm-pop",
+     "at": "target-head",
+     "how": "once"
+    }
+   ]
+  },
+  "confuse": {
+   "label": "Confuse",
+   "area": "1 tile",
+   "family": "icon",
+   "effects": [
+    {
+     "sheet": "icon-confuse-pop",
+     "at": "target-head",
+     "how": "once"
+    }
+   ]
+  },
+  "blink": {
+   "label": "Blink",
+   "area": "1 tile",
+   "family": "vanish",
+   "effects": [
+    {
+     "sheet": "vanish-violet",
+     "at": "start-cell",
+     "how": "once",
+     "note": "the unit shrinks to a point as it plays"
+    },
+    {
+     "sheet": "appear-violet",
+     "at": "end-cell",
+     "how": "once",
+     "note": "the unit grows back out"
+    }
+   ]
+  },
+  "swap": {
+   "label": "Swap",
+   "area": "2 tiles (both units)",
+   "family": "vanish",
+   "effects": [
+    {
+     "sheet": "vanish-violet",
+     "at": "both-units-old-cell",
+     "how": "once"
+    },
+    {
+     "sheet": "appear-violet",
+     "at": "both-units-new-cell",
+     "how": "once"
+    }
+   ]
+  },
+  "call-wolf": {
+   "label": "Call Wolf",
+   "area": "1 tile",
+   "family": "vanish",
+   "effects": [
+    {
+     "sheet": "appear-blue",
+     "at": "summon-cell",
+     "how": "once",
+     "note": "when it arrives"
+    },
+    {
+     "sheet": "vanish-blue",
+     "at": "summon-cell",
+     "how": "once",
+     "note": "when it expires"
+    }
+   ]
+  },
+  "call-decoy": {
+   "label": "Call Decoy",
+   "area": "1 tile",
+   "family": "vanish",
+   "effects": [
+    {
+     "sheet": "appear-yellow",
+     "at": "summon-cell",
+     "how": "once",
+     "note": "when it arrives"
+    },
+    {
+     "sheet": "vanish-yellow",
+     "at": "summon-cell",
+     "how": "once",
+     "note": "when it expires"
+    }
+   ]
+  },
+  "raise-guardian": {
+   "label": "Raise Guardian",
+   "area": "1 tile",
+   "family": "vanish",
+   "effects": [
+    {
+     "sheet": "appear-stone",
+     "at": "summon-cell",
+     "how": "once",
+     "note": "when it arrives"
+    },
+    {
+     "sheet": "vanish-stone",
+     "at": "summon-cell",
+     "how": "once",
+     "note": "when it expires"
+    }
+   ]
+  },
+  "mire": {
+   "label": "Mire",
+   "area": "radius 1",
+   "family": "ground",
+   "effects": [
+    {
+     "sheet": "surface-mire",
+     "at": "cells:radius1",
+     "how": "loop",
+     "note": "one tile on each of the 5 cells; they join into one surface"
+    }
+   ]
+  },
+  "slick-ground": {
+   "label": "Slick Ground",
+   "area": "radius 1",
+   "family": "ground",
+   "effects": [
+    {
+     "sheet": "surface-slick",
+     "at": "cells:radius1",
+     "how": "loop",
+     "note": "one tile on each of the 5 cells; they join into one surface"
+    }
+   ]
+  },
+  "fire-wall": {
+   "label": "Fire Wall",
+   "area": "line of 3",
+   "family": "ground",
+   "effects": [
+    {
+     "sheet": "surface-firewall",
+     "at": "cells:line3",
+     "how": "loop",
+     "note": "one tile on each of the three cells, each started on a different frame so the flames do not move together"
+    }
+   ]
+  }
+ },
+ "statuses": {
+  "mark": {
+   "sheet": "icon-mark-loop",
+   "at": "unit-head",
+   "how": "loop"
+  },
+  "silence": {
+   "sheet": "icon-silence-loop",
+   "at": "unit-head",
+   "how": "loop"
+  },
+  "stun": {
+   "sheet": "icon-stun-loop",
+   "at": "unit-head",
+   "how": "loop"
+  },
+  "charm": {
+   "sheet": "icon-charm-loop",
+   "at": "unit-head",
+   "how": "loop"
+  },
+  "confuse": {
+   "sheet": "icon-confuse-loop",
+   "at": "unit-head",
+   "how": "loop"
+  },
+  "soaked": {
+   "sheet": "ring-status-soaked",
+   "at": "unit-feet",
+   "how": "loop"
+  },
+  "shocked": {
+   "sheet": "ring-status-shocked",
+   "at": "unit-feet",
+   "how": "loop"
+  },
+  "spored": {
+   "sheet": "ring-status-spored",
+   "at": "unit-feet",
+   "how": "loop"
+  },
+  "rooted": {
+   "sheet": "vine",
+   "at": "unit-feet",
+   "how": "existing",
+   "note": "the existing vine animation, as it is"
+  },
+  "snared": {
+   "sheet": "vine",
+   "at": "unit-feet",
+   "how": "existing",
+   "note": "the existing vine animation, as it is"
+  },
+  "mired": {
+   "sheet": "vine",
+   "at": "unit-feet",
+   "how": "existing",
+   "note": "the existing vine animation, as it is"
+  }
+ },
+ "reused": {
+  "root": {
+   "label": "Root",
+   "effects": [
+    {
+     "sheet": "vine",
+     "at": "target-feet",
+     "how": "existing",
+     "note": "the existing vine animation, as it is"
+    }
+   ]
+  },
+  "hook": {
+   "label": "Hook",
+   "effects": [
+    {
+     "sheet": "vine",
+     "at": "target-feet",
+     "how": "existing",
+     "note": "the existing vine recoloured grey, lashing out and pulling the target in; recolour by swapping roles z to q, A to p, B to l, s to k (the bud and the leaves go with them, the earth stays)"
+    }
+   ],
+   "recolour": {
+    "z": "q",
+    "A": "p",
+    "B": "l",
+    "s": "k"
+   }
+  }
+ }
+}
