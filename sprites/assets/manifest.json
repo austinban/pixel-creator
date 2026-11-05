@@ -2414,6 +2414,78 @@
    ]
   },
   {
+   "id": "trap-caltrops",
+   "label": "Caltrops - placed (waiting on the ground)",
+   "category": "Traps",
+   "kind": "still",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 24
+   },
+   "file": "traps/trap-caltrops.png",
+   "frames": 1
+  },
+  {
+   "id": "trap-caltrops-triggered",
+   "label": "Caltrops - triggered (animation)",
+   "category": "Traps",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 6,
+   "rows": 1,
+   "fps": 10,
+   "anchor": {
+    "x": 16,
+    "y": 24
+   },
+   "file": "traps/trap-caltrops-triggered.png",
+   "frames": 6
+  },
+  {
+   "id": "trap-beartrap",
+   "label": "Bear trap - placed (waiting on the ground)",
+   "category": "Traps",
+   "kind": "still",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 24
+   },
+   "file": "traps/trap-beartrap.png",
+   "frames": 1
+  },
+  {
+   "id": "trap-beartrap-triggered",
+   "label": "Bear trap - triggered (animation)",
+   "category": "Traps",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 6,
+   "rows": 1,
+   "fps": 10,
+   "anchor": {
+    "x": 16,
+    "y": 24
+   },
+   "file": "traps/trap-beartrap-triggered.png",
+   "frames": 6
+  },
+  {
    "id": "icon-weapon-hatchet",
    "label": "Hatchet (display icon)",
    "category": "Weapon icons",

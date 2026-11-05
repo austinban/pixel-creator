@@ -269,6 +269,11 @@ category on the Assets page, ids `nodemap-*`, and the folder `sprites/assets/nod
 tiles, the layers, the layout recipe), a `nodemap.json` with the numbers, and an example map with its layout. Two skins (Grass islands and Parchment chart)
 share the same 16 tiles; `tools/make_nodemap.py` is the generator and the reference for making a layout.
 
+## Traps
+
+Caltrops and a bear trap, each placed (one frame) and triggered (an animation that ends on the spent trap). Their own group: the **Traps** category on the Assets page, ids `trap-*`,
+and the folder `sprites/assets/traps/`, which has a **README.md for the app that uses it** and a `traps.json` with the numbers. `tools/make_traps.py` is the generator.
+
 ## Buildings
 
 A kit of building tiles to build houses, towers and whole streets from: 33 pieces plus 36 worn, damaged and overgrown versions, each drawn twice (NE and SE), 32 x 32 like the ground tiles

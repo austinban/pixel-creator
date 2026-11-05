@@ -1,0 +1,39 @@
+{
+ "about": "The trap sheets in this folder. See README.md beside this file for the whole story.",
+ "cell": 32,
+ "anchor": {
+  "x": 16,
+  "y": 24
+ },
+ "fps": 10,
+ "traps": {
+  "caltrops": {
+   "label": "Caltrops",
+   "placed": "trap-caltrops.png",
+   "triggered": "trap-caltrops-triggered.png",
+   "triggeredFrames": [
+    "stepped on",
+    "pop",
+    "tumble",
+    "fall",
+    "land",
+    "rest"
+   ],
+   "triggeredPlays": "once, then hold the last frame"
+  },
+  "beartrap": {
+   "label": "Bear trap",
+   "placed": "trap-beartrap.png",
+   "triggered": "trap-beartrap-triggered.png",
+   "triggeredFrames": [
+    "pressed",
+    "jaws lift",
+    "swing",
+    "closing",
+    "snap",
+    "shut"
+   ],
+   "triggeredPlays": "once, then hold the last frame"
+  }
+ }
+}

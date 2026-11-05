@@ -25,6 +25,7 @@ import make_arrow  # noqa: E402
 import make_amulets  # noqa: E402
 import make_buildings  # noqa: E402
 import make_nodemap  # noqa: E402
+import make_traps  # noqa: E402
 import make_bow  # noqa: E402
 import make_ground  # noqa: E402
 import make_overlay  # noqa: E402
@@ -552,7 +553,7 @@ def build_assets(weapons_dir=make_weapons.DEFAULT_DIR):
                     })
     # The ground tileset is sliced from a PNG rather than rendered.
     # Weapon strips are read from PNGs too, if there are any.
-    assets = [crystal_asset] + facing_assets + overlay_assets + rope_assets + boss_assets + dot_assets + [bridge_asset, vine_asset, fire_asset, heal_asset, arrow_side, arrow_angled] + bow_assets + [amulet_asset, rock_asset] + make_nodemap.build_assets() + make_buildings.build_assets() + make_ground.build_ground_assets() + make_weapons.build_weapon_assets(weapons_dir)
+    assets = [crystal_asset] + facing_assets + overlay_assets + rope_assets + boss_assets + dot_assets + [bridge_asset, vine_asset, fire_asset, heal_asset, arrow_side, arrow_angled] + bow_assets + [amulet_asset, rock_asset] + make_nodemap.build_assets() + make_buildings.build_assets() + make_traps.build_assets() + make_ground.build_ground_assets() + make_weapons.build_weapon_assets(weapons_dir)
     tag_overlay_shapes(assets)
     # Each weapon's display icon, linked both ways by the weapon's name (see make_weapon_icons.py): it fails the build if they do not match.
     assets += make_weapon_icons.build_icon_assets()
@@ -662,6 +663,7 @@ def main():
         }, indent=1))
         make_nodemap.write_package(args.png_dir / make_nodemap.FOLDER)
         make_buildings.write_package(args.png_dir / make_buildings.FOLDER)
+        make_traps.write_package(args.png_dir / make_traps.FOLDER)
         print(f'{len(manifest)} sheets and manifest.json -> {args.png_dir}')
 
 if __name__ == '__main__':

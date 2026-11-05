@@ -266,6 +266,40 @@ class WeaponIcons(unittest.TestCase):
             self.assertEqual(by_id[a['icon']]['icon_for'], a['id'][len('weapon-'):-3], a['id'])
 
 
+class Traps(unittest.TestCase):
+    """The traps: grouped, each placed and triggered, inside the cell, and the triggered animation starts like the placed trap and ends changed."""
+
+    def test_the_assets_are_grouped_and_named(self):
+        import make_traps as mt
+        assets = {a['id']: a for a in mt.build_assets()}
+        self.assertEqual(set(assets), {'trap-caltrops', 'trap-caltrops-triggered', 'trap-beartrap', 'trap-beartrap-triggered'})
+        for a in assets.values():
+            self.assertEqual((a['category'], a['folder'], a['place']), ('Traps', 'traps', 'ground'), a['id'])
+        self.assertEqual(len(assets['trap-caltrops']['frames']), 1)
+        self.assertEqual(len(assets['trap-beartrap-triggered']['frames']), len(mt.BEARTRAP_FRAMES))
+        self.assertEqual(assets['trap-caltrops-triggered']['kind'], 'animation')
+
+    def test_every_frame_is_inside_the_cell_and_outlined_in_the_palette(self):
+        import make_traps as mt
+        import extract_poses as ep
+        known = {c for c, *_ in ep.ROLES}
+        for a in mt.build_assets():
+            for rows in a['frames']:
+                self.assertEqual(len(rows), 32)
+                self.assertTrue(all(len(r) == 32 for r in rows))
+                self.assertTrue(set(''.join(rows)) <= known | {'.'})
+                painted = [(x, y) for y, r in enumerate(rows) for x, ch in enumerate(r) if ch != '.']
+                self.assertTrue(painted, a['id'])
+                self.assertTrue(all(1 <= x <= 30 and 1 <= y <= 30 for x, y in painted), a['id'] + ' reaches the edge of its cell')
+
+    def test_a_triggered_animation_changes_and_the_last_frame_is_not_the_placed_trap(self):
+        import make_traps as mt
+        for name in mt.TRAPS:
+            placed, anim = mt.frames_of(name)
+            self.assertEqual(len({tuple(f) for f in anim}), len(anim), name + ' repeats a frame')
+            self.assertNotEqual(anim[-1], placed, name + ' ends the way it began')
+
+
 class NodeMap(unittest.TestCase):
     """The node-map tiles: grouped under one name, 16 distinct shore tiles whose neighbours join, and the README's recipe really draws a map."""
 

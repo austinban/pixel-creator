@@ -184,6 +184,13 @@ under them, and map pins. Everything is category **Node map**, ids `nodemap-*`, 
 folder's README.md. A new skin changes only colours and textures (`BIOMES` in `tools/make_nodemap.py`); its 16 tiles keep their numbers (corner bits:
 top left 1, top right 2, bottom left 4, bottom right 8), repeat their texture every 16 pixels, and join their neighbours, which the tests check.
 
+## Traps
+
+A trap lies flat on a ground tile and has two states: **placed** (one frame, the trap waiting) and **triggered** (an animation). They are category **Traps**, ids `trap-NAME` and
+`trap-NAME-triggered`, folder `sprites/assets/traps/`, 32 x 32 frames anchored on the middle of the tile at (16, 24), and the rules for using them are in that folder's README.md. A
+triggered animation plays once, at 10 frames a second, and **ends on the spent trap**, which is the picture to keep drawing. A new trap is an entry in `TRAPS` in `tools/make_traps.py`:
+a placed state and a list of triggered frames, built from ellipsoids and looked at in 3D (`--model`) before it is drawn.
+
 ## Buildings
 
 The building tiles are one-cell, one-level **32 x 32 cubes** in the ground tiles' projection (16 across and 8 down a cell, 16 pixels a level, a storey of two levels), drawn in the quieter palette roles
