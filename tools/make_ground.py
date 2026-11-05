@@ -76,7 +76,8 @@ def build_ground_assets():
     px = im.load()
     cols, rows = im.width // CELL, im.height // CELL
 
-    palette = {tuple(int(h[i:i + 2], 16) for i in (0, 2, 4)): (c, g) for c, _, _, g, h in ep.ROLES}
+    group_of = {c: g for c, _, _, g, _ in ep.ROLES}
+    palette = {rgb: (c, group_of[c]) for rgb, c in ep.COLOUR_TO_ROLE.items()}
     nearest_cache = {}
 
     def role(rgb):

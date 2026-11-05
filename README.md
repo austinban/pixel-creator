@@ -256,6 +256,8 @@ character or `ground`ed beside one.
 | `colors.js`, `files.js` | Colour maths and download helpers shared by the pages |
 | `zip.js` | A small ZIP writer for the export buttons |
 | `tools/extract_poses.py` | Builds `poses/base.js` from sprite PNGs |
+| `tools/make_pose_guide.py`, `tools/trace_guide.py` | Draw a character's poses and palette on one page, and trace such a page (even one redrawn by an image generator) back into sprite sheets |
+| `tools/recolor.py` | Moves every sprite PNG to a new palette by swapping colours (see Colour in CONVENTIONS.md) |
 | `tools/make_skeleton.py` | Paints the skeleton base on the cleric's poses |
 | `tools/make_zombie.py` | Paints the zombie base on the fighter's poses |
 | `tools/make_knight.py` | Paints the armoured knight base on the fighter's poses |

@@ -30,6 +30,37 @@ class OriginalsFollowTheRules(unittest.TestCase):
             self.assertEqual(cv.check_base(name, bases()[name]['frames'], airborne=airborne), [], name)
 
 
+class FloatersHaveTheirOwnGroundRules(unittest.TestCase):
+    """A floater hangs below the ground line and bobs in a band; a person's feet-on-row-27 rule does not apply to it."""
+
+    def frame(self, low, height=26):
+        rows = ['.' * 32 for _ in range(32)]
+        for y in range(low - height + 1, low + 1):
+            rows[y] = '.' + 'O' * 10 + 'a' * 9 + 'O' * 10 + '..'
+        return rows
+
+    def ground_problems(self, low, kind):
+        return [p for p in cv.check_frame(self.frame(low), 'charging', kind) if 'lowest row' in p or 'feet' in p]
+
+    def test_a_floater_may_hang_below_the_ground_line(self):
+        self.assertEqual(self.ground_problems(30, 'floater'), [])
+        self.assertTrue(self.ground_problems(30, 'humanoid'))
+
+    def test_a_floater_does_not_rest_on_the_ground_line(self):
+        self.assertTrue(self.ground_problems(27, 'floater'))
+
+    def test_the_hover_may_bob_only_so_far(self):
+        ok = {'walkingSE': [self.frame(29), self.frame(31)]}
+        self.assertEqual(cv.check_hover('x', ok), [])
+        far = {'walkingSE': [self.frame(28, 20), self.frame(31, 20), self.frame(27, 20)]}
+        self.assertTrue(cv.check_hover('x', far))
+
+    @unittest.skipUnless('spirit' in bases(), 'the spirit base is not built here')
+    def test_the_spirit_passes_as_a_floater(self):
+        self.assertEqual(cv.kind_of('spirit'), 'floater')
+        self.assertEqual(cv.check_base('spirit', bases()['spirit']['frames']), [])
+
+
 class BreakingARuleIsCaught(unittest.TestCase):
     def setUp(self):
         self.frames = copy.deepcopy(bases()['knight']['frames'])

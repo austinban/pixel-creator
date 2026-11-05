@@ -41,7 +41,7 @@ def swing():
     from PIL import Image
     folder = ROOT / 'sprites' / 'weapons'
     paths = cv.weapon_paths(folder)
-    pal = {tuple(int(h[i:i + 2], 16) for i in (0, 2, 4)): c for c, _, _, _, h in ep.ROLES}
+    pal = ep.COLOUR_TO_ROLE
 
     def role(rgb):
         return pal[min(pal, key=lambda p: sum((a - b) ** 2 for a, b in zip(p, rgb)))]

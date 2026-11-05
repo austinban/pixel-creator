@@ -520,7 +520,7 @@ def build_assets(weapons_dir=make_weapons.DEFAULT_DIR):
     # The bow: the slim human's pull-and-release as an animation, and the bow itself as a weapon strip that
     # goes behind it. Built apart, so either can change; they are laid over each other frame by frame.
     bow_assets = []
-    for who in ('human', 'slim', 'ninja', 'ranger', 'bones', 'paladin', 'blossom', 'earthbender'):                          # every person built from the humanoid model
+    for who in ('human', 'slim', 'ninja', 'ranger', 'verdant', 'fey', 'bones', 'paladin', 'blossom', 'earthbender'):                          # every person built from the humanoid model
         creature = getattr(importlib.import_module(f'make_{who}'), 'CREATURE')
         bow = make_bow.build_frames(make_bow.with_bow(creature))
         for facing in ('NE', 'SE'):

@@ -37,7 +37,7 @@ FACES = {
 }
 
 TO_RGB = {char: tuple(int(hex_[i:i + 2], 16) for i in (0, 2, 4)) for char, _, _, _, hex_ in ep.ROLES}
-FROM_RGB = {rgb: char for char, rgb in TO_RGB.items()}
+FROM_RGB = ep.COLOUR_TO_ROLE
 
 
 def read_frames(path, cols, rows):

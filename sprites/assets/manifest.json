@@ -1637,6 +1637,78 @@
    "frames": 4
   },
   {
+   "id": "bow-draw-verdant-ne",
+   "label": "Bow draw NE (Verdant)",
+   "category": "Animations",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 4,
+   "rows": 1,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 28
+   },
+   "file": "bow-draw-verdant-ne.png",
+   "frames": 4
+  },
+  {
+   "id": "bow-draw-verdant-se",
+   "label": "Bow draw SE (Verdant)",
+   "category": "Animations",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 4,
+   "rows": 1,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 28
+   },
+   "file": "bow-draw-verdant-se.png",
+   "frames": 4
+  },
+  {
+   "id": "bow-draw-fey-ne",
+   "label": "Bow draw NE (Fey)",
+   "category": "Animations",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 4,
+   "rows": 1,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 28
+   },
+   "file": "bow-draw-fey-ne.png",
+   "frames": 4
+  },
+  {
+   "id": "bow-draw-fey-se",
+   "label": "Bow draw SE (Fey)",
+   "category": "Animations",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 4,
+   "rows": 1,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 28
+   },
+   "file": "bow-draw-fey-se.png",
+   "frames": 4
+  },
+  {
    "id": "bow-draw-bones-ne",
    "label": "Bow draw NE (Bones)",
    "category": "Animations",

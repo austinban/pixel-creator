@@ -13,6 +13,17 @@ python3 tools/check_conventions.py
 
 Run it after changing any pose, colour ramp, proportion or weapon.
 
+## Floating creatures
+
+A spirit or wisp has no feet, so it follows its own ground rules (kind `floater` in `BASE_KINDS`, `tools/conventions.py`):
+
+- Its **lowest painted row** (the tail tip or a trailing wisp) is **28-31**, a little below the ground line at 27, and it stays in that band: across a walk the lowest row changes by at most **3**, so it bobs instead of sinking or lifting off. The game draws its shadow on the ground at row 27.
+- It may stand **22-32 rows** tall, taller than a person (24-27), and at most **26 columns** wide, outline included. Standing, it is centred like everyone else (middle at 15-18).
+- No lean, weight, walk-slide or hand-path checks apply; the outline, the cell margins and the palette still do.
+- Anything not on the list is checked as a humanoid, so declare a floater in `BASE_KINDS`.
+
+`tools/trace_guide.py` turns a picture of a pose guide (`tools/make_pose_guide.py`) back into sprites and trims them to these rules.
+
 ## The cell
 
 - A character is drawn in a **32 × 32** cell. Painted pixels stay inside columns **1-30** and rows
@@ -136,6 +147,10 @@ through the air.
 
 - Everything is painted in the shared palette's colour **roles**, never in raw colours, so a
   character recolours with the hue sliders and swatches.
+- The palette is moody on purpose, for a spirit realm with corrupted plants: deep indigo darks, muted mid-tones, and the cyan, violet and pink kept
+  vivid as the only glows. **Changing the palette** means editing the hex values in `ROLES` (`tools/extract_poses.py`) with the old ones saved first in
+  `LEGACY_HEX`, then `python3 tools/recolor.py` (swaps every sprite PNG's colours by role, no rebuilding from poses) and
+  `python3 tools/make_assets.py --png-dir sprites/assets`. Keep each ramp's light-to-dark order. Roles are letters, so nothing else changes.
 - A shaded material is a **ramp** of four roles, **light to dark**: lit, base, shade, deep. A ramp
   never gets lighter as it goes down.
 - Shading has four steps, set by how the surface faces the light: lit, base, shade, deep. Where a
