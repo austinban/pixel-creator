@@ -130,7 +130,7 @@ def half(rows):
                 line.append('.')
                 continue
             body = [c for c in block if c != 'O'] or block
-            line.append(max(set(body), key=body.count))
+            line.append(max(sorted(set(body)), key=body.count))
         out.append(line)
     return out
 
@@ -160,7 +160,7 @@ def shrink(rows, num, den):
             if len(block) * 2 < len(ys) * len(xs) or not body:
                 line.append('.')
             else:
-                line.append(max(set(body), key=body.count))
+                line.append(max(sorted(set(body)), key=body.count))
         out.append(line)
     lay = Layer()
     stamp(lay, out, 4, 4)
