@@ -156,43 +156,50 @@ def render_frame(parts, decals, facing, origin, ramps, scale=1.0, decal_part='he
         c = mv(B, pt)
         return ox + c[0], oy - c[1], c[2]
 
-    prepared = [(q, tr(q['R']), q['r']) for q in placed]
+    # Every ellipsoid, with what does not depend on the ray worked out once: the ray's direction in its own frame, the quadratic's `a`, and where it falls on the screen. The camera is
+    # orthographic, so a ray can only hit an ellipsoid whose middle is within its longest radius of the ray on the screen: the others are skipped without being tested. That changes
+    # nothing about the picture (a ray that would hit is never skipped, and the rest are worked out exactly as before); it just stops every ray being tried on every ellipsoid.
+    prepared = []
+    for q in placed:
+        Rt, r = tr(q['R']), q['r']
+        d = mv(Rt, direction)
+        d = (d[0] / r[0], d[1] / r[1], d[2] / r[2])
+        cam = mv(B, q['c'])
+        prepared.append((q, Rt, r, d, d[0] * d[0] + d[1] * d[1] + d[2] * d[2], ox + cam[0], oy - cam[1], max(r) + 0.05))
 
-    def cast(sx, sy):
-        """The nearest ellipsoid along the ray through this screen point."""
-        origin_m = mv(Bt, (sx - ox, oy - sy, 0.0))
-        best = None
-        for q, Rt, r in prepared:
-            o = mv(Rt, sub(origin_m, q['c']))
-            o = (o[0] / r[0], o[1] / r[1], o[2] / r[2])
-            d = mv(Rt, direction)
-            d = (d[0] / r[0], d[1] / r[1], d[2] / r[2])
-            a = d[0] * d[0] + d[1] * d[1] + d[2] * d[2]
-            b = o[0] * d[0] + o[1] * d[1] + o[2] * d[2]
-            c = o[0] * o[0] + o[1] * o[1] + o[2] * o[2] - 1
-            disc = b * b - a * c
-            if disc < 0:
-                continue
-            t = (-b + math.sqrt(disc)) / a
-            if best is None or t > best[0]:
-                u = tuple(o[i] + t * d[i] for i in range(3))
-                n = mv(q['R'], (u[0] / r[0], u[1] / r[1], u[2] / r[2]))
-                m = math.sqrt(sum(x * x for x in n)) or 1
-                nc = mv(B, tuple(x / m for x in n))
-                shade = 0.22 + 0.78 * max(0.0, sum(nc[i] * LIGHT[i] for i in range(3)))
-                best = (t, q['mat'], q['part'], shade)
-        return best
+    best = {}               # (pixel row, column, sub-sample) -> (t, material, part, shade): the nearest ellipsoid on that ray
+    for q, Rt, r, d, a, cx, cy, reach in prepared:
+        reach2 = reach * reach
+        for py in range(max(0, int(math.floor(cy - reach))), min(CELL - 1, int(math.floor(cy + reach))) + 1):
+            for px in range(max(0, int(math.floor(cx - reach))), min(CELL - 1, int(math.floor(cx + reach))) + 1):
+                for i in range(SS):
+                    for j in range(SS):
+                        sx, sy = px + (i + 0.5) / SS, py + (j + 0.5) / SS
+                        if (sx - cx) ** 2 + (sy - cy) ** 2 > reach2:
+                            continue
+                        origin_m = mv(Bt, (sx - ox, oy - sy, 0.0))
+                        o = mv(Rt, sub(origin_m, q['c']))
+                        o = (o[0] / r[0], o[1] / r[1], o[2] / r[2])
+                        b = o[0] * d[0] + o[1] * d[1] + o[2] * d[2]
+                        c = o[0] * o[0] + o[1] * o[1] + o[2] * o[2] - 1
+                        disc = b * b - a * c
+                        if disc < 0:
+                            continue
+                        t = (-b + math.sqrt(disc)) / a
+                        key = (py, px, i, j)
+                        if key not in best or t > best[key][0]:
+                            u = tuple(o[k] + t * d[k] for k in range(3))
+                            n = mv(q['R'], (u[0] / r[0], u[1] / r[1], u[2] / r[2]))
+                            m = math.sqrt(sum(x * x for x in n)) or 1
+                            nc = mv(B, tuple(x / m for x in n))
+                            shade = 0.22 + 0.78 * max(0.0, sum(nc[k] * LIGHT[k] for k in range(3)))
+                            best[key] = (t, q['mat'], q['part'], shade)
 
     grid = [[None] * CELL for _ in range(CELL)]
     depth = [[-1e9] * CELL for _ in range(CELL)]
     for py in range(CELL):
         for px in range(CELL):
-            hits = []
-            for i in range(SS):
-                for j in range(SS):
-                    s = cast(px + (i + 0.5) / SS, py + (j + 0.5) / SS)
-                    if s:
-                        hits.append(s)
+            hits = [best[(py, px, i, j)] for i in range(SS) for j in range(SS) if (py, px, i, j) in best]
             if len(hits) * 2 >= SS * SS:
                 top = max(hits)
                 grid[py][px] = [top[1], top[2], top[3]]
