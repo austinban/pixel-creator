@@ -1,5 +1,7 @@
 # Pixel Creator
 
+Working on the repo, or an agent working in it? Start with [AGENTS.md](AGENTS.md): the rules, the build and cache, how to add an asset family, and what the game reads.
+
 A small, dependency-free pixel art editor that runs from a single folder of
 static files. Pick a grid size, pick a colour, fill in cells, export a PNG with
 a transparent background.
@@ -204,11 +206,11 @@ lies flat on the ground and has two frames, NE and SE (20 × 14 cell, not animat
 those mirrored about the anchor, which is the arrow's middle on the ground. The unchosen ones are
 the same sprite recoloured pale. Look at the model with
 `python3 tools/make_facing.py --model previews/facing-3d.png`; the sprites come from the same
-model in `tools/make_assets.py`.
+model in `tools/make_facing.py`.
 
 The first asset is the **turn crystal**: a Sims-style marker for whose turn it is,
 hovering above the active character and turning as it bobs. It is rendered from a
-small 3D model (a stretched octahedron, flat-shaded) by `tools/make_assets.py`, so
+small 3D model (a stretched octahedron, flat-shaded) by `tools/make_crystal.py`, so
 the rotation is real, and it repeats every quarter turn, so it loops without a
 seam. It is 8 frames at 8 a second, in a 32 × 32 cell, the same cell as the
 characters, with at least 5 pixels clear on every side so nothing clips and there
@@ -229,7 +231,7 @@ cell edge.
 
 Unlike the characters, the asset data is generated from code, not from anyone's art,
 so `assets/data.js` is committed. To change the crystal, edit `CRYSTAL` in
-`tools/make_assets.py` (cell size, frames, size, tilt, bob) and run:
+`tools/make_crystal.py` (cell size, frames, size, tilt, bob) and run:
 
 ```bash
 python3 tools/make_assets.py

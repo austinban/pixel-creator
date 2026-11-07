@@ -325,9 +325,4 @@ originals, change the number in `tools/conventions.py` **and** this file togethe
 
 ## What the game reads
 
-The game (iso-fft-like) pulls art with `tools/sync_sprites.py` in its own repo, one way. What it reads and must stay put: the character, weapon and bow sheets by filename and size, `sprites/assets/ground.png` and `ground-corrupted.png`, and
-`assets/data.js`, including the ids `crystal`, `rock`, `facing`, `facing-pale`, `weapon-bow-ne`, `weapon-bow-se`, `arrow-iso` and `arrow`. **`assets/data.js` has a top-level `"format"` number** (`DATA_FORMAT` in `tools/make_assets.py`, now 1): bump it
-when a key is renamed or the layout changes, not when assets are added, so the game can notice by itself. The facing marker is a 20 x 14 cell, two frames, anchored at (10, 8): tell the game's side before changing either. The palette has grown (31 roles, `D` Abyss teal) and the roles list is in `data.js`, so a role added or renamed is a change to tell them about.
-
-Two ways to get an edited character to the game without a hand-made ZIP, on the Characters page: **Export for the game (ZIP, 1x)** is always true size and has a `pixel-creator.json` (`{"format": 1, "kind": "character", "set": ..., "base": ..., "scale": 1, "cell": [32, 32]}`) beside the PNGs, and
-**Save to sprites/ (1x)** (Chromium only) writes the PNGs and the same manifest straight to `sprites/<set>/` using the File System Access API, asking for the repo's `sprites/` folder once and remembering it. It refuses a set that would replace a generated one: a name that is a base, a folder that has no `pixel-creator.json` of ours, or `assets` and `weapons`.
+Moved to [AGENTS.md](AGENTS.md#what-the-game-reads), with the rest of how the repo is worked on.
