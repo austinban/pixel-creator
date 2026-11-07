@@ -1,0 +1,51 @@
+{
+ "about": "The chest sheets in this folder. See README.md beside this file for the whole story.",
+ "cell": [
+  48,
+  52
+ ],
+ "anchor": {
+  "x": 24,
+  "y": 40
+ },
+ "fps": 10,
+ "openingFrames": 8,
+ "rarities": {
+  "common": {
+   "label": "Common",
+   "shut": {
+    "NE": "chest-common-ne.png",
+    "SE": "chest-common-se.png"
+   },
+   "opening": {
+    "NE": "chest-common-ne-open.png",
+    "SE": "chest-common-se-open.png"
+   },
+   "openingPlays": "once, then hold the last frame"
+  },
+  "rare": {
+   "label": "Rare",
+   "shut": {
+    "NE": "chest-rare-ne.png",
+    "SE": "chest-rare-se.png"
+   },
+   "opening": {
+    "NE": "chest-rare-ne-open.png",
+    "SE": "chest-rare-se-open.png"
+   },
+   "openingPlays": "once, then hold the last frame"
+  },
+  "legendary": {
+   "label": "Legendary",
+   "shut": {
+    "NE": "chest-legendary-ne.png",
+    "SE": "chest-legendary-se.png"
+   },
+   "opening": {
+    "NE": "chest-legendary-ne-open.png",
+    "SE": "chest-legendary-se-open.png"
+   },
+   "openingPlays": "once, then hold the last frame"
+  }
+ }
+}

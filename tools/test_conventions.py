@@ -357,6 +357,155 @@ class AbilityAnimations(unittest.TestCase):
             self.assertIn(f'`{name}.png`', readme, name + ' is not in the README')
 
 
+class CorruptedGround(unittest.TestCase):
+    """The corrupted ground is the original sheet cell for cell: the same tiles in the same places, on the palette, with only a little drawn over the outlines."""
+
+    @classmethod
+    def setUpClass(cls):
+        import make_ground as mg
+        import make_corrupted_ground as mc
+        mc.ensure_sheet()
+        cls.mg, cls.mc = mg, mc
+        cls.original = {a['id']: a for a in mg.build_ground_assets()}
+        cls.corrupted = mg.build_corrupted_assets()
+        cls.plain_ids = {f'ground-corrupted-{c}-{r}' for c, r in mc.CLEAN_GRASS}
+
+    def test_every_corrupted_tile_has_an_original_in_the_same_cell(self):
+        self.assertGreater(len(self.corrupted), 100)
+        for a in self.corrupted:
+            if a['id'] in self.plain_ids:
+                continue
+            o = self.original['ground-' + a['id'][len('ground-corrupted-'):]]
+            self.assertEqual((a['w'], a['h']), (o['w'], o['h']), a['id'])
+            self.assertEqual(a['category'], 'Corrupted ' + o['category'], a['id'])
+        cats = {a['category'] for a in self.corrupted}
+        self.assertLessEqual({'Corrupted Grass', 'Corrupted Water'}, cats)
+
+    def test_a_block_keeps_its_shape(self):
+        # Nothing of the original's outline is lost, and what is added past it (a mushroom cap, a spore) is small.
+        for a in self.corrupted:
+            if a['category'] == 'Corrupted Nature' or a['id'] in self.plain_ids:
+                continue
+            o = self.original['ground-' + a['id'][len('ground-corrupted-'):]]
+            lost = extra = 0
+            for ra, ro in zip(a['frames'][0], o['frames'][0]):
+                for ca, co in zip(ra, ro):
+                    lost += co != '.' and ca == '.'
+                    extra += co == '.' and ca != '.'
+            self.assertEqual(lost, 0, a['id'])
+            self.assertLessEqual(extra, 45, a['id'])
+
+    def test_it_is_teal_and_purple_not_green_and_orange(self):
+        import collections
+        count = collections.Counter(''.join(''.join(r) for a in self.corrupted if a['category'] in ('Corrupted Grass', 'Corrupted Dirt') for r in a['frames'][0]))
+        total = sum(v for k, v in count.items() if k != '.')
+        green_orange = sum(count[k] for k in 'zABabde')
+        self.assertLess(green_orange / total, 0.03)
+
+    def test_the_plain_grass_blocks_have_the_mushroom_blocks_shape_and_no_decoration(self):
+        by_id = {a['id']: a for a in self.corrupted}
+        accent = by_id['ground-corrupted-0-0']['frames'][0]
+        sil = lambda rows: [''.join('#' if ch != '.' else '.' for ch in r) for r in rows]
+        seen = set()
+        for cell in self.mc.CLEAN_GRASS:
+            a = by_id['ground-corrupted-%d-%d' % cell]
+            self.assertEqual((a['category'], a['w'], a['h']), ('Corrupted Grass', 32, 32))
+            self.assertEqual(sil(a['frames'][0]), sil(self.original['ground-0-0']['frames'][0]), a['id'] + ' has another shape than the plain (0, 0) block')
+            # no mushroom, vine, thorn or eye: only the turf, earth and the two turf glints
+            self.assertLessEqual(set(''.join(a['frames'][0])) - {'.'}, set('qsklpwxurDg'), a['id'])
+            seen.add(tuple(a['frames'][0]))
+        self.assertEqual(len(seen), len(self.mc.CLEAN_GRASS), 'the plain blocks should differ from each other')
+        self.assertNotIn(tuple(accent), seen)
+        for cell in self.mc.CLEAN_GRASS:      # the cells were empty in the original, and the accent block is still where it was
+            self.assertNotIn('ground-%d-%d' % cell, self.original)
+        self.assertIn('ground-corrupted-0-0', by_id)
+
+    def test_there_are_mushrooms_and_vines(self):
+        # caps and vine colours that the original tiles never used on their own: violet, pink, orchid-lit teal
+        import collections
+        count = collections.Counter(c for a in self.corrupted for r in a['frames'][0] for c in r)
+        for role in 'vjr':
+            self.assertGreater(count[role], 40, role)
+
+
+class Chests(unittest.TestCase):
+    """The chests: three rarities, NE and SE, shut and opening, inside the cell, growing with rarity."""
+
+    def test_the_assets_are_grouped_and_named(self):
+        import make_chest as mk
+        assets = {a['id']: a for a in mk.build_assets()}
+        want = {f'chest-{r}-{f}{o}' for r in ('common', 'rare', 'legendary') for f in ('ne', 'se') for o in ('', '-open')}
+        self.assertEqual(set(assets), want)
+        for a in assets.values():
+            self.assertEqual((a['category'], a['folder'], a['place'], a['w'], a['h']), ('Chests', 'chests', 'ground', 48, 52), a['id'])
+            self.assertEqual(len(a['frames']), 8 if a['id'].endswith('-open') else 1, a['id'])
+
+    def test_every_frame_is_inside_the_cell_and_on_the_palette(self):
+        import make_chest as mk
+        import extract_poses as ep
+        known = {c for c, *_ in ep.ROLES}
+        for a in mk.build_assets():
+            for rows in a['frames']:
+                self.assertEqual((len(rows), {len(r) for r in rows}), (52, {48}))
+                self.assertTrue(set(''.join(rows)) <= known | {'.'})
+                pts = [(x, y) for y, r in enumerate(rows) for x, ch in enumerate(r) if ch != '.']
+                self.assertTrue(all(1 <= x <= 46 and 1 <= y <= 50 for x, y in pts), a['id'] + ' reaches the edge of its cell')
+
+    def test_the_opening_starts_shut_changes_every_frame_and_ends_open(self):
+        import make_chest as mk
+        assets = {a['id']: a for a in mk.build_assets()}
+        for r in mk.RARITIES:
+            for f in ('ne', 'se'):
+                shut, anim = assets[f'chest-{r}-{f}']['frames'][0], assets[f'chest-{r}-{f}-open']['frames']
+                self.assertEqual(anim[0], shut)
+                self.assertEqual(len({tuple(x) for x in anim}), len(anim), r + ' repeats a frame')
+                self.assertNotEqual(anim[-1], shut)
+
+    def test_a_dearer_chest_is_larger_and_the_two_facings_differ(self):
+        import make_chest as mk
+        assets = {a['id']: a for a in mk.build_assets()}
+        size = lambda rows: sum(ch != '.' for r in rows for ch in r)
+        areas = [size(assets[f'chest-{r}-ne']['frames'][0]) for r in ('common', 'rare', 'legendary')]
+        self.assertEqual(areas, sorted(areas))
+        self.assertEqual(len(set(areas)), 3)
+        for r in mk.RARITIES:
+            self.assertNotEqual(assets[f'chest-{r}-ne']['frames'][0], assets[f'chest-{r}-se']['frames'][0])
+
+
+class SpritesSave(unittest.TestCase):
+    """The editor's Save to sprites/ never overwrites a generated set (the guard is tested in node with in-memory folders)."""
+
+    def test_the_guard_refuses_generated_sets_and_allows_its_own(self):
+        import shutil
+        import subprocess
+        if not shutil.which('node'):
+            self.skipTest('node is not installed')
+        done = subprocess.run(['node', str(Path(__file__).resolve().parent / 'test_save.js')], capture_output=True, text=True)
+        self.assertEqual(done.returncode, 0, done.stdout + done.stderr)
+
+
+class Bazaar(unittest.TestCase):
+    """The bazaar is one 256 x 256 still on the palette, with the floor's middle as its anchor and room round it."""
+
+    def test_one_asset_of_the_right_size(self):
+        import make_bazaar as mb
+        import extract_poses as ep
+        (asset,) = mb.build_assets()
+        self.assertEqual((asset['id'], asset['w'], asset['h'], asset['kind']), ('bazaar-shop', 256, 256, 'still'))
+        rows = asset['frames'][0]
+        self.assertEqual((len(rows), {len(r) for r in rows}), (256, {256}))
+        self.assertLessEqual(set(''.join(rows)) - {'.'}, {c for c, *_ in ep.ROLES})
+
+    def test_it_floats_with_clear_space_round_it(self):
+        import make_bazaar as mb
+        rows = mb.build_assets()[0]['frames'][0]
+        self.assertEqual(rows[0].strip('.'), '')                                   # nothing touches the top, the sides or the bottom
+        self.assertTrue(all(r[0] == '.' and r[-1] == '.' for r in rows))
+        self.assertEqual(rows[-1].strip('.'), '')
+        x, y = mb.ANCHOR
+        self.assertNotEqual(rows[y][x], '.')                                       # the anchor is on the floor
+
+
 class Traps(unittest.TestCase):
     """The traps: grouped, each placed and triggered, inside the cell, and the triggered animation starts like the placed trap and ends changed."""
 

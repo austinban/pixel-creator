@@ -5,7 +5,7 @@
     projectile-bone-shatter   6 frames, plays once: it cracks, breaks into three pieces that fly apart and fall, and a puff of bone dust
 
 Both are drawn on a 24 x 24 cell with the middle of the bone at the anchor (12, 12). The game moves the spin along the throw (from the thrower's hand to the target's) and plays the shatter where it lands.
-The throw animation itself, with the bone in the hand, is make_throw.py.
+There is no separate throw pose: a skeleton throws with its ordinary attack animation (it is overhand), and the game launches the spin from the hand.
 
     python3 tools/make_bone.py --preview previews/bone.png
 """

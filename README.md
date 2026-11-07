@@ -88,8 +88,8 @@ are stored as that colour's role, so they follow later recolouring; pixels in
 other colours stay as drawn. **Revert edits** puts the base pose back.
 
 **Export full set (ZIP)** downloads every pose of the current character as PNGs,
-and **Export all characters (ZIP)** does the same for every saved character, one
-folder each. The pixel-size menu applies to both.
+and **Export for the game (ZIP, 1×)** is the same at true size with a `pixel-creator.json` saying what it is, and **Save to sprites/ (1×)** (Chromium) writes it straight into the repo's `sprites/` folder for the game's sync script. **Export all characters (ZIP)** does the same for every saved character, one
+folder each. The pixel-size menu applies to the two ordinary exports.
 
 Poses are named `<action><facing>`, like the source files they come from
 (`20240427cleric-attackNE.png` becomes `attackNE`). NE faces away from the
@@ -273,6 +273,21 @@ share the same 16 tiles; `tools/make_nodemap.py` is the generator and the refere
 
 Caltrops and a bear trap, each placed (one frame) and triggered (an animation that ends on the spent trap). Their own group: the **Traps** category on the Assets page, ids `trap-*`,
 and the folder `sprites/assets/traps/`, which has a **README.md for the app that uses it** and a `traps.json` with the numbers. `tools/make_traps.py` is the generator.
+
+## The corrupted ground
+
+The grass and water ground sets again, rotted: teal and purple turf and soil, a murky water, mushrooms, vines, thorns and the odd pair of eyes. `sprites/assets/ground-corrupted.png` has the same cells as `ground.png`
+(categories **Corrupted Grass / Dirt / Stone / Water / Nature**, ids `ground-corrupted-COL-ROW`). `tools/make_corrupted_ground.py` makes it from the original (`--preview` shows the two side by side). Three plain grass blocks with no mushrooms are at cells (4, 11), (5, 11) and (6, 11), for everyday grass.
+
+## Treasure chests
+
+Common, rare and legendary treasure chests that stand on one ground tile, each in NE and SE, shut and opening (an 8-frame animation that plays once and ends on the open chest). Category **Chests**, ids `chest-RARITY-ne`, `chest-RARITY-ne-open` and so on,
+in the folder `sprites/assets/chests/` (its **README.md** says how to place and play them). They grow in size and richness with rarity. `tools/make_chest.py --preview previews/chests.png` shows them enlarged.
+
+## The bazaar
+
+The inside of a shop as a single 256 x 256 image (`bazaar-shop`, category **Buildings**, `sprites/assets/bazaar-shop.png`): a floating, cut-away room with the game's own weapons, amulets, crystals and rocks on its walls,
+counter and tables, anchored on the middle of its floor. `tools/make_bazaar.py` is the generator (`--preview` for an enlarged look).
 
 ## Ability animations
 

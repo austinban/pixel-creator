@@ -207,6 +207,32 @@ A trap lies flat on a ground tile and has two states: **placed** (one frame, the
 triggered animation plays once, at 10 frames a second, and **ends on the spent trap**, which is the picture to keep drawing. A new trap is an entry in `TRAPS` in `tools/make_traps.py`:
 a placed state and a list of triggered frames, built from ellipsoids and looked at in 3D (`--model`) before it is drawn.
 
+## The corrupted ground
+
+A second ground set, `sprites/assets/ground-corrupted.png`, laid out **cell for cell like `ground.png`**: a tile has the same shape and the same column and row in both, so a map can swap one set for the other. Its assets
+are ids `ground-corrupted-COL-ROW` in the categories **Corrupted Grass, Corrupted Dirt, Corrupted Stone, Corrupted Water** and **Corrupted Nature**, each with the original's label behind "Corrupted", and the same `overlay` shape
+as the original. The crates, fences and stairs have no corrupted version. It is made, not hand-drawn: `tools/make_corrupted_ground.py` recolours the original by role (turf teal with lavender patches, soil plum and purple, water
+a teal with violet foam and dark teal sides (the shaded side is a new role, `D` Abyss teal, `083a45`), wood bruised grey-purple) and then draws on the tiles that are full blocks: mushrooms on top, vines over the sides, thorns, and now and then a pair of glowing eyes in the dirt. Slopes and edge pieces
+keep a clean outline. A tile never loses any of the original's outline and gains no more than 45 pixels past it (the tests check both). The bush, pine, stump, logs and rocks get the same treatment, and the two flowers are mushroom
+clusters. Run `make_assets.py` and the sheet is remade first, so it follows the original and the palette.
+
+**Plain grass.** The one full grass block at (0, 0) carries mushrooms, and a map that lays it on every grass tile repeats them. So three **plain** grass blocks, with no mushrooms, vines, thorns or eyes, sit in cells that are empty in both sheets: **(4, 11), (5, 11), (6, 11)**
+(ids `ground-corrupted-4-11` ... `-6-11`, labels "Corrupted Grass, plain 1-3", category Corrupted Grass, the same shape and `overlay` as (0, 0)). Each has its own turf pattern. `CLEAN_GRASS` in `tools/make_corrupted_ground.py` is the list; the (0, 0) block keeps its mushrooms as the occasional accent.
+
+## Treasure chests
+
+Three chests on one ground tile, **common, rare and legendary**, each **NE and SE**, **shut** (`chest-RARITY-ne`, one frame) and **opening** (`chest-RARITY-ne-open`, an animation), category **Chests**, folder `sprites/assets/chests/`, 48 x 52 frames anchored at **(24, 40)**, the
+middle of the tile on the ground (the cell is wider than a tile because the lid and light swing out). NE has the lock on the lit right-hand face and SE on the shaded left-hand one; NW and SW are flips. The opening is 8 frames at 10 a second, plays once, **starts as the shut chest and ends open**,
+the picture to keep drawing. Rarity is size and richness: 24, 30 and 32 pixels wide, wood and iron, then mahogany and teal steel with a sapphire, then violet lacquer and gold with gems, and more treasure inside. They are generated: `tools/make_chest.py` is a small 3D model (hollow body, hinged lid, treasure) drawn in the
+ground tiles' projection; `SPECS` is a rarity and `FRAMES` the opening. The folder's README.md says how to place and play them; the tests check the cell, the palette, the growth and the animation.
+
+## The bazaar
+
+The inside of a shop as one still: **`bazaar-shop`**, category **Buildings**, a single **256 x 256** image (`sprites/assets/bazaar-shop.png`) of a cut-away room floating in the air like the ground tiles: a 7 x 7 cell wooden floor
+on a slab of the ground's clay with a rock hanging under it, two back walls, and the front and sides open to the camera. It is in the ground's projection (16 across, 8 down a cell) and anchored on the middle of the
+floor, at (128, 148). Its wares are the game's own sprites (weapon icons, amulets, crystals and rocks, taken from `sprites/assets`) plus bottles, books and scrolls drawn in the generator, so a changed item shows in the
+shop the next time it is built. `tools/make_bazaar.py` is the generator (`--preview` shows it enlarged); the tests keep it on the palette, 256 x 256 and clear of the image's edges.
+
 ## Buildings
 
 The building tiles are one-cell, one-level **32 x 32 cubes** in the ground tiles' projection (16 across and 8 down a cell, 16 pixels a level, a storey of two levels), drawn in the quieter palette roles
@@ -296,3 +322,12 @@ python3 -m unittest discover -s tools -p 'test_*.py'
 If the rules turn out to be wrong, do not just edit a pose to dodge a check. Re-measure from the
 originals, change the number in `tools/conventions.py` **and** this file together, and re-run
 `check_conventions.py` so everything is held to the new rule.
+
+## What the game reads
+
+The game (iso-fft-like) pulls art with `tools/sync_sprites.py` in its own repo, one way. What it reads and must stay put: the character, weapon and bow sheets by filename and size, `sprites/assets/ground.png` and `ground-corrupted.png`, and
+`assets/data.js`, including the ids `crystal`, `rock`, `facing`, `facing-pale`, `weapon-bow-ne`, `weapon-bow-se`, `arrow-iso` and `arrow`. **`assets/data.js` has a top-level `"format"` number** (`DATA_FORMAT` in `tools/make_assets.py`, now 1): bump it
+when a key is renamed or the layout changes, not when assets are added, so the game can notice by itself. The facing marker is a 20 x 14 cell, two frames, anchored at (10, 8): tell the game's side before changing either. The palette has grown (31 roles, `D` Abyss teal) and the roles list is in `data.js`, so a role added or renamed is a change to tell them about.
+
+Two ways to get an edited character to the game without a hand-made ZIP, on the Characters page: **Export for the game (ZIP, 1x)** is always true size and has a `pixel-creator.json` (`{"format": 1, "kind": "character", "set": ..., "base": ..., "scale": 1, "cell": [32, 32]}`) beside the PNGs, and
+**Save to sprites/ (1x)** (Chromium only) writes the PNGs and the same manifest straight to `sprites/<set>/` using the File System Access API, asking for the repo's `sprites/` folder once and remembering it. It refuses a set that would replace a generated one: a name that is a base, a folder that has no `pixel-creator.json` of ours, or `assets` and `weapons`.

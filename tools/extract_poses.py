@@ -75,6 +75,7 @@ ROLES = [
     ('A', 'green', 'Green', 'green', '4a9e3c'),
     ('B', 'emerald', 'Emerald', 'green', '12804f'),
     ('C', 'sand', 'Sand', 'neutral', 'd9c598'),
+    ('D', 'abyss', 'Abyss teal', 'teal', '083a45'),      # darker than Deep teal: the shaded side of the corrupted water
 ]
 
 # The colours the roles had before the moodier palette (the source PNGs that are not ours, such as the ground sheet and the weapon strips, still use them).

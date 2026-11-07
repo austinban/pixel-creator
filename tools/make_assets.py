@@ -26,6 +26,10 @@ import make_amulets  # noqa: E402
 import make_buildings  # noqa: E402
 import make_nodemap  # noqa: E402
 import make_traps  # noqa: E402
+import make_bone  # noqa: E402
+import make_bazaar  # noqa: E402
+import make_chest  # noqa: E402
+import make_corrupted_ground  # noqa: E402
 import make_abilities  # noqa: E402
 import make_bow  # noqa: E402
 import make_ground  # noqa: E402
@@ -554,7 +558,7 @@ def build_assets(weapons_dir=make_weapons.DEFAULT_DIR):
                     })
     # The ground tileset is sliced from a PNG rather than rendered.
     # Weapon strips are read from PNGs too, if there are any.
-    assets = [crystal_asset] + facing_assets + overlay_assets + rope_assets + boss_assets + dot_assets + [bridge_asset, vine_asset, fire_asset, heal_asset, arrow_side, arrow_angled] + bow_assets + [amulet_asset, rock_asset] + make_nodemap.build_assets() + make_buildings.build_assets() + make_traps.build_assets() + make_abilities.build_assets() + make_ground.build_ground_assets() + make_weapons.build_weapon_assets(weapons_dir)
+    assets = [crystal_asset] + facing_assets + overlay_assets + rope_assets + boss_assets + dot_assets + [bridge_asset, vine_asset, fire_asset, heal_asset, arrow_side, arrow_angled] + bow_assets + make_bone.build_assets() + [amulet_asset, rock_asset] + make_nodemap.build_assets() + make_buildings.build_assets() + make_traps.build_assets() + make_chest.build_assets() + make_bazaar.build_assets() + make_abilities.build_assets() + make_ground.build_ground_assets() + make_ground.build_corrupted_assets() + make_weapons.build_weapon_assets(weapons_dir)
     tag_overlay_shapes(assets)
     # Each weapon's display icon, linked both ways by the weapon's name (see make_weapon_icons.py): it fails the build if they do not match.
     assets += make_weapon_icons.build_icon_assets()
@@ -596,6 +600,18 @@ def tag_overlay_shapes(assets):
             shape = max(fits)[1] if fits else None
         if shape is not None:
             a['overlay'] = shape
+    for a in assets:        # a corrupted tile has the original's shape, so the same overlay fits it
+        if not a['id'].startswith('ground-corrupted-'):
+            continue
+        cell = a['id'][len('ground-corrupted-'):]
+        if tuple(int(v) for v in cell.split('-')) in make_corrupted_ground.CLEAN_GRASS:      # a plain block is the (0, 0) block's shape
+            cell = '%d-%d' % make_corrupted_ground.CLEAN_SOURCE
+        if 'overlay' in by_id.get('ground-' + cell, {}):
+            a['overlay'] = by_id['ground-' + cell]['overlay']
+
+
+# The shape of assets/data.js, for the game that reads it: bump this when a key is renamed or the layout changes (not when assets are added).
+DATA_FORMAT = 1
 
 
 def main():
@@ -607,6 +623,7 @@ def main():
 
     assets = build_assets(args.weapons)
     data = {
+        'format': DATA_FORMAT,
         'groups': [{'id': i, 'label': l, 'hue': i not in ('outline', 'neutral')} for i, l in ep.GROUPS],
         'roles': [{'char': c, 'id': i, 'label': l, 'group': g, 'hex': '#' + h} for c, i, l, g, h in ep.ROLES],
         # The order the browse view lists them in: by first appearance.
@@ -665,6 +682,7 @@ def main():
         make_nodemap.write_package(args.png_dir / make_nodemap.FOLDER)
         make_buildings.write_package(args.png_dir / make_buildings.FOLDER)
         make_traps.write_package(args.png_dir / make_traps.FOLDER)
+        make_chest.write_package(args.png_dir / make_chest.FOLDER)
         make_abilities.write_package(args.png_dir / make_abilities.FOLDER)
         print(f'{len(manifest)} sheets and manifest.json -> {args.png_dir}')
 
