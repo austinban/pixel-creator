@@ -39,7 +39,7 @@ SKIPPED |= {(c, r) for c in range(0, 8) for r in range(10, 13)}                 
 PROP_CELLS = {BUSH, (1, 3), (1, 4), STUMP, *ROCKS, *LOGS, *FLOWERS}
 
 # --- recolouring, by role --------------------------------------------------------------------
-TILE_MAP = {'z': 'q', 'A': 's', 'B': 'k', 'd': 'r', 'b': 'f', 'a': 'g', 'e': 'u', 'f': 'w', 'g': 'x'}
+TILE_MAP = {'z': 's', 'A': 's', 'B': 'D', 'd': 'r', 'b': 'f', 'a': 'g', 'e': 'u', 'f': 'w', 'g': 'x'}
 WATER_MAP = {'n': 'q', 'o': 's', 'm': 's', 'k': 'D', 'r': 'r', 't': 'v', 'A': 's', 'B': 'k', 'g': 'x'}      # a teal top with darker rings; the sides dark teal, the shaded one the abyss teal role (D)
 TREE_MAP = {'A': 'q', 'B': 's', 's': 'w', 'k': 'x', 'g': 'x', 'f': 'w', 'a': 'u', 'e': 'u'}
 WOOD_MAP = {'a': 'l', 'e': 'g', 'f': 'u', 'g': 'w', 'k': 'x'}
@@ -166,7 +166,8 @@ def recolour(orig, out, c, r, mapping):
 
 
 def patch_turf(out, orig, ox, oy, to=None, salt=0):
-    """Blotches of lavender and the odd teal glint over the turf (repeating every 16 pixels, so tiles still line up).
+    """Soft blotches of a slightly darker teal and the odd bright glint over the turf (repeating every 16 pixels, so tiles still line up). Kept quiet on purpose: the top of a grass tile is the most-seen
+    surface in a map, so it is low in contrast (the lime highlights of the original are the base teal here, the dark flecks and the blotches are one step darker).
     `to` is the cell's corner to draw them at, if it is not where the original is read (the plain blocks); `salt` makes another pattern."""
     tx, ty = to or (ox, oy)
     for y in range(CELL):
@@ -174,9 +175,9 @@ def patch_turf(out, orig, ox, oy, to=None, salt=0):
             if orig.get(ox + x, oy + y) != 'A':
                 continue
             u = hashed((x % 16) // 3, (y % 16) // 3, 5 + salt)
-            if u < 0.24:
-                out.put(tx + x, ty + y, 'l')
-            elif hashed(x % 16, y % 16, 9 + salt) < 0.06:
+            if u < 0.2:
+                out.put(tx + x, ty + y, 'D')
+            elif hashed(x % 16, y % 16, 9 + salt) < 0.015:
                 out.put(tx + x, ty + y, 'q')
 
 
