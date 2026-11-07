@@ -183,3 +183,8 @@ if __name__ == '__main__':
     found = build_ground_assets()
     print(f'{len(found)} ground assets')
     print(Counter(a['category'] for a in found))
+
+
+def build_assets():
+    """The ground sets as one family: the original tiles, then the corrupted ones."""
+    return build_ground_assets() + build_corrupted_assets()

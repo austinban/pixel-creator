@@ -17,6 +17,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from creature import add, mm, part, rx, ry, rz  # noqa: E402
+from assetkit import sheet_layout  # noqa: E402
 
 RAMPS = {
     'stem': ('z', 'A', 'B', 's'),       # lime, green, emerald, deep teal: the bush and tree's greens
@@ -199,6 +200,19 @@ def main():
     args.model.parent.mkdir(parents=True, exist_ok=True)
     render_sheet().save(args.model)
     print(f'3D preview of the vine -> {args.model}; no sprites were made')
+
+def build_assets():
+    # The vine spell: shoots up out of the ground, swells, hangs a frame, and slams back down.
+    vine_frames = [render_pixels(f) for f in FRAMES]
+    cols, rows = sheet_layout(len(vine_frames))
+    vine_asset = {
+        'id': 'vine', 'label': 'Vine spell', 'category': 'Animations', 'kind': 'animation', 'place': 'ground',
+        'w': CELL_W, 'h': CELL_H, 'cols': cols, 'rows': rows, 'fps': 8,
+        # The middle of the vine's foot, on the ground.
+        'anchor': {'x': ANCHOR[0], 'y': ANCHOR[1]},
+        'frames': vine_frames,
+    }
+    return [vine_asset]
 
 
 if __name__ == '__main__':

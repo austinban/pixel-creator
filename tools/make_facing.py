@@ -248,6 +248,22 @@ def main():
     render_sheet().save(args.model)
     print(f'3D preview of the facing marker -> {args.model}; no sprite was made')
 
+def build_assets():
+    # The facing marker: a flat arrowhead on the ground, NE and SE. NW and SW are those mirrored.
+    # Two colourways: yellow for the chosen direction, and pale blue for the others.
+    facing_assets = []
+    for id_, label, ramp, edge in (('facing', 'Facing marker (yellow)', YELLOW, EDGE),
+                                   ('facing-pale', 'Facing marker (pale blue)', PALE, PALE_EDGE)):
+        facing_assets.append({
+            'id': id_, 'label': label, 'category': 'Markers', 'kind': 'variants', 'place': 'ground',
+            'names': ['NE', 'SE'],
+            'w': CELL_W, 'h': CELL_H, 'cols': 2, 'rows': 1, 'fps': 0,
+            # The arrow's middle on the ground: mirrored left or right, it stays put.
+            'anchor': {'x': MIDDLE[0], 'y': MIDDLE[1]},
+            'frames': [render_pixels(d, ramp, edge) for d in ('NE', 'SE')],
+        })
+    return facing_assets
+
 
 if __name__ == '__main__':
     main()

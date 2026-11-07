@@ -13,6 +13,7 @@ by the last frame there is almost nothing left.
 import math
 import sys
 from pathlib import Path
+import conventions  # noqa: E402
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
@@ -194,6 +195,29 @@ def main():
     if args.preview:
         sheet.save(args.preview)
         print('wrote', args.preview)
+
+def build_assets():
+    # The ropes: a coil of thick rope wound round a captive in the charging pose, one generic overlay for every humanoid (cut to the widest),
+    # and the animation of it being cut.
+    rope_assets = []
+    base_poses = Path(__file__).resolve().parent.parent / 'poses' / 'base.js'
+    if base_poses.exists():
+        masks = character_masks()
+        for facing in ('NE', 'SE'):
+            mask = masks[widest(masks, facing)][facing]      # one generic coil, cut to the widest humanoid
+            rope_assets.append({
+                'id': f'ropes-bound-{facing.lower()}', 'label': f'Ropes - bound, charging pose ({facing})', 'category': 'Overlays',
+                'kind': 'still', 'place': 'none', 'w': 32, 'h': 32, 'cols': 1, 'rows': 1, 'fps': 0,
+                'anchor': {'x': 16, 'y': conventions.GROUND_ROW},     # the same cell and ground row as the character it covers
+                'frames': [render_bound(mask)],
+            })
+            rope_assets.append({
+                'id': f'ropes-cut-{facing.lower()}', 'label': f'Ropes - being cut, charging pose ({facing})', 'category': 'Overlays',
+                'kind': 'animation', 'place': 'none', 'w': 32, 'h': 32, 'cols': CUT_FRAMES, 'rows': 1, 'fps': 8,
+                'anchor': {'x': 16, 'y': conventions.GROUND_ROW},
+                'frames': [render_cut(mask, f) for f in range(CUT_FRAMES)],
+            })
+    return rope_assets
 
 
 if __name__ == '__main__':

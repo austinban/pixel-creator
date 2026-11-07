@@ -13,6 +13,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import make_aoe as aoe  # noqa: E402
+from assetkit import sheet_layout  # noqa: E402
 
 FRAMES = 8
 HOT, CORE, MID, OUT, TIP, DEEP = 't', 'd', 'b', 'a', 'e', 'f'       # cream, yellow, amber, orange, coral, orchid
@@ -183,6 +184,19 @@ def main():
     if args.preview:
         sheet.save(args.preview)
         print('wrote', args.preview)
+
+def build_assets():
+    # The fire burst: an area spell on five plots (see aoe.py), the template for the others.
+    fire_frames = [render_pixels(f) for f in range(FRAMES)]
+    cols, rows = sheet_layout(len(fire_frames))
+    fire_asset = {
+        'id': 'fire-burst', 'label': 'Fire burst spell (five plots)', 'category': 'Animations', 'kind': 'animation', 'place': 'ground',
+        'w': aoe.CELL_W, 'h': aoe.CELL_H, 'cols': cols, 'rows': rows, 'fps': 8,
+        # The middle of the middle plot, on the ground.
+        'anchor': {'x': aoe.MIDDLE[0], 'y': aoe.MIDDLE[1]},
+        'frames': fire_frames,
+    }
+    return [fire_asset]
 
 
 if __name__ == '__main__':

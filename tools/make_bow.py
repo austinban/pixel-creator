@@ -15,6 +15,7 @@ the figure stands on the ground row. The frames:
 Model space is the humanoid's: x forward, y up, z to the figure's right, one unit about a pixel.
 """
 import argparse
+import importlib
 import math
 import sys
 from pathlib import Path
@@ -23,6 +24,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import make_slim  # noqa: E402
 from creature import part  # noqa: E402
 from humanoid import Humanoid, pose  # noqa: E402
+from assetkit import GROUND_ROW  # noqa: E402
 
 BOW_HALF = 8.6                   # grip to tip, in pixels: a bow about as tall as the figure's head and shoulders and more
 ARROW_LENGTH = 10.5
@@ -312,6 +314,46 @@ def main():
         print('  ' + p)
     write_sprites(args.out, built)
     print(f'wrote the person and the bow -> {args.out}')
+
+# Every person built from the humanoid model, each a module make_<name>: the bow draw is made for all of them.
+PEOPLE = ('human', 'slim', 'human-sleek', 'slim-sleek', 'ninja', 'ranger', 'verdant', 'fey', 'bones', 'paladin', 'blossom', 'earthbender')
+
+
+def build_assets():
+    # The bow: the slim human's pull-and-release as an animation, and the bow itself as a weapon strip that
+    # goes behind it. Built apart, so either can change; they are laid over each other frame by frame.
+    bow_assets = []
+    for who in PEOPLE:
+        creature = getattr(importlib.import_module('make_' + who.replace('-', '_')), 'CREATURE')
+        bow = build_frames(with_bow(creature))
+        for facing in ('NE', 'SE'):
+            bow_assets.append({
+                'id': f'bow-draw-{who}-{facing.lower()}', 'label': f'Bow draw {facing} ({who.capitalize()})', 'category': 'Animations',
+                'kind': 'animation', 'place': 'none', 'w': 32, 'h': 32, 'cols': 4, 'rows': 1, 'fps': 4,
+                'anchor': {'x': 16, 'y': GROUND_ROW + 1},
+                'frames': bow['person'][facing],
+            })
+        if who == 'slim':       # the bow is drawn once, on the Slim, and shared: builds differ by under a pixel in the hand
+            for facing in ('NE', 'SE'):
+                bow_assets.append({
+                    'id': f'weapon-bow-{facing.lower()}', 'label': f'Bow {facing}', 'category': 'Weapons', 'kind': 'animation',
+                    'place': 'none', 'weapon': 'Bow', 'facing': facing, 'animation': 'bow-draw',
+                    'w': WEAPON_CELL, 'h': WEAPON_CELL, 'cols': 4, 'rows': 1, 'fps': 4,
+                    'anchor': {'x': WEAPON_CELL // 2, 'y': WEAPON_CELL},
+                    'frames': bow['bow'][facing],
+                })
+            # The other bows: the same model with its own size, curve, tips and colours, drawn with the same animation.
+            for spec_id, spec in SPECS.items():
+                other = build_frames(with_bow(creature), spec=spec_id)
+                for facing in ('NE', 'SE'):
+                    bow_assets.append({
+                        'id': f'weapon-{spec_id}-{facing.lower()}', 'label': f"{spec['label']} {facing}", 'category': 'Weapons', 'kind': 'animation',
+                        'place': 'none', 'weapon': spec['label'], 'facing': facing, 'animation': 'bow-draw',
+                        'w': WEAPON_CELL, 'h': WEAPON_CELL, 'cols': 4, 'rows': 1, 'fps': 4,
+                        'anchor': {'x': WEAPON_CELL // 2, 'y': WEAPON_CELL},
+                        'frames': other['bow'][facing],
+                    })
+    return bow_assets
 
 
 if __name__ == '__main__':

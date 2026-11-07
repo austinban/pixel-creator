@@ -254,6 +254,19 @@ def main():
         out.save(args.preview)
         print('wrote', args.preview)
 
+def build_assets():
+    # The rickety bridge: four one-tile sprites to span a gap, flat and sloped, running either way. The slopes going
+    # NW and SW are the SE and NE ones flipped, as the facing marker's are.
+    bridge_asset = {
+        'id': 'bridge', 'label': 'Rickety bridge', 'category': 'Bridges', 'kind': 'variants', 'place': 'ground',
+        'names': ['Flat NE-SW', 'Flat NW-SE', 'Slope down NE', 'Slope down SE'],
+        'w': W, 'h': H, 'cols': 4, 'rows': 1, 'fps': 0,
+        # The middle of the land-level top face, on the ground: a bridge tile sits where a ground tile would.
+        'anchor': {'x': ANCHOR[0], 'y': ANCHOR[1]},
+        'frames': [render_pixels(axis, kind) for _, _, axis, kind in SPRITES],
+    }
+    return [bridge_asset]
+
 
 if __name__ == '__main__':
     main()

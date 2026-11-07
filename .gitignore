@@ -14,3 +14,6 @@ sprites/assets/ground.png
 
 # 3D previews made by tools/preview3d.py while designing a character; they are throwaway
 previews/
+
+# The cache of tools/buildcache.py: what each family built, so only what changed is rebuilt.
+.build-cache/

@@ -11,6 +11,7 @@ palette roles.
 import math
 import sys
 from pathlib import Path
+from assetkit import sheet_layout  # noqa: E402
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
@@ -93,6 +94,19 @@ def main():
     if args.preview:
         out.save(args.preview)
         print('wrote', args.preview)
+
+def build_assets():
+    # The healing spell: rose petals appear above a character and drift down over them.
+    heal_frames = [render_pixels(f) for f in range(FRAMES)]
+    cols, rows = sheet_layout(len(heal_frames))
+    heal_asset = {
+        'id': 'heal-petals', 'label': 'Healing spell (rose petals)', 'category': 'Animations', 'kind': 'animation', 'place': 'ground',
+        'w': CELL_W, 'h': CELL_H, 'cols': cols, 'rows': rows, 'fps': 8,
+        # The middle of the character's feet, on the ground.
+        'anchor': {'x': ANCHOR[0], 'y': ANCHOR[1]},
+        'frames': heal_frames,
+    }
+    return [heal_asset]
 
 
 if __name__ == '__main__':

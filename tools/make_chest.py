@@ -24,6 +24,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from assetkit import family, write_json  # noqa: E402
 
 CELL_W, CELL_H = 48, 52       # a tile is 32 wide; the opening lid and the light swing out past it, so the cell has 8 pixels more each side
 ANCHOR = (24, 40)               # the middle of the tile, on the ground: the point the game puts on the middle of the ground tile
@@ -44,19 +45,19 @@ SPECS = {
     'common': dict(
         label='Common', dx=0.24, dy=0.35, zf=0.0, hb=0.38, lip=0.05, hl=0.17, facets=6, wall=1 / 16, lockw=2,
         wood=('b', 'a', 'g', 'w'), metal=('p', 'l', 'k', 'w'), lining=('g', 'w', 'x', 'x'), coins=('C', 'b', 'a', 'g'),
-        straps=[(-0.23, 2), (0.23, 2)], body_straps=False, corner=0, band=0, posts=0, rim=False, feet=0, inlay=False,
+        straps=[(-0.23, 2), (0.23, 2)], band=0, posts=0, rim=False, feet=0,
         gems=[], lock='plain', lock_gem=None, heap=0.55, crest=False, glow=('t', 'C'), spark=('t', 'C'), plank=4,
     ),
     'rare': dict(
         label='Rare', dx=0.30, dy=0.43, zf=0.03, hb=0.46, lip=0.06, hl=0.23, facets=6, wall=1 / 16, lockw=2,
         wood=('a', 'e', 'g', 'w'), metal=('r', 'q', 'p', 'l'), lining=('l', 'k', 'w', 'x'), coins=('d', 'b', 'a', 'g'),
-        straps=[(-0.26, 2), (0.26, 2)], body_straps=False, corner=0, band=1, posts=1, rim=True, feet=1, inlay=False,
+        straps=[(-0.26, 2), (0.26, 2)], band=1, posts=1, rim=True, feet=1,
         gems=[('o', 'n', 'm', 'k')], lock='gem', lock_gem=('o', 'n', 'm', 'k'), heap=0.7, crest=False, glow=('r', 'o'), spark=('r', 'o'), plank=4,
     ),
     'legendary': dict(
         label='Legendary', dx=0.34, dy=0.47, zf=0.06, hb=0.52, lip=0.07, hl=0.30, facets=8, wall=1.5 / 16, lockw=2,
         wood=('v', 'f', 'u', 'w'), metal=('d', 'b', 'a', 'g'), lining=('j', 'i', 'h', 'g'), coins=('d', 'b', 'a', 'g'),
-        straps=[(-0.28, 2), (0.28, 2)], body_straps=False, corner=0, band=1, posts=1, rim=True, feet=2, inlay=False,
+        straps=[(-0.28, 2), (0.28, 2)], band=1, posts=1, rim=True, feet=2,
         gems=[('j', 'i', 'h', 'g'), ('o', 'n', 'm', 'k'), ('z', 'A', 'B', 's')], lock='gem', lock_gem=('j', 'i', 'h', 'g'),
         heap=1.0, crest=True, glow=('t', 'd'), spark=('t', 'd'), plank=4,
     ),
@@ -156,8 +157,6 @@ def build_parts(spec):
     X = dx + ov
     lid = vault_planes(X, dy + ov, spec['hl'], spec['lip'], spec['facets'])
     # in its rest frame the lid is drawn with its hinge edge at x = -X; it is moved up to sit on the body here
-    top = spec['lip'] + spec['hl']
-
     def lid_part(planes, kind, **info):
         return Part(planes, kind, lid=True, **info)
 
@@ -269,7 +268,7 @@ def wood(spec, face, u, v, step):
     return ramp[step]
 
 
-def strap(spec, u, step, edge_hi=True):
+def strap(spec, u, step):
     """The metal at u if a strap is there (a role), else None. Straps have a lit edge and a dark one."""
     for cy, w in spec['straps']:
         lo = cy - w / 32.0
@@ -278,7 +277,7 @@ def strap(spec, u, step, edge_hi=True):
             ramp = spec['metal']
             k = int(a)
             s = step
-            if edge_hi and k == 0:
+            if k == 0:
                 s = clamp(step - 1)
             elif k == w - 1 and w > 1:
                 s = clamp(step + 1)
@@ -290,19 +289,19 @@ def metal(spec, step):
     return spec['metal'][step]
 
 
-def paint_lining(spec, step, glow, u=0.0, v=0.0, trim=False):
+def paint_lining(spec, step, glow):
     ramp = spec['lining']
     s = clamp(step + 1 - int(glow * 1.6))
     return ramp[s]
 
 
-def paint(spec, placed, p, n, glow, theta):
+def paint(spec, placed, p, n, glow):
     """The role of the point p (world) on a part of the chest, seen along its world normal n."""
     part = placed.part
     pr, nr = placed.to_rest(p, n)
     step = step_of(n)
     x, y, z = pr
-    dx, dy, zf, hb, t = spec['dx'], spec['dy'], spec['zf'], spec['hb'], spec['wall']
+    dx, dy, zf, hb = spec['dx'], spec['dy'], spec['zf'], spec['hb']
     zt = zf + hb
     kind = part.kind
     if kind == 'gem':
@@ -367,22 +366,14 @@ def paint(spec, placed, p, n, glow, theta):
     u = y if face == 'front' else x
     half = dy if face == 'front' else dx
     v = z - zf
-    ui, vi = int(math.floor((u + half) * PX)), int(math.floor(v * PX))
-    wpx, hpx = int(round(2 * half * PX)), int(round(hb * PX))
     if spec['band'] and v < spec['band'] / 16:               # a band along the bottom edge
         return metal(spec, clamp(step + 1))
-    if face == 'front' and spec['body_straps']:
-        s = strap(spec, y, step)
-        if s:
-            return s[0]
-    if spec['inlay'] and 2 <= vi <= hpx - 3 and 2 <= ui <= wpx - 3 and (ui in (2, wpx - 3) or vi in (2, hpx - 3)):
-        return metal(spec, clamp(step))
     shade = 1 if z > zt - 1.5 / 16 else 0                    # the lid's shadow along the top
     return wood(spec, face, u + half, v, clamp(step + shade))
 
 
 # --- drawing -------------------------------------------------------------------------------
-def render_chest(spec, facing, theta_deg, glow, rays, sparks, rarity, frame_no=0):
+def render_chest(spec, facing, theta_deg, glow, rays, sparks, frame_no=0):
     theta = math.radians(theta_deg)
     placed = [Placed(p, spec, theta, facing) for p in build_parts(spec)]
     w, h = CELL_W, CELL_H
@@ -400,7 +391,7 @@ def render_chest(spec, facing, theta_deg, glow, rays, sparks, rarity, frame_no=0
             if best is None:
                 continue
             t, n, pl = best
-            grid[py][px] = paint(spec, pl, (org[0] + t, org[1] + t, t), n, glow, theta)
+            grid[py][px] = paint(spec, pl, (org[0] + t, org[1] + t, t), n, glow)
     mask = [[c != '.' for c in row] for row in grid]
     # the light that comes out of the open chest, behind it
     back = [['.'] * w for _ in range(h)]
@@ -439,11 +430,11 @@ def render_chest(spec, facing, theta_deg, glow, rays, sparks, rarity, frame_no=0
 
 
 def closed(rarity, facing):
-    return render_chest(SPECS[rarity], facing, 0, 0.0, 0, 0, rarity)
+    return render_chest(SPECS[rarity], facing, 0, 0.0, 0, 0)
 
 
 def opening(rarity, facing):
-    return [render_chest(SPECS[rarity], facing, a, g, r, s, rarity, i) for i, (a, g, r, s) in enumerate(FRAMES)]
+    return [render_chest(SPECS[rarity], facing, a, g, r, s, i) for i, (a, g, r, s) in enumerate(FRAMES)]
 
 
 # --- preview -------------------------------------------------------------------------------
@@ -477,33 +468,28 @@ FOLDER = 'chests'
 
 def build_assets():
     """Twelve assets in one folder: for each rarity and facing, the shut chest (chest-RARITY-ne, one frame) and the opening (chest-RARITY-ne-open, 8 frames)."""
+    make = family(CATEGORY, CELL_W, CELL_H, ANCHOR, folder=FOLDER)
     assets = []
     for rarity in RARITIES:
+        label = f'{SPECS[rarity]["label"]} chest'
         for facing in ('NE', 'SE'):
             f = facing.lower()
-            common = dict(category=CATEGORY, folder=FOLDER, place='ground', w=CELL_W, h=CELL_H, anchor={'x': ANCHOR[0], 'y': ANCHOR[1]})
-            label = f'{SPECS[rarity]["label"]} chest'
-            assets.append(dict(common, id=f'chest-{rarity}-{f}', label=f'{label} - {facing}, shut', kind='still', cols=1, rows=1, fps=0,
-                               chest={'rarity': rarity, 'facing': facing, 'state': 'shut'}, frames=[closed(rarity, facing)]))
-            frames = opening(rarity, facing)
-            assets.append(dict(common, id=f'chest-{rarity}-{f}-open', label=f'{label} - {facing}, opening (animation)', kind='animation', cols=len(frames), rows=1, fps=FPS,
-                               chest={'rarity': rarity, 'facing': facing, 'state': 'opening', 'plays': 'once, then holds the last frame'}, frames=frames))
+            assets.append(make(f'chest-{rarity}-{f}', f'{label} - {facing}, shut', 'still', [closed(rarity, facing)],
+                               chest={'rarity': rarity, 'facing': facing, 'state': 'shut'}))
+            assets.append(make(f'chest-{rarity}-{f}-open', f'{label} - {facing}, opening (animation)', 'animation', opening(rarity, facing), fps=FPS,
+                               chest={'rarity': rarity, 'facing': facing, 'state': 'opening', 'plays': 'once, then holds the last frame'}))
     return assets
 
 
 def write_package(folder):
     """Beside the sheets: chests.json, how a game uses them in numbers (README.md says it in words)."""
-    import json
-    folder = Path(folder)
-    folder.mkdir(parents=True, exist_ok=True)
-    (folder / 'chests.json').write_text(json.dumps({
-        'about': 'The chest sheets in this folder. See README.md beside this file for the whole story.',
+    write_json(folder, 'chests.json', 'The chest sheets in this folder. See README.md beside this file for the whole story.', {
         'cell': [CELL_W, CELL_H], 'anchor': {'x': ANCHOR[0], 'y': ANCHOR[1]}, 'fps': FPS, 'openingFrames': len(FRAMES),
         'rarities': {r: {'label': SPECS[r]['label'],
                          'shut': {f: f'chest-{r}-{f.lower()}.png' for f in ('NE', 'SE')},
                          'opening': {f: f'chest-{r}-{f.lower()}-open.png' for f in ('NE', 'SE')},
                          'openingPlays': 'once, then hold the last frame'} for r in RARITIES},
-    }, indent=1))
+    })
 
 
 def main():

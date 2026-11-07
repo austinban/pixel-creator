@@ -18,6 +18,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from assetkit import family, write_json  # noqa: E402
 from creature import add, mm, part, rx, ry, rz  # noqa: E402
 
 CELL = 32
@@ -251,29 +252,24 @@ FOLDER = 'traps'
 
 def build_assets():
     """Four assets, one folder: each trap placed (one frame) and triggered (an animation), by the ids trap-NAME and trap-NAME-triggered."""
+    make = family(CATEGORY, CELL, CELL, ANCHOR, folder=FOLDER)
     assets = []
     for name, t in TRAPS.items():
         placed, anim = frames_of(name)
-        common = dict(category=CATEGORY, folder=FOLDER, place='ground', w=CELL, h=CELL, anchor={'x': ANCHOR[0], 'y': ANCHOR[1]})
-        assets.append(dict(common, id=f'trap-{name}', label=f'{t["label"]} - placed (waiting on the ground)', kind='still', cols=1, rows=1, fps=0,
-                           trap={'name': name, 'state': 'placed'}, frames=[placed]))
-        assets.append(dict(common, id=f'trap-{name}-triggered', label=f'{t["label"]} - triggered (animation)', kind='animation', cols=len(anim), rows=1, fps=FPS,
-                           trap={'name': name, 'state': 'triggered', 'plays': 'once, then holds the last frame'}, frames=anim))
+        assets.append(make(f'trap-{name}', f'{t["label"]} - placed (waiting on the ground)', 'still', [placed], trap={'name': name, 'state': 'placed'}))
+        assets.append(make(f'trap-{name}-triggered', f'{t["label"]} - triggered (animation)', 'animation', anim, fps=FPS,
+                           trap={'name': name, 'state': 'triggered', 'plays': 'once, then holds the last frame'}))
     return assets
 
 
 def write_package(folder):
     """Beside the sheets: traps.json, how a game uses them in numbers (README.md says it in words)."""
-    import json
-    folder = Path(folder)
-    folder.mkdir(parents=True, exist_ok=True)
-    (folder / 'traps.json').write_text(json.dumps({
-        'about': 'The trap sheets in this folder. See README.md beside this file for the whole story.',
+    write_json(folder, 'traps.json', 'The trap sheets in this folder. See README.md beside this file for the whole story.', {
         'cell': CELL, 'anchor': {'x': ANCHOR[0], 'y': ANCHOR[1]}, 'fps': FPS,
         'traps': {name: {'label': t['label'], 'placed': f'trap-{name}.png', 'triggered': f'trap-{name}-triggered.png',
                          'triggeredFrames': [f['name'] for f in t['frames']], 'triggeredPlays': 'once, then hold the last frame'}
                   for name, t in TRAPS.items()},
-    }, indent=1))
+    })
 
 
 def main():

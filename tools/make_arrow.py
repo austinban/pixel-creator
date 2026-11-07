@@ -90,6 +90,24 @@ def main():
     render_sheet().save(args.model)
     print(f'3D preview of the arrow -> {args.model}; no sprite was made')
 
+def build_assets():
+    # The arrow, two ways to try: one frame flying to the right to rotate and mirror, and two frames
+    # already angled the way the game's camera sees a NE and an SE flight.
+    arrow_side = {
+        'id': 'arrow', 'label': 'Arrow - single frame (rotate and mirror)', 'category': 'Weapons', 'kind': 'still', 'place': 'none',
+        'w': CELL_W, 'h': SIDE['h'], 'cols': 1, 'rows': 1, 'fps': 0,
+        'anchor': anchor('side'),
+        'frames': [render_pixels('side')],
+    }
+    arrow_angled = {
+        'id': 'arrow-iso', 'label': 'Arrow - two frames (NE and SE)', 'category': 'Weapons', 'kind': 'variants', 'place': 'none',
+        'names': ['NE', 'SE'],
+        'w': CELL_W, 'h': ANGLED['h'], 'cols': 2, 'rows': 1, 'fps': 0,
+        'anchor': anchor('NE'),
+        'frames': [render_pixels('NE'), render_pixels('SE')],
+    }
+    return [arrow_side, arrow_angled]
+
 
 if __name__ == '__main__':
     main()
