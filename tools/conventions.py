@@ -39,11 +39,18 @@ OPEN_EDGE_MAX = 1                # painted-but-not-outline pixels that may touch
 MIN_PIXELS = 100                 # a frame with less than this is probably empty or broken
 CREATURE_MAX_WIDTH = 26          # a creature is wider and lower than a person, but fits the cell
 CREATURE_MIN_HEIGHT = 14
+# A floater (a spirit, a wisp) has no feet to put on the ground. Its mass hovers and its tail or wisps trail down past the ground line, so its lowest row
+# is below row 27, not on it, and it may stand taller than a person. The engine draws its shadow on the ground, so what matters is that the lowest row stays
+# in one band (the hover bobs a little but never sinks into the floor or rises off it).
+FLOAT_LOW = (28, 31)             # the lowest painted row of a floater, tail tip included
+FLOAT_HEIGHT = (22, 32)          # standing, top of the outline to the lowest row
+FLOAT_BOB_MAX = 3                # across a walk, the lowest row changes by at most this
 
 # How close a weapon-holding hand has to be to the weapon's grip, in pixels, for the weapon to look
 # held. The weapon path is measured from the strips themselves.
 # A very heavy build cannot bring its strike hand all the way to the weapon's path in one frame, so it may miss by a little more. Listed here, with why.
-HAND_TOLERANCE_BY_BUILD = {'earthbender': 5.6}      # bulk 1.6: his arms reach no further, but his body is wider
+# (The slim-sleek's shoulders are narrower than the Slim's, so its arm reaches a little less far: one frame misses by 0.4px more.)
+HAND_TOLERANCE_BY_BUILD = {'earthbender': 5.6, 'slim-sleek': 5.0}      # bulk 1.6: his arms reach no further, but his body is wider
 HAND_TOLERANCE = 4.5            # (the grip is itself an estimate, the weapon's drawn middle pulled back toward the body, so a pixel of slack)
 WEAPON_SPREAD = 6.0              # how far one weapon's path may stray from the others'
 
@@ -82,17 +89,17 @@ HEIGHT = {'attack': (22, 27), 'bow': (22, 27), 'charging': (24, 26), 'damage': (
 # The generated people kneel when worn out (down on one knee, head bowed), which is taller than the
 # originals' slump. Their own range, measured from their kneel; the originals keep theirs.
 KNEEL_HEIGHT = (22, 26)
-KNEELERS = {'human', 'slim', 'ninja', 'ranger', 'bones', 'undead', 'paladin', 'blossom', 'earthbender'}
+KNEELERS = {'human', 'slim', 'human-sleek', 'slim-sleek', 'ninja', 'ranger', 'verdant', 'fey', 'bones', 'undead', 'paladin', 'blossom', 'earthbender'}
 HEIGHT_SLACK = {'release': 2}    # one row either side of the originals' range (two for a cast, which
 HEIGHT_SLACK_DEFAULT = 1        # relies on arms thrown above the head that a shorter-armed figure cannot fully reach)
 MASS_SLACK = 0.92               # a little under the lightest original is still allowed
 # A person can be built slimmer on purpose. A slim build may carry up to 20% less than the lightest
 # original, which is still well above the floaty look of a figure with no body to it. Builds are
 # declared here so a slim character is a choice you can see, not a quiet loophole.
-BUILDS = {'standard': 0.92, 'slim': 0.78, 'bony': 0.5,
+BUILDS = {'standard': 0.92, 'slim': 0.78, 'sleek': 0.6, 'bony': 0.5,
           'maimed': 0.65,
           'delicate': 0.6}      # a fairy: slim, with little body and no heavy clothes      # a missing limb is less to paint
-BASE_BUILDS = {'slim': 'slim', 'ninja': 'slim', 'ranger': 'slim', 'bones': 'bony', 'undead': 'maimed', 'paladin': 'standard', 'blossom': 'delicate', 'earthbender': 'standard'}
+BASE_BUILDS = {'human-sleek': 'sleek', 'slim-sleek': 'sleek', 'slim': 'slim', 'ninja': 'slim', 'ranger': 'slim', 'verdant': 'slim', 'fey': 'slim', 'bones': 'bony', 'undead': 'maimed', 'paladin': 'standard', 'blossom': 'delicate', 'earthbender': 'standard'}
 
 # --- the walk ----------------------------------------------------------------------------------
 # The originals share one walk, and it is a bob with sliding feet, not a rock forward and back. Over
@@ -114,9 +121,9 @@ RAMP_LENGTH = 4
 
 # The original six are humanoid; anything else is declared here. Anything not listed is checked as
 # a humanoid.
-BASE_KINDS = {'dog': 'creature', 'rat': 'creature', 'scorpion': 'creature', 'mantis': 'creature', 'mantis-small': 'creature', 'scorpion-king': 'creature'}
+BASE_KINDS = {'spirit': 'floater', 'dog': 'creature', 'alpaca': 'creature', 'blight-alpaca': 'creature', 'mushroom-small': 'creature', 'mushroom-large': 'creature', 'rat': 'creature', 'scorpion': 'creature', 'mantis': 'creature', 'mantis-small': 'creature', 'scorpion-king': 'creature', 'rock-monster': 'creature', 'rock-monster-small': 'creature', 'rock-monster-large': 'creature', 'stone-totem': 'creature'}
 # Which module describes how a generated base is built, so its poses can be checked at the source.
-CREATORS = {'human': 'make_human', 'slim': 'make_slim', 'ninja': 'make_ninja', 'ranger': 'make_ranger', 'bones': 'make_bones', 'undead': 'make_undead', 'paladin': 'make_paladin', 'blossom': 'make_blossom', 'earthbender': 'make_earthbender', 'dog': 'make_dog', 'rat': 'make_rat', 'scorpion': 'make_scorpion', 'mantis': 'make_mantis', 'mantis-small': 'make_mantis_small', 'scorpion-king': 'make_scorpion_king'}
+CREATORS = {'human': 'make_human', 'human-sleek': 'make_human_sleek', 'slim': 'make_slim', 'slim-sleek': 'make_slim_sleek', 'ninja': 'make_ninja', 'ranger': 'make_ranger', 'verdant': 'make_verdant', 'fey': 'make_fey', 'alpaca': 'make_alpaca', 'blight-alpaca': 'make_blight_alpaca', 'mushroom-small': 'make_mushroom', 'mushroom-large': 'make_mushroom_large', 'bones': 'make_bones', 'undead': 'make_undead', 'paladin': 'make_paladin', 'blossom': 'make_blossom', 'earthbender': 'make_earthbender', 'dog': 'make_dog', 'rat': 'make_rat', 'scorpion': 'make_scorpion', 'mantis': 'make_mantis', 'mantis-small': 'make_mantis_small', 'scorpion-king': 'make_scorpion_king', 'rock-monster': 'make_rockmonster', 'rock-monster-small': 'make_rockmonster_small', 'rock-monster-large': 'make_rockmonster_large', 'stone-totem': 'make_stonetotem'}
 
 UPRIGHT = {'attack', 'charging', 'damage', 'release', 'walking', 'weak'}
 
@@ -159,6 +166,9 @@ def check_frame(lines, action, kind='humanoid', airborne=False):
     if action == 'dead':
         if not DEAD_ROWS[0] <= low <= DEAD_ROWS[1]:
             problems.append(f'lying down, the lowest row is {low}; it should be {DEAD_ROWS[0]}-{DEAD_ROWS[1]}')
+    elif kind == 'floater':
+        if not FLOAT_LOW[0] <= low <= FLOAT_LOW[1]:
+            problems.append(f'the lowest row is {low}; a floater hangs to rows {FLOAT_LOW[0]}-{FLOAT_LOW[1]}')
     elif not airborne and not GROUND_ROW - GROUND_TOLERANCE <= low <= GROUND_ROW:
         problems.append(f'feet are on row {low}; the ground is row {GROUND_ROW}')
     return problems
@@ -241,6 +251,17 @@ def check_walk(base_id, frames_by_pose):
     return out
 
 
+def check_hover(base_id, frames_by_pose):
+    """A floater drifts instead of walking: its lowest row changes a little from frame to frame, never more than FLOAT_BOB_MAX."""
+    out = []
+    for pose_id, frames in frames_by_pose.items():
+        if pose_id.startswith('walking'):
+            lows = [max(p[1] for p in painted(f)) for f in frames]
+            if max(lows) - min(lows) > FLOAT_BOB_MAX:
+                out.append(f'{base_id} {pose_id}: the hover bobs {max(lows) - min(lows)} rows; at most {FLOAT_BOB_MAX}')
+    return out
+
+
 def check_standing(lines, kind):
     """Size and place of a standing figure (the charging pose)."""
     pts = painted(lines)
@@ -253,6 +274,11 @@ def check_standing(lines, kind):
     if kind == 'humanoid':
         if not STAND_HEIGHT[0] <= height <= STAND_HEIGHT[1]:
             problems.append(f'standing {height} rows tall; a person is {STAND_HEIGHT[0]}-{STAND_HEIGHT[1]}')
+    elif kind == 'floater':
+        if not FLOAT_HEIGHT[0] <= height <= FLOAT_HEIGHT[1]:
+            problems.append(f'standing {height} rows tall; a floater is {FLOAT_HEIGHT[0]}-{FLOAT_HEIGHT[1]}')
+        if width > CREATURE_MAX_WIDTH:
+            problems.append(f'standing {width} columns wide; a creature is at most {CREATURE_MAX_WIDTH}')
     else:
         if height < CREATURE_MIN_HEIGHT:
             problems.append(f'standing only {height} rows tall; a creature is at least {CREATURE_MIN_HEIGHT}')
@@ -319,7 +345,7 @@ def check_boss(boss_id, frames_by_pose):
 def load_boss_frames(folder, boss_id):
     """A boss's sheets (NAME-actionFACING.png, frames side by side) as role rows, read back from the PNGs."""
     from PIL import Image
-    to_role = {tuple(int(h[i:i + 2], 16) for i in (0, 2, 4)): c for c, _, _, _, h in ep.ROLES}
+    to_role = ep.COLOUR_TO_ROLE
     frames = {}
     for action in BOSS_FRAMES:
         for facing in ('NE', 'SE'):
@@ -355,6 +381,8 @@ def check_base(base_id, frames_by_pose, kind=None, airborne=()):
     if kind == 'humanoid':
         out += check_movement(base_id, frames_by_pose)
         out += check_walk(base_id, frames_by_pose)
+    if kind == 'floater':
+        out += check_hover(base_id, frames_by_pose)
     return out
 
 

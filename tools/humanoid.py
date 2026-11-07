@@ -239,7 +239,7 @@ class Humanoid:
         self.ramps = dict(RAMPS, **(ramps or {}))
         self.hair = hair
         self.body = dict(BODY, **(body or {}))
-        self.scale = scale if scale is not None else 1.05
+        self.scale = scale if scale is not None else self.body.get('scale', 1.05)       # a build can say its own scale in its body (the sleek one is a little larger)
         self.accessories = accessories
         self.poses = dict(standard_poses(), **(poses or {}))
         self.poses.setdefault('attackNE', self.poses['attack'])

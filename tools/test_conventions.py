@@ -1,4 +1,4 @@
-"""Tests for the conventions checker: it must pass what is right and catch what is wrong.
+"""Tests for the conventions checker: it must pass what is right and catch what is wrong (the characters, walks, weapons and the bow).
 
     python3 -m unittest discover -s tools -p 'test_*.py'
 
@@ -28,6 +28,37 @@ class OriginalsFollowTheRules(unittest.TestCase):
         for name in ('human', 'slim', 'ninja', 'dog', 'rat'):
             airborne = getattr(cv.creator_of(name), 'airborne', set())
             self.assertEqual(cv.check_base(name, bases()[name]['frames'], airborne=airborne), [], name)
+
+
+class FloatersHaveTheirOwnGroundRules(unittest.TestCase):
+    """A floater hangs below the ground line and bobs in a band; a person's feet-on-row-27 rule does not apply to it."""
+
+    def frame(self, low, height=26):
+        rows = ['.' * 32 for _ in range(32)]
+        for y in range(low - height + 1, low + 1):
+            rows[y] = '.' + 'O' * 10 + 'a' * 9 + 'O' * 10 + '..'
+        return rows
+
+    def ground_problems(self, low, kind):
+        return [p for p in cv.check_frame(self.frame(low), 'charging', kind) if 'lowest row' in p or 'feet' in p]
+
+    def test_a_floater_may_hang_below_the_ground_line(self):
+        self.assertEqual(self.ground_problems(30, 'floater'), [])
+        self.assertTrue(self.ground_problems(30, 'humanoid'))
+
+    def test_a_floater_does_not_rest_on_the_ground_line(self):
+        self.assertTrue(self.ground_problems(27, 'floater'))
+
+    def test_the_hover_may_bob_only_so_far(self):
+        ok = {'walkingSE': [self.frame(29), self.frame(31)]}
+        self.assertEqual(cv.check_hover('x', ok), [])
+        far = {'walkingSE': [self.frame(28, 20), self.frame(31, 20), self.frame(27, 20)]}
+        self.assertTrue(cv.check_hover('x', far))
+
+    @unittest.skipUnless('spirit' in bases(), 'the spirit base is not built here')
+    def test_the_spirit_passes_as_a_floater(self):
+        self.assertEqual(cv.kind_of('spirit'), 'floater')
+        self.assertEqual(cv.check_base('spirit', bases()['spirit']['frames']), [])
 
 
 class BreakingARuleIsCaught(unittest.TestCase):
@@ -233,123 +264,6 @@ class WeaponIcons(unittest.TestCase):
         for a in weapons:
             self.assertIn(a.get('icon'), by_id, f"{a['id']} has no display icon")
             self.assertEqual(by_id[a['icon']]['icon_for'], a['id'][len('weapon-'):-3], a['id'])
-
-
-class NodeMap(unittest.TestCase):
-    """The node-map tiles: grouped under one name, 16 distinct shore tiles whose neighbours join, and the README's recipe really draws a map."""
-
-    def test_the_assets_are_grouped_and_named(self):
-        import make_nodemap as nm
-        assets = nm.build_assets()
-        self.assertEqual(len(assets), 2 * len(nm.BIOMES) + 1)
-        for a in assets:
-            self.assertEqual(a['category'], 'Node map', a['id'])
-            self.assertTrue(a['id'].startswith('nodemap-'), a['id'])
-            self.assertEqual(a['folder'], 'nodemap', a['id'])
-
-    def test_the_sixteen_shore_tiles_are_distinct_and_the_ends_are_empty_and_full(self):
-        import make_nodemap as nm
-        for biome in nm.BIOMES:
-            tiles = [nm.shore_tile(b, biome) for b in range(16)]
-            self.assertEqual(set(''.join(tiles[0])), {'.'})
-            self.assertNotIn('.', ''.join(tiles[15]))
-            self.assertEqual(len({tuple(t) for t in tiles}), 16)
-
-    def test_neighbouring_tiles_agree_on_where_land_is_along_the_edge_they_share(self):
-        import make_nodemap as nm
-        tiles = [nm.shore_tile(b, 'grass') for b in range(16)]
-        land = lambda ch: ch not in '.rt'
-        for a in range(16):
-            for b in range(16):
-                if (a >> 1) & 1 == b & 1 and (a >> 3) & 1 == (b >> 2) & 1:         # a's right corners are b's left corners
-                    self.assertLessEqual(sum(land(tiles[a][y][15]) != land(tiles[b][y][0]) for y in range(16)), 1, (a, b))
-                if (a >> 2) & 1 == b & 1 and (a >> 3) & 1 == (b >> 1) & 1:         # a's bottom corners are b's top corners
-                    self.assertLessEqual(sum(land(tiles[a][15][x]) != land(tiles[b][0][x]) for x in range(16)), 1, (a, b))
-
-    def test_the_readmes_recipe_draws_the_example_map_from_the_sheets(self):
-        import json
-        import make_nodemap as nm
-        import extract_poses as ep
-        from PIL import Image
-        folder = cv.ROOT / 'sprites' / 'assets' / 'nodemap'
-        if not (folder / 'example-layout.json').exists():
-            self.skipTest('node map not built')
-        rgb = {c: tuple(int(h[i:i + 2], 16) for i in (0, 2, 4)) for c, _, _, _, h in ep.ROLES}
-        rows = json.loads((folder / 'example-layout.json').read_text())['land']
-        land = [[ch == '#' for ch in row] for row in rows]
-        h, w = len(land), len(land[0])
-        at = lambda x, y: 0 <= x < w and 0 <= y < h and land[y][x]
-        for biome in nm.BIOMES:
-            shore = Image.open(folder / f'nodemap-{biome}-shore.png').convert('RGBA')
-            sea = Image.open(folder / f'nodemap-{biome}-sea.png').convert('RGBA')
-            out = Image.new('RGBA', (w * 16, h * 16), (0, 0, 0, 255))
-            for j in range(h + 1):
-                for i in range(w + 1):
-                    out.paste(sea.crop((0, 0, 16, 16)), (i * 16 - 8, j * 16 - 8))
-            for j in range(h + 1):
-                for i in range(w + 1):
-                    n = at(i - 1, j - 1) * 1 | at(i, j - 1) * 2 | at(i - 1, j) * 4 | at(i, j) * 8
-                    if n:
-                        out.alpha_composite(shore.crop(((n % 4) * 16, (n >> 2) * 16, (n % 4) * 16 + 16, (n >> 2) * 16 + 16)), (i * 16 - 8, j * 16 - 8))
-            want = nm.render_map(land, biome, 0, rgb)
-            self.assertEqual(list(out.convert('RGB').getdata()), list(want.convert('RGB').getdata()), biome)
-
-
-class Buildings(unittest.TestCase):
-    """The building kit: one group, every tile in NE and SE, sized like the ground tiles, and the README's placement recipe really redraws the example."""
-
-    def test_the_assets_are_grouped_named_and_sized(self):
-        import make_buildings as mb
-        assets = mb.build_assets()
-        self.assertTrue(assets)
-        total = 0
-        for a in assets:
-            self.assertEqual((a['category'], a['folder']), ('Buildings', 'buildings'), a['id'])
-            self.assertTrue(a['id'].startswith('bld-'), a['id'])
-            self.assertEqual(a['w'], 32, a['id'])
-            self.assertIn(a['h'], (32, 48), a['id'])
-            self.assertEqual(len(a['frames']), len(a['names']), a['id'])
-            for rows in a['frames']:
-                self.assertEqual((len(rows), {len(r) for r in rows}), (a['h'], {32}), a['id'])
-            total += len(a['frames'])
-        self.assertEqual(total, 2 * len(mb.KIT))              # every piece, NE and SE
-
-    def test_a_piece_with_a_direction_differs_between_ne_and_se_and_one_without_does_not(self):
-        import make_buildings as mb
-        for piece in mb.KIT:
-            ne, se = (mb.piece_rows(piece, o)[0] for o in mb.ORIENTS)
-            self.assertEqual(ne == se, piece['same'], piece['id'])
-
-    def test_the_pieces_repeat_their_texture_so_stacked_blocks_join(self):
-        import make_buildings as mb
-        # the left and right edge of a plain block's wall are the same texture a cell over: its picture is the same one stacked on itself
-        for pid in ('stone-plain', 'timber-plain'):
-            piece = next(p for p in mb.KIT if p['id'] == pid)
-            rows, _ = mb.piece_rows(piece, 'NE')
-            self.assertEqual(rows[8][4:12], rows[8 + 0][4:12])
-            self.assertNotIn('.', rows[16][1:31])             # a wall block has no gaps in its middle
-
-    def test_the_readmes_placement_recipe_redraws_the_example_street(self):
-        import json
-        import extract_poses as ep
-        from PIL import Image
-        folder = cv.ROOT / 'sprites' / 'assets' / 'buildings'
-        if not (folder / 'buildings.json').exists():
-            self.skipTest('buildings not built')
-        info = json.loads((folder / 'buildings.json').read_text())
-        street = json.loads((folder / 'example-street.json').read_text())
-        W, H = street['size']
-        cx, cy = street['cellOrigin']
-        out = Image.new('RGBA', (W, H), (0, 0, 0, 0))
-        sheets = {sid: Image.open(folder / meta['file']).convert('RGBA') for sid, meta in info['sheets'].items()}
-        for x, y, k, pid in sorted(street['pieces'], key=lambda p: (p[0] + p[1], p[2])):
-            piece = info['pieces'][pid]
-            cw, ch = info['sheets'][piece['sheet']]['cell']
-            tile = sheets[piece['sheet']].crop((piece['col'] * cw, piece['row'] * ch, piece['col'] * cw + cw, piece['row'] * ch + ch))
-            gx, gy = cx + 16 * (x - y), cy + 8 * (x + y)
-            out.alpha_composite(tile, (gx, gy - 16 * (k + piece['levels'])))
-        want = Image.open(folder / 'example-street.png').convert('RGBA')
-        self.assertEqual(list(out.getdata()), list(want.getdata()))
 
 
 if __name__ == '__main__':

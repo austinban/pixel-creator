@@ -10,6 +10,7 @@ the empty one is the same shape as a dim socket, darker on the lit side and ligh
 """
 import sys
 from pathlib import Path
+from assetkit import sheet_layout  # noqa: E402
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
@@ -156,6 +157,28 @@ def main():
                                     out.putpixel((((f * (BURST + 1)) + x) * scale + dx, ((r * (BURST + 1)) + y) * scale + dy), rgb[c] + (255,))
         out.save(args.burst)
         print('wrote', args.burst)
+
+def build_assets():
+    # The dots for the UI: filled for a point left, empty for a point spent. Blue is the movement point; red is its twin.
+    dot_assets = [{
+        'id': id_, 'label': label, 'category': 'UI', 'kind': 'variants', 'place': 'none',
+        'names': ['Filled', 'Empty'],
+        'w': DOT, 'h': DOT, 'cols': 2, 'rows': 1, 'fps': 0,
+        'anchor': {'x': MIDDLE[0], 'y': MIDDLE[1]},
+        'frames': [render_pixels('filled', colours), render_pixels('empty', colours)],
+    } for id_, label, colours in COLOURWAYS]
+    # The dots bursting as a point is spent: full to empty, played once.
+    for id_, label, colours in COLOURWAYS:
+        burst_frames = [render_burst(f, colours) for f in range(BURST_FRAMES)]
+        cols, rows = sheet_layout(len(burst_frames))
+        dot_assets.append({
+            'id': id_ + '-burst', 'label': label.replace(' (filled and empty)', '') + ' - burst (full to empty)', 'category': 'UI',
+            'kind': 'animation', 'place': 'none',
+            'w': BURST, 'h': BURST, 'cols': cols, 'rows': rows, 'fps': 14,
+            'anchor': {'x': BURST_MIDDLE[0], 'y': BURST_MIDDLE[1]},
+            'frames': burst_frames,
+        })
+    return dot_assets
 
 
 if __name__ == '__main__':

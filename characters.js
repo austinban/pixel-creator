@@ -759,31 +759,70 @@ function boot() {
     download(new Blob([bytes], { type: 'image/png' }), `${slug(character.name)}-${selected.id}.png`);
   });
 
-  // Every pose of each character, as one ZIP. With several characters each gets
-  // a folder, and two that share a name are told apart with a number.
-  async function exportSets(items, zipName) {
-    const scale = Number(el('exportScale').value);
-    const folders = new Map();
+  // What a set says about itself, for the game: written beside the PNGs of "Export for the game" and "Save to sprites/".
+  const gameManifest = (ch, name) => ({ format: 1, kind: 'character', set: name, base: ch.base, scale: 1, cell: [cell, cell] });
+
+  // The poses a character has, as PNG files named <name>-<pose>.png.
+  async function setFiles(ch, name, scale, folder = '') {
     const files = [];
-    for (const ch of items) {
+    for (const pose of poses) {
+      if (!hasPose(ch, pose)) continue;
+      files.push({ name: `${folder}${name}-${pose.id}.png`, data: await pngBytes(ch, pose, scale) });
+    }
+    return files;
+  }
+
+  // Names for a list of characters: two that share a name are told apart with a number.
+  function uniqueNames(items) {
+    const used = new Map();
+    return items.map((ch) => {
       let name = slug(ch.name);
-      const used = folders.get(name) || 0;
-      folders.set(name, used + 1);
-      if (used) name = `${name}-${used + 1}`;
-      for (const pose of poses) {
-        if (!hasPose(ch, pose)) continue;
-        const folder = items.length > 1 ? `${name}/` : '';
-        files.push({ name: `${folder}${name}-${pose.id}.png`, data: await pngBytes(ch, pose, scale) });
-      }
+      const count = used.get(name) || 0;
+      used.set(name, count + 1);
+      return count ? `${name}-${count + 1}` : name;
+    });
+  }
+
+  // Every pose of each character, as one ZIP. With several characters each gets a folder. `forGame` makes it 1x, whatever
+  // the size menu says, and puts a pixel-creator.json in each set (the ZIP's root for one character, the folder for several).
+  async function exportSets(items, zipName, forGame = false) {
+    const scale = forGame ? 1 : Number(el('exportScale').value);
+    const names = uniqueNames(items);
+    const files = [];
+    for (const [i, ch] of items.entries()) {
+      const folder = items.length > 1 ? `${names[i]}/` : '';
+      files.push(...await setFiles(ch, names[i], scale, folder));
+      if (forGame) files.push({ name: `${folder}pixel-creator.json`, data: new TextEncoder().encode(JSON.stringify(gameManifest(ch, names[i]), null, 2) + '\n') });
     }
     download(makeZip(files), zipName);
-    el('charNote').textContent = `Exported ${files.length} PNGs in ${zipName}.`;
+    el('charNote').textContent = `Exported ${files.length} files in ${zipName}${forGame ? ' (1x, with pixel-creator.json)' : ''}.`;
   }
 
   el('exportSet').addEventListener('click', () => exportSets([character], `${slug(character.name)}-set.zip`));
   el('exportAll').addEventListener('click', () => {
     if (!store.items.length) { el('charNote').textContent = 'No saved copies yet. Change a base to make one.'; return; }
     exportSets(store.items, 'characters.zip');
+  });
+  el('exportGame').addEventListener('click', () => exportSets([character], `${slug(character.name)}-for-game.zip`, true));
+
+  // Straight into the repo's sprites/ folder (Chromium), at 1x, where the game's sync script reads it. See sprites-save.js.
+  if (!canSaveToSprites()) {
+    el('saveSprites').disabled = true;
+    el('saveSprites').title = 'Needs a Chromium browser (Chrome, Edge). Use "Export for the game" instead.';
+  }
+  el('saveSprites').addEventListener('click', async () => {
+    const note = (text) => { el('charNote').textContent = text; };
+    const name = slug(character.name);
+    try {
+      const sprites = await spritesFolder();
+      const problem = await setFolderProblem(sprites, name, characters.map((c) => c.id));
+      if (problem) { note(problem); return; }
+      const files = await setFiles(character, name, 1);
+      await writeSetFolder(sprites, name, files, gameManifest(character, name));
+      note(`Saved ${files.length} poses to sprites/${name}/ at 1x. Run the game's sync script to pick them up.`);
+    } catch (error) {
+      note(error.message || String(error));
+    }
   });
 
   el('saveChar').addEventListener('click', () => {

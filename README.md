@@ -1,5 +1,7 @@
 # Pixel Creator
 
+Working on the repo, or an agent working in it? Start with [AGENTS.md](AGENTS.md): the rules, the build and cache, how to add an asset family, and what the game reads.
+
 A small, dependency-free pixel art editor that runs from a single folder of
 static files. Pick a grid size, pick a colour, fill in cells, export a PNG with
 a transparent background.
@@ -88,8 +90,8 @@ are stored as that colour's role, so they follow later recolouring; pixels in
 other colours stay as drawn. **Revert edits** puts the base pose back.
 
 **Export full set (ZIP)** downloads every pose of the current character as PNGs,
-and **Export all characters (ZIP)** does the same for every saved character, one
-folder each. The pixel-size menu applies to both.
+and **Export for the game (ZIP, 1×)** is the same at true size with a `pixel-creator.json` saying what it is, and **Save to sprites/ (1×)** (Chromium) writes it straight into the repo's `sprites/` folder for the game's sync script. **Export all characters (ZIP)** does the same for every saved character, one
+folder each. The pixel-size menu applies to the two ordinary exports.
 
 Poses are named `<action><facing>`, like the source files they come from
 (`20240427cleric-attackNE.png` becomes `attackNE`). NE faces away from the
@@ -204,11 +206,11 @@ lies flat on the ground and has two frames, NE and SE (20 × 14 cell, not animat
 those mirrored about the anchor, which is the arrow's middle on the ground. The unchosen ones are
 the same sprite recoloured pale. Look at the model with
 `python3 tools/make_facing.py --model previews/facing-3d.png`; the sprites come from the same
-model in `tools/make_assets.py`.
+model in `tools/make_facing.py`.
 
 The first asset is the **turn crystal**: a Sims-style marker for whose turn it is,
 hovering above the active character and turning as it bobs. It is rendered from a
-small 3D model (a stretched octahedron, flat-shaded) by `tools/make_assets.py`, so
+small 3D model (a stretched octahedron, flat-shaded) by `tools/make_crystal.py`, so
 the rotation is real, and it repeats every quarter turn, so it loops without a
 seam. It is 8 frames at 8 a second, in a 32 × 32 cell, the same cell as the
 characters, with at least 5 pixels clear on every side so nothing clips and there
@@ -229,7 +231,7 @@ cell edge.
 
 Unlike the characters, the asset data is generated from code, not from anyone's art,
 so `assets/data.js` is committed. To change the crystal, edit `CRYSTAL` in
-`tools/make_assets.py` (cell size, frames, size, tilt, bob) and run:
+`tools/make_crystal.py` (cell size, frames, size, tilt, bob) and run:
 
 ```bash
 python3 tools/make_assets.py
@@ -256,6 +258,8 @@ character or `ground`ed beside one.
 | `colors.js`, `files.js` | Colour maths and download helpers shared by the pages |
 | `zip.js` | A small ZIP writer for the export buttons |
 | `tools/extract_poses.py` | Builds `poses/base.js` from sprite PNGs |
+| `tools/make_pose_guide.py`, `tools/trace_guide.py` | Draw a character's poses and palette on one page, and trace such a page (even one redrawn by an image generator) back into sprite sheets |
+| `tools/recolor.py` | Moves every sprite PNG to a new palette by swapping colours (see Colour in CONVENTIONS.md) |
 | `tools/make_skeleton.py` | Paints the skeleton base on the cleric's poses |
 | `tools/make_zombie.py` | Paints the zombie base on the fighter's poses |
 | `tools/make_knight.py` | Paints the armoured knight base on the fighter's poses |
@@ -266,6 +270,32 @@ Top-down tiles for a Slay-the-Spire-style floor map: branching islands with wate
 category on the Assets page, ids `nodemap-*`, and the folder `sprites/assets/nodemap/`, which has a **README.md for the app that uses it** (how to pick
 tiles, the layers, the layout recipe), a `nodemap.json` with the numbers, and an example map with its layout. Two skins (Grass islands and Parchment chart)
 share the same 16 tiles; `tools/make_nodemap.py` is the generator and the reference for making a layout.
+
+## Traps
+
+Caltrops and a bear trap, each placed (one frame) and triggered (an animation that ends on the spent trap). Their own group: the **Traps** category on the Assets page, ids `trap-*`,
+and the folder `sprites/assets/traps/`, which has a **README.md for the app that uses it** and a `traps.json` with the numbers. `tools/make_traps.py` is the generator.
+
+## The corrupted ground
+
+The grass and water ground sets again, rotted: teal and purple turf and soil, a murky water, mushrooms, vines, thorns and the odd pair of eyes. `sprites/assets/ground-corrupted.png` has the same cells as `ground.png`
+(categories **Corrupted Grass / Dirt / Stone / Water / Nature**, ids `ground-corrupted-COL-ROW`). `tools/make_corrupted_ground.py` makes it from the original (`--preview` shows the two side by side). Three plain grass blocks with no mushrooms are at cells (4, 11), (5, 11) and (6, 11), for everyday grass.
+
+## Treasure chests
+
+Common, rare and legendary treasure chests that stand on one ground tile, each in NE and SE, shut and opening (an 8-frame animation that plays once and ends on the open chest). Category **Chests**, ids `chest-RARITY-ne`, `chest-RARITY-ne-open` and so on,
+in the folder `sprites/assets/chests/` (its **README.md** says how to place and play them). They grow in size and richness with rarity. `tools/make_chest.py --preview previews/chests.png` shows them enlarged.
+
+## The bazaar
+
+The inside of a shop as a single 256 x 256 image (`bazaar-shop`, category **Buildings**, `sprites/assets/bazaar-shop.png`): a floating, cut-away room with the game's own weapons, amulets, crystals and rocks on its walls,
+counter and tables, anchored on the middle of its floor. `tools/make_bazaar.py` is the generator (`--preview` for an enlarged look).
+
+## Ability animations
+
+Forty-six animations for the abilities (bursts, rings, pop-up and status icons, vanish and appear, ground loops), in the **Abilities** category, ids `burst-*`, `ring-*`, `icon-*`, `vanish-*`, `appear-*`, `surface-*`,
+in the folder `sprites/assets/abilities/`. That folder's **README.md** says which ability plays which sheet, where to put it and how, and **`abilities.json`** is the same table for the game to read (both generated by
+`tools/make_abilities.py`). The families are `tools/make_burst.py`, `make_ring.py`, `make_icons.py`, `make_vanish.py` and `make_ground_fx.py`, sharing `tools/fx.py`; each has `--preview`.
 
 ## Buildings
 

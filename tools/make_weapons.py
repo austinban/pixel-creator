@@ -49,7 +49,7 @@ def build_weapon_assets(folder=DEFAULT_DIR):
         return []
     from PIL import Image
 
-    palette = {tuple(int(h[i:i + 2], 16) for i in (0, 2, 4)): c for c, _, _, _, h in ep.ROLES}
+    palette = ep.COLOUR_TO_ROLE
     nearest = {}
 
     def role(rgb):

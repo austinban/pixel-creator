@@ -13,6 +13,17 @@ python3 tools/check_conventions.py
 
 Run it after changing any pose, colour ramp, proportion or weapon.
 
+## Floating creatures
+
+A spirit or wisp has no feet, so it follows its own ground rules (kind `floater` in `BASE_KINDS`, `tools/conventions.py`):
+
+- Its **lowest painted row** (the tail tip or a trailing wisp) is **28-31**, a little below the ground line at 27, and it stays in that band: across a walk the lowest row changes by at most **3**, so it bobs instead of sinking or lifting off. The game draws its shadow on the ground at row 27.
+- It may stand **22-32 rows** tall, taller than a person (24-27), and at most **26 columns** wide, outline included. Standing, it is centred like everyone else (middle at 15-18).
+- No lean, weight, walk-slide or hand-path checks apply; the outline, the cell margins and the palette still do.
+- Anything not on the list is checked as a humanoid, so declare a floater in `BASE_KINDS`.
+
+`tools/trace_guide.py` turns a picture of a pose guide (`tools/make_pose_guide.py`) back into sprites and trims them to these rules.
+
 ## The cell
 
 - A character is drawn in a **32 × 32** cell. Painted pixels stay inside columns **1-30** and rows
@@ -132,10 +143,21 @@ through the air.
 - **Amulets** are shop images only: 32 x 32 pendants on a chain in the "Amulets" category, never worn or animated
   (`tools/make_amulets.py`; add one as a short function and list it in `AMULETS`).
 
+## Weapon style
+
+Weapons are slim and sharp, not blocky: thin shafts, **curved lens-shaped guards** and pommels instead of straight bars, blades that taper long to a point, slender heads, and bows with thin limbs. Their
+materials are the spirit realm's: **dark twisted bark** for wood (orchid, plum, grape, eggplant), indigo for wraps, dull bronze for trim, corrupted magenta for gems, and the teal steel, bone and sapphire kept.
+Every melee weapon, including the six that began as hand-drawn strips (the originals are kept in `sprites/weapons-original/`), is made from parts in `tools/make_melee.py` on the swing in
+`tools/data/weapon_swing.json`, which is a fixed reference so remaking the weapons never moves the hand fits. The display icons (`make_weapon_icons.py`) and the bows (`make_bow.py`) use the same materials.
+
 ## Colour
 
 - Everything is painted in the shared palette's colour **roles**, never in raw colours, so a
   character recolours with the hue sliders and swatches.
+- The palette is moody on purpose, for a spirit realm with corrupted plants: deep indigo darks, muted mid-tones, and the cyan, violet and pink kept
+  vivid as the only glows. **Changing the palette** means editing the hex values in `ROLES` (`tools/extract_poses.py`) with the old ones saved first in
+  `LEGACY_HEX`, then `python3 tools/recolor.py` (swaps every sprite PNG's colours by role, no rebuilding from poses) and
+  `python3 tools/make_assets.py --png-dir sprites/assets`. Keep each ramp's light-to-dark order. Roles are letters, so nothing else changes.
 - A shaded material is a **ramp** of four roles, **light to dark**: lit, base, shade, deep. A ramp
   never gets lighter as it goes down.
 - Shading has four steps, set by how the surface faces the light: lit, base, shade, deep. Where a
@@ -162,12 +184,54 @@ starts at the middle, spreads out to the four plots, peaks on all five, then die
 thing, with something linking the plots (the fire's low flames along the shared edges) and soft, rounded
 bases instead of flat ones. The fire burst (`tools/make_fire.py`) is the worked example.
 
+## Ability animations
+
+The animations for abilities are their own group: category **Abilities**, folder `sprites/assets/abilities/`, five families that each share a cell size and a placement rule: **bursts** (ground, on the aimed
+cell; a five-plot sheet on the 80 x 56 cell of the fire burst for radius 1, and a one-plot **tile** to place on every cell of any other shape), **rings** (round a unit's feet), **icons** (over a head, a pop-up that
+plays once and a status icon that loops), **vanish and appear** (a shimmer; appear is vanish reversed) and **ground loops** (a tile per cell that loops). Every sheet is one row of equal frames with an anchor. The
+folder's README.md and `abilities.json` are **generated** from `ABILITIES` in `tools/make_abilities.py`, which says for each ability which sheets it plays, where and how, so the game reads one table instead of guessing
+from names. The rules the tests check: a burst starts small, grows and fades away; a ground loop that is meant to join its neighbours does (the same pattern repeats from plot to plot); a loop comes back to its first frame; every
+sheet an ability names exists. A new ability is one entry in `ABILITIES`; a new colour or style is one entry in its family's module.
+
 ## The node map
 
 A group of assets of its own: top-down, **16 x 16 tiles on a dual grid** (a tile for every corner of four land-or-water cells, 16 shapes), an animated sea
 under them, and map pins. Everything is category **Node map**, ids `nodemap-*`, folder `sprites/assets/nodemap/`, and the rules for using it are in that
 folder's README.md. A new skin changes only colours and textures (`BIOMES` in `tools/make_nodemap.py`); its 16 tiles keep their numbers (corner bits:
 top left 1, top right 2, bottom left 4, bottom right 8), repeat their texture every 16 pixels, and join their neighbours, which the tests check.
+
+## Traps
+
+A trap lies flat on a ground tile and has two states: **placed** (one frame, the trap waiting) and **triggered** (an animation). They are category **Traps**, ids `trap-NAME` and
+`trap-NAME-triggered`, folder `sprites/assets/traps/`, 32 x 32 frames anchored on the middle of the tile at (16, 24), and the rules for using them are in that folder's README.md. A
+triggered animation plays once, at 10 frames a second, and **ends on the spent trap**, which is the picture to keep drawing. A new trap is an entry in `TRAPS` in `tools/make_traps.py`:
+a placed state and a list of triggered frames, built from ellipsoids and looked at in 3D (`--model`) before it is drawn.
+
+## The corrupted ground
+
+A second ground set, `sprites/assets/ground-corrupted.png`, laid out **cell for cell like `ground.png`**: a tile has the same shape and the same column and row in both, so a map can swap one set for the other. Its assets
+are ids `ground-corrupted-COL-ROW` in the categories **Corrupted Grass, Corrupted Dirt, Corrupted Stone, Corrupted Water** and **Corrupted Nature**, each with the original's label behind "Corrupted", and the same `overlay` shape
+as the original. The crates, fences and stairs have no corrupted version. It is made, not hand-drawn: `tools/make_corrupted_ground.py` recolours the original by role (turf teal with lavender patches, soil plum and purple, water
+a teal with violet foam and dark teal sides (the shaded side is a new role, `D` Abyss teal, `083a45`), wood bruised grey-purple) and then draws on the tiles that are full blocks: mushrooms on top, vines over the sides, thorns, and now and then a pair of glowing eyes in the dirt. Slopes and edge pieces
+keep a clean outline. A tile never loses any of the original's outline and gains no more than 45 pixels past it (the tests check both). The bush, pine, stump, logs and rocks get the same treatment, and the two flowers are mushroom
+clusters. Run `make_assets.py` and the sheet is remade first, so it follows the original and the palette.
+
+**Plain grass.** The one full grass block at (0, 0) carries mushrooms, and a map that lays it on every grass tile repeats them. So three **plain** grass blocks, with no mushrooms, vines, thorns or eyes, sit in cells that are empty in both sheets: **(4, 11), (5, 11), (6, 11)**
+(ids `ground-corrupted-4-11` ... `-6-11`, labels "Corrupted Grass, plain 1-3", category Corrupted Grass, the same shape and `overlay` as (0, 0)). Each has its own turf pattern. `CLEAN_GRASS` in `tools/make_corrupted_ground.py` is the list; the (0, 0) block keeps its mushrooms as the occasional accent.
+
+## Treasure chests
+
+Three chests on one ground tile, **common, rare and legendary**, each **NE and SE**, **shut** (`chest-RARITY-ne`, one frame) and **opening** (`chest-RARITY-ne-open`, an animation), category **Chests**, folder `sprites/assets/chests/`, 48 x 52 frames anchored at **(24, 40)**, the
+middle of the tile on the ground (the cell is wider than a tile because the lid and light swing out). NE has the lock on the lit right-hand face and SE on the shaded left-hand one; NW and SW are flips. The opening is 8 frames at 10 a second, plays once, **starts as the shut chest and ends open**,
+the picture to keep drawing. Rarity is size and richness: 24, 30 and 32 pixels wide, wood and iron, then mahogany and teal steel with a sapphire, then violet lacquer and gold with gems, and more treasure inside. They are generated: `tools/make_chest.py` is a small 3D model (hollow body, hinged lid, treasure) drawn in the
+ground tiles' projection; `SPECS` is a rarity and `FRAMES` the opening. The folder's README.md says how to place and play them; the tests check the cell, the palette, the growth and the animation.
+
+## The bazaar
+
+The inside of a shop as one still: **`bazaar-shop`**, category **Buildings**, a single **256 x 256** image (`sprites/assets/bazaar-shop.png`) of a cut-away room floating in the air like the ground tiles: a 7 x 7 cell wooden floor
+on a slab of the ground's clay with a rock hanging under it, two back walls, and the front and sides open to the camera. It is in the ground's projection (16 across, 8 down a cell) and anchored on the middle of the
+floor, at (128, 148). Its wares are the game's own sprites (weapon icons, amulets, crystals and rocks, taken from `sprites/assets`) plus bottles, books and scrolls drawn in the generator, so a changed item shows in the
+shop the next time it is built. `tools/make_bazaar.py` is the generator (`--preview` shows it enlarged); the tests keep it on the palette, 256 x 256 and clear of the image's edges.
 
 ## Buildings
 
@@ -201,6 +265,12 @@ the same head, limbs and reach (so every pose and the weapon hand carry over) bu
 through the body, and may carry up to **20% less** weight than the lightest original (the standard
 build: 8% less). Builds are declared in `BUILDS` and `BASE_BUILDS` in `conventions.py`, so a slim
 character is a choice you can see, not a loophole. A figure lighter than that reads as floating.
+
+### The sleek build and the four humans
+
+There are four generic people: **Human** and **Slim** (the first two, unchanged) and **Human (sleek)** and **Slim (sleek)**, which are narrower and less blocky (bulk 1.1 and 0.75 against 1.5 and 1.0, narrower
+shoulders and hips and a slightly narrower head) and a little larger overall, in the spirit realm's colours: ashen skin, and violet or teal hair. The sleek build is declared in `BUILDS` (it may carry
+less weight, 0.6 of the lightest original), and a build can say its own `scale` in its body. The sleek people have their own tuned numbers (`tools/data/human-sleek_*.json`, `slim-sleek_*.json`).
 
 ## Look at the 3D model before making sprites
 
@@ -252,3 +322,7 @@ python3 -m unittest discover -s tools -p 'test_*.py'
 If the rules turn out to be wrong, do not just edit a pose to dodge a check. Re-measure from the
 originals, change the number in `tools/conventions.py` **and** this file together, and re-run
 `check_conventions.py` so everything is held to the new rule.
+
+## What the game reads
+
+Moved to [AGENTS.md](AGENTS.md#what-the-game-reads), with the rest of how the repo is worked on.

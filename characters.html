@@ -54,6 +54,8 @@
       <button id="exportPose" class="btn btn-primary">Export selected pose PNG</button>
       <button id="exportSet" class="btn">Export full set (ZIP)</button>
       <button id="exportAll" class="btn">Export all characters (ZIP)</button>
+      <button id="exportGame" class="btn">Export for the game (ZIP, 1&times;)</button>
+      <button id="saveSprites" class="btn">Save to sprites/ (1&times;)</button>
       <div class="row">
         <button id="saveChar" class="btn">Save JSON</button>
         <button id="loadChar" class="btn">Load JSON&hellip;</button>
@@ -107,7 +109,7 @@
 <script>
   // Load the newest copy of every script. A plain static server lets the browser keep old copies, so a rebuilt asset or an edit
   // would not show until a hard refresh; a changing ?v= on each address makes it fetch them fresh every time the page opens.
-  ['colors.js', 'copies.js', 'files.js', 'zip.js', 'poses/base.js', 'assets/data.js', 'characters.js'].forEach(function (src) { document.write('<script src="' + src + '?v=' + Date.now() + '"><\/script>'); });
+  ['colors.js', 'copies.js', 'files.js', 'zip.js', 'sprites-save.js', 'poses/base.js', 'assets/data.js', 'characters.js'].forEach(function (src) { document.write('<script src="' + src + '?v=' + Date.now() + '"><\/script>'); });
 </script>
 </body>
 </html>

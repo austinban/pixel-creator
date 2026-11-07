@@ -43,39 +43,52 @@ GROUPS = [
     ('outline', 'Outline'),
 ]
 
-# char, id, label, group, original colour
+# char, id, label, group, colour (the moody spirit-realm palette)
 ROLES = [
-    ('O', 'outline', 'Outline', 'outline', '372971'),
-    ('a', 'orange', 'Orange', 'warm', 'f27746'),
-    ('b', 'amber', 'Amber', 'warm', 'f5a13a'),
-    ('c', 'salmon', 'Salmon', 'warm', 'f29485'),
-    ('d', 'yellow', 'Yellow', 'warm', 'fad52f'),
-    ('e', 'coral', 'Coral', 'rose', 'd95572'),
-    ('f', 'orchid', 'Orchid', 'rose', 'af417d'),
-    ('g', 'plum', 'Plum', 'rose', '7d426e'),
-    ('h', 'magenta-dark', 'Magenta dark', 'magenta', 'a80d70'),
-    ('i', 'magenta', 'Magenta', 'magenta', 'c9126e'),
-    ('j', 'hot-pink', 'Hot pink', 'magenta', 'f2186c'),
-    ('k', 'indigo', 'Indigo', 'violet', '4e4883'),
-    ('l', 'lavender', 'Lavender', 'violet', '6b6a9c'),
-    ('m', 'blue', 'Blue', 'blue', '455eb1'),
-    ('n', 'sky', 'Sky', 'blue', '4394d6'),
-    ('o', 'cyan', 'Cyan', 'blue', '08c3ee'),
-    ('p', 'steel', 'Steel', 'blue', '7491ae'),
-    ('q', 'teal', 'Teal', 'teal', '84bdc3'),
-    ('r', 'mint', 'Mint', 'teal', 'a8e3d1'),
-    ('s', 'deep-teal', 'Deep teal', 'teal', '007585'),
-    ('t', 'cream', 'Cream', 'neutral', 'faf1e3'),
-    ('u', 'purple', 'Purple', 'violet', '8a0c86'),
-    ('v', 'violet', 'Violet', 'violet', 'b13dff'),
-    ('w', 'grape', 'Grape', 'violet', '47255d'),
-    ('x', 'eggplant', 'Eggplant', 'violet', '4e1868'),
-    ('y', 'fuchsia', 'Fuchsia', 'magenta', 'd92cbe'),
-    ('z', 'lime', 'Lime', 'green', 'a9e030'),
-    ('A', 'green', 'Green', 'green', '55dc34'),
-    ('B', 'emerald', 'Emerald', 'green', '00ab56'),
-    ('C', 'sand', 'Sand', 'neutral', 'fae1aa'),
+    ('O', 'outline', 'Outline', 'outline', '1a1233'),
+    ('a', 'orange', 'Orange', 'warm', 'c9663f'),
+    ('b', 'amber', 'Amber', 'warm', 'd69a4a'),
+    ('c', 'salmon', 'Salmon', 'warm', 'c98480'),
+    ('d', 'yellow', 'Yellow', 'warm', 'e3c868'),
+    ('e', 'coral', 'Coral', 'rose', 'b8506a'),
+    ('f', 'orchid', 'Orchid', 'rose', '8e4a86'),
+    ('g', 'plum', 'Plum', 'rose', '5e3560'),
+    ('h', 'magenta-dark', 'Magenta dark', 'magenta', '7a1d5c'),
+    ('i', 'magenta', 'Magenta', 'magenta', '9c2a72'),
+    ('j', 'hot-pink', 'Hot pink', 'magenta', 'd23d86'),
+    ('k', 'indigo', 'Indigo', 'violet', '322e5e'),
+    ('l', 'lavender', 'Lavender', 'violet', '524f85'),
+    ('m', 'blue', 'Blue', 'blue', '34468a'),
+    ('n', 'sky', 'Sky', 'blue', '3a78b8'),
+    ('o', 'cyan', 'Cyan', 'blue', '3ad8e6'),
+    ('p', 'steel', 'Steel', 'blue', '5a7390'),
+    ('q', 'teal', 'Teal', 'teal', '5fa3a6'),
+    ('r', 'mint', 'Mint', 'teal', '8fd4c0'),
+    ('s', 'deep-teal', 'Deep teal', 'teal', '0e5a63'),
+    ('t', 'cream', 'Cream', 'neutral', 'e6dcc8'),
+    ('u', 'purple', 'Purple', 'violet', '66206a'),
+    ('v', 'violet', 'Violet', 'violet', '8f4fe0'),
+    ('w', 'grape', 'Grape', 'violet', '3a1a52'),
+    ('x', 'eggplant', 'Eggplant', 'violet', '2f1a45'),
+    ('y', 'fuchsia', 'Fuchsia', 'magenta', 'b0399c'),
+    ('z', 'lime', 'Lime', 'green', '86b83e'),
+    ('A', 'green', 'Green', 'green', '4a9e3c'),
+    ('B', 'emerald', 'Emerald', 'green', '12804f'),
+    ('C', 'sand', 'Sand', 'neutral', 'd9c598'),
+    ('D', 'abyss', 'Abyss teal', 'teal', '083a45'),      # darker than Deep teal: the shaded side of the corrupted water
 ]
+
+# The colours the roles had before the moodier palette (the source PNGs that are not ours, such as the ground sheet and the weapon strips, still use them).
+# Anything that reads a PNG accepts either set; everything we write uses the current hex above.
+LEGACY_HEX = {'O': '372971', 'a': 'f27746', 'b': 'f5a13a', 'c': 'f29485', 'd': 'fad52f', 'e': 'd95572', 'f': 'af417d', 'g': '7d426e', 'h': 'a80d70', 'i': 'c9126e', 'j': 'f2186c', 'k': '4e4883', 'l': '6b6a9c', 'm': '455eb1', 'n': '4394d6', 'o': '08c3ee', 'p': '7491ae', 'q': '84bdc3', 'r': 'a8e3d1', 's': '007585', 't': 'faf1e3', 'u': '8a0c86', 'v': 'b13dff', 'w': '47255d', 'x': '4e1868', 'y': 'd92cbe', 'z': 'a9e030', 'A': '55dc34', 'B': '00ab56', 'C': 'fae1aa'}
+
+
+def _rgb(h):
+    return tuple(int(h[i:i + 2], 16) for i in (0, 2, 4))
+
+
+COLOUR_TO_ROLE = {**{_rgb(h): c for c, h in LEGACY_HEX.items()}, **{_rgb(h): c for c, _, _, _, h in ROLES}}
+"""colour (r, g, b) -> role letter, for reading a PNG made with the current palette or the legacy one"""
 
 # action, facing, columns, rows. Pose ids are action + facing, as in the
 # source file names (attackNE). NE faces away from the camera, SE toward it.
@@ -140,8 +153,8 @@ def extract_frames(path, cols, rows, by_colour, to_colour):
         for y, line in enumerate(lines):
             for x, char in enumerate(line):
                 want = px[ox + x, oy + y]
-                got = (0, 0, 0, 0) if char == '.' else (*to_colour[char], 255)
-                if want != got:
+                got = '.' if want[3] == 0 else by_colour.get(want[:3])
+                if got != char:
                     sys.exit(f'{path}: round trip differs at ({ox + x}, {oy + y})')
     return frames
 
@@ -153,8 +166,8 @@ def main():
     parser.add_argument('--merge', action='store_true', help='keep the bases already in the output and add or replace the ones named')
     args = parser.parse_args()
 
-    by_colour = {tuple(int(hex_[i:i + 2], 16) for i in (0, 2, 4)): char for char, _, _, _, hex_ in ROLES}
-    to_colour = {char: rgb for rgb, char in by_colour.items()}
+    by_colour = COLOUR_TO_ROLE
+    to_colour = None
 
     characters = []
     frames_checked = 0

@@ -68,15 +68,17 @@ def classify(cell, counts):
     return 'Dirt'
 
 
-def build_ground_assets():
-    if not SHEET.exists():
+def build_ground_assets(sheet=None):
+    sheet = sheet or SHEET
+    if not sheet.exists():
         return []
     from PIL import Image
-    im = Image.open(SHEET).convert('RGBA')
+    im = Image.open(sheet).convert('RGBA')
     px = im.load()
     cols, rows = im.width // CELL, im.height // CELL
 
-    palette = {tuple(int(h[i:i + 2], 16) for i in (0, 2, 4)): (c, g) for c, _, _, g, h in ep.ROLES}
+    group_of = {c: g for c, _, _, g, _ in ep.ROLES}
+    palette = {rgb: (c, group_of[c]) for rgb, c in ep.COLOUR_TO_ROLE.items()}
     nearest_cache = {}
 
     def role(rgb):
@@ -148,7 +150,41 @@ def build_ground_assets():
     return out
 
 
+CORRUPTED = SHEET.with_name('ground-corrupted.png')
+RENAMED = {'ground-2-8': 'Glow-cap mushroom cluster', 'ground-4-8': 'Violet-cap mushroom cluster'}      # the two flowers are mushrooms here
+CORRUPTED_KEEP = ('Grass', 'Dirt', 'Stone', 'Water', 'Nature')           # the crates, fences and stairs have no corrupted version
+
+
+def build_corrupted_assets():
+    """The corrupted ground (ground-corrupted.png, made by make_corrupted_ground.py): the same cells as the originals, so each has the original's label and shape, in a 'Corrupted ...' category.
+
+    An id is ground-corrupted-COL-ROW, the cell where the original ground-COL-ROW sits.
+    """
+    import make_corrupted_ground
+    make_corrupted_ground.ensure_sheet()
+    originals = {a['id']: a for a in build_ground_assets()}
+    out = []
+    import make_corrupted_ground as mcg
+    plain = {f'ground-{c}-{r}': k + 1 for k, (c, r) in enumerate(mcg.CLEAN_GRASS)}
+    for a in build_ground_assets(CORRUPTED):
+        if a['id'] in plain:           # the plain grass blocks sit in cells the original leaves empty
+            label = f'Corrupted Grass, plain {plain[a["id"]]}'
+            out.append(dict(a, id=a['id'].replace('ground-', 'ground-corrupted-', 1), label=label, names=[label], category='Corrupted Grass'))
+            continue
+        o = originals.get(a['id'])
+        if o is None or o['category'] not in CORRUPTED_KEEP:
+            continue
+        label = RENAMED.get(a['id'], 'Corrupted ' + o['label'])
+        out.append(dict(a, id=a['id'].replace('ground-', 'ground-corrupted-', 1), label=label, names=[label], category='Corrupted ' + o['category']))
+    return out
+
+
 if __name__ == '__main__':
     found = build_ground_assets()
     print(f'{len(found)} ground assets')
     print(Counter(a['category'] for a in found))
+
+
+def build_assets():
+    """The ground sets as one family: the original tiles, then the corrupted ones."""
+    return build_ground_assets() + build_corrupted_assets()

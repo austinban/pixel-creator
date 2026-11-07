@@ -12,6 +12,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import extract_poses as ep  # noqa: E402
+from assetkit import sheet_layout  # noqa: E402
 
 CELL = 32
 LIGHT = (-0.55, -0.83)
@@ -272,6 +273,19 @@ def main():
     if args.preview:
         preview(args.preview)
         print('wrote', args.preview)
+
+def build_assets():
+    # Amulets: pendant icons for the shop, one image each (nothing is worn), as the variants of one asset.
+    amulet_frames = [make() for _, _, make in AMULETS]
+    cols, rows = sheet_layout(len(amulet_frames))
+    amulet_asset = {
+        'id': 'amulets', 'label': 'Amulets (shop icons)', 'category': 'Amulets', 'kind': 'variants', 'place': 'none',
+        'names': [label for _, label, _ in AMULETS],
+        'w': CELL, 'h': CELL, 'cols': cols, 'rows': rows, 'fps': 0,
+        'anchor': {'x': CELL // 2, 'y': CELL // 2},
+        'frames': amulet_frames,
+    }
+    return [amulet_asset]
 
 
 if __name__ == '__main__':

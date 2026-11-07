@@ -33,7 +33,7 @@ from make_melee import part, rod, taper, swell, tone_of  # noqa: E402
 CELL = 32
 LIGHT = mm.LIGHT
 FIT = 28                      # the weapon (before its outline) fits in this many pixels each way
-ICON_RAMPS = dict(mm.RAMPS, emerald=('r', 'A', 'B', 's'), gem=('c', 'j', 'i', 'h'), leaf=('r', 'A', 'B', 's'))
+ICON_RAMPS = dict(mm.RAMPS, gem=('y', 'i', 'h', 'u'), leaf=('r', 'A', 'B', 's'))
 
 
 def icon_prefix(stem):
@@ -55,20 +55,10 @@ def orb(t_mid, radius, ramp):
 
 # Parts written for the icons themselves: the six hand-drawn weapons (which have no parts), and a form that needs changing at this size.
 HAND_DRAWN = {
-    'hatchet': [rod(-6, 7.5, 1.7, 'wood'), rod(-6, -5, 2.4, 'iron'), head_up(5.0, 10.6, 3.0, 'steel'), rod(5.6, 7.2, 2.4, 'iron')],
-    'iron-axe': [rod(-6.5, 10.5, 1.8, 'wood'), rod(-6.5, -5.5, 2.6, 'iron'), head_up(6.5, 13.5, 4.6, 'iron'), rod(8.2, 9.8, 2.6, 'gold')],
-    'iron-sword': [rod(-1.6, 2.4, 1.8, 'leather'), rod(-2.6, -1.4, 2.8, 'iron'), rod(2.4, 3.4, 6.6, 'iron'),
-                   taper(3.4, 13.4, 3.6, 3.2, 'steel'), taper(13.4, 15.6, 3.2, 0.2, 'steel')],
-    'wooden-sword': [rod(-1.6, 2.4, 1.8, 'leather'), rod(-2.6, -1.4, 2.8, 'iron'), rod(2.4, 3.4, 6.2, 'wood'),
-                     taper(3.4, 13.0, 3.6, 3.2, 'wood'), taper(13.0, 15.0, 3.2, 0.2, 'wood')],
-    'scepter': [rod(-5, 9.5, 1.6, 'leather'), rod(-5, -4, 2.6, 'gold'), rod(8.6, 9.8, 3.8, 'gold'),
-                part(10.0, 14.2, lambda t: (2.4, 3.2), 'gold'), part(10.0, 14.2, lambda t: (-3.2, -2.4), 'gold'),
-                orb(12.4, 2.9, 'emerald')],
     # the sprite's kris waves more: at this size that reads as a bolt of lightning, so the icon's blade has a gentler wave
-    'kris': [rod(-1.8, 2.4, 1.5, 'leather'), rod(-2.6, -1.6, 2.4, 'gold'), rod(2.4, 3.2, 3.8, 'gold'),
-             part(3.2, 12.4, lambda t: (0.55 * math.sin((t - 3.2) * 1.0) - (3.0 * (1 - (t - 3.2) / 9.2) + 0.3) / 2,
-                                         0.55 * math.sin((t - 3.2) * 1.0) + (3.0 * (1 - (t - 3.2) / 9.2) + 0.3) / 2), 'steel')],
-    'wooden-staff': [rod(-7, 10, 1.9, 'wood'), rod(-7, -6, 2.6, 'iron'), rod(8.2, 9.0, 3.0, 'gold'), orb(11.8, 3.0, 'wood')],
+    'kris': [rod(-1.8, 2.4, 1.1, 'leather'), mm.pommel(-2.0, 1.8), mm.guard(2.8, 4.2),
+             part(3.2, 12.4, lambda t: (0.45 * math.sin((t - 3.2) * 1.0) - (2.6 * (1 - (t - 3.2) / 9.2) + 0.3) / 2,
+                                         0.45 * math.sin((t - 3.2) * 1.0) + (2.6 * (1 - (t - 3.2) / 9.2) + 0.3) / 2), 'steel')],
 }
 
 
@@ -134,7 +124,7 @@ def finish(mask):
 
 
 # --- bows: the model's own numbers, drawn flat -------------------------------------------------
-ORIGINAL_BOW = dict(label='Bow', half=make_bow.BOW_HALF, bend=1.0, flare=0.0, radius=1.0, ramps={})
+ORIGINAL_BOW = dict(label='Bow', half=make_bow.BOW_HALF, bend=1.0, flare=0.0, radius=0.8, ramps={})
 
 
 def draw_bow(spec):
