@@ -229,6 +229,42 @@ class Buildings(unittest.TestCase):
         self.assertEqual(list(out.getdata()), list(want.getdata()))
 
 
+class UiShells(unittest.TestCase):
+    """The shell drawn behind a dot for a wrapped count: same colours, same middle, still when idle, and its own break."""
+
+    def test_each_dot_has_a_shell_and_a_break(self):
+        assets = {a['id']: a for a in assets_of('ui')}
+        for dot in ('ui-movement-dot', 'ui-dot-red', 'ui-dot-yellow'):
+            shell, broken = assets[dot + '-shell'], assets[dot + '-shell-break']
+            self.assertEqual((shell['w'], shell['h'], len(shell['frames']), shell['fps']), (11, 11, 1, 0))
+            self.assertEqual((broken['w'], broken['h'], len(broken['frames']), broken['fps']), (19, 19, 8, 14))
+            self.assertEqual(shell['anchor'], {'x': 5, 'y': 5})
+            self.assertEqual(broken['anchor'], {'x': 9, 'y': 9})
+
+    def test_the_dot_fits_inside_the_shell_with_the_middles_together(self):
+        assets = {a['id']: a for a in assets_of('ui')}
+        for dot in ('ui-movement-dot', 'ui-dot-red', 'ui-dot-yellow'):
+            shell = assets[dot + '-shell']['frames'][0]
+            filled = assets[dot]['frames'][0]
+            shell_a, dot_a = assets[dot + '-shell']['anchor'], assets[dot]['anchor']
+            for y, row in enumerate(filled):
+                for x, c in enumerate(row):
+                    if c != '.':
+                        sx, sy = x - dot_a['x'] + shell_a['x'], y - dot_a['y'] + shell_a['y']
+                        self.assertTrue(0 <= sx < 11 and 0 <= sy < 11, f'{dot}: dot pixel outside the shell')
+            # the shell is a closed ring: nothing on its edge row or column is empty at the middle of each side
+            for edge in (shell[0][5], shell[10][5], shell[5][0], shell[5][10]):
+                self.assertNotEqual(edge, '.')
+
+    def test_break_starts_whole_ends_nearly_empty_and_stays_in_its_cell(self):
+        for dot in ('ui-movement-dot', 'ui-dot-red', 'ui-dot-yellow'):
+            frames = {a['id']: a for a in assets_of('ui')}[dot + '-shell-break']['frames']
+            count = [sum(c != '.' for row in f for c in row) for f in frames]
+            self.assertGreater(count[0], 60)
+            self.assertLess(count[-1], 12)
+            self.assertTrue(all(len(row) == 19 for f in frames for row in f) and all(len(f) == 19 for f in frames))
+
+
 class Registry(unittest.TestCase):
     """Every family is a registered unit with the same contract, and the cache rebuilds a unit when, and only when, something it depends on changed."""
 
