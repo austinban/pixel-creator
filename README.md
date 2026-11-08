@@ -201,6 +201,11 @@ blue, with a highlight) for each point left, and an empty one (the same shape as
 animation (7 frames, in a 13 × 13 cell, played once) for the moment a point is spent: it swells, flashes, bursts into bits that fly out
 and fade, and leaves the empty socket behind.
 
+Each dot also has a **shell** for when a count has wrapped past ten (`ui-movement-dot-shell`, `ui-dot-red-shell`, `ui-dot-yellow-shell`): an 11 × 11 still ring in the dot's own colours, with a dark socket, drawn
+behind the dot so it looks nested (one wrap only; it does not animate while idle). The anchors are both middles, so stacking them is a matter of putting the two anchors on the same point. Its own **break**
+animation (`...-shell-break`, 8 frames at 14 fps, 19 × 19 cell, played once) swells and cracks, flashes, splits into eight pieces that fly out and crumble, and leaves nothing behind (the dot has its own burst).
+`python3 tools/make_ui.py --shell previews/shell.png` shows them.
+
 The **facing marker** is the yellow arrowhead that shows which way a character will face. It
 lies flat on the ground and has two frames, NE and SE (20 × 14 cell, not animated); NW and SW are
 those mirrored about the anchor, which is the arrow's middle on the ground. The unchosen ones are

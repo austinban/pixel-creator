@@ -1375,6 +1375,123 @@
    "frames": 7
   },
   {
+   "id": "ui-movement-dot-shell",
+   "label": "Movement point dot - shell (behind the dot, for a wrapped count)",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 11,
+   "h": 11,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 5,
+    "y": 5
+   },
+   "file": "ui-movement-dot-shell.png",
+   "frames": 1,
+   "names": [
+    "Shell"
+   ]
+  },
+  {
+   "id": "ui-dot-red-shell",
+   "label": "Dot, red - shell (behind the dot, for a wrapped count)",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 11,
+   "h": 11,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 5,
+    "y": 5
+   },
+   "file": "ui-dot-red-shell.png",
+   "frames": 1,
+   "names": [
+    "Shell"
+   ]
+  },
+  {
+   "id": "ui-dot-yellow-shell",
+   "label": "Spirit point dot, yellow - shell (behind the dot, for a wrapped count)",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 11,
+   "h": 11,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 5,
+    "y": 5
+   },
+   "file": "ui-dot-yellow-shell.png",
+   "frames": 1,
+   "names": [
+    "Shell"
+   ]
+  },
+  {
+   "id": "ui-movement-dot-shell-break",
+   "label": "Movement point dot - shell breaking",
+   "category": "UI",
+   "kind": "animation",
+   "place": "none",
+   "w": 19,
+   "h": 19,
+   "cols": 8,
+   "rows": 1,
+   "fps": 14,
+   "anchor": {
+    "x": 9,
+    "y": 9
+   },
+   "file": "ui-movement-dot-shell-break.png",
+   "frames": 8
+  },
+  {
+   "id": "ui-dot-red-shell-break",
+   "label": "Dot, red - shell breaking",
+   "category": "UI",
+   "kind": "animation",
+   "place": "none",
+   "w": 19,
+   "h": 19,
+   "cols": 8,
+   "rows": 1,
+   "fps": 14,
+   "anchor": {
+    "x": 9,
+    "y": 9
+   },
+   "file": "ui-dot-red-shell-break.png",
+   "frames": 8
+  },
+  {
+   "id": "ui-dot-yellow-shell-break",
+   "label": "Spirit point dot, yellow - shell breaking",
+   "category": "UI",
+   "kind": "animation",
+   "place": "none",
+   "w": 19,
+   "h": 19,
+   "cols": 8,
+   "rows": 1,
+   "fps": 14,
+   "anchor": {
+    "x": 9,
+    "y": 9
+   },
+   "file": "ui-dot-yellow-shell-break.png",
+   "frames": 8
+  },
+  {
    "id": "bridge",
    "label": "Rickety bridge",
    "category": "Bridges",

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Small UI elements. First: the movement-point dot, filled and empty.
+"""Small UI elements. First: the movement-point dot, filled and empty. Then the shell drawn behind a dot when a count has wrapped past ten.
 
 A player's movement points are shown as a row of dots: a filled one for each point left, an empty one for each
 spent. Seven pixels across, with the palette's outline round it like the other assets. The filled dot is the
@@ -121,12 +121,107 @@ def render_burst(frame, colours=BLUE):
     return [''.join(colours.get(c, c) for c in row) for row in grid]
 
 
+# --- the shell: a dot wrapped in a larger one ---------------------------------------------------------
+# When there are more than ten of a point, a shell is drawn behind its dot to show the count has wrapped. It is a thick outlined ring in the dot's own colours
+# (bright top left, dark bottom right) round a dark socket the dot sits in, so it reads as the dot nested inside a bigger gem. One wrap only.
+SHELL_R = 5.4                   # the shell's radius; its cell is 2 r + 1 across (the dot is 7 across, so it adds one outline and one rim pixel all round)
+SHELL = 11
+SHELL_MIDDLE = (5, 5)
+SHELL_BURST = 19                # room for the pieces to fly
+SHELL_BURST_MIDDLE = (9, 9)
+SHELL_BURST_FRAMES = 8
+SHELL_PIECES = 8
+
+
+def shell_grid(size, middle, r, tones=('o', 'n', 'm'), socket=('w', 'k', 'l')):
+    """The shell as letters on a size x size grid: an outline, a rim shaded like the dot, and a dark socket inside, radius r."""
+    grid = [['.'] * size for _ in range(size)]
+    cx, cy = middle
+    for y in range(size):
+        for x in range(size):
+            d = ((x - cx) ** 2 + (y - cy) ** 2) ** 0.5
+            if d > r + 0.3:
+                continue
+            t = ((x - cx) + (y - cy)) / (2 * max(r, 1))
+            if d > r - 0.8:
+                grid[y][x] = 'O'
+            elif d > r - 1.9:
+                grid[y][x] = tones[0] if t < -0.35 else tones[2] if t > 0.3 else tones[1]
+            else:
+                grid[y][x] = socket[0] if t < -0.35 else socket[2] if t > 0.4 else socket[1]
+    return grid
+
+
+def paint(colours, grid):
+    return [''.join(colours.get(c, c) for c in row) for row in grid]
+
+
+def render_shell(colours=BLUE):
+    return paint(colours, shell_grid(SHELL, SHELL_MIDDLE, SHELL_R))
+
+
+def piece_of(x, y, middle):
+    """Which of the eight pieces (wedges round the middle) a pixel belongs to, and the direction that piece flies."""
+    import math
+    angle = math.atan2(y - middle[1], x - middle[0]) % (2 * math.pi)
+    k = int(angle // (2 * math.pi / SHELL_PIECES)) % SHELL_PIECES
+    mid = (k + 0.5) * 2 * math.pi / SHELL_PIECES
+    return k, (math.cos(mid), math.sin(mid))
+
+
+def render_shell_burst(frame, colours=BLUE):
+    """The shell breaking: it swells and cracks, flashes, splits into eight pieces that fly out and fade, and nothing is left (the dot has its own animation)."""
+    import math
+    size, middle = SHELL_BURST, SHELL_BURST_MIDDLE
+    cx, cy = middle
+    k = SHELL_R / 6.4                                                  # everything below was drawn for a radius of 6.4
+    out = [['.'] * size for _ in range(size)]
+    if frame == 0:
+        out = shell_grid(size, middle, SHELL_R)
+    elif frame == 1:
+        out = shell_grid(size, middle, SHELL_R + 0.8)               # it swells
+        for n in range(SHELL_PIECES):                             # light leaks through the cracks between pieces
+            a = n * 2 * math.pi / SHELL_PIECES
+            for step in (2.5 * k, 3.5 * k, 4.5 * k, 5.5 * k, 6.3 * k):
+                x, y = round(cx + math.cos(a) * step), round(cy + math.sin(a) * step)
+                if out[y][x] != '.':
+                    out[y][x] = 't'
+    elif frame == 7:
+        for dx, dy in ((7, 0), (-7, 1), (1, 7), (0, -7), (5, 5), (-5, -5)):      # a last few sparks
+            dx, dy = round(dx * k), round(dy * k)
+            out[cy + dy][cx + dx] = 't' if (dx + dy) % 2 else 'o'
+    else:
+        reach = {2: 0.9, 3: 1.9, 4: 2.9, 5: 3.7, 6: 4.2}[frame] * k
+        base = shell_grid(size, middle, SHELL_R)
+        for y in range(size):
+            for x in range(size):
+                c = base[y][x]
+                if c == '.':
+                    continue
+                _, (ux, uy) = piece_of(x, y, middle)
+                nx, ny = round(x + ux * reach), round(y + uy * reach)
+                if frame >= 5 and (x + y + frame) % (2 if frame == 5 else 3) == 0:
+                    continue                                       # the pieces crumble away
+                if 0 <= nx < size and 0 <= ny < size:
+                    if frame >= 4 and c in 'ow':
+                        c = 'n' if c == 'o' else 'k'                # and dim as they go
+                    out[ny][nx] = c
+        if frame == 2:
+            for y in range(size):
+                for x in range(size):
+                    d = ((x - cx) ** 2 + (y - cy) ** 2) ** 0.5
+                    if SHELL_R + 1.8 <= d < SHELL_R + 3.0 and out[y][x] == '.':
+                        out[y][x] = 't'                            # the flash
+    return paint(colours, out)
+
+
 def main():
     import argparse
     import extract_poses as ep
     from PIL import Image
     parser = argparse.ArgumentParser(description=__doc__.split('\n')[0])
     parser.add_argument('--preview', type=Path)
+    parser.add_argument('--shell', type=Path, help='write the shell and its breaking animation here, one row per colour')
     parser.add_argument('--burst', type=Path, help='write the burst animation here, one row per colour')
     args = parser.parse_args()
     rgb = {c: tuple(int(h[i:i + 2], 16) for i in (0, 2, 4)) for c, _, _, _, h in ep.ROLES}
@@ -144,6 +239,31 @@ def main():
     if args.preview:
         sheet.save(args.preview)
         print('wrote', args.preview)
+    if args.shell:
+        scale = 12
+        cols = SHELL_BURST_FRAMES
+        out = Image.new('RGBA', ((cols + 4) * (SHELL_BURST + 1) * scale, len(COLOURWAYS) * (SHELL_BURST + 1) * scale), (36, 38, 56, 255))
+
+        def put(pixels, ox, oy):
+            for y, line in enumerate(pixels):
+                for x, c in enumerate(line):
+                    if c != '.':
+                        for dy in range(scale):
+                            for dx in range(scale):
+                                out.putpixel(((ox + x) * scale + dx, (oy + y) * scale + dy), rgb[c] + (255,))
+        for r, (_, _, colours) in enumerate(COLOURWAYS):
+            oy = r * (SHELL_BURST + 1)
+            put(render_shell(colours), 1, oy + 4)
+            behind = [list(row) for row in render_shell(colours)]            # a dot over its shell, as the game stacks them
+            for y, line in enumerate(render_pixels('filled', colours)):
+                for x, c in enumerate(line):
+                    if c != '.':
+                        behind[(SHELL - 7) // 2 + y][(SHELL - 7) // 2 + x] = c
+            put([''.join(row) for row in behind], 15, oy + 4)
+            for f in range(cols):
+                put(render_shell_burst(f, colours), 30 + f * (SHELL_BURST + 1) - 0, oy)
+        out.save(args.shell)
+        print('wrote', args.shell)
     if args.burst:
         scale = 10
         out = Image.new('RGBA', (BURST_FRAMES * (BURST + 1) * scale, len(COLOURWAYS) * (BURST + 1) * scale), (36, 38, 56, 255))
@@ -177,6 +297,25 @@ def build_assets():
             'w': BURST, 'h': BURST, 'cols': cols, 'rows': rows, 'fps': 14,
             'anchor': {'x': BURST_MIDDLE[0], 'y': BURST_MIDDLE[1]},
             'frames': burst_frames,
+        })
+    # The shell drawn behind a dot when there are more than ten of a point: one still image, and its break (the shell shattering), played once. Its middle is the dot's middle.
+    for id_, label, colours in COLOURWAYS:
+        short = label.replace(' (filled and empty)', '')
+        dot_assets.append({
+            'id': id_ + '-shell', 'label': short + ' - shell (behind the dot, for a wrapped count)', 'category': 'UI', 'kind': 'variants', 'place': 'none',
+            'names': ['Shell'], 'w': SHELL, 'h': SHELL, 'cols': 1, 'rows': 1, 'fps': 0,
+            'anchor': {'x': SHELL_MIDDLE[0], 'y': SHELL_MIDDLE[1]},
+            'frames': [render_shell(colours)],
+        })
+    for id_, label, colours in COLOURWAYS:
+        break_frames = [render_shell_burst(f, colours) for f in range(SHELL_BURST_FRAMES)]
+        cols, rows = sheet_layout(len(break_frames))
+        dot_assets.append({
+            'id': id_ + '-shell-break', 'label': label.replace(' (filled and empty)', '') + ' - shell breaking', 'category': 'UI',
+            'kind': 'animation', 'place': 'none',
+            'w': SHELL_BURST, 'h': SHELL_BURST, 'cols': cols, 'rows': rows, 'fps': 14,
+            'anchor': {'x': SHELL_BURST_MIDDLE[0], 'y': SHELL_BURST_MIDDLE[1]},
+            'frames': break_frames,
         })
     return dot_assets
 
