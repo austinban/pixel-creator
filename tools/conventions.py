@@ -89,7 +89,7 @@ HEIGHT = {'attack': (22, 27), 'bow': (22, 27), 'charging': (24, 26), 'damage': (
 # The generated people kneel when worn out (down on one knee, head bowed), which is taller than the
 # originals' slump. Their own range, measured from their kneel; the originals keep theirs.
 KNEEL_HEIGHT = (22, 26)
-KNEELERS = {'human', 'slim', 'human-sleek', 'slim-sleek', 'ninja', 'ranger', 'verdant', 'fey', 'bones', 'undead', 'paladin', 'blossom', 'earthbender'}
+KNEELERS = {'human', 'slim', 'human-sleek', 'slim-sleek', 'ninja', 'ranger', 'verdant', 'fey', 'golden-mushroom', 'bones', 'undead', 'paladin', 'blossom', 'earthbender'}
 HEIGHT_SLACK = {'release': 2}    # one row either side of the originals' range (two for a cast, which
 HEIGHT_SLACK_DEFAULT = 1        # relies on arms thrown above the head that a shorter-armed figure cannot fully reach)
 MASS_SLACK = 0.92               # a little under the lightest original is still allowed
@@ -99,7 +99,7 @@ MASS_SLACK = 0.92               # a little under the lightest original is still 
 BUILDS = {'standard': 0.92, 'slim': 0.78, 'sleek': 0.6, 'bony': 0.5,
           'maimed': 0.65,
           'delicate': 0.6}      # a fairy: slim, with little body and no heavy clothes      # a missing limb is less to paint
-BASE_BUILDS = {'human-sleek': 'sleek', 'slim-sleek': 'sleek', 'slim': 'slim', 'ninja': 'slim', 'ranger': 'slim', 'verdant': 'slim', 'fey': 'slim', 'bones': 'bony', 'undead': 'maimed', 'paladin': 'standard', 'blossom': 'delicate', 'earthbender': 'standard'}
+BASE_BUILDS = {'human-sleek': 'sleek', 'slim-sleek': 'sleek', 'slim': 'slim', 'ninja': 'slim', 'ranger': 'slim', 'verdant': 'slim', 'fey': 'slim', 'golden-mushroom': 'slim', 'bones': 'bony', 'undead': 'maimed', 'paladin': 'standard', 'blossom': 'delicate', 'earthbender': 'standard'}
 
 # --- the walk ----------------------------------------------------------------------------------
 # The originals share one walk, and it is a bob with sliding feet, not a rock forward and back. Over
@@ -123,7 +123,7 @@ RAMP_LENGTH = 4
 # a humanoid.
 BASE_KINDS = {'spirit': 'floater', 'dog': 'creature', 'alpaca': 'creature', 'blight-alpaca': 'creature', 'mushroom-small': 'creature', 'mushroom-large': 'creature', 'rat': 'creature', 'scorpion': 'creature', 'mantis': 'creature', 'mantis-small': 'creature', 'scorpion-king': 'creature', 'rock-monster': 'creature', 'rock-monster-small': 'creature', 'rock-monster-large': 'creature', 'stone-totem': 'creature'}
 # Which module describes how a generated base is built, so its poses can be checked at the source.
-CREATORS = {'human': 'make_human', 'human-sleek': 'make_human_sleek', 'slim': 'make_slim', 'slim-sleek': 'make_slim_sleek', 'ninja': 'make_ninja', 'ranger': 'make_ranger', 'verdant': 'make_verdant', 'fey': 'make_fey', 'alpaca': 'make_alpaca', 'blight-alpaca': 'make_blight_alpaca', 'mushroom-small': 'make_mushroom', 'mushroom-large': 'make_mushroom_large', 'bones': 'make_bones', 'undead': 'make_undead', 'paladin': 'make_paladin', 'blossom': 'make_blossom', 'earthbender': 'make_earthbender', 'dog': 'make_dog', 'rat': 'make_rat', 'scorpion': 'make_scorpion', 'mantis': 'make_mantis', 'mantis-small': 'make_mantis_small', 'scorpion-king': 'make_scorpion_king', 'rock-monster': 'make_rockmonster', 'rock-monster-small': 'make_rockmonster_small', 'rock-monster-large': 'make_rockmonster_large', 'stone-totem': 'make_stonetotem'}
+CREATORS = {'human': 'make_human', 'human-sleek': 'make_human_sleek', 'slim': 'make_slim', 'slim-sleek': 'make_slim_sleek', 'ninja': 'make_ninja', 'ranger': 'make_ranger', 'verdant': 'make_verdant', 'fey': 'make_fey', 'golden-mushroom': 'make_golden_mushroom', 'alpaca': 'make_alpaca', 'blight-alpaca': 'make_blight_alpaca', 'mushroom-small': 'make_mushroom', 'mushroom-large': 'make_mushroom_large', 'bones': 'make_bones', 'undead': 'make_undead', 'paladin': 'make_paladin', 'blossom': 'make_blossom', 'earthbender': 'make_earthbender', 'dog': 'make_dog', 'rat': 'make_rat', 'scorpion': 'make_scorpion', 'mantis': 'make_mantis', 'mantis-small': 'make_mantis_small', 'scorpion-king': 'make_scorpion_king', 'rock-monster': 'make_rockmonster', 'rock-monster-small': 'make_rockmonster_small', 'rock-monster-large': 'make_rockmonster_large', 'stone-totem': 'make_stonetotem'}
 
 UPRIGHT = {'attack', 'charging', 'damage', 'release', 'walking', 'weak'}
 
