@@ -15,3 +15,9 @@ The victory screen's display piece in its **healthy** form: the same massive anc
 **Using it.** Draw it once as a display piece, in whole-number scales. It blocks nothing and has no walkable top. Its ground (green turf, soil and fallen leaves) is painted in, so it needs no ground under it.
 
 It comes from `tools/make_all_tree_fall.py` (`--preview` shows it over its footprint, `--gif` the loop), which reuses the corrupted tree's model; do not edit the PNGs.
+
+## The wide version
+
+`all-tree-fall-wide` (the loop) and `all-tree-fall-wide-still` are the same autumn tree on a **704 x 448** canvas, so the great boughs and their foliage are **not cut off** by the sides, as they are in the 384-wide picture. The anchor is **(352, 336)**, the middle of the wider canvas and of the same 10 x 10 base, so the trunk, roots and boughs sit in the same places relative to it, and the middle of the picture is the same as the narrow one (the narrow picture's column x is the wide one's x + 160). The top edge still crops the tree. The loop is 12 frames at 10 a second, 8 across and 2 down, in `all-tree-fall-wide.png`; the still is `all-tree-fall-wide-still.png`. The extra width is a small amount of extra sky with a few more drops, leaves or fairies on the sides. The corrupted and the autumn wide pictures share the same width, so they swap like the narrow ones.
+
+Use the narrow picture where the screen is narrow or the cut-off sides do not matter, and the wide one where the tree should spread to its full width. They are all in `all-tree-fall.json`.

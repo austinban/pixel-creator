@@ -50,9 +50,13 @@ UNITS = [
     Unit('traps', 'make_traps'),
     Unit('chests', 'make_chest'),
     Unit('fungi', 'make_fungi'),
+    Unit('trees', 'make_trees'),
     Unit('slot-icons', 'make_slot_icons'),
+    Unit('blood-pool', 'make_blood_pool'),
     Unit('all-tree', 'make_all_tree'),
     Unit('all-tree-fall', 'make_all_tree_fall'),
+    Unit('all-tree-wide', 'make_all_tree', func='build_wide_assets'),
+    Unit('all-tree-fall-wide', 'make_all_tree_fall', func='build_wide_assets'),
     # the shop is drawn from the game's own sheets, so it follows them
     Unit('bazaar', 'make_bazaar', inputs=(ASSETS / 'amulets.png', ASSETS / 'crystal.png', ASSETS / 'rock.png', *sorted(ASSETS.glob('icon-weapon-*.png')))),
     Unit('abilities', 'make_abilities'),

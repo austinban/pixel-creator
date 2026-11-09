@@ -1,0 +1,185 @@
+{
+ "about": "The tree sheets in this folder. See README.md beside this file for the whole story.",
+ "trees": {
+  "tree-tall-pine": {
+   "label": "Tall pine",
+   "file": "tree-tall-pine.png",
+   "cell": [
+    48,
+    125
+   ],
+   "anchor": {
+    "x": 24,
+    "y": 113
+   },
+   "footprint": [
+    1,
+    1
+   ],
+   "blocks": true,
+   "height": 6.4
+  },
+  "tree-spruce": {
+   "label": "Spruce",
+   "file": "tree-spruce.png",
+   "cell": [
+    48,
+    118
+   ],
+   "anchor": {
+    "x": 24,
+    "y": 106
+   },
+   "footprint": [
+    1,
+    1
+   ],
+   "blocks": true,
+   "height": 6.0
+  },
+  "tree-poplar": {
+   "label": "Poplar",
+   "file": "tree-poplar.png",
+   "cell": [
+    48,
+    123
+   ],
+   "anchor": {
+    "x": 24,
+    "y": 111
+   },
+   "footprint": [
+    1,
+    1
+   ],
+   "blocks": true,
+   "height": 6.3
+  },
+  "tree-tall-oak": {
+   "label": "Tall oak",
+   "file": "tree-tall-oak.png",
+   "cell": [
+    64,
+    128
+   ],
+   "anchor": {
+    "x": 32,
+    "y": 116
+   },
+   "footprint": [
+    1,
+    1
+   ],
+   "blocks": true,
+   "height": 6.6
+  },
+  "tree-broad-oak": {
+   "label": "Broad oak",
+   "file": "tree-broad-oak.png",
+   "cell": [
+    64,
+    78
+   ],
+   "anchor": {
+    "x": 32,
+    "y": 66
+   },
+   "footprint": [
+    1,
+    1
+   ],
+   "blocks": true,
+   "height": 3.5
+  },
+  "tree-birch": {
+   "label": "Birch",
+   "file": "tree-birch.png",
+   "cell": [
+    48,
+    107
+   ],
+   "anchor": {
+    "x": 24,
+    "y": 95
+   },
+   "footprint": [
+    1,
+    1
+   ],
+   "blocks": true,
+   "height": 5.3
+  },
+  "tree-small-pine": {
+   "label": "Small pine",
+   "file": "tree-small-pine.png",
+   "cell": [
+    48,
+    53
+   ],
+   "anchor": {
+    "x": 24,
+    "y": 41
+   },
+   "footprint": [
+    1,
+    1
+   ],
+   "blocks": true,
+   "height": 1.9
+  },
+  "tree-dead-tree": {
+   "label": "Dead tree",
+   "file": "tree-dead-tree.png",
+   "cell": [
+    64,
+    88
+   ],
+   "anchor": {
+    "x": 32,
+    "y": 76
+   },
+   "footprint": [
+    1,
+    1
+   ],
+   "blocks": true,
+   "height": 4.1
+  },
+  "bush-berry-bush": {
+   "label": "Berry bush",
+   "file": "bush-berry-bush.png",
+   "cell": [
+    48,
+    43
+   ],
+   "anchor": {
+    "x": 24,
+    "y": 31
+   },
+   "footprint": [
+    1,
+    1
+   ],
+   "blocks": true,
+   "height": 1.3
+  },
+  "bush-hedge": {
+   "label": "Hedge",
+   "file": "bush-hedge.png",
+   "cell": [
+    64,
+    38
+   ],
+   "anchor": {
+    "x": 32,
+    "y": 26
+   },
+   "footprint": [
+    1,
+    1
+   ],
+   "blocks": true,
+   "height": 1.0
+  }
+ }
+}

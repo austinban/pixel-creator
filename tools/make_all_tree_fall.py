@@ -31,6 +31,26 @@ from make_fungi import hashed, step_of  # noqa: E402
 
 W, H, ANCHOR, AX, AY, FOOT, FRAMES = T.W, T.H, T.ANCHOR, T.AX, T.AY, T.FOOT, T.FRAMES
 
+
+def set_canvas(width):
+    """Draw on a canvas `width` wide (the anchor at its middle): this module's copies of the size, and the corrupted tree's, which it draws with."""
+    global W, ANCHOR, AX
+    T.set_canvas(width)
+    W, ANCHOR, AX = T.W, T.ANCHOR, T.AX
+
+
+class wide_canvas:
+    """`with wide_canvas(1024):` draws everything on a wider canvas and puts the narrow one back afterwards."""
+    def __init__(self, width):
+        self.width = width
+
+    def __enter__(self):
+        self.old = W
+        set_canvas(self.width)
+
+    def __exit__(self, *exc):
+        set_canvas(self.old)
+
 # bright to dark
 BARK = ('a', 'a', 'g', 'w')                       # terracotta orange in the light, plum and grape in the shade: the nearest the palette has to brown (it has none); bark_char() mottles it
 YELLOW = ('d', 'd', 'b', 'a')
@@ -57,9 +77,9 @@ CELL_W, CELL_H = 6, 5
 
 def cellmap():
     """Organic clusters of leaves over the whole picture: a jittered Voronoi (each cell's point is moved about inside its square and given a weight, so the cells are all sizes and shapes, about six pixels across). For every pixel: the hash of its cluster (`h`) and its offset from the cluster's middle (`dx`, `dy`). Nothing in it repeats on a grid, and it does not depend on the mass a pixel belongs to."""
-    if _CELLS:
-        return _CELLS
-    px = np.arange(W)[None, :] + np.zeros((H, 1), dtype=np.int64)
+    if W in _CELLS:
+        return _CELLS[W]
+    px = np.arange(W)[None, :] - T.off() + np.zeros((H, 1), dtype=np.int64)      # on a wide canvas the clusters are laid out from the narrow picture's left edge, so the middle 384 columns keep theirs
     py = np.arange(H)[:, None] + np.zeros((1, W), dtype=np.int64)
     ci, cj = px // CELL_W, py // CELL_H
     best = np.full((H, W), np.inf)
@@ -76,8 +96,8 @@ def cellmap():
             best = np.where(better, d, best)
             bh = np.where(better, vhash(i, j, 204), bh)
             bdx, bdy = np.where(better, dx, bdx), np.where(better, dy, bdy)
-    _CELLS.update(h=bh, dx=bdx, dy=bdy)
-    return _CELLS
+    _CELLS[W] = dict(h=bh, dx=bdx, dy=bdy)
+    return _CELLS[W]
 
 
 class Leafy(T.Ell):
@@ -296,17 +316,18 @@ def trunk_colour(body, p, n, step, px, py):
 
 def colour(body, p, n, step, px, py):
     m = body.mark
+    ux = px - T.off()                  # textures are laid out from the narrow picture's left edge, so a wide canvas draws the same bark in the same places
     if m == 'ground':
-        return ground_colour(p, px, py)
+        return ground_colour(p, ux, py)
     if m == 'trunk':
-        return trunk_colour(body, p, n, step, px, py)
+        return trunk_colour(body, p, n, step, ux, py)
     if m in ('bark', 'root', 'knot'):
         s = step
-        if s < 3 and hashed(px, py, 4) % 13 == 0:
+        if s < 3 and hashed(ux, py, 4) % 13 == 0:
             s += 1
         if n[2] > 0.5 and p[2] < 14 and T.noise(p[0] * 2.4, p[1] * 2.4, p[2] * 1.3) > 0.55:
             return MOSS[min(3, s)]
-        return bark_char(s, px, py)
+        return bark_char(s, ux, py)
     if m == 'foliage':
         hue, s = leaf_pick(body, n, step, px, py)
         return LEAVES[hue][s]
@@ -354,43 +375,48 @@ def stamp_leaves(grid):
             if not cell or cell[3].mark != 'foliage':
                 continue
             if below[x] is None:
-                cand.append((hashed(x, y, 91), x, y, 90))
+                cand.append((hashed(x - T.off(), y, 91), x, y, 90))
             elif row[x + 1] is None:
-                cand.append((hashed(x, y, 92), x, y, 0))
+                cand.append((hashed(x - T.off(), y, 92), x, y, 0))
             elif row[x - 1] is None:
-                cand.append((hashed(x, y, 93), x, y, 180))
+                cand.append((hashed(x - T.off(), y, 93), x, y, 180))
             elif grid[y - 1][x] is None:
-                cand.append((hashed(x, y, 94), x, y, 270))
+                cand.append((hashed(x - T.off(), y, 94), x, y, 270))
     cand.sort()
+    # the middle 384 columns go first, with the narrow picture's own cap, so a wide canvas keeps the same leaves there; the sides come after, with a cap of their own
+    lo, hi = T.off() + 4, T.off() + T.BASE_W - 4
+    batches = [[c for c in cand if lo <= c[1] < hi], [c for c in cand if not lo <= c[1] < hi]]
     taken = []
     made = 0
-    for key, x, y, base in cand:
-        if made >= 200:
-            break
-        if any(abs(x - ax) < 9 and abs(y - ay) < 9 for ax, ay in taken):
-            continue
-        v = hashed(x, y, 95) % 20
-        hue = 0 if v < WEIGHTS[0] else 1 if v < WEIGHTS[0] + WEIGHTS[1] else 2
-        ang = base + (hashed(x, y, 96) % 61) - 30
-        length = 7 + hashed(x, y, 97) % 3
-        pixels = leaf_pixels(ang, length, 5 if length < 9 else 6)
-        ca, sa = math.cos(math.radians(ang)), math.sin(math.radians(ang))
-        stem = [(x + round(ca * i), y + round(sa * i)) for i in (1,)]
-        free = [(x + dx, y + dy, side, vein) for dx, dy, side, vein in pixels if 0 <= x + dx < W and 0 <= y + dy < H and grid[y + dy][x + dx] is None]
-        if len(free) < 0.92 * len(pixels):
-            continue
-        depth = grid[y][x][2] + 0.6
-        ramp = LEAVES[hue]
-        for sx, sy in stem:
-            if grid[sy][sx] is None:
-                grid[sy][sx] = (ramp[3], ('sleaf', made), depth, STAMP, (hue, 3))
-        for px_, py_, side, vein in free:
-            if vein:
-                grid[py_][px_] = (VEIN_COLOUR[hue], ('sleaf', made), depth, VEIN, None)
-            else:
-                grid[py_][px_] = (ramp[2 * side], ('sleaf', made), depth, STAMP, (hue, 2 * side))
-        taken.append((x, y))
-        made += 1
+    for batch in batches:
+        limit = made + 200
+        for key, x, y, base in batch:
+            if made >= limit:
+                break
+            if any(abs(x - ax) < 9 and abs(y - ay) < 9 for ax, ay in taken):
+                continue
+            v = hashed(x - T.off(), y, 95) % 20
+            hue = 0 if v < WEIGHTS[0] else 1 if v < WEIGHTS[0] + WEIGHTS[1] else 2
+            ang = base + (hashed(x - T.off(), y, 96) % 61) - 30
+            length = 7 + hashed(x - T.off(), y, 97) % 3
+            pixels = leaf_pixels(ang, length, 5 if length < 9 else 6)
+            ca, sa = math.cos(math.radians(ang)), math.sin(math.radians(ang))
+            stem = [(x + round(ca * i), y + round(sa * i)) for i in (1,)]
+            free = [(x + dx, y + dy, side, vein) for dx, dy, side, vein in pixels if 0 <= x + dx < W and 0 <= y + dy < H and grid[y + dy][x + dx] is None]
+            if len(free) < 0.92 * len(pixels):
+                continue
+            depth = grid[y][x][2] + 0.6
+            ramp = LEAVES[hue]
+            for sx, sy in stem:
+                if grid[sy][sx] is None:
+                    grid[sy][sx] = (ramp[3], ('sleaf', made), depth, STAMP, (hue, 3))
+            for px_, py_, side, vein in free:
+                if vein:
+                    grid[py_][px_] = (VEIN_COLOUR[hue], ('sleaf', made), depth, VEIN, None)
+                else:
+                    grid[py_][px_] = (ramp[2 * side], ('sleaf', made), depth, STAMP, (hue, 2 * side))
+            taken.append((x, y))
+            made += 1
 
 
 # --- drawing ---------------------------------------------------------------------------------------------------------
@@ -461,6 +487,11 @@ FAIRIES = (
     (300, 196, 13, 9, 12, 0.20, 1, False, 0), (190, 150, 15, 8, 12, 0.75, 2, False, 1), (112, 96, 12, 10, 6, 0.10, 1, True, 2),
     (276, 78, 14, 8, 12, 0.40, 2, False, 0), (178, 40, 13, 7, 12, 0.90, 1, True, 1), (40, 330, 10, 8, 4, 0.60, 1, False, 2),
 )
+# a few more for the wide canvas, out past the old edges (x counted from the narrow picture's left edge, so negative is left of it)
+WIDE_FAIRIES = (
+    (-62, 262, 14, 9, 12, 0.35, 1, False, 0), (-104, 132, 13, 8, 12, 0.65, 2, True, 1), (430, 270, 13, 9, 12, 0.15, 2, False, 2),
+    (452, 150, 14, 8, 6, 0.50, 1, True, 0), (-20, 60, 12, 7, 12, 0.80, 1, False, 2),
+)
 FAIRY_COLOURS = (('t', 'r', 'r', 'o'), ('r', 't', 'o', 'n'), ('j', 't', 'c', 'j'))       # body, wings, inner halo, outer halo: cream in mint and cyan, mint in cyan and sky, pink in salmon and hot pink
 LEAF_FALL = (0, 3, 7, 12, 18, 25, 33, 42, 52, 63)       # a leaf is in the air for ten of the twelve frames
 
@@ -468,7 +499,7 @@ LEAF_FALL = (0, 3, 7, 12, 18, 25, 33, 42, 52, 63)       # a leaf is in the air f
 def fairy_path(spec, f):
     cx, cy, rx, ry, period, phase, laps = spec[:7]
     a = 2 * math.pi * (f / period + phase)
-    return round(cx + rx * math.cos(a)), round(cy + ry * math.sin(laps * a) + 1.5 * math.sin(a * 2))
+    return round(T.off() + cx + rx * math.cos(a)), round(cy + ry * math.sin(laps * a) + 1.5 * math.sin(a * 2))
 
 
 def leaf_spawns(grid, count=14):
@@ -478,14 +509,18 @@ def leaf_spawns(grid, count=14):
         for x in range(8, W - 8):
             cell = grid[y][x]
             if cell and cell[3].mark == 'foliage' and (grid[y + 1][x] is None or grid[y + 1][x][3].mark != 'foliage'):
-                cand.append((hashed(x, y, 91), x, y))
+                cand.append((hashed(x - T.off(), y, 91), x, y))
     cand.sort()
+    # the middle 384 columns pick first, with the narrow picture's own count, so a wide canvas keeps the same leaves there; the sides add more in proportion to their width
+    lo, hi = T.off() + 8, T.off() + T.BASE_W - 8
     out = []
-    for _, x, y in cand:
-        if len(out) >= count:
-            break
-        if all(math.hypot(x - ox, y - oy) > 26 for ox, oy, _, _ in out):
-            out.append((x, y, (len(out) * 5 + 2) % FRAMES, (0, 2, 1, 2, 0)[len(out) % 5]))
+    for batch, share in (([c for c in cand if lo <= c[1] < hi], count), ([c for c in cand if not lo <= c[1] < hi], round(count * (W - T.BASE_W) / T.BASE_W))):
+        limit = len(out) + share
+        for _, x, y in batch:
+            if len(out) >= limit:
+                break
+            if all(math.hypot(x - ox, y - oy) > 26 for ox, oy, _, _ in out):
+                out.append((x, y, (len(out) * 5 + 2) % FRAMES, (0, 2, 1, 2, 0)[len(out) % 5]))
     return out
 
 
@@ -525,13 +560,13 @@ def build_animation(rows=None, grid=None):
                 continue
             ramp = LEAVES[hue]
             fade = k in (0, len(LEAF_FALL) - 1)
-            x = x0 + round(5 * math.sin(k * 0.75 + hue * 2 + x0))
+            x = x0 + round(5 * math.sin(k * 0.75 + hue * 2 + (x0 - T.off())))
             y = y0 + 3 + LEAF_FALL[k]
             ang = (35, 100, 160)[(k // 2 + hue) % 3] + 20 * (k % 2)
             for dx, dy, side, vein in leaf_pixels(ang, 4.6, 3):
                 put(x + dx, y + dy, ramp[2] if fade else (VEIN_COLOUR[hue] if vein else ramp[2 * side]), over=False)
         # 3. the fairies: a wing flick every frame, a glow round each; the ones behind the tree only show beside it
-        order = sorted(FAIRIES, key=lambda s: not s[7])
+        order = sorted(FAIRIES + (WIDE_FAIRIES if W > T.BASE_W else ()), key=lambda s: not s[7])
         for spec in order:
             behind = spec[7]
             body, wing, halo_in, halo_out = FAIRY_COLOURS[spec[8]]
@@ -569,10 +604,23 @@ def build_assets():
             make('all-tree-fall-still', 'The All Tree, autumn (still)', 'still', [frames[0]])]
 
 
+WIDE_W = T.WIDE_W
+
+
+def build_wide_assets():
+    """The same two assets on the wide canvas, the same size as the corrupted tree's wide one so they swap: `all-tree-fall-wide` (the loop) and `all-tree-fall-wide-still`."""
+    with wide_canvas(WIDE_W):
+        make = family(CATEGORY, W, H, ANCHOR, place='none', folder=FOLDER)
+        frames = build_animation()
+        return [make('all-tree-fall-wide', 'The All Tree, autumn (animated, wide)', 'animation', frames, fps=FPS),
+                make('all-tree-fall-wide-still', 'The All Tree, autumn (still, wide)', 'still', [frames[0]])]
+
+
 def write_package(folder):
     write_json(folder, 'all-tree-fall.json', 'The autumn All Tree sheets in this folder.',
                {'cell': [W, H], 'anchor': {'x': AX, 'y': AY}, 'frames': FRAMES, 'fps': FPS, 'footprint': [FOOT, FOOT], 'levels': 20,
-                'animated': 'all-tree-fall.png', 'still': 'all-tree-fall-still.png', 'sheet': {'cols': 8, 'rows': 2}})
+                'animated': 'all-tree-fall.png', 'still': 'all-tree-fall-still.png', 'sheet': {'cols': 8, 'rows': 2},
+                'wide': {'cell': [WIDE_W, H], 'anchor': {'x': WIDE_W // 2, 'y': AY}, 'animated': 'all-tree-fall-wide.png', 'still': 'all-tree-fall-wide-still.png', 'sheet': {'cols': 8, 'rows': 2}, 'about': 'the same tree on a wider canvas so the sides are not cut off'}})
 
 
 def main():
@@ -582,9 +630,17 @@ def main():
     parser.add_argument('--animate', type=Path, help='write a contact sheet of the 12 frames here')
     parser.add_argument('--gif', type=Path, help='write the looping animation here, and an 8x one of the foot of the tree beside it')
     parser.add_argument('--frame-dir', type=Path, help='also write every frame as a PNG here')
+    parser.add_argument('--wide', action='store_true', help=f'draw on the wide {WIDE_W} x 448 canvas, so the sides of the tree are not cut off')
     args = parser.parse_args()
     if not (args.preview or args.png or args.animate or args.gif or args.frame_dir):
         parser.error('say --preview, --png, --animate, --gif or --frame-dir')
+    if args.wide:
+        with wide_canvas(WIDE_W):
+            return run(args)
+    return run(args)
+
+
+def run(args):
     frames = build_animation()
     if args.preview:
         T.preview(args.preview, frames[0])
@@ -598,7 +654,7 @@ def main():
         print('the 12 frames, half size ->', args.animate)
     if args.gif:
         T.write_gif(args.gif, T.frame_images(frames))
-        T.write_gif(args.gif.with_name(args.gif.stem + '-base.gif'), T.frame_images(frames, 8, T.BASE_CROP))
+        T.write_gif(args.gif.with_name(args.gif.stem + '-base.gif'), T.frame_images(frames, 8, T.base_crop()))
         print('the looping animation ->', args.gif, 'and', args.gif.with_name(args.gif.stem + '-base.gif'))
     if args.frame_dir:
         args.frame_dir.mkdir(parents=True, exist_ok=True)

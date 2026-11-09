@@ -3647,6 +3647,186 @@
    "frames": 1
   },
   {
+   "id": "tree-tall-pine",
+   "label": "Tall pine",
+   "category": "Trees",
+   "kind": "still",
+   "place": "ground",
+   "w": 48,
+   "h": 125,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 24,
+    "y": 113
+   },
+   "file": "trees/tree-tall-pine.png",
+   "frames": 1
+  },
+  {
+   "id": "tree-spruce",
+   "label": "Spruce",
+   "category": "Trees",
+   "kind": "still",
+   "place": "ground",
+   "w": 48,
+   "h": 118,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 24,
+    "y": 106
+   },
+   "file": "trees/tree-spruce.png",
+   "frames": 1
+  },
+  {
+   "id": "tree-poplar",
+   "label": "Poplar",
+   "category": "Trees",
+   "kind": "still",
+   "place": "ground",
+   "w": 48,
+   "h": 123,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 24,
+    "y": 111
+   },
+   "file": "trees/tree-poplar.png",
+   "frames": 1
+  },
+  {
+   "id": "tree-tall-oak",
+   "label": "Tall oak",
+   "category": "Trees",
+   "kind": "still",
+   "place": "ground",
+   "w": 64,
+   "h": 128,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 32,
+    "y": 116
+   },
+   "file": "trees/tree-tall-oak.png",
+   "frames": 1
+  },
+  {
+   "id": "tree-broad-oak",
+   "label": "Broad oak",
+   "category": "Trees",
+   "kind": "still",
+   "place": "ground",
+   "w": 64,
+   "h": 78,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 32,
+    "y": 66
+   },
+   "file": "trees/tree-broad-oak.png",
+   "frames": 1
+  },
+  {
+   "id": "tree-birch",
+   "label": "Birch",
+   "category": "Trees",
+   "kind": "still",
+   "place": "ground",
+   "w": 48,
+   "h": 107,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 24,
+    "y": 95
+   },
+   "file": "trees/tree-birch.png",
+   "frames": 1
+  },
+  {
+   "id": "tree-small-pine",
+   "label": "Small pine",
+   "category": "Trees",
+   "kind": "still",
+   "place": "ground",
+   "w": 48,
+   "h": 53,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 24,
+    "y": 41
+   },
+   "file": "trees/tree-small-pine.png",
+   "frames": 1
+  },
+  {
+   "id": "tree-dead-tree",
+   "label": "Dead tree",
+   "category": "Trees",
+   "kind": "still",
+   "place": "ground",
+   "w": 64,
+   "h": 88,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 32,
+    "y": 76
+   },
+   "file": "trees/tree-dead-tree.png",
+   "frames": 1
+  },
+  {
+   "id": "bush-berry-bush",
+   "label": "Berry bush",
+   "category": "Trees",
+   "kind": "still",
+   "place": "ground",
+   "w": 48,
+   "h": 43,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 24,
+    "y": 31
+   },
+   "file": "trees/bush-berry-bush.png",
+   "frames": 1
+  },
+  {
+   "id": "bush-hedge",
+   "label": "Hedge",
+   "category": "Trees",
+   "kind": "still",
+   "place": "ground",
+   "w": 64,
+   "h": 38,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 32,
+    "y": 26
+   },
+   "file": "trees/bush-hedge.png",
+   "frames": 1
+  },
+  {
    "id": "slot-weapon",
    "label": "Weapon slot",
    "category": "UI",
@@ -3699,6 +3879,32 @@
    },
    "file": "slot-icons/slot-trinket.png",
    "frames": 1
+  },
+  {
+   "id": "blood-pool",
+   "label": "Blood pool",
+   "category": "Decals",
+   "kind": "variants",
+   "place": "ground",
+   "w": 32,
+   "h": 16,
+   "cols": 6,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 8
+   },
+   "file": "blood-pool.png",
+   "frames": 6,
+   "names": [
+    "Pool 1",
+    "Pool 2",
+    "Pool 3",
+    "Pool 4",
+    "Pool 5",
+    "Pool 6"
+   ]
   },
   {
    "id": "all-tree",
@@ -3770,6 +3976,78 @@
     "y": 336
    },
    "file": "all-tree-fall/all-tree-fall-still.png",
+   "frames": 1
+  },
+  {
+   "id": "all-tree-wide",
+   "label": "The All Tree (animated, wide)",
+   "category": "Victory Screen",
+   "kind": "animation",
+   "place": "none",
+   "w": 704,
+   "h": 448,
+   "cols": 8,
+   "rows": 2,
+   "fps": 10,
+   "anchor": {
+    "x": 352,
+    "y": 336
+   },
+   "file": "all-tree/all-tree-wide.png",
+   "frames": 12
+  },
+  {
+   "id": "all-tree-wide-still",
+   "label": "The All Tree (still, wide)",
+   "category": "Victory Screen",
+   "kind": "still",
+   "place": "none",
+   "w": 704,
+   "h": 448,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 352,
+    "y": 336
+   },
+   "file": "all-tree/all-tree-wide-still.png",
+   "frames": 1
+  },
+  {
+   "id": "all-tree-fall-wide",
+   "label": "The All Tree, autumn (animated, wide)",
+   "category": "Victory Screen",
+   "kind": "animation",
+   "place": "none",
+   "w": 704,
+   "h": 448,
+   "cols": 8,
+   "rows": 2,
+   "fps": 10,
+   "anchor": {
+    "x": 352,
+    "y": 336
+   },
+   "file": "all-tree-fall/all-tree-fall-wide.png",
+   "frames": 12
+  },
+  {
+   "id": "all-tree-fall-wide-still",
+   "label": "The All Tree, autumn (still, wide)",
+   "category": "Victory Screen",
+   "kind": "still",
+   "place": "none",
+   "w": 704,
+   "h": 448,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 352,
+    "y": 336
+   },
+   "file": "all-tree-fall/all-tree-fall-wide-still.png",
    "frames": 1
   },
   {
