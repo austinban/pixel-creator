@@ -193,6 +193,13 @@ folder's README.md and `abilities.json` are **generated** from `ABILITIES` in `t
 from names. The rules the tests check: a burst starts small, grows and fades away; a ground loop that is meant to join its neighbours does (the same pattern repeats from plot to plot); a loop comes back to its first frame; every
 sheet an ability names exists. A new ability is one entry in `ABILITIES`; a new colour or style is one entry in its family's module.
 
+## Elites
+
+An elite is a creature bigger than an ordinary one that still stands on **one ground tile**. It is drawn in a **64 x 64** cell (twice a person's), with the middle of its tile at **(32, 52)** on the ground and the lowest row of a standing
+frame on row **60**. Painted pixels stay inside columns 1-62 and rows 1-62, the silhouette is outlined, and a frame has at least 900 painted pixels. It has the same actions and frame counts as a boss (charging 1, attack 4, release 1,
+damage 1, weak 1, dead 1, walking 8, both facings), as one sheet per action and facing laid out like the characters'. The creature rules about lean, weight and the walk do not apply. `ELITE_*` in `conventions.py` and `check_elite` enforce this
+(the rat king is checked from `sprites/rat-king`). The assets are in the **Elites** category (`tools/make_elite.py`): `rat-king-ACTION-ne` and `-se`.
+
 ## The node map
 
 A group of assets of its own: top-down, **16 x 16 tiles on a dual grid** (a tile for every corner of four land-or-water cells, 16 shapes), an animated sea

@@ -36,10 +36,16 @@ def main():
         section(f"{ch['id']} ({cv.kind_of(ch['id'])})", cv.check_base(ch['id'], ch['frames'], airborne=airborne), f"{len(ch['frames'])} poses")
         section(f"{ch['id']} bow animation", cv.check_bow(ch['id'], ch['frames']), 'bow poses')
 
-    emperor = cv.ROOT / 'sprites' / 'scorpion-emperor'
-    if emperor.is_dir():
-        found = cv.load_boss_frames(emperor, 'scorpion-emperor')
-        section('scorpion-emperor (boss)', cv.check_boss('scorpion-emperor', found), f'{sum(len(v) for v in found.values())} frames')
+    for boss in ('scorpion-emperor', 'blood-mushroom'):
+        boss_dir = cv.ROOT / 'sprites' / boss
+        if boss_dir.is_dir():
+            found = cv.load_boss_frames(boss_dir, boss)
+            section(f'{boss} (boss)', cv.check_boss(boss, found), f'{sum(len(v) for v in found.values())} frames')
+
+    rat_king = cv.ROOT / 'sprites' / 'rat-king'
+    if rat_king.is_dir():
+        found = cv.load_elite_frames(rat_king, 'rat-king')
+        section('rat-king (elite)', cv.check_elite('rat-king', found), f'{sum(len(v) for v in found.values())} frames')
 
     weapons = cv.ROOT / 'sprites' / 'weapons'
     if weapons.is_dir():

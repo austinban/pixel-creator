@@ -1,0 +1,105 @@
+{
+ "about": "The mushroom sheets in this folder. See README.md beside this file for the whole story.",
+ "mushrooms": {
+  "spotted": {
+   "label": "Spotted toadstool",
+   "file": "fungus-spotted.png",
+   "cell": [
+    48,
+    79
+   ],
+   "anchor": {
+    "x": 24,
+    "y": 67
+   },
+   "footprint": [
+    1,
+    1
+   ]
+  },
+  "bell": {
+   "label": "Bell mushroom",
+   "file": "fungus-bell.png",
+   "cell": [
+    48,
+    83
+   ],
+   "anchor": {
+    "x": 24,
+    "y": 71
+   },
+   "footprint": [
+    1,
+    1
+   ]
+  },
+  "cluster": {
+   "label": "Toadstool cluster",
+   "file": "fungus-cluster.png",
+   "cell": [
+    48,
+    58
+   ],
+   "anchor": {
+    "x": 24,
+    "y": 46
+   },
+   "footprint": [
+    1,
+    1
+   ]
+  },
+  "puffball": {
+   "label": "Puffball",
+   "file": "fungus-puffball.png",
+   "cell": [
+    48,
+    48
+   ],
+   "anchor": {
+    "x": 24,
+    "y": 36
+   },
+   "footprint": [
+    1,
+    1
+   ]
+  },
+  "parasol": {
+   "label": "Parasol mushroom",
+   "file": "fungus-parasol.png",
+   "cell": [
+    48,
+    79
+   ],
+   "anchor": {
+    "x": 24,
+    "y": 67
+   },
+   "footprint": [
+    1,
+    1
+   ]
+  },
+  "toadstool": {
+   "label": "Giant toadstool (walkable)",
+   "file": "fungus-toadstool.png",
+   "cell": [
+    96,
+    80
+   ],
+   "anchor": {
+    "x": 48,
+    "y": 60
+   },
+   "footprint": [
+    2,
+    2
+   ],
+   "walkableTop": {
+    "level": 2.0,
+    "pixels": 32
+   }
+  }
+ }
+}

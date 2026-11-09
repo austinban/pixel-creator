@@ -1255,6 +1255,510 @@
    "frames": 8
   },
   {
+   "id": "blood-mushroom-charging-ne",
+   "label": "Blood mushroom - charging (NE)",
+   "category": "Bosses",
+   "kind": "still",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 48,
+    "y": 72
+   },
+   "file": "blood-mushroom-charging-ne.png",
+   "frames": 1
+  },
+  {
+   "id": "blood-mushroom-charging-se",
+   "label": "Blood mushroom - charging (SE)",
+   "category": "Bosses",
+   "kind": "still",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 48,
+    "y": 72
+   },
+   "file": "blood-mushroom-charging-se.png",
+   "frames": 1
+  },
+  {
+   "id": "blood-mushroom-attack-ne",
+   "label": "Blood mushroom - attack (NE)",
+   "category": "Bosses",
+   "kind": "animation",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 4,
+   "rows": 1,
+   "fps": 6,
+   "anchor": {
+    "x": 48,
+    "y": 72
+   },
+   "file": "blood-mushroom-attack-ne.png",
+   "frames": 4
+  },
+  {
+   "id": "blood-mushroom-attack-se",
+   "label": "Blood mushroom - attack (SE)",
+   "category": "Bosses",
+   "kind": "animation",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 4,
+   "rows": 1,
+   "fps": 6,
+   "anchor": {
+    "x": 48,
+    "y": 72
+   },
+   "file": "blood-mushroom-attack-se.png",
+   "frames": 4
+  },
+  {
+   "id": "blood-mushroom-release-ne",
+   "label": "Blood mushroom - release (NE)",
+   "category": "Bosses",
+   "kind": "still",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 48,
+    "y": 72
+   },
+   "file": "blood-mushroom-release-ne.png",
+   "frames": 1
+  },
+  {
+   "id": "blood-mushroom-release-se",
+   "label": "Blood mushroom - release (SE)",
+   "category": "Bosses",
+   "kind": "still",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 48,
+    "y": 72
+   },
+   "file": "blood-mushroom-release-se.png",
+   "frames": 1
+  },
+  {
+   "id": "blood-mushroom-damage-ne",
+   "label": "Blood mushroom - damage (NE)",
+   "category": "Bosses",
+   "kind": "still",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 48,
+    "y": 72
+   },
+   "file": "blood-mushroom-damage-ne.png",
+   "frames": 1
+  },
+  {
+   "id": "blood-mushroom-damage-se",
+   "label": "Blood mushroom - damage (SE)",
+   "category": "Bosses",
+   "kind": "still",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 48,
+    "y": 72
+   },
+   "file": "blood-mushroom-damage-se.png",
+   "frames": 1
+  },
+  {
+   "id": "blood-mushroom-weak-ne",
+   "label": "Blood mushroom - weak (NE)",
+   "category": "Bosses",
+   "kind": "still",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 48,
+    "y": 72
+   },
+   "file": "blood-mushroom-weak-ne.png",
+   "frames": 1
+  },
+  {
+   "id": "blood-mushroom-weak-se",
+   "label": "Blood mushroom - weak (SE)",
+   "category": "Bosses",
+   "kind": "still",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 48,
+    "y": 72
+   },
+   "file": "blood-mushroom-weak-se.png",
+   "frames": 1
+  },
+  {
+   "id": "blood-mushroom-dead-ne",
+   "label": "Blood mushroom - dead (NE)",
+   "category": "Bosses",
+   "kind": "still",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 48,
+    "y": 72
+   },
+   "file": "blood-mushroom-dead-ne.png",
+   "frames": 1
+  },
+  {
+   "id": "blood-mushroom-dead-se",
+   "label": "Blood mushroom - dead (SE)",
+   "category": "Bosses",
+   "kind": "still",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 48,
+    "y": 72
+   },
+   "file": "blood-mushroom-dead-se.png",
+   "frames": 1
+  },
+  {
+   "id": "blood-mushroom-walking-ne",
+   "label": "Blood mushroom - walking (NE)",
+   "category": "Bosses",
+   "kind": "animation",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 48,
+    "y": 72
+   },
+   "file": "blood-mushroom-walking-ne.png",
+   "frames": 8
+  },
+  {
+   "id": "blood-mushroom-walking-se",
+   "label": "Blood mushroom - walking (SE)",
+   "category": "Bosses",
+   "kind": "animation",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 48,
+    "y": 72
+   },
+   "file": "blood-mushroom-walking-se.png",
+   "frames": 8
+  },
+  {
+   "id": "rat-king-charging-ne",
+   "label": "Rat king - charging (NE)",
+   "category": "Elites",
+   "kind": "still",
+   "place": "ground",
+   "w": 64,
+   "h": 64,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 32,
+    "y": 52
+   },
+   "file": "rat-king-charging-ne.png",
+   "frames": 1
+  },
+  {
+   "id": "rat-king-charging-se",
+   "label": "Rat king - charging (SE)",
+   "category": "Elites",
+   "kind": "still",
+   "place": "ground",
+   "w": 64,
+   "h": 64,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 32,
+    "y": 52
+   },
+   "file": "rat-king-charging-se.png",
+   "frames": 1
+  },
+  {
+   "id": "rat-king-attack-ne",
+   "label": "Rat king - attack (NE)",
+   "category": "Elites",
+   "kind": "animation",
+   "place": "ground",
+   "w": 64,
+   "h": 64,
+   "cols": 4,
+   "rows": 1,
+   "fps": 6,
+   "anchor": {
+    "x": 32,
+    "y": 52
+   },
+   "file": "rat-king-attack-ne.png",
+   "frames": 4
+  },
+  {
+   "id": "rat-king-attack-se",
+   "label": "Rat king - attack (SE)",
+   "category": "Elites",
+   "kind": "animation",
+   "place": "ground",
+   "w": 64,
+   "h": 64,
+   "cols": 4,
+   "rows": 1,
+   "fps": 6,
+   "anchor": {
+    "x": 32,
+    "y": 52
+   },
+   "file": "rat-king-attack-se.png",
+   "frames": 4
+  },
+  {
+   "id": "rat-king-release-ne",
+   "label": "Rat king - release (NE)",
+   "category": "Elites",
+   "kind": "still",
+   "place": "ground",
+   "w": 64,
+   "h": 64,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 32,
+    "y": 52
+   },
+   "file": "rat-king-release-ne.png",
+   "frames": 1
+  },
+  {
+   "id": "rat-king-release-se",
+   "label": "Rat king - release (SE)",
+   "category": "Elites",
+   "kind": "still",
+   "place": "ground",
+   "w": 64,
+   "h": 64,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 32,
+    "y": 52
+   },
+   "file": "rat-king-release-se.png",
+   "frames": 1
+  },
+  {
+   "id": "rat-king-damage-ne",
+   "label": "Rat king - damage (NE)",
+   "category": "Elites",
+   "kind": "still",
+   "place": "ground",
+   "w": 64,
+   "h": 64,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 32,
+    "y": 52
+   },
+   "file": "rat-king-damage-ne.png",
+   "frames": 1
+  },
+  {
+   "id": "rat-king-damage-se",
+   "label": "Rat king - damage (SE)",
+   "category": "Elites",
+   "kind": "still",
+   "place": "ground",
+   "w": 64,
+   "h": 64,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 32,
+    "y": 52
+   },
+   "file": "rat-king-damage-se.png",
+   "frames": 1
+  },
+  {
+   "id": "rat-king-weak-ne",
+   "label": "Rat king - weak (NE)",
+   "category": "Elites",
+   "kind": "still",
+   "place": "ground",
+   "w": 64,
+   "h": 64,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 32,
+    "y": 52
+   },
+   "file": "rat-king-weak-ne.png",
+   "frames": 1
+  },
+  {
+   "id": "rat-king-weak-se",
+   "label": "Rat king - weak (SE)",
+   "category": "Elites",
+   "kind": "still",
+   "place": "ground",
+   "w": 64,
+   "h": 64,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 32,
+    "y": 52
+   },
+   "file": "rat-king-weak-se.png",
+   "frames": 1
+  },
+  {
+   "id": "rat-king-dead-ne",
+   "label": "Rat king - dead (NE)",
+   "category": "Elites",
+   "kind": "still",
+   "place": "ground",
+   "w": 64,
+   "h": 64,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 32,
+    "y": 52
+   },
+   "file": "rat-king-dead-ne.png",
+   "frames": 1
+  },
+  {
+   "id": "rat-king-dead-se",
+   "label": "Rat king - dead (SE)",
+   "category": "Elites",
+   "kind": "still",
+   "place": "ground",
+   "w": 64,
+   "h": 64,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 32,
+    "y": 52
+   },
+   "file": "rat-king-dead-se.png",
+   "frames": 1
+  },
+  {
+   "id": "rat-king-walking-ne",
+   "label": "Rat king - walking (NE)",
+   "category": "Elites",
+   "kind": "animation",
+   "place": "ground",
+   "w": 64,
+   "h": 64,
+   "cols": 4,
+   "rows": 2,
+   "fps": 8,
+   "anchor": {
+    "x": 32,
+    "y": 52
+   },
+   "file": "rat-king-walking-ne.png",
+   "frames": 8
+  },
+  {
+   "id": "rat-king-walking-se",
+   "label": "Rat king - walking (SE)",
+   "category": "Elites",
+   "kind": "animation",
+   "place": "ground",
+   "w": 64,
+   "h": 64,
+   "cols": 4,
+   "rows": 2,
+   "fps": 8,
+   "anchor": {
+    "x": 32,
+    "y": 52
+   },
+   "file": "rat-king-walking-se.png",
+   "frames": 8
+  },
+  {
    "id": "ui-movement-dot",
    "label": "Movement point dot (filled and empty)",
    "category": "UI",
@@ -1931,6 +2435,78 @@
     "y": 28
    },
    "file": "bow-draw-golden-mushroom-se.png",
+   "frames": 4
+  },
+  {
+   "id": "bow-draw-fungal-zombie-ne",
+   "label": "Bow draw NE (Fungal-zombie)",
+   "category": "Animations",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 4,
+   "rows": 1,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 28
+   },
+   "file": "bow-draw-fungal-zombie-ne.png",
+   "frames": 4
+  },
+  {
+   "id": "bow-draw-fungal-zombie-se",
+   "label": "Bow draw SE (Fungal-zombie)",
+   "category": "Animations",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 4,
+   "rows": 1,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 28
+   },
+   "file": "bow-draw-fungal-zombie-se.png",
+   "frames": 4
+  },
+  {
+   "id": "bow-draw-blood-cultist-ne",
+   "label": "Bow draw NE (Blood-cultist)",
+   "category": "Animations",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 4,
+   "rows": 1,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 28
+   },
+   "file": "bow-draw-blood-cultist-ne.png",
+   "frames": 4
+  },
+  {
+   "id": "bow-draw-blood-cultist-se",
+   "label": "Bow draw SE (Blood-cultist)",
+   "category": "Animations",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 4,
+   "rows": 1,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 28
+   },
+   "file": "bow-draw-blood-cultist-se.png",
    "frames": 4
   },
   {
@@ -2961,6 +3537,240 @@
    },
    "file": "chests/chest-legendary-se-open.png",
    "frames": 8
+  },
+  {
+   "id": "fungus-spotted",
+   "label": "Spotted toadstool",
+   "category": "Mushroom Trees",
+   "kind": "still",
+   "place": "ground",
+   "w": 48,
+   "h": 79,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 24,
+    "y": 67
+   },
+   "file": "mushroom-trees/fungus-spotted.png",
+   "frames": 1
+  },
+  {
+   "id": "fungus-bell",
+   "label": "Bell mushroom",
+   "category": "Mushroom Trees",
+   "kind": "still",
+   "place": "ground",
+   "w": 48,
+   "h": 83,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 24,
+    "y": 71
+   },
+   "file": "mushroom-trees/fungus-bell.png",
+   "frames": 1
+  },
+  {
+   "id": "fungus-cluster",
+   "label": "Toadstool cluster",
+   "category": "Mushroom Trees",
+   "kind": "still",
+   "place": "ground",
+   "w": 48,
+   "h": 58,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 24,
+    "y": 46
+   },
+   "file": "mushroom-trees/fungus-cluster.png",
+   "frames": 1
+  },
+  {
+   "id": "fungus-puffball",
+   "label": "Puffball",
+   "category": "Mushroom Trees",
+   "kind": "still",
+   "place": "ground",
+   "w": 48,
+   "h": 48,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 24,
+    "y": 36
+   },
+   "file": "mushroom-trees/fungus-puffball.png",
+   "frames": 1
+  },
+  {
+   "id": "fungus-parasol",
+   "label": "Parasol mushroom",
+   "category": "Mushroom Trees",
+   "kind": "still",
+   "place": "ground",
+   "w": 48,
+   "h": 79,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 24,
+    "y": 67
+   },
+   "file": "mushroom-trees/fungus-parasol.png",
+   "frames": 1
+  },
+  {
+   "id": "fungus-toadstool",
+   "label": "Giant toadstool (walkable)",
+   "category": "Mushroom Trees",
+   "kind": "still",
+   "place": "ground",
+   "w": 96,
+   "h": 80,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 48,
+    "y": 60
+   },
+   "file": "mushroom-trees/fungus-toadstool.png",
+   "frames": 1
+  },
+  {
+   "id": "slot-weapon",
+   "label": "Weapon slot",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "slot-icons/slot-weapon.png",
+   "frames": 1
+  },
+  {
+   "id": "slot-armor",
+   "label": "Armor slot",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "slot-icons/slot-armor.png",
+   "frames": 1
+  },
+  {
+   "id": "slot-trinket",
+   "label": "Trinket slot",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "slot-icons/slot-trinket.png",
+   "frames": 1
+  },
+  {
+   "id": "all-tree",
+   "label": "The All Tree (animated)",
+   "category": "Victory Screen",
+   "kind": "animation",
+   "place": "none",
+   "w": 384,
+   "h": 448,
+   "cols": 8,
+   "rows": 2,
+   "fps": 10,
+   "anchor": {
+    "x": 192,
+    "y": 336
+   },
+   "file": "all-tree/all-tree.png",
+   "frames": 12
+  },
+  {
+   "id": "all-tree-still",
+   "label": "The All Tree (still)",
+   "category": "Victory Screen",
+   "kind": "still",
+   "place": "none",
+   "w": 384,
+   "h": 448,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 192,
+    "y": 336
+   },
+   "file": "all-tree/all-tree-still.png",
+   "frames": 1
+  },
+  {
+   "id": "all-tree-fall",
+   "label": "The All Tree, autumn (animated)",
+   "category": "Victory Screen",
+   "kind": "animation",
+   "place": "none",
+   "w": 384,
+   "h": 448,
+   "cols": 8,
+   "rows": 2,
+   "fps": 10,
+   "anchor": {
+    "x": 192,
+    "y": 336
+   },
+   "file": "all-tree-fall/all-tree-fall.png",
+   "frames": 12
+  },
+  {
+   "id": "all-tree-fall-still",
+   "label": "The All Tree, autumn (still)",
+   "category": "Victory Screen",
+   "kind": "still",
+   "place": "none",
+   "w": 384,
+   "h": 448,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 192,
+    "y": 336
+   },
+   "file": "all-tree-fall/all-tree-fall-still.png",
+   "frames": 1
   },
   {
    "id": "bazaar-shop",

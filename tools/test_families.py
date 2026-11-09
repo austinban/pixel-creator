@@ -265,6 +265,158 @@ class UiShells(unittest.TestCase):
             self.assertTrue(all(len(row) == 19 for f in frames for row in f) and all(len(f) == 19 for f in frames))
 
 
+class AllTree(unittest.TestCase):
+    """The All Tree, the victory screen's display piece: a 384 x 448 still and a 12-frame loop, the tree cropped by the top edge and the frames loop-safe."""
+
+    def assets(self):
+        return {a['id']: a for a in assets_of('all-tree')}
+
+    def test_a_still_and_a_loop_in_one_cell(self):
+        assets = self.assets()
+        self.assertEqual(sorted(assets), ['all-tree', 'all-tree-still'])
+        for a in assets.values():
+            self.assertEqual((a['w'], a['h'], a['category'], a['place'], a['anchor']), (384, 448, 'Victory Screen', 'none', {'x': 192, 'y': 336}))
+            for rows in a['frames']:
+                self.assertEqual((len(rows), len(rows[0])), (448, 384), a['id'])
+        loop = assets['all-tree']
+        self.assertEqual((loop['kind'], len(loop['frames']), loop['fps']), ('animation', 12, 10))
+
+    def test_the_tree_runs_off_the_top_and_stays_put_while_it_shimmers(self):
+        loop = self.assets()['all-tree']['frames']
+        for rows in loop:
+            self.assertTrue(any(c != '.' for c in rows[0]), 'the trunk should run off the top edge')
+            self.assertTrue(any(c != '.' for c in rows[-48]), 'and stand on its base')
+        silhouette = [[[c != '.' for c in row] for row in rows] for rows in (loop[0], loop[6])]
+        steady = sum(1 for y in range(300, 448) for x in range(384) if silhouette[0][y][x] == silhouette[1][y][x])
+        self.assertGreater(steady, 0.98 * 148 * 384, 'the base should not wobble between frames')
+
+
+class AllTreeFall(unittest.TestCase):
+    """The autumn All Tree: the same cell, anchor and boughs as the corrupted one, with no mushrooms, in yellow, orange and red."""
+
+    def test_a_still_and_a_loop_like_the_corrupted_tree(self):
+        fall = {a['id']: a for a in assets_of('all-tree-fall')}
+        corrupted = {a['id']: a for a in assets_of('all-tree')}
+        self.assertEqual(sorted(fall), ['all-tree-fall', 'all-tree-fall-still'])
+        for a in fall.values():
+            self.assertEqual((a['w'], a['h'], a['category'], a['place'], a['anchor']), (384, 448, 'Victory Screen', 'none', {'x': 192, 'y': 336}))
+        loop = fall['all-tree-fall']
+        self.assertEqual((loop['kind'], len(loop['frames']), loop['fps']), ('animation', 12, 10))
+        # the trunk and the roots are the same drawing: the base's silhouette agrees with the corrupted tree's, below the foliage
+        base = lambda frame: [[c != '.' for c in row] for row in frame[330:430]]
+        a, b = base(fall['all-tree-fall-still']['frames'][0]), base(corrupted['all-tree-still']['frames'][0])
+        same = sum(1 for ra, rb in zip(a, b) for x, y in zip(ra, rb) if x == y)
+        self.assertGreater(same, 0.9 * 100 * 384, 'the roots should sit where the corrupted tree\'s do')
+
+    def test_it_has_leaves_in_all_three_colours_and_no_mushroom_caps(self):
+        rows = {a['id']: a for a in assets_of('all-tree-fall')}['all-tree-fall-still']['frames'][0]
+        count = {}
+        for row in rows:
+            for c in row:
+                count[c] = count.get(c, 0) + 1
+        yellow, orange, red = count.get('d', 0) + count.get('b', 0), count.get('a', 0), count.get('c', 0) + count.get('h', 0)
+        self.assertTrue(yellow > 500 and orange > 500 and red > 500, (yellow, orange, red))
+
+
+class Bosses(unittest.TestCase):
+    """The bosses: 96 x 96 on a 2 x 2 footprint, every action in both facings (they read from sprites/NAME, which is local)."""
+
+    def test_the_blood_mushroom_has_every_action_in_a_96_cell(self):
+        if not (Path(__file__).resolve().parent.parent / 'sprites' / 'blood-mushroom').is_dir():
+            self.skipTest('sprites/blood-mushroom is not here')
+        assets = {a['id']: a for a in assets_of('boss')}
+        for action, count in cv.BOSS_FRAMES.items():
+            for facing in ('ne', 'se'):
+                a = assets[f'blood-mushroom-{action}-{facing}']
+                self.assertEqual((a['w'], a['h'], a['category'], a['place']), (96, 96, 'Bosses', 'ground'))
+                self.assertEqual(len(a['frames']), count, a['id'])
+                self.assertEqual(a['anchor'], {'x': 48, 'y': 72})
+
+
+class Elites(unittest.TestCase):
+    """The elites: bigger than a creature, on one tile, in a 64 x 64 cell, with every action in both facings (the rat king reads from sprites/rat-king, which is local)."""
+
+    def test_the_rat_king_has_every_action_in_a_64_cell(self):
+        if not (Path(__file__).resolve().parent.parent / 'sprites' / 'rat-king').is_dir():
+            self.skipTest('sprites/rat-king is not here')
+        assets = {a['id']: a for a in assets_of('elite')}
+        self.assertEqual(len(assets), 14)
+        counts = {'charging': 1, 'attack': 4, 'release': 1, 'damage': 1, 'weak': 1, 'dead': 1, 'walking': 8}
+        for action, count in counts.items():
+            for facing in ('ne', 'se'):
+                a = assets[f'rat-king-{action}-{facing}']
+                self.assertEqual((a['w'], a['h'], a['category'], a['place']), (64, 64, 'Elites', 'ground'))
+                self.assertEqual(len(a['frames']), count, a['id'])
+                self.assertEqual(a['anchor'], {'x': 32, 'y': 52})
+                self.assertEqual(a['cols'] * a['rows'], count)
+
+    def test_the_checks_catch_a_frame_that_leaves_the_cell(self):
+        row = '.' * 64
+        bad = [[row] * 64]
+        bad[0][0] = 'O' * 64
+        found = cv.check_elite('x', {'chargingNE': bad})
+        self.assertTrue(any('only' in p or 'edge' in p for p in found))
+
+
+class SlotIcons(unittest.TestCase):
+    """The Weapon, Armor and Trinket slot icons: three 32 x 32 stills, outlined, inside their cell."""
+
+    def test_three_icons_outlined_and_inside_the_cell(self):
+        assets = {a['id']: a for a in assets_of('slot-icons')}
+        self.assertEqual(sorted(assets), ['slot-armor', 'slot-trinket', 'slot-weapon'])
+        for a in assets.values():
+            rows = a['frames'][0]
+            self.assertEqual((a['w'], a['h'], len(rows), len(rows[0])), (32, 32, 32, 32), a['id'])
+            pts = [(x, y) for y, row in enumerate(rows) for x, c in enumerate(row) if c != '.']
+            self.assertGreater(len(pts), 150, a['id'])
+            self.assertTrue(all(1 <= x <= 30 and 1 <= y <= 30 for x, y in pts), f'{a["id"]} touches its cell edge')
+            for x, y in pts:
+                if any(not (0 <= x + dx < 32 and 0 <= y + dy < 32) or rows[y + dy][x + dx] == '.' for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1))):
+                    self.assertEqual(rows[y][x], 'O', f'{a["id"]}: a bare edge at {x},{y}')
+
+
+class Fungi(unittest.TestCase):
+    """The mushroom trees: six of them, anchored on their footprint, inside their cell, and the giant one is the walkable 2 x 2."""
+
+    def assets(self):
+        return {a['id']: a for a in assets_of('fungi')}
+
+    def test_there_are_six_and_one_covers_four_tiles(self):
+        assets = self.assets()
+        self.assertGreaterEqual(len(assets), 6)
+        wide = [a for a in assets.values() if a['fungus']['footprint'] == [2, 2]]
+        self.assertEqual([a['id'] for a in wide], ['fungus-toadstool'])
+        self.assertEqual(wide[0]['fungus']['walkableTop']['pixels'], 32)
+        self.assertFalse(wide[0]['fungus']['blocks'])
+        for a in assets.values():
+            if a['fungus']['footprint'] == [1, 1]:
+                self.assertTrue(a['fungus']['blocks'], a['id'])
+                self.assertNotIn('walkableTop', a['fungus'], a['id'])
+
+    def test_each_is_outlined_inside_its_cell_and_stands_on_its_anchor(self):
+        for a in self.assets().values():
+            rows = a['frames'][0]
+            self.assertEqual((len(rows), len(rows[0])), (a['h'], a['w']), a['id'])
+            pts = [(x, y) for y, row in enumerate(rows) for x, c in enumerate(row) if c != '.']
+            self.assertGreater(len(pts), 300, a['id'])
+            xs, ys = [p[0] for p in pts], [p[1] for p in pts]
+            self.assertTrue(min(xs) >= 1 and max(xs) <= a['w'] - 2 and min(ys) >= 1 and max(ys) <= a['h'] - 2, f'{a["id"]} touches its cell edge')
+            for x, y in pts:                                             # the silhouette is outlined
+                if any(not (0 <= x + dx < a['w'] and 0 <= y + dy < a['h']) or rows[y + dy][x + dx] == '.' for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1))):
+                    self.assertEqual(rows[y][x], 'O', f'{a["id"]}: a bare edge at {x},{y}')
+            # the foot is on the ground: the lowest pixel is within the footprint's near corner
+            n = a['fungus']['footprint'][0]
+            self.assertLessEqual(max(ys), a['anchor']['y'] + 8 * n + 1, f'{a["id"]} hangs below its footprint')
+            self.assertGreaterEqual(max(ys), a['anchor']['y'] - 2, f'{a["id"]} floats above the anchor')
+
+    def test_the_giant_top_is_flat_and_two_levels_up(self):
+        a = self.assets()['fungus-toadstool']
+        rows = a['frames'][0]
+        top = min(y for y, row in enumerate(rows) if any(c != '.' for c in row))
+        far_corner = a['anchor']['y'] - 16 - 32          # the far tip of the footprint's diamond, raised by the walkable top
+        self.assertLessEqual(abs(top - (far_corner - 4)), 8, 'the flat top is not where a platform two levels up would be')
+
+
 class Registry(unittest.TestCase):
     """Every family is a registered unit with the same contract, and the cache rebuilds a unit when, and only when, something it depends on changed."""
 
@@ -281,7 +433,7 @@ class Registry(unittest.TestCase):
 
     def test_every_asset_record_has_the_keys_the_page_and_the_game_read(self):
         required = {'id', 'label', 'category', 'kind', 'place', 'w', 'h', 'cols', 'rows', 'fps', 'anchor', 'frames'}
-        for name in ('chests', 'traps', 'bazaar', 'crystal', 'rock', 'amulets', 'buildings', 'nodemap'):
+        for name in ('chests', 'fungi', 'slot-icons', 'all-tree', 'all-tree-fall', 'traps', 'bazaar', 'crystal', 'rock', 'amulets', 'buildings', 'nodemap'):
             for a in assets_of(name):
                 self.assertLessEqual(required, set(a), f'{name}: {a.get("id")} lacks {required - set(a)}')
                 self.assertIn(a['kind'], ('still', 'animation', 'variants'), a['id'])
