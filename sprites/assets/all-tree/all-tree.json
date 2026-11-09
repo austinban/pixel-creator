@@ -1,0 +1,24 @@
+{
+ "about": "The All Tree sheets in this folder. See README.md beside this file.",
+ "cell": [
+  384,
+  448
+ ],
+ "anchor": {
+  "x": 192,
+  "y": 336
+ },
+ "frames": 12,
+ "fps": 10,
+ "footprint": [
+  10,
+  10
+ ],
+ "levels": 20,
+ "animated": "all-tree.png",
+ "still": "all-tree-still.png",
+ "sheet": {
+  "cols": 8,
+  "rows": 2
+ }
+}

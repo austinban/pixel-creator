@@ -89,7 +89,7 @@ HEIGHT = {'attack': (22, 27), 'bow': (22, 27), 'charging': (24, 26), 'damage': (
 # The generated people kneel when worn out (down on one knee, head bowed), which is taller than the
 # originals' slump. Their own range, measured from their kneel; the originals keep theirs.
 KNEEL_HEIGHT = (22, 26)
-KNEELERS = {'human', 'slim', 'human-sleek', 'slim-sleek', 'ninja', 'ranger', 'verdant', 'fey', 'golden-mushroom', 'bones', 'undead', 'paladin', 'blossom', 'earthbender'}
+KNEELERS = {'human', 'slim', 'human-sleek', 'slim-sleek', 'ninja', 'ranger', 'verdant', 'fey', 'golden-mushroom', 'fungal-zombie', 'blood-cultist', 'bones', 'undead', 'paladin', 'blossom', 'earthbender'}
 HEIGHT_SLACK = {'release': 2}    # one row either side of the originals' range (two for a cast, which
 HEIGHT_SLACK_DEFAULT = 1        # relies on arms thrown above the head that a shorter-armed figure cannot fully reach)
 MASS_SLACK = 0.92               # a little under the lightest original is still allowed
@@ -99,7 +99,7 @@ MASS_SLACK = 0.92               # a little under the lightest original is still 
 BUILDS = {'standard': 0.92, 'slim': 0.78, 'sleek': 0.6, 'bony': 0.5,
           'maimed': 0.65,
           'delicate': 0.6}      # a fairy: slim, with little body and no heavy clothes      # a missing limb is less to paint
-BASE_BUILDS = {'human-sleek': 'sleek', 'slim-sleek': 'sleek', 'slim': 'slim', 'ninja': 'slim', 'ranger': 'slim', 'verdant': 'slim', 'fey': 'slim', 'golden-mushroom': 'slim', 'bones': 'bony', 'undead': 'maimed', 'paladin': 'standard', 'blossom': 'delicate', 'earthbender': 'standard'}
+BASE_BUILDS = {'human-sleek': 'sleek', 'slim-sleek': 'sleek', 'slim': 'slim', 'ninja': 'slim', 'ranger': 'slim', 'verdant': 'slim', 'fey': 'slim', 'golden-mushroom': 'slim', 'fungal-zombie': 'slim', 'blood-cultist': 'slim', 'bones': 'bony', 'undead': 'maimed', 'paladin': 'standard', 'blossom': 'delicate', 'earthbender': 'standard'}
 
 # --- the walk ----------------------------------------------------------------------------------
 # The originals share one walk, and it is a bob with sliding feet, not a rock forward and back. Over
@@ -121,9 +121,9 @@ RAMP_LENGTH = 4
 
 # The original six are humanoid; anything else is declared here. Anything not listed is checked as
 # a humanoid.
-BASE_KINDS = {'spirit': 'floater', 'dog': 'creature', 'alpaca': 'creature', 'blight-alpaca': 'creature', 'mushroom-small': 'creature', 'mushroom-large': 'creature', 'rat': 'creature', 'scorpion': 'creature', 'mantis': 'creature', 'mantis-small': 'creature', 'scorpion-king': 'creature', 'rock-monster': 'creature', 'rock-monster-small': 'creature', 'rock-monster-large': 'creature', 'stone-totem': 'creature'}
+BASE_KINDS = {'spirit': 'floater', 'dog': 'creature', 'alpaca': 'creature', 'blight-alpaca': 'creature', 'mushroom-small': 'creature', 'mushroom-large': 'creature', 'rat': 'creature', 'scorpion': 'creature', 'mantis': 'creature', 'mantis-small': 'creature', 'scorpion-king': 'creature', 'rock-monster': 'creature', 'rock-monster-small': 'creature', 'rock-monster-large': 'creature', 'stone-totem': 'creature', 'blight-dog': 'creature', 'blight-rat': 'creature', 'mushroom-mantis': 'creature', 'rock-monster-crystal': 'creature', 'mycelium-crawler': 'creature', 'puffball': 'creature', 'wasp': 'creature', 'mosquito': 'creature', 'leech': 'creature', 'blood-bat': 'creature'}
 # Which module describes how a generated base is built, so its poses can be checked at the source.
-CREATORS = {'human': 'make_human', 'human-sleek': 'make_human_sleek', 'slim': 'make_slim', 'slim-sleek': 'make_slim_sleek', 'ninja': 'make_ninja', 'ranger': 'make_ranger', 'verdant': 'make_verdant', 'fey': 'make_fey', 'golden-mushroom': 'make_golden_mushroom', 'alpaca': 'make_alpaca', 'blight-alpaca': 'make_blight_alpaca', 'mushroom-small': 'make_mushroom', 'mushroom-large': 'make_mushroom_large', 'bones': 'make_bones', 'undead': 'make_undead', 'paladin': 'make_paladin', 'blossom': 'make_blossom', 'earthbender': 'make_earthbender', 'dog': 'make_dog', 'rat': 'make_rat', 'scorpion': 'make_scorpion', 'mantis': 'make_mantis', 'mantis-small': 'make_mantis_small', 'scorpion-king': 'make_scorpion_king', 'rock-monster': 'make_rockmonster', 'rock-monster-small': 'make_rockmonster_small', 'rock-monster-large': 'make_rockmonster_large', 'stone-totem': 'make_stonetotem'}
+CREATORS = {'human': 'make_human', 'human-sleek': 'make_human_sleek', 'slim': 'make_slim', 'slim-sleek': 'make_slim_sleek', 'ninja': 'make_ninja', 'ranger': 'make_ranger', 'verdant': 'make_verdant', 'fey': 'make_fey', 'golden-mushroom': 'make_golden_mushroom', 'alpaca': 'make_alpaca', 'blight-alpaca': 'make_blight_alpaca', 'mushroom-small': 'make_mushroom', 'mushroom-large': 'make_mushroom_large', 'bones': 'make_bones', 'undead': 'make_undead', 'paladin': 'make_paladin', 'blossom': 'make_blossom', 'earthbender': 'make_earthbender', 'dog': 'make_dog', 'rat': 'make_rat', 'scorpion': 'make_scorpion', 'mantis': 'make_mantis', 'mantis-small': 'make_mantis_small', 'scorpion-king': 'make_scorpion_king', 'rock-monster': 'make_rockmonster', 'rock-monster-small': 'make_rockmonster_small', 'rock-monster-large': 'make_rockmonster_large', 'stone-totem': 'make_stonetotem', 'blight-dog': 'make_blight_dog', 'blight-rat': 'make_blight_rat', 'mushroom-mantis': 'make_mushroom_mantis', 'rock-monster-crystal': 'make_rockmonster_crystal', 'mycelium-crawler': 'make_mycelium_crawler', 'puffball': 'make_puffball', 'wasp': 'make_wasp', 'fungal-zombie': 'make_fungal_zombie', 'mosquito': 'make_mosquito', 'leech': 'make_leech', 'blood-bat': 'make_blood_bat', 'blood-cultist': 'make_blood_cultist'}
 
 UPRIGHT = {'attack', 'charging', 'damage', 'release', 'walking', 'weak'}
 
@@ -312,37 +312,37 @@ BOSS_FRAMES = {'charging': 1, 'attack': 4, 'release': 1, 'damage': 1, 'weak': 1,
 BOSS_MIN_PIXELS = 1200
 
 
-def check_boss(boss_id, frames_by_pose):
-    """Every problem in a boss's frames (96 x 96 role rows), keyed like a base's: 'attackNE', 'walkingSE'..."""
+def check_boss(boss_id, frames_by_pose, cell=BOSS_CELL, ground=BOSS_GROUND, min_pixels=BOSS_MIN_PIXELS, word='boss'):
+    """Every problem in a boss's frames (96 x 96 role rows), keyed like a base's: 'attackNE', 'walkingSE'... An elite uses the same checks on its own cell."""
     out = []
     for action, count in BOSS_FRAMES.items():
         for facing in ('NE', 'SE'):
             frames = frames_by_pose.get(action + facing)
             if frames is None:
-                out.append(f'{boss_id} has no {action}{facing}: a boss has every action, in both facings')
+                out.append(f'{boss_id} has no {action}{facing}: a {word} has every action, in both facings')
                 continue
             if len(frames) != count:
                 out.append(f'{boss_id} {action}{facing}: {len(frames)} frames, a {action} has {count}')
             for i, lines in enumerate(frames):
                 pts = painted(lines)
                 name = f'{boss_id} {action}{facing} frame {i + 1}'
-                if len(pts) < BOSS_MIN_PIXELS:
+                if len(pts) < min_pixels:
                     out.append(f'{name}: only {len(pts)} painted pixels')
                     continue
                 xs, ys = [p[0] for p in pts], [p[1] for p in pts]
-                if min(xs) < 1 or max(xs) > BOSS_CELL - 2 or min(ys) < 1 or max(ys) > BOSS_CELL - 2:
+                if min(xs) < 1 or max(xs) > cell - 2 or min(ys) < 1 or max(ys) > cell - 2:
                     out.append(f'{name}: reaches the edge of the cell (columns {min(xs)}-{max(xs)}, rows {min(ys)}-{max(ys)})')
-                if action != 'dead' and not BOSS_GROUND - 1 <= max(ys) <= BOSS_GROUND:
-                    out.append(f'{name}: feet are on row {max(ys)}; the boss\'s ground is row {BOSS_GROUND}')
+                if action != 'dead' and not ground - 1 <= max(ys) <= ground:
+                    out.append(f'{name}: feet are on row {max(ys)}; the {word}\'s ground is row {ground}')
                 open_edge = sum(1 for x, y in pts if lines[y][x] != ep.ROLES[0][0]
-                                and any(not (0 <= x + dx < BOSS_CELL and 0 <= y + dy < BOSS_CELL) or lines[y + dy][x + dx] == '.'
+                                and any(not (0 <= x + dx < cell and 0 <= y + dy < cell) or lines[y + dy][x + dx] == '.'
                                         for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1))))
                 if open_edge > 4 * OPEN_EDGE_MAX:
                     out.append(f'{name}: {open_edge} pixels on the edge are not outlined')
     return out
 
 
-def load_boss_frames(folder, boss_id):
+def load_boss_frames(folder, boss_id, cell=BOSS_CELL):
     """A boss's sheets (NAME-actionFACING.png, frames side by side) as role rows, read back from the PNGs."""
     from PIL import Image
     to_role = ep.COLOUR_TO_ROLE
@@ -355,11 +355,29 @@ def load_boss_frames(folder, boss_id):
             img = Image.open(path).convert('RGBA')
             px = img.load()
             out = []
-            for f in range(img.width // BOSS_CELL):
-                out.append([''.join(to_role.get(px[f * BOSS_CELL + x, y][:3], '?') if px[f * BOSS_CELL + x, y][3] else '.'
-                                    for x in range(BOSS_CELL)) for y in range(BOSS_CELL)])
+            for f in range((img.width // cell) * (img.height // cell)):             # frames run along a row, then down
+                ox, oy = (f % (img.width // cell)) * cell, (f // (img.width // cell)) * cell
+                out.append([''.join(to_role.get(px[ox + x, oy + y][:3], '?') if px[ox + x, oy + y][3] else '.'
+                                    for x in range(cell)) for y in range(cell)])
             frames[action + facing] = out
     return frames
+
+
+# --- elites -------------------------------------------------------------------------------------------
+# An elite stands on ONE ground tile but is bigger than an ordinary creature, so it is drawn in a 64 x 64 cell, twice a person's, with
+# the middle of its tile at ELITE_ANCHOR on the ground and its lowest row on ELITE_GROUND. Same actions and frame counts as a boss.
+ELITE_CELL = 64
+ELITE_ANCHOR = (32, 52)
+ELITE_GROUND = 60
+ELITE_MIN_PIXELS = 900
+
+
+def check_elite(elite_id, frames_by_pose):
+    return check_boss(elite_id, frames_by_pose, ELITE_CELL, ELITE_GROUND, ELITE_MIN_PIXELS, 'elite')
+
+
+def load_elite_frames(folder, elite_id):
+    return load_boss_frames(folder, elite_id, ELITE_CELL)
 
 
 def check_base(base_id, frames_by_pose, kind=None, airborne=()):

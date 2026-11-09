@@ -316,7 +316,7 @@ def main():
     print(f'wrote the person and the bow -> {args.out}')
 
 # Every person built from the humanoid model, each a module make_<name>: the bow draw is made for all of them.
-PEOPLE = ('human', 'slim', 'human-sleek', 'slim-sleek', 'ninja', 'ranger', 'verdant', 'fey', 'golden-mushroom', 'bones', 'paladin', 'blossom', 'earthbender')
+PEOPLE = ('human', 'slim', 'human-sleek', 'slim-sleek', 'ninja', 'ranger', 'verdant', 'fey', 'golden-mushroom', 'fungal-zombie', 'blood-cultist', 'bones', 'paladin', 'blossom', 'earthbender')
 
 
 def build_assets():

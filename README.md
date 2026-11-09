@@ -195,6 +195,28 @@ purpose, with a missing one, a frayed rope and a leaning post. `python3 tools/ma
 The terrain page lays one across the lake where land is close on both sides (tick "Bridge across the water"; it needs sunken water, now the default), and
 `terrain.html?seed=7` opens a particular map.
 
+The **mushroom trees** are six giant mushrooms for the corrupted lands, to stand where trees would, in the **Mushroom Trees** category (`tools/make_fungi.py`; `--preview` shows them over their footprints): a spotted
+toadstool, a bell, a cluster of three, a puffball and a parasol on one tile each, and a **giant toadstool on four tiles (2 x 2) whose flat top is two levels up and can be walked on**. One picture each (they look the same from
+every side), anchored at the middle of the footprint. They are one folder, `sprites/assets/mushroom-trees/`, with its own README and `mushroom-trees.json`.
+
+The **rat king** is the first **elite**: a creature bigger than an ordinary one that still stands on a single tile, drawn in a **64 x 64** cell (twice a person's; the boss is 96 x 96 on a 2 x 2 footprint). It is a great
+bulbous rat with a large face and whiskers, five smaller rats fused into its flanks and six tails, in the **Elites** category (`tools/make_rat_king.py` makes the sprites, `tools/make_elite.py` the assets, `--model` shows it in 3D first).
+It has a charging, a four-frame attack, release, damage, weak, dead and an eight-frame walk, in both facings, as `rat-king-ACTION-ne` and `-se`, anchored at (32, 52).
+
+The **blood mushroom** is a boss for the corrupted lands, on a **2 x 2** footprint in a **96 x 96** cell (the same as the scorpion emperor): a tall crimson-domed mushroom with spots, a gill skirt and dripping blood, on a swollen
+flesh stem, with reaching human arms and hands, a rat head, dangling legs and antlers growing out of it. It never walks, so, like the stone totem, the walk is its breathing idle and the attack a four-frame spore pulse; it has all
+the actions, both facings, as `blood-mushroom-ACTION-ne` and `-se` in the **Bosses** category, anchored at (48, 72) (`tools/make_blood_mushroom.py` makes the sprites, `tools/make_boss.py` the assets).
+
+The **All Tree** is the victory screen's display piece, in the **Victory Screen** category: a massive ancient tree being corrupted by the mushrooms, one **384 x 448** picture on a **10 x 10** tile base that rises 20 levels and runs off the top of the image
+(`tools/make_all_tree.py`; `--preview` shows it over its footprint). `all-tree` is a 12-frame loop at 10 a second (a shimmer climbing the fungi, vines and eyes, and glowing drops that fall and splash); `all-tree-still` is the flat picture. They live in
+`sprites/assets/all-tree/` with a README and `all-tree.json`.
+
+The **autumn All Tree** (`all-tree-fall` and `all-tree-fall-still`) is the same tree without the corruption: no mushrooms, yellow, orange and red foliage in clustered leaves, natural green vines, tumbling leaves and a few glowing fairies. Same cell, anchor and
+boughs as the corrupted one (`tools/make_all_tree_fall.py` reuses its model), in `sprites/assets/all-tree-fall/`.
+
+The **slot icons** are three 32 x 32 pictures in the **UI** category for the Weapon, Armor and Trinket slots (a sword, a breastplate, a gem ring), made by `tools/make_slot_icons.py`
+(`--preview` shows them enlarged) and shipped in `sprites/assets/slot-icons/` with a README and `slot-icons.json`.
+
 The **movement point dot** is a small UI element, 7 × 7 pixels, in the **UI** category: a filled dot (the move
 blue, with a highlight) for each point left, and an empty one (the same shape as a dim socket) for each spent
 (`tools/make_ui.py`; `--preview` shows a row of them). There is a red twin of it, with a plum socket for the empty one, and a yellow one for spirit, and each has a **burst**

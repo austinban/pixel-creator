@@ -1,0 +1,29 @@
+{
+ "about": "The equipment slot icons in this folder. See README.md beside this file.",
+ "slots": {
+  "weapon": {
+   "label": "Weapon slot",
+   "file": "slot-weapon.png",
+   "cell": [
+    32,
+    32
+   ]
+  },
+  "armor": {
+   "label": "Armor slot",
+   "file": "slot-armor.png",
+   "cell": [
+    32,
+    32
+   ]
+  },
+  "trinket": {
+   "label": "Trinket slot",
+   "file": "slot-trinket.png",
+   "cell": [
+    32,
+    32
+   ]
+  }
+ }
+}
