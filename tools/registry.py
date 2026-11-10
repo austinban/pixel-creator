@@ -61,6 +61,7 @@ UNITS = [
     Unit('bazaar', 'make_bazaar', inputs=(ASSETS / 'amulets.png', ASSETS / 'crystal.png', ASSETS / 'rock.png', *sorted(ASSETS.glob('icon-weapon-*.png')))),
     Unit('abilities', 'make_abilities'),
     Unit('ground', 'make_ground', inputs=(ASSETS / 'ground.png',), outputs=(ASSETS / 'ground-corrupted.png',), depends=('make_corrupted_ground',)),
+    Unit('water', 'make_water', inputs=(ASSETS / 'ground.png',), depends=('make_ground', 'make_corrupted_ground')),
     Unit('weapons', 'make_weapons', func='build_weapon_assets', takes_weapons_dir=True),
     Unit('weapon-icons', 'make_weapon_icons', func='build_icon_assets'),
 ]

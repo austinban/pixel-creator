@@ -220,6 +220,9 @@ boughs as the corrupted one (`tools/make_all_tree_fall.py` reuses its model), in
 The **trees** are ten more trees and bushes to stand beside the ground sheet's bush and pine, in the **Trees** category (`tools/make_trees.py`; `--preview` shows them beside the originals): a tall pine, a spruce, a poplar, a tall oak (all about
 100-128 px, taller than the sheet's 64 px pine), a broad oak, a birch, a small pine, a dead tree, a berry bush and a hedge. One picture each, anchored at the middle of the tile, blocking it. They are in `sprites/assets/trees/` with a README and `trees.json`.
 
+The **animated water** moves all 36 water tiles of the ground sheet, normal and corrupted, open and edge pieces, level and sunken, in the **Animated Water** and **Animated Corrupted Water** categories (`tools/make_water.py`; `--preview` shows them, and `--wave 1` a lake with the wave):
+10 frames at 4 a second, ids `water-COL-ROW` and `water-corrupted-COL-ROW` after the ground sheet's cell. The water drifts one tile's width over the loop and the foam crest runs along the shore; the cube, outline and silhouette do not change. The game starts each tile one frame after the one behind it (`(frame + (x + y)) % 10`) for a slow wave. They are in `sprites/assets/water/` with a README and `water.json`.
+
 The **blood pool** is a decal for a ground tile, in the **Decals** category (`tools/make_blood_pool.py`; `--preview` shows it over a grass tile, alone and under a dead character): six irregular pools, 32 x 16, on the tile's top face
 and anchored at its middle (16, 8) like the tile overlays, so one goes where the tile is and a character's dead pose is drawn over it. A pool stays inside the diamond, has no outline, and is a dark rim, a deep red body and a wetter middle with a glint.
 
