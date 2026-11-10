@@ -27,6 +27,31 @@ from make_fungi import hashed, step_of  # noqa: E402
 W, H = 384, 448
 ANCHOR = (192, 336)              # the middle of the base on the ground
 AX, AY = ANCHOR
+BASE_W = 384                     # the cell the first (narrow) pictures are drawn in; the wide ones add width on both sides of the same drawing
+
+
+def set_canvas(width):
+    """Make the canvas `width` pixels wide, with the anchor at its middle (the height, the anchor's row and the model stay the same)."""
+    global W, ANCHOR, AX
+    W, ANCHOR, AX = width, (width // 2, AY), width // 2
+
+
+class wide_canvas:
+    """`with wide_canvas(1024):` draws everything on a wider canvas and puts the narrow one back afterwards."""
+    def __init__(self, width):
+        self.width = width
+
+    def __enter__(self):
+        self.old = W
+        set_canvas(self.width)
+
+    def __exit__(self, *exc):
+        set_canvas(self.old)
+
+
+def off():
+    """How far a wide canvas shifts the narrow picture right: zero for the narrow one. Things placed by hash keep their place in the middle 384 columns."""
+    return AX - BASE_W // 2
 FOOT = 10                        # tiles each way
 
 # colour ramps, light to dark
@@ -365,6 +390,7 @@ def noise(x, y, z=0.0):
 
 
 def colour(body, p, n, step, px, py):
+    px = px - off()                  # textures are laid out from the narrow picture's left edge, so a wide canvas draws the same bark in the same places
     m = body.mark
     r = body.mat
     if body.glow:
@@ -539,7 +565,7 @@ def mote_spots(final):
     """Where the spore motes float: single glowing pixels on clear ground-and-sky, more of them low. Each is (x, y, colour, has a glow round it)."""
     out = []
     for i in range(70):
-        x = 10 + hashed(i, 1, 11) % (W - 20)
+        x = off() + 10 + hashed(i, 1, 11) % (BASE_W - 20)
         y = 60 + (hashed(i, 2, 11) % 330)
         if hashed(i, 3, 11) % 3 == 0:
             y = 200 + hashed(i, 4, 11) % 200
@@ -616,7 +642,7 @@ def ramp_of(body, c):
 
 def shimmer_wave(x, y, frame):
     """-1 .. 1: a slow wave of brightness travelling up the tree from the roots (one wavelength over the height of the picture), a little different from place to place."""
-    jitter = (hashed(x // 14, y // 14, 21) % 100) / 100 * 0.16
+    jitter = (hashed((x - off()) // 14, y // 14, 21) % 100) / 100 * 0.16
     return math.sin(2 * math.pi * (frame / FRAMES - (AY - y) / 330.0 - jitter))
 
 
@@ -626,7 +652,7 @@ def sparkle_spots(grid, count=26):
     tries = 0
     while len(spots) < count and tries < 4000:
         tries += 1
-        x, y = 12 + hashed(tries, 1, 31) % (W - 24), 20 + hashed(tries, 2, 31) % (AY + 40)
+        x, y = off() + 12 + hashed(tries, 1, 31) % (BASE_W - 24), 20 + hashed(tries, 2, 31) % (AY + 40)
         cell = grid[y][x]
         if not cell or cell[3].mark not in BARKY or any(abs(x - sx) + abs(y - sy) < 22 for sx, sy, _ in spots):
             continue
@@ -645,20 +671,25 @@ def drip_sources(rows, grid):
             body = cell[3]
             kind = body.mark
             if kind in ('shelf', 'cap', 'leaf'):
-                cand.append((hashed(x, y, 41), x, y + 2, 'fungus' if kind != 'leaf' else 'vine'))
+                cand.append((hashed(x - off(), y, 41), x, y + 2, 'fungus' if kind != 'leaf' else 'vine'))
             elif kind == 'bark' and isinstance(cell[1], tuple) and cell[1][0] in ('low', 'top'):
-                cand.append((hashed(x, y, 42) + 7, x, y + 2, 'bough'))
+                cand.append((hashed(x - off(), y, 42) + 7, x, y + 2, 'bough'))
     cand.sort()
+    # the middle 384 columns pick first, as the narrow picture does, so a wide canvas keeps the same drops there; the sides pick after, in proportion to their width
+    lo, hi = off() + 4, off() + BASE_W - 4
+    batches = [([c for c in cand if lo <= c[1] < hi], DRIPS), ([c for c in cand if not lo <= c[1] < hi], round(DRIPS * (W - BASE_W) / BASE_W))]
     out = []
-    for kind_quota in (('vine', 5), ('fungus', 7), ('bough', 5), ('fungus', 10), ('bough', 4)):
-        want = kind_quota[1]
-        for _, x, y, kind in cand:
-            if want == 0 or len(out) >= DRIPS:
-                break
-            if kind != kind_quota[0] or any(math.hypot(x - ox, y - oy) < 17 for ox, oy, _ in out):
-                continue
-            out.append((x, y, kind))
-            want -= 1
+    for batch, share in batches:
+        limit = len(out) + share
+        for kind_quota in (('vine', 5), ('fungus', 7), ('bough', 5), ('fungus', 10), ('bough', 4)):
+            want = kind_quota[1]
+            for _, x, y, kind in batch:
+                if want == 0 or len(out) >= limit:
+                    break
+                if kind != kind_quota[0] or any(math.hypot(x - ox, y - oy) < 17 for ox, oy, _ in out):
+                    continue
+                out.append((x, y, kind))
+                want -= 1
     return out
 
 
@@ -681,7 +712,7 @@ def build_animation():
     # the slow motes drifting up beside the canopy, on clear sky only
     drifters = []
     for i in range(40):
-        x, y = 8 + hashed(i, 1, 51) % (W - 16), 40 + hashed(i, 2, 51) % 330
+        x, y = off() + 8 + hashed(i, 1, 51) % (BASE_W - 16), 40 + hashed(i, 2, 51) % 330
         if all(base[yy][xx] == '.' for xx in range(max(0, x - 4), min(W, x + 5)) for yy in range(max(0, y - 22), min(H, y + 3))):
             drifters.append((x, y, hashed(i, 3, 51) % FRAMES, 1 + hashed(i, 4, 51) % 2))
     frames = []
@@ -807,6 +838,11 @@ def write_sheet(path, frames, cols=4):
 BASE_CROP = (100, 318, 260, 420)         # the foot of the tree: the hollow, the roots and the toadstools
 
 
+def base_crop():
+    """BASE_CROP on whatever canvas is in use (the wide canvas shifts the tree right)."""
+    return (BASE_CROP[0] + off(), BASE_CROP[1], BASE_CROP[2] + off(), BASE_CROP[3])
+
+
 CATEGORY = 'Victory Screen'
 FOLDER = 'all-tree'
 FPS = 10
@@ -820,11 +856,25 @@ def build_assets():
             make('all-tree-still', 'The All Tree (still)', 'still', [rows_of(render())])]
 
 
+WIDE_W = 704                     # the wide canvas: the boughs reach 335 px left and 294 px right of the anchor in the autumn tree (286 and 233 here), and this leaves a margin of at least 16 px, in whole 64s
+WIDE_FOLDER = 'all-tree'
+
+
+def build_wide_assets():
+    """The same two assets on the wide canvas: `all-tree-wide` (the loop) and `all-tree-wide-still`, 704 x 448, anchored at (352, 336): the sides of the tree are no longer cut off."""
+    with wide_canvas(WIDE_W):
+        make = family(CATEGORY, W, H, ANCHOR, place='none', folder=WIDE_FOLDER)
+        rows_of = lambda frame: [r if isinstance(r, str) else ''.join(r) for r in frame]
+        return [make('all-tree-wide', 'The All Tree (animated, wide)', 'animation', [rows_of(f) for f in build_animation()], fps=FPS),
+                make('all-tree-wide-still', 'The All Tree (still, wide)', 'still', [rows_of(render())])]
+
+
 def write_package(folder):
     """Beside the sheets: all-tree.json, the numbers a screen needs (README.md says it in words)."""
     write_json(folder, 'all-tree.json', 'The All Tree sheets in this folder. See README.md beside this file.',
                {'cell': [W, H], 'anchor': {'x': AX, 'y': AY}, 'frames': FRAMES, 'fps': FPS, 'footprint': [FOOT, FOOT], 'levels': 20,
-                'animated': 'all-tree.png', 'still': 'all-tree-still.png', 'sheet': {'cols': 8, 'rows': 2}})
+                'animated': 'all-tree.png', 'still': 'all-tree-still.png', 'sheet': {'cols': 8, 'rows': 2},
+                'wide': {'cell': [WIDE_W, H], 'anchor': {'x': WIDE_W // 2, 'y': AY}, 'animated': 'all-tree-wide.png', 'still': 'all-tree-wide-still.png', 'sheet': {'cols': 8, 'rows': 2}, 'about': 'the same tree on a wider canvas so the sides are not cut off'}})
 
 
 def main():
@@ -834,9 +884,17 @@ def main():
     parser.add_argument('--animate', type=Path, help='write a contact sheet of the 12 animation frames here (4 x 3, half size)')
     parser.add_argument('--gif', type=Path, help='write the looping animation here (10 frames a second, 1x), and an 8x one of the foot of the tree beside it (NAME-base.gif)')
     parser.add_argument('--frame-dir', type=Path, help='also write every frame as a transparent PNG here')
+    parser.add_argument('--wide', action='store_true', help=f'draw on the wide {WIDE_W} x 448 canvas, so the sides of the tree are not cut off')
     args = parser.parse_args()
     if not (args.preview or args.png or args.animate or args.gif or args.frame_dir):
         parser.error('say --preview, --png, --animate, --gif or --frame-dir')
+    if args.wide:
+        with wide_canvas(WIDE_W):
+            return run(args)
+    return run(args)
+
+
+def run(args):
     if args.animate or args.gif or args.frame_dir:
         frames = build_animation()
         if args.animate:
@@ -844,7 +902,7 @@ def main():
             print('the 12 frames, half size ->', args.animate)
         if args.gif:
             write_gif(args.gif, frame_images(frames))
-            write_gif(args.gif.with_name(args.gif.stem + '-base.gif'), frame_images(frames, 8, BASE_CROP))
+            write_gif(args.gif.with_name(args.gif.stem + '-base.gif'), frame_images(frames, 8, base_crop()))
             print('the looping animation ->', args.gif, 'and', args.gif.with_name(args.gif.stem + '-base.gif'))
         if args.frame_dir:
             args.frame_dir.mkdir(parents=True, exist_ok=True)

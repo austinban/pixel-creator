@@ -1,0 +1,58 @@
+{
+ "about": "The button sheets in this folder. See README.md beside this file for the whole story.",
+ "colourways": [
+  "primary",
+  "low",
+  "red"
+ ],
+ "heights": {
+  "std": 48,
+  "short": 32
+ },
+ "widths": {
+  "sm": 128,
+  "md": 192,
+  "lg": 256,
+  "xl": 384
+ },
+ "states": [
+  "default",
+  "hovered",
+  "active"
+ ],
+ "cells": {
+  "std-sm": [
+   128,
+   48
+  ],
+  "std-md": [
+   192,
+   48
+  ],
+  "std-lg": [
+   256,
+   48
+  ],
+  "std-xl": [
+   384,
+   48
+  ],
+  "short-sm": [
+   128,
+   32
+  ],
+  "short-md": [
+   192,
+   32
+  ],
+  "short-lg": [
+   256,
+   32
+  ],
+  "short-xl": [
+   384,
+   32
+  ]
+ },
+ "files": "ui-button-COLOURWAY-HEIGHT-WIDTH.png, three cells side by side: default, hovered, active"
+}

@@ -20,5 +20,22 @@
  "sheet": {
   "cols": 8,
   "rows": 2
+ },
+ "wide": {
+  "cell": [
+   704,
+   448
+  ],
+  "anchor": {
+   "x": 352,
+   "y": 336
+  },
+  "animated": "all-tree-wide.png",
+  "still": "all-tree-wide-still.png",
+  "sheet": {
+   "cols": 8,
+   "rows": 2
+  },
+  "about": "the same tree on a wider canvas so the sides are not cut off"
  }
 }

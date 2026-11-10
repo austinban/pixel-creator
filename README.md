@@ -211,8 +211,24 @@ The **All Tree** is the victory screen's display piece, in the **Victory Screen*
 (`tools/make_all_tree.py`; `--preview` shows it over its footprint). `all-tree` is a 12-frame loop at 10 a second (a shimmer climbing the fungi, vines and eyes, and glowing drops that fall and splash); `all-tree-still` is the flat picture. They live in
 `sprites/assets/all-tree/` with a README and `all-tree.json`.
 
+Each All Tree also comes in a **wide** version (`all-tree-wide`, `all-tree-wide-still`, `all-tree-fall-wide`, `all-tree-fall-wide-still`): the same picture on a **704 x 448** canvas with the anchor at (352, 336), so the sides of the tree are not cut off. They are about 8 MB
+of frames each pair, and make `assets/data.js` about 16 MB.
+
 The **autumn All Tree** (`all-tree-fall` and `all-tree-fall-still`) is the same tree without the corruption: no mushrooms, yellow, orange and red foliage in clustered leaves, natural green vines, tumbling leaves and a few glowing fairies. Same cell, anchor and
 boughs as the corrupted one (`tools/make_all_tree_fall.py` reuses its model), in `sprites/assets/all-tree-fall/`.
+
+The **trees** are ten more trees and bushes to stand beside the ground sheet's bush and pine, in the **Trees** category (`tools/make_trees.py`; `--preview` shows them beside the originals): a tall pine, a spruce, a poplar, a tall oak (all about
+100-128 px, taller than the sheet's 64 px pine), a broad oak, a birch, a small pine, a dead tree, a berry bush and a hedge. One picture each, anchored at the middle of the tile, blocking it. They are in `sprites/assets/trees/` with a README and `trees.json`.
+
+The **animated water** moves all 36 water tiles of the ground sheet, normal and corrupted, open and edge pieces, level and sunken, in the **Animated Water** and **Animated Corrupted Water** categories (`tools/make_water.py`; `--preview` shows them, and `--wave 1` a lake with the wave):
+10 frames at 4 a second, ids `water-COL-ROW` and `water-corrupted-COL-ROW` after the ground sheet's cell. The water drifts one tile's width over the loop and the foam crest runs along the shore; the cube, outline and silhouette do not change. The game starts each tile one frame after the one behind it (`(frame + (x + y)) % 10`) for a slow wave. They are in `sprites/assets/water/` with a README and `water.json`.
+
+The **menu buttons** are reusable buttons in the **UI** category (`tools/make_buttons.py`; `--preview DIR` writes every sheet and a contact sheet): a purple bar in a steel bevel with gold corner brackets, rounded ends, a slab for depth and moss, scratches and chips
+for wear. 24 sheets, `ui-button-COLOURWAY-HEIGHT-WIDTH`: colourways **primary**, **low** (low contrast) and **red**, heights **std** (48) and **short** (32), widths **sm** 128, **md** 192, **lg** 256 and **xl** 384. Each sheet is three cells, the states
+**default**, **hovered** and **active**. They have no label. They are in `sprites/assets/buttons/` with a README and `buttons.json`.
+
+The **blood pool** is a decal for a ground tile, in the **Decals** category (`tools/make_blood_pool.py`; `--preview` shows it over a grass tile, alone and under a dead character): six irregular pools, 32 x 16, on the tile's top face
+and anchored at its middle (16, 8) like the tile overlays, so one goes where the tile is and a character's dead pose is drawn over it. A pool stays inside the diamond, has no outline, and is a dark rim, a deep red body and a wetter middle with a glint.
 
 The **slot icons** are three 32 x 32 pictures in the **UI** category for the Weapon, Armor and Trinket slots (a sword, a breastplate, a gem ring), made by `tools/make_slot_icons.py`
 (`--preview` shows them enlarged) and shipped in `sprites/assets/slot-icons/` with a README and `slot-icons.json`.

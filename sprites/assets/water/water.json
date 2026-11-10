@@ -1,0 +1,492 @@
+{
+ "about": "The animated water in this folder. See README.md beside this file for the whole story.",
+ "frames": 10,
+ "fps": 4,
+ "cell": [
+  32,
+  32
+ ],
+ "wave": {
+  "step": 1,
+  "along": "x + y",
+  "start": "(frame + (x + y) * 1) % 10"
+ },
+ "tiles": {
+  "water-0-2": {
+   "cell": [
+    0,
+    2
+   ],
+   "level": "flush",
+   "foam": [],
+   "theme": "original",
+   "file": "water-0-2.png",
+   "label": "Water, flush, open"
+  },
+  "water-3-2": {
+   "cell": [
+    3,
+    2
+   ],
+   "level": "flush",
+   "foam": [
+    "NE"
+   ],
+   "theme": "original",
+   "file": "water-3-2.png",
+   "label": "Water, flush, foam NE"
+  },
+  "water-2-3": {
+   "cell": [
+    2,
+    3
+   ],
+   "level": "flush",
+   "foam": [
+    "NW"
+   ],
+   "theme": "original",
+   "file": "water-2-3.png",
+   "label": "Water, flush, foam NW"
+  },
+  "water-4-3": {
+   "cell": [
+    4,
+    3
+   ],
+   "level": "flush",
+   "foam": [
+    "SE"
+   ],
+   "theme": "original",
+   "file": "water-4-3.png",
+   "label": "Water, flush, foam SE"
+  },
+  "water-3-4": {
+   "cell": [
+    3,
+    4
+   ],
+   "level": "flush",
+   "foam": [
+    "SW"
+   ],
+   "theme": "original",
+   "file": "water-3-4.png",
+   "label": "Water, flush, foam SW"
+  },
+  "water-2-2": {
+   "cell": [
+    2,
+    2
+   ],
+   "level": "flush",
+   "foam": [
+    "NW",
+    "NE"
+   ],
+   "theme": "original",
+   "file": "water-2-2.png",
+   "label": "Water, flush, foam NW+NE"
+  },
+  "water-4-2": {
+   "cell": [
+    4,
+    2
+   ],
+   "level": "flush",
+   "foam": [
+    "NE",
+    "SE"
+   ],
+   "theme": "original",
+   "file": "water-4-2.png",
+   "label": "Water, flush, foam NE+SE"
+  },
+  "water-2-4": {
+   "cell": [
+    2,
+    4
+   ],
+   "level": "flush",
+   "foam": [
+    "NW",
+    "SW"
+   ],
+   "theme": "original",
+   "file": "water-2-4.png",
+   "label": "Water, flush, foam NW+SW"
+  },
+  "water-4-4": {
+   "cell": [
+    4,
+    4
+   ],
+   "level": "flush",
+   "foam": [
+    "SW",
+    "SE"
+   ],
+   "theme": "original",
+   "file": "water-4-4.png",
+   "label": "Water, flush, foam SW+SE"
+  },
+  "water-1-2": {
+   "cell": [
+    1,
+    2
+   ],
+   "level": "sunken",
+   "foam": [],
+   "theme": "original",
+   "file": "water-1-2.png",
+   "label": "Water, sunken, open"
+  },
+  "water-6-2": {
+   "cell": [
+    6,
+    2
+   ],
+   "level": "sunken",
+   "foam": [
+    "NE"
+   ],
+   "theme": "original",
+   "file": "water-6-2.png",
+   "label": "Water, sunken, foam NE"
+  },
+  "water-5-3": {
+   "cell": [
+    5,
+    3
+   ],
+   "level": "sunken",
+   "foam": [
+    "NW"
+   ],
+   "theme": "original",
+   "file": "water-5-3.png",
+   "label": "Water, sunken, foam NW"
+  },
+  "water-7-3": {
+   "cell": [
+    7,
+    3
+   ],
+   "level": "sunken",
+   "foam": [
+    "SE"
+   ],
+   "theme": "original",
+   "file": "water-7-3.png",
+   "label": "Water, sunken, foam SE"
+  },
+  "water-6-4": {
+   "cell": [
+    6,
+    4
+   ],
+   "level": "sunken",
+   "foam": [
+    "SW"
+   ],
+   "theme": "original",
+   "file": "water-6-4.png",
+   "label": "Water, sunken, foam SW"
+  },
+  "water-5-2": {
+   "cell": [
+    5,
+    2
+   ],
+   "level": "sunken",
+   "foam": [
+    "NW",
+    "NE"
+   ],
+   "theme": "original",
+   "file": "water-5-2.png",
+   "label": "Water, sunken, foam NW+NE"
+  },
+  "water-7-2": {
+   "cell": [
+    7,
+    2
+   ],
+   "level": "sunken",
+   "foam": [
+    "NE",
+    "SE"
+   ],
+   "theme": "original",
+   "file": "water-7-2.png",
+   "label": "Water, sunken, foam NE+SE"
+  },
+  "water-5-4": {
+   "cell": [
+    5,
+    4
+   ],
+   "level": "sunken",
+   "foam": [
+    "NW",
+    "SW"
+   ],
+   "theme": "original",
+   "file": "water-5-4.png",
+   "label": "Water, sunken, foam NW+SW"
+  },
+  "water-7-4": {
+   "cell": [
+    7,
+    4
+   ],
+   "level": "sunken",
+   "foam": [
+    "SW",
+    "SE"
+   ],
+   "theme": "original",
+   "file": "water-7-4.png",
+   "label": "Water, sunken, foam SW+SE"
+  },
+  "water-corrupted-0-2": {
+   "cell": [
+    0,
+    2
+   ],
+   "level": "flush",
+   "foam": [],
+   "theme": "corrupted",
+   "file": "water-corrupted-0-2.png",
+   "label": "Corrupted water, flush, open"
+  },
+  "water-corrupted-3-2": {
+   "cell": [
+    3,
+    2
+   ],
+   "level": "flush",
+   "foam": [
+    "NE"
+   ],
+   "theme": "corrupted",
+   "file": "water-corrupted-3-2.png",
+   "label": "Corrupted water, flush, foam NE"
+  },
+  "water-corrupted-2-3": {
+   "cell": [
+    2,
+    3
+   ],
+   "level": "flush",
+   "foam": [
+    "NW"
+   ],
+   "theme": "corrupted",
+   "file": "water-corrupted-2-3.png",
+   "label": "Corrupted water, flush, foam NW"
+  },
+  "water-corrupted-4-3": {
+   "cell": [
+    4,
+    3
+   ],
+   "level": "flush",
+   "foam": [
+    "SE"
+   ],
+   "theme": "corrupted",
+   "file": "water-corrupted-4-3.png",
+   "label": "Corrupted water, flush, foam SE"
+  },
+  "water-corrupted-3-4": {
+   "cell": [
+    3,
+    4
+   ],
+   "level": "flush",
+   "foam": [
+    "SW"
+   ],
+   "theme": "corrupted",
+   "file": "water-corrupted-3-4.png",
+   "label": "Corrupted water, flush, foam SW"
+  },
+  "water-corrupted-2-2": {
+   "cell": [
+    2,
+    2
+   ],
+   "level": "flush",
+   "foam": [
+    "NW",
+    "NE"
+   ],
+   "theme": "corrupted",
+   "file": "water-corrupted-2-2.png",
+   "label": "Corrupted water, flush, foam NW+NE"
+  },
+  "water-corrupted-4-2": {
+   "cell": [
+    4,
+    2
+   ],
+   "level": "flush",
+   "foam": [
+    "NE",
+    "SE"
+   ],
+   "theme": "corrupted",
+   "file": "water-corrupted-4-2.png",
+   "label": "Corrupted water, flush, foam NE+SE"
+  },
+  "water-corrupted-2-4": {
+   "cell": [
+    2,
+    4
+   ],
+   "level": "flush",
+   "foam": [
+    "NW",
+    "SW"
+   ],
+   "theme": "corrupted",
+   "file": "water-corrupted-2-4.png",
+   "label": "Corrupted water, flush, foam NW+SW"
+  },
+  "water-corrupted-4-4": {
+   "cell": [
+    4,
+    4
+   ],
+   "level": "flush",
+   "foam": [
+    "SW",
+    "SE"
+   ],
+   "theme": "corrupted",
+   "file": "water-corrupted-4-4.png",
+   "label": "Corrupted water, flush, foam SW+SE"
+  },
+  "water-corrupted-1-2": {
+   "cell": [
+    1,
+    2
+   ],
+   "level": "sunken",
+   "foam": [],
+   "theme": "corrupted",
+   "file": "water-corrupted-1-2.png",
+   "label": "Corrupted water, sunken, open"
+  },
+  "water-corrupted-6-2": {
+   "cell": [
+    6,
+    2
+   ],
+   "level": "sunken",
+   "foam": [
+    "NE"
+   ],
+   "theme": "corrupted",
+   "file": "water-corrupted-6-2.png",
+   "label": "Corrupted water, sunken, foam NE"
+  },
+  "water-corrupted-5-3": {
+   "cell": [
+    5,
+    3
+   ],
+   "level": "sunken",
+   "foam": [
+    "NW"
+   ],
+   "theme": "corrupted",
+   "file": "water-corrupted-5-3.png",
+   "label": "Corrupted water, sunken, foam NW"
+  },
+  "water-corrupted-7-3": {
+   "cell": [
+    7,
+    3
+   ],
+   "level": "sunken",
+   "foam": [
+    "SE"
+   ],
+   "theme": "corrupted",
+   "file": "water-corrupted-7-3.png",
+   "label": "Corrupted water, sunken, foam SE"
+  },
+  "water-corrupted-6-4": {
+   "cell": [
+    6,
+    4
+   ],
+   "level": "sunken",
+   "foam": [
+    "SW"
+   ],
+   "theme": "corrupted",
+   "file": "water-corrupted-6-4.png",
+   "label": "Corrupted water, sunken, foam SW"
+  },
+  "water-corrupted-5-2": {
+   "cell": [
+    5,
+    2
+   ],
+   "level": "sunken",
+   "foam": [
+    "NW",
+    "NE"
+   ],
+   "theme": "corrupted",
+   "file": "water-corrupted-5-2.png",
+   "label": "Corrupted water, sunken, foam NW+NE"
+  },
+  "water-corrupted-7-2": {
+   "cell": [
+    7,
+    2
+   ],
+   "level": "sunken",
+   "foam": [
+    "NE",
+    "SE"
+   ],
+   "theme": "corrupted",
+   "file": "water-corrupted-7-2.png",
+   "label": "Corrupted water, sunken, foam NE+SE"
+  },
+  "water-corrupted-5-4": {
+   "cell": [
+    5,
+    4
+   ],
+   "level": "sunken",
+   "foam": [
+    "NW",
+    "SW"
+   ],
+   "theme": "corrupted",
+   "file": "water-corrupted-5-4.png",
+   "label": "Corrupted water, sunken, foam NW+SW"
+  },
+  "water-corrupted-7-4": {
+   "cell": [
+    7,
+    4
+   ],
+   "level": "sunken",
+   "foam": [
+    "SW",
+    "SE"
+   ],
+   "theme": "corrupted",
+   "file": "water-corrupted-7-4.png",
+   "label": "Corrupted water, sunken, foam SW+SE"
+  }
+ }
+}

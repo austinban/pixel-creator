@@ -1996,6 +1996,558 @@
    "frames": 8
   },
   {
+   "id": "ui-button-primary-std-sm",
+   "label": "Button, primary, standard, sm",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 128,
+   "h": 48,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-primary-std-sm.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-primary-std-md",
+   "label": "Button, primary, standard, md",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 192,
+   "h": 48,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-primary-std-md.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-primary-std-lg",
+   "label": "Button, primary, standard, lg",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 256,
+   "h": 48,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-primary-std-lg.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-primary-std-xl",
+   "label": "Button, primary, standard, xl",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 384,
+   "h": 48,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-primary-std-xl.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-primary-short-sm",
+   "label": "Button, primary, short, sm",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 128,
+   "h": 32,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-primary-short-sm.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-primary-short-md",
+   "label": "Button, primary, short, md",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 192,
+   "h": 32,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-primary-short-md.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-primary-short-lg",
+   "label": "Button, primary, short, lg",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 256,
+   "h": 32,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-primary-short-lg.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-primary-short-xl",
+   "label": "Button, primary, short, xl",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 384,
+   "h": 32,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-primary-short-xl.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-low-std-sm",
+   "label": "Button, low contrast, standard, sm",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 128,
+   "h": 48,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-low-std-sm.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-low-std-md",
+   "label": "Button, low contrast, standard, md",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 192,
+   "h": 48,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-low-std-md.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-low-std-lg",
+   "label": "Button, low contrast, standard, lg",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 256,
+   "h": 48,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-low-std-lg.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-low-std-xl",
+   "label": "Button, low contrast, standard, xl",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 384,
+   "h": 48,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-low-std-xl.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-low-short-sm",
+   "label": "Button, low contrast, short, sm",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 128,
+   "h": 32,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-low-short-sm.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-low-short-md",
+   "label": "Button, low contrast, short, md",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 192,
+   "h": 32,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-low-short-md.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-low-short-lg",
+   "label": "Button, low contrast, short, lg",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 256,
+   "h": 32,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-low-short-lg.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-low-short-xl",
+   "label": "Button, low contrast, short, xl",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 384,
+   "h": 32,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-low-short-xl.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-red-std-sm",
+   "label": "Button, red, standard, sm",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 128,
+   "h": 48,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-red-std-sm.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-red-std-md",
+   "label": "Button, red, standard, md",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 192,
+   "h": 48,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-red-std-md.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-red-std-lg",
+   "label": "Button, red, standard, lg",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 256,
+   "h": 48,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-red-std-lg.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-red-std-xl",
+   "label": "Button, red, standard, xl",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 384,
+   "h": 48,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-red-std-xl.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-red-short-sm",
+   "label": "Button, red, short, sm",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 128,
+   "h": 32,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-red-short-sm.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-red-short-md",
+   "label": "Button, red, short, md",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 192,
+   "h": 32,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-red-short-md.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-red-short-lg",
+   "label": "Button, red, short, lg",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 256,
+   "h": 32,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-red-short-lg.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-red-short-xl",
+   "label": "Button, red, short, xl",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 384,
+   "h": 32,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-red-short-xl.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
    "id": "bridge",
    "label": "Rickety bridge",
    "category": "Bridges",
@@ -3647,6 +4199,186 @@
    "frames": 1
   },
   {
+   "id": "tree-tall-pine",
+   "label": "Tall pine",
+   "category": "Trees",
+   "kind": "still",
+   "place": "ground",
+   "w": 48,
+   "h": 125,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 24,
+    "y": 113
+   },
+   "file": "trees/tree-tall-pine.png",
+   "frames": 1
+  },
+  {
+   "id": "tree-spruce",
+   "label": "Spruce",
+   "category": "Trees",
+   "kind": "still",
+   "place": "ground",
+   "w": 48,
+   "h": 118,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 24,
+    "y": 106
+   },
+   "file": "trees/tree-spruce.png",
+   "frames": 1
+  },
+  {
+   "id": "tree-poplar",
+   "label": "Poplar",
+   "category": "Trees",
+   "kind": "still",
+   "place": "ground",
+   "w": 48,
+   "h": 123,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 24,
+    "y": 111
+   },
+   "file": "trees/tree-poplar.png",
+   "frames": 1
+  },
+  {
+   "id": "tree-tall-oak",
+   "label": "Tall oak",
+   "category": "Trees",
+   "kind": "still",
+   "place": "ground",
+   "w": 64,
+   "h": 128,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 32,
+    "y": 116
+   },
+   "file": "trees/tree-tall-oak.png",
+   "frames": 1
+  },
+  {
+   "id": "tree-broad-oak",
+   "label": "Broad oak",
+   "category": "Trees",
+   "kind": "still",
+   "place": "ground",
+   "w": 64,
+   "h": 78,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 32,
+    "y": 66
+   },
+   "file": "trees/tree-broad-oak.png",
+   "frames": 1
+  },
+  {
+   "id": "tree-birch",
+   "label": "Birch",
+   "category": "Trees",
+   "kind": "still",
+   "place": "ground",
+   "w": 48,
+   "h": 107,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 24,
+    "y": 95
+   },
+   "file": "trees/tree-birch.png",
+   "frames": 1
+  },
+  {
+   "id": "tree-small-pine",
+   "label": "Small pine",
+   "category": "Trees",
+   "kind": "still",
+   "place": "ground",
+   "w": 48,
+   "h": 53,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 24,
+    "y": 41
+   },
+   "file": "trees/tree-small-pine.png",
+   "frames": 1
+  },
+  {
+   "id": "tree-dead-tree",
+   "label": "Dead tree",
+   "category": "Trees",
+   "kind": "still",
+   "place": "ground",
+   "w": 64,
+   "h": 88,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 32,
+    "y": 76
+   },
+   "file": "trees/tree-dead-tree.png",
+   "frames": 1
+  },
+  {
+   "id": "bush-berry-bush",
+   "label": "Berry bush",
+   "category": "Trees",
+   "kind": "still",
+   "place": "ground",
+   "w": 48,
+   "h": 43,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 24,
+    "y": 31
+   },
+   "file": "trees/bush-berry-bush.png",
+   "frames": 1
+  },
+  {
+   "id": "bush-hedge",
+   "label": "Hedge",
+   "category": "Trees",
+   "kind": "still",
+   "place": "ground",
+   "w": 64,
+   "h": 38,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 32,
+    "y": 26
+   },
+   "file": "trees/bush-hedge.png",
+   "frames": 1
+  },
+  {
    "id": "slot-weapon",
    "label": "Weapon slot",
    "category": "UI",
@@ -3699,6 +4431,32 @@
    },
    "file": "slot-icons/slot-trinket.png",
    "frames": 1
+  },
+  {
+   "id": "blood-pool",
+   "label": "Blood pool",
+   "category": "Decals",
+   "kind": "variants",
+   "place": "ground",
+   "w": 32,
+   "h": 16,
+   "cols": 6,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 8
+   },
+   "file": "blood-pool.png",
+   "frames": 6,
+   "names": [
+    "Pool 1",
+    "Pool 2",
+    "Pool 3",
+    "Pool 4",
+    "Pool 5",
+    "Pool 6"
+   ]
   },
   {
    "id": "all-tree",
@@ -3770,6 +4528,78 @@
     "y": 336
    },
    "file": "all-tree-fall/all-tree-fall-still.png",
+   "frames": 1
+  },
+  {
+   "id": "all-tree-wide",
+   "label": "The All Tree (animated, wide)",
+   "category": "Victory Screen",
+   "kind": "animation",
+   "place": "none",
+   "w": 704,
+   "h": 448,
+   "cols": 8,
+   "rows": 2,
+   "fps": 10,
+   "anchor": {
+    "x": 352,
+    "y": 336
+   },
+   "file": "all-tree/all-tree-wide.png",
+   "frames": 12
+  },
+  {
+   "id": "all-tree-wide-still",
+   "label": "The All Tree (still, wide)",
+   "category": "Victory Screen",
+   "kind": "still",
+   "place": "none",
+   "w": 704,
+   "h": 448,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 352,
+    "y": 336
+   },
+   "file": "all-tree/all-tree-wide-still.png",
+   "frames": 1
+  },
+  {
+   "id": "all-tree-fall-wide",
+   "label": "The All Tree, autumn (animated, wide)",
+   "category": "Victory Screen",
+   "kind": "animation",
+   "place": "none",
+   "w": 704,
+   "h": 448,
+   "cols": 8,
+   "rows": 2,
+   "fps": 10,
+   "anchor": {
+    "x": 352,
+    "y": 336
+   },
+   "file": "all-tree-fall/all-tree-fall-wide.png",
+   "frames": 12
+  },
+  {
+   "id": "all-tree-fall-wide-still",
+   "label": "The All Tree, autumn (still, wide)",
+   "category": "Victory Screen",
+   "kind": "still",
+   "place": "none",
+   "w": 704,
+   "h": 448,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 352,
+    "y": 336
+   },
+   "file": "all-tree-fall/all-tree-fall-wide-still.png",
    "frames": 1
   },
   {
@@ -4617,6 +5447,1086 @@
    },
    "file": "abilities/surface-firewall.png",
    "frames": 8
+  },
+  {
+   "id": "water-0-2",
+   "label": "Water, flush, open",
+   "category": "Animated Water",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 32
+   },
+   "file": "water/water-0-2.png",
+   "frames": 10,
+   "names": [
+    "Frame 1",
+    "Frame 2",
+    "Frame 3",
+    "Frame 4",
+    "Frame 5",
+    "Frame 6",
+    "Frame 7",
+    "Frame 8",
+    "Frame 9",
+    "Frame 10"
+   ]
+  },
+  {
+   "id": "water-3-2",
+   "label": "Water, flush, foam NE",
+   "category": "Animated Water",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 32
+   },
+   "file": "water/water-3-2.png",
+   "frames": 10,
+   "names": [
+    "Frame 1",
+    "Frame 2",
+    "Frame 3",
+    "Frame 4",
+    "Frame 5",
+    "Frame 6",
+    "Frame 7",
+    "Frame 8",
+    "Frame 9",
+    "Frame 10"
+   ]
+  },
+  {
+   "id": "water-2-3",
+   "label": "Water, flush, foam NW",
+   "category": "Animated Water",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 32
+   },
+   "file": "water/water-2-3.png",
+   "frames": 10,
+   "names": [
+    "Frame 1",
+    "Frame 2",
+    "Frame 3",
+    "Frame 4",
+    "Frame 5",
+    "Frame 6",
+    "Frame 7",
+    "Frame 8",
+    "Frame 9",
+    "Frame 10"
+   ]
+  },
+  {
+   "id": "water-4-3",
+   "label": "Water, flush, foam SE",
+   "category": "Animated Water",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 32
+   },
+   "file": "water/water-4-3.png",
+   "frames": 10,
+   "names": [
+    "Frame 1",
+    "Frame 2",
+    "Frame 3",
+    "Frame 4",
+    "Frame 5",
+    "Frame 6",
+    "Frame 7",
+    "Frame 8",
+    "Frame 9",
+    "Frame 10"
+   ]
+  },
+  {
+   "id": "water-3-4",
+   "label": "Water, flush, foam SW",
+   "category": "Animated Water",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 32
+   },
+   "file": "water/water-3-4.png",
+   "frames": 10,
+   "names": [
+    "Frame 1",
+    "Frame 2",
+    "Frame 3",
+    "Frame 4",
+    "Frame 5",
+    "Frame 6",
+    "Frame 7",
+    "Frame 8",
+    "Frame 9",
+    "Frame 10"
+   ]
+  },
+  {
+   "id": "water-2-2",
+   "label": "Water, flush, foam NW+NE",
+   "category": "Animated Water",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 32
+   },
+   "file": "water/water-2-2.png",
+   "frames": 10,
+   "names": [
+    "Frame 1",
+    "Frame 2",
+    "Frame 3",
+    "Frame 4",
+    "Frame 5",
+    "Frame 6",
+    "Frame 7",
+    "Frame 8",
+    "Frame 9",
+    "Frame 10"
+   ]
+  },
+  {
+   "id": "water-4-2",
+   "label": "Water, flush, foam NE+SE",
+   "category": "Animated Water",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 32
+   },
+   "file": "water/water-4-2.png",
+   "frames": 10,
+   "names": [
+    "Frame 1",
+    "Frame 2",
+    "Frame 3",
+    "Frame 4",
+    "Frame 5",
+    "Frame 6",
+    "Frame 7",
+    "Frame 8",
+    "Frame 9",
+    "Frame 10"
+   ]
+  },
+  {
+   "id": "water-2-4",
+   "label": "Water, flush, foam NW+SW",
+   "category": "Animated Water",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 32
+   },
+   "file": "water/water-2-4.png",
+   "frames": 10,
+   "names": [
+    "Frame 1",
+    "Frame 2",
+    "Frame 3",
+    "Frame 4",
+    "Frame 5",
+    "Frame 6",
+    "Frame 7",
+    "Frame 8",
+    "Frame 9",
+    "Frame 10"
+   ]
+  },
+  {
+   "id": "water-4-4",
+   "label": "Water, flush, foam SW+SE",
+   "category": "Animated Water",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 32
+   },
+   "file": "water/water-4-4.png",
+   "frames": 10,
+   "names": [
+    "Frame 1",
+    "Frame 2",
+    "Frame 3",
+    "Frame 4",
+    "Frame 5",
+    "Frame 6",
+    "Frame 7",
+    "Frame 8",
+    "Frame 9",
+    "Frame 10"
+   ]
+  },
+  {
+   "id": "water-1-2",
+   "label": "Water, sunken, open",
+   "category": "Animated Water",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 32
+   },
+   "file": "water/water-1-2.png",
+   "frames": 10,
+   "names": [
+    "Frame 1",
+    "Frame 2",
+    "Frame 3",
+    "Frame 4",
+    "Frame 5",
+    "Frame 6",
+    "Frame 7",
+    "Frame 8",
+    "Frame 9",
+    "Frame 10"
+   ]
+  },
+  {
+   "id": "water-6-2",
+   "label": "Water, sunken, foam NE",
+   "category": "Animated Water",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 32
+   },
+   "file": "water/water-6-2.png",
+   "frames": 10,
+   "names": [
+    "Frame 1",
+    "Frame 2",
+    "Frame 3",
+    "Frame 4",
+    "Frame 5",
+    "Frame 6",
+    "Frame 7",
+    "Frame 8",
+    "Frame 9",
+    "Frame 10"
+   ]
+  },
+  {
+   "id": "water-5-3",
+   "label": "Water, sunken, foam NW",
+   "category": "Animated Water",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 32
+   },
+   "file": "water/water-5-3.png",
+   "frames": 10,
+   "names": [
+    "Frame 1",
+    "Frame 2",
+    "Frame 3",
+    "Frame 4",
+    "Frame 5",
+    "Frame 6",
+    "Frame 7",
+    "Frame 8",
+    "Frame 9",
+    "Frame 10"
+   ]
+  },
+  {
+   "id": "water-7-3",
+   "label": "Water, sunken, foam SE",
+   "category": "Animated Water",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 32
+   },
+   "file": "water/water-7-3.png",
+   "frames": 10,
+   "names": [
+    "Frame 1",
+    "Frame 2",
+    "Frame 3",
+    "Frame 4",
+    "Frame 5",
+    "Frame 6",
+    "Frame 7",
+    "Frame 8",
+    "Frame 9",
+    "Frame 10"
+   ]
+  },
+  {
+   "id": "water-6-4",
+   "label": "Water, sunken, foam SW",
+   "category": "Animated Water",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 32
+   },
+   "file": "water/water-6-4.png",
+   "frames": 10,
+   "names": [
+    "Frame 1",
+    "Frame 2",
+    "Frame 3",
+    "Frame 4",
+    "Frame 5",
+    "Frame 6",
+    "Frame 7",
+    "Frame 8",
+    "Frame 9",
+    "Frame 10"
+   ]
+  },
+  {
+   "id": "water-5-2",
+   "label": "Water, sunken, foam NW+NE",
+   "category": "Animated Water",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 32
+   },
+   "file": "water/water-5-2.png",
+   "frames": 10,
+   "names": [
+    "Frame 1",
+    "Frame 2",
+    "Frame 3",
+    "Frame 4",
+    "Frame 5",
+    "Frame 6",
+    "Frame 7",
+    "Frame 8",
+    "Frame 9",
+    "Frame 10"
+   ]
+  },
+  {
+   "id": "water-7-2",
+   "label": "Water, sunken, foam NE+SE",
+   "category": "Animated Water",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 32
+   },
+   "file": "water/water-7-2.png",
+   "frames": 10,
+   "names": [
+    "Frame 1",
+    "Frame 2",
+    "Frame 3",
+    "Frame 4",
+    "Frame 5",
+    "Frame 6",
+    "Frame 7",
+    "Frame 8",
+    "Frame 9",
+    "Frame 10"
+   ]
+  },
+  {
+   "id": "water-5-4",
+   "label": "Water, sunken, foam NW+SW",
+   "category": "Animated Water",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 32
+   },
+   "file": "water/water-5-4.png",
+   "frames": 10,
+   "names": [
+    "Frame 1",
+    "Frame 2",
+    "Frame 3",
+    "Frame 4",
+    "Frame 5",
+    "Frame 6",
+    "Frame 7",
+    "Frame 8",
+    "Frame 9",
+    "Frame 10"
+   ]
+  },
+  {
+   "id": "water-7-4",
+   "label": "Water, sunken, foam SW+SE",
+   "category": "Animated Water",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 32
+   },
+   "file": "water/water-7-4.png",
+   "frames": 10,
+   "names": [
+    "Frame 1",
+    "Frame 2",
+    "Frame 3",
+    "Frame 4",
+    "Frame 5",
+    "Frame 6",
+    "Frame 7",
+    "Frame 8",
+    "Frame 9",
+    "Frame 10"
+   ]
+  },
+  {
+   "id": "water-corrupted-0-2",
+   "label": "Corrupted water, flush, open",
+   "category": "Animated Corrupted Water",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 32
+   },
+   "file": "water/water-corrupted-0-2.png",
+   "frames": 10,
+   "names": [
+    "Frame 1",
+    "Frame 2",
+    "Frame 3",
+    "Frame 4",
+    "Frame 5",
+    "Frame 6",
+    "Frame 7",
+    "Frame 8",
+    "Frame 9",
+    "Frame 10"
+   ]
+  },
+  {
+   "id": "water-corrupted-3-2",
+   "label": "Corrupted water, flush, foam NE",
+   "category": "Animated Corrupted Water",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 32
+   },
+   "file": "water/water-corrupted-3-2.png",
+   "frames": 10,
+   "names": [
+    "Frame 1",
+    "Frame 2",
+    "Frame 3",
+    "Frame 4",
+    "Frame 5",
+    "Frame 6",
+    "Frame 7",
+    "Frame 8",
+    "Frame 9",
+    "Frame 10"
+   ]
+  },
+  {
+   "id": "water-corrupted-2-3",
+   "label": "Corrupted water, flush, foam NW",
+   "category": "Animated Corrupted Water",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 32
+   },
+   "file": "water/water-corrupted-2-3.png",
+   "frames": 10,
+   "names": [
+    "Frame 1",
+    "Frame 2",
+    "Frame 3",
+    "Frame 4",
+    "Frame 5",
+    "Frame 6",
+    "Frame 7",
+    "Frame 8",
+    "Frame 9",
+    "Frame 10"
+   ]
+  },
+  {
+   "id": "water-corrupted-4-3",
+   "label": "Corrupted water, flush, foam SE",
+   "category": "Animated Corrupted Water",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 32
+   },
+   "file": "water/water-corrupted-4-3.png",
+   "frames": 10,
+   "names": [
+    "Frame 1",
+    "Frame 2",
+    "Frame 3",
+    "Frame 4",
+    "Frame 5",
+    "Frame 6",
+    "Frame 7",
+    "Frame 8",
+    "Frame 9",
+    "Frame 10"
+   ]
+  },
+  {
+   "id": "water-corrupted-3-4",
+   "label": "Corrupted water, flush, foam SW",
+   "category": "Animated Corrupted Water",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 32
+   },
+   "file": "water/water-corrupted-3-4.png",
+   "frames": 10,
+   "names": [
+    "Frame 1",
+    "Frame 2",
+    "Frame 3",
+    "Frame 4",
+    "Frame 5",
+    "Frame 6",
+    "Frame 7",
+    "Frame 8",
+    "Frame 9",
+    "Frame 10"
+   ]
+  },
+  {
+   "id": "water-corrupted-2-2",
+   "label": "Corrupted water, flush, foam NW+NE",
+   "category": "Animated Corrupted Water",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 32
+   },
+   "file": "water/water-corrupted-2-2.png",
+   "frames": 10,
+   "names": [
+    "Frame 1",
+    "Frame 2",
+    "Frame 3",
+    "Frame 4",
+    "Frame 5",
+    "Frame 6",
+    "Frame 7",
+    "Frame 8",
+    "Frame 9",
+    "Frame 10"
+   ]
+  },
+  {
+   "id": "water-corrupted-4-2",
+   "label": "Corrupted water, flush, foam NE+SE",
+   "category": "Animated Corrupted Water",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 32
+   },
+   "file": "water/water-corrupted-4-2.png",
+   "frames": 10,
+   "names": [
+    "Frame 1",
+    "Frame 2",
+    "Frame 3",
+    "Frame 4",
+    "Frame 5",
+    "Frame 6",
+    "Frame 7",
+    "Frame 8",
+    "Frame 9",
+    "Frame 10"
+   ]
+  },
+  {
+   "id": "water-corrupted-2-4",
+   "label": "Corrupted water, flush, foam NW+SW",
+   "category": "Animated Corrupted Water",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 32
+   },
+   "file": "water/water-corrupted-2-4.png",
+   "frames": 10,
+   "names": [
+    "Frame 1",
+    "Frame 2",
+    "Frame 3",
+    "Frame 4",
+    "Frame 5",
+    "Frame 6",
+    "Frame 7",
+    "Frame 8",
+    "Frame 9",
+    "Frame 10"
+   ]
+  },
+  {
+   "id": "water-corrupted-4-4",
+   "label": "Corrupted water, flush, foam SW+SE",
+   "category": "Animated Corrupted Water",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 32
+   },
+   "file": "water/water-corrupted-4-4.png",
+   "frames": 10,
+   "names": [
+    "Frame 1",
+    "Frame 2",
+    "Frame 3",
+    "Frame 4",
+    "Frame 5",
+    "Frame 6",
+    "Frame 7",
+    "Frame 8",
+    "Frame 9",
+    "Frame 10"
+   ]
+  },
+  {
+   "id": "water-corrupted-1-2",
+   "label": "Corrupted water, sunken, open",
+   "category": "Animated Corrupted Water",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 32
+   },
+   "file": "water/water-corrupted-1-2.png",
+   "frames": 10,
+   "names": [
+    "Frame 1",
+    "Frame 2",
+    "Frame 3",
+    "Frame 4",
+    "Frame 5",
+    "Frame 6",
+    "Frame 7",
+    "Frame 8",
+    "Frame 9",
+    "Frame 10"
+   ]
+  },
+  {
+   "id": "water-corrupted-6-2",
+   "label": "Corrupted water, sunken, foam NE",
+   "category": "Animated Corrupted Water",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 32
+   },
+   "file": "water/water-corrupted-6-2.png",
+   "frames": 10,
+   "names": [
+    "Frame 1",
+    "Frame 2",
+    "Frame 3",
+    "Frame 4",
+    "Frame 5",
+    "Frame 6",
+    "Frame 7",
+    "Frame 8",
+    "Frame 9",
+    "Frame 10"
+   ]
+  },
+  {
+   "id": "water-corrupted-5-3",
+   "label": "Corrupted water, sunken, foam NW",
+   "category": "Animated Corrupted Water",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 32
+   },
+   "file": "water/water-corrupted-5-3.png",
+   "frames": 10,
+   "names": [
+    "Frame 1",
+    "Frame 2",
+    "Frame 3",
+    "Frame 4",
+    "Frame 5",
+    "Frame 6",
+    "Frame 7",
+    "Frame 8",
+    "Frame 9",
+    "Frame 10"
+   ]
+  },
+  {
+   "id": "water-corrupted-7-3",
+   "label": "Corrupted water, sunken, foam SE",
+   "category": "Animated Corrupted Water",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 32
+   },
+   "file": "water/water-corrupted-7-3.png",
+   "frames": 10,
+   "names": [
+    "Frame 1",
+    "Frame 2",
+    "Frame 3",
+    "Frame 4",
+    "Frame 5",
+    "Frame 6",
+    "Frame 7",
+    "Frame 8",
+    "Frame 9",
+    "Frame 10"
+   ]
+  },
+  {
+   "id": "water-corrupted-6-4",
+   "label": "Corrupted water, sunken, foam SW",
+   "category": "Animated Corrupted Water",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 32
+   },
+   "file": "water/water-corrupted-6-4.png",
+   "frames": 10,
+   "names": [
+    "Frame 1",
+    "Frame 2",
+    "Frame 3",
+    "Frame 4",
+    "Frame 5",
+    "Frame 6",
+    "Frame 7",
+    "Frame 8",
+    "Frame 9",
+    "Frame 10"
+   ]
+  },
+  {
+   "id": "water-corrupted-5-2",
+   "label": "Corrupted water, sunken, foam NW+NE",
+   "category": "Animated Corrupted Water",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 32
+   },
+   "file": "water/water-corrupted-5-2.png",
+   "frames": 10,
+   "names": [
+    "Frame 1",
+    "Frame 2",
+    "Frame 3",
+    "Frame 4",
+    "Frame 5",
+    "Frame 6",
+    "Frame 7",
+    "Frame 8",
+    "Frame 9",
+    "Frame 10"
+   ]
+  },
+  {
+   "id": "water-corrupted-7-2",
+   "label": "Corrupted water, sunken, foam NE+SE",
+   "category": "Animated Corrupted Water",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 32
+   },
+   "file": "water/water-corrupted-7-2.png",
+   "frames": 10,
+   "names": [
+    "Frame 1",
+    "Frame 2",
+    "Frame 3",
+    "Frame 4",
+    "Frame 5",
+    "Frame 6",
+    "Frame 7",
+    "Frame 8",
+    "Frame 9",
+    "Frame 10"
+   ]
+  },
+  {
+   "id": "water-corrupted-5-4",
+   "label": "Corrupted water, sunken, foam NW+SW",
+   "category": "Animated Corrupted Water",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 32
+   },
+   "file": "water/water-corrupted-5-4.png",
+   "frames": 10,
+   "names": [
+    "Frame 1",
+    "Frame 2",
+    "Frame 3",
+    "Frame 4",
+    "Frame 5",
+    "Frame 6",
+    "Frame 7",
+    "Frame 8",
+    "Frame 9",
+    "Frame 10"
+   ]
+  },
+  {
+   "id": "water-corrupted-7-4",
+   "label": "Corrupted water, sunken, foam SW+SE",
+   "category": "Animated Corrupted Water",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 32
+   },
+   "file": "water/water-corrupted-7-4.png",
+   "frames": 10,
+   "names": [
+    "Frame 1",
+    "Frame 2",
+    "Frame 3",
+    "Frame 4",
+    "Frame 5",
+    "Frame 6",
+    "Frame 7",
+    "Frame 8",
+    "Frame 9",
+    "Frame 10"
+   ]
   },
   {
    "id": "icon-weapon-hatchet",
