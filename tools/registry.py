@@ -36,6 +36,7 @@ UNITS = [
     Unit('boss', 'make_boss', inputs=(SPRITES / 'scorpion-emperor', SPRITES / 'blood-mushroom')),
     Unit('elite', 'make_elite', inputs=(SPRITES / 'rat-king',)),
     Unit('ui', 'make_ui'),
+    Unit('buttons', 'make_buttons'),
     Unit('bridge', 'make_bridge'),
     Unit('vine', 'make_vine'),
     Unit('fire', 'make_fire'),

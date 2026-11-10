@@ -1996,6 +1996,558 @@
    "frames": 8
   },
   {
+   "id": "ui-button-primary-std-sm",
+   "label": "Button, primary, standard, sm",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 128,
+   "h": 48,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-primary-std-sm.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-primary-std-md",
+   "label": "Button, primary, standard, md",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 192,
+   "h": 48,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-primary-std-md.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-primary-std-lg",
+   "label": "Button, primary, standard, lg",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 256,
+   "h": 48,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-primary-std-lg.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-primary-std-xl",
+   "label": "Button, primary, standard, xl",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 384,
+   "h": 48,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-primary-std-xl.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-primary-short-sm",
+   "label": "Button, primary, short, sm",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 128,
+   "h": 32,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-primary-short-sm.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-primary-short-md",
+   "label": "Button, primary, short, md",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 192,
+   "h": 32,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-primary-short-md.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-primary-short-lg",
+   "label": "Button, primary, short, lg",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 256,
+   "h": 32,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-primary-short-lg.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-primary-short-xl",
+   "label": "Button, primary, short, xl",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 384,
+   "h": 32,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-primary-short-xl.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-low-std-sm",
+   "label": "Button, low contrast, standard, sm",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 128,
+   "h": 48,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-low-std-sm.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-low-std-md",
+   "label": "Button, low contrast, standard, md",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 192,
+   "h": 48,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-low-std-md.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-low-std-lg",
+   "label": "Button, low contrast, standard, lg",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 256,
+   "h": 48,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-low-std-lg.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-low-std-xl",
+   "label": "Button, low contrast, standard, xl",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 384,
+   "h": 48,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-low-std-xl.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-low-short-sm",
+   "label": "Button, low contrast, short, sm",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 128,
+   "h": 32,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-low-short-sm.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-low-short-md",
+   "label": "Button, low contrast, short, md",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 192,
+   "h": 32,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-low-short-md.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-low-short-lg",
+   "label": "Button, low contrast, short, lg",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 256,
+   "h": 32,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-low-short-lg.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-low-short-xl",
+   "label": "Button, low contrast, short, xl",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 384,
+   "h": 32,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-low-short-xl.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-red-std-sm",
+   "label": "Button, red, standard, sm",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 128,
+   "h": 48,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-red-std-sm.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-red-std-md",
+   "label": "Button, red, standard, md",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 192,
+   "h": 48,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-red-std-md.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-red-std-lg",
+   "label": "Button, red, standard, lg",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 256,
+   "h": 48,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-red-std-lg.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-red-std-xl",
+   "label": "Button, red, standard, xl",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 384,
+   "h": 48,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-red-std-xl.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-red-short-sm",
+   "label": "Button, red, short, sm",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 128,
+   "h": 32,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-red-short-sm.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-red-short-md",
+   "label": "Button, red, short, md",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 192,
+   "h": 32,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-red-short-md.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-red-short-lg",
+   "label": "Button, red, short, lg",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 256,
+   "h": 32,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-red-short-lg.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-red-short-xl",
+   "label": "Button, red, short, xl",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 384,
+   "h": 32,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-red-short-xl.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
    "id": "bridge",
    "label": "Rickety bridge",
    "category": "Bridges",

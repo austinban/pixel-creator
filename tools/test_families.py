@@ -317,6 +317,55 @@ class Water(unittest.TestCase):
             self.assertEqual(len(table), 9)
 
 
+class Buttons(unittest.TestCase):
+    """The menu buttons: 24 sheets (3 colourways by 2 heights by 4 widths), three states each, rounded, outlined and inside their cells."""
+
+    def assets(self):
+        return {a['id']: a for a in assets_of('buttons')}
+
+    def test_twenty_four_sheets_of_three_states(self):
+        import make_buttons as mb
+        assets = self.assets()
+        self.assertEqual(len(assets), 24)
+        for a in assets.values():
+            self.assertEqual((a['category'], a['kind'], len(a['frames']), a['cols'], a['rows']), ('UI', 'variants', 3, 3, 1), a['id'])
+            b = a['button']
+            self.assertEqual((a['w'], a['h']), (mb.WIDTHS[b['width']], mb.HEIGHTS[b['height']]['h']), a['id'])
+        self.assertEqual({a['button']['colourway'] for a in assets.values()}, {'primary', 'low', 'red'})
+
+    def test_every_state_is_outlined_inside_its_cell_with_rounded_corners_and_no_gaps(self):
+        for a in self.assets().values():
+            for f in a['frames']:
+                self.assertEqual((len(f), len(f[0])), (a['h'], a['w']), a['id'])
+                self.assertEqual(f[0][0], '.', f'{a["id"]}: a square corner')
+                self.assertEqual(f[a['h'] - 1][0], '.', f'{a["id"]}: a square corner')
+                for y in range(a['h']):
+                    for x in range(a['w']):
+                        if f[y][x] == '.':
+                            continue
+                        for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+                            nx, ny = x + dx, y + dy
+                            if not (0 <= nx < a['w'] and 0 <= ny < a['h']) or f[ny][nx] == '.':
+                                self.assertIn(f[y][x], 'OABzsD', f'{a["id"]}: a bare edge at {x},{y}')       # the outline, or the moss over the top edge
+
+    def test_states_differ_and_the_middle_repeats_without_a_seam(self):
+        import make_buttons as mb
+        for a in self.assets().values():
+            self.assertEqual(len({tuple(f) for f in a['frames']}), 3, a['id'])
+        for colourway in mb.COLOURWAYS:
+            for height in mb.HEIGHTS:
+                mb.configure(height, colourway)
+                mid = mb.piece('default', 'middle')
+                for y in range(mb.H):
+                    self.assertEqual(mid[y][0] == '.', mid[y][-1] == '.', f'{colourway}/{height} row {y}')
+        mb.configure('std', 'primary')
+
+    def test_no_pixel_of_a_state_is_left_unpainted_in_the_middle_of_the_body(self):
+        for a in self.assets().values():
+            f = a['frames'][0]
+            self.assertNotIn('.', f[a['h'] // 2][4:-4], a['id'])
+
+
 class Trees(unittest.TestCase):
     """The new trees and bushes: ten stills, four of them taller than the sheet's 64 px pine, each outlined, inside its cell, standing on its anchor."""
 
