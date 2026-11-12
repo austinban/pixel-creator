@@ -2180,6 +2180,75 @@
    ]
   },
   {
+   "id": "ui-button-primary-short-xs",
+   "label": "Button, primary, short, xs",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 48,
+   "h": 32,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-primary-short-xs.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-primary-compact-sm",
+   "label": "Button, primary, compact, sm",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 112,
+   "h": 40,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-primary-compact-sm.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-primary-icon-sq",
+   "label": "Button, primary, icon, sq",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 36,
+   "h": 36,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-primary-icon-sq.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
    "id": "ui-button-low-std-sm",
    "label": "Button, low contrast, standard, sm",
    "category": "UI",
@@ -2356,6 +2425,75 @@
     "y": 0
    },
    "file": "buttons/ui-button-low-short-xl.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-low-short-xs",
+   "label": "Button, low contrast, short, xs",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 48,
+   "h": 32,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-low-short-xs.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-low-compact-sm",
+   "label": "Button, low contrast, compact, sm",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 112,
+   "h": 40,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-low-compact-sm.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-low-icon-sq",
+   "label": "Button, low contrast, icon, sq",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 36,
+   "h": 36,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-low-icon-sq.png",
    "frames": 3,
    "names": [
     "Default",
@@ -2546,6 +2684,345 @@
     "Hovered",
     "Active"
    ]
+  },
+  {
+   "id": "ui-button-red-short-xs",
+   "label": "Button, red, short, xs",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 48,
+   "h": 32,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-red-short-xs.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-red-compact-sm",
+   "label": "Button, red, compact, sm",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 112,
+   "h": 40,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-red-compact-sm.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-red-icon-sq",
+   "label": "Button, red, icon, sq",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 36,
+   "h": 36,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-red-icon-sq.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-panel-tl",
+   "label": "Panel, TL",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 40,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "panel/ui-panel-tl.png",
+   "frames": 1
+  },
+  {
+   "id": "ui-panel-t",
+   "label": "Panel, T, vines",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 64,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "panel/ui-panel-t.png",
+   "frames": 1
+  },
+  {
+   "id": "ui-panel-tr",
+   "label": "Panel, TR",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 40,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "panel/ui-panel-tr.png",
+   "frames": 1
+  },
+  {
+   "id": "ui-panel-l",
+   "label": "Panel, L",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 40,
+   "h": 64,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "panel/ui-panel-l.png",
+   "frames": 1
+  },
+  {
+   "id": "ui-panel-c",
+   "label": "Panel, C",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 64,
+   "h": 64,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "panel/ui-panel-c.png",
+   "frames": 1
+  },
+  {
+   "id": "ui-panel-r",
+   "label": "Panel, R",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 40,
+   "h": 64,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "panel/ui-panel-r.png",
+   "frames": 1
+  },
+  {
+   "id": "ui-panel-bl",
+   "label": "Panel, BL",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 40,
+   "h": 44,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "panel/ui-panel-bl.png",
+   "frames": 1
+  },
+  {
+   "id": "ui-panel-b",
+   "label": "Panel, B",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 64,
+   "h": 44,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "panel/ui-panel-b.png",
+   "frames": 1
+  },
+  {
+   "id": "ui-panel-br",
+   "label": "Panel, BR",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 40,
+   "h": 44,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "panel/ui-panel-br.png",
+   "frames": 1
+  },
+  {
+   "id": "ui-panel-t2",
+   "label": "Panel, T2, mossy",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 64,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "panel/ui-panel-t2.png",
+   "frames": 1
+  },
+  {
+   "id": "ui-panel-t3",
+   "label": "Panel, T3, mushrooms",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 64,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "panel/ui-panel-t3.png",
+   "frames": 1
+  },
+  {
+   "id": "ui-panel-t4",
+   "label": "Panel, T4, one vine",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 64,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "panel/ui-panel-t4.png",
+   "frames": 1
+  },
+  {
+   "id": "ui-panel-t5",
+   "label": "Panel, T5, big caps",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 64,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "panel/ui-panel-t5.png",
+   "frames": 1
+  },
+  {
+   "id": "ui-panel-t6",
+   "label": "Panel, T6, glow-worms",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 64,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "panel/ui-panel-t6.png",
+   "frames": 1
+  },
+  {
+   "id": "ui-panel",
+   "label": "Panel, ready-made",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 320,
+   "h": 138,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "panel/ui-panel.png",
+   "frames": 1
   },
   {
    "id": "bridge",
@@ -3059,6 +3536,42 @@
     "y": 28
    },
    "file": "bow-draw-blood-cultist-se.png",
+   "frames": 4
+  },
+  {
+   "id": "bow-draw-stone-shaper-ne",
+   "label": "Bow draw NE (Stone-shaper)",
+   "category": "Animations",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 4,
+   "rows": 1,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 28
+   },
+   "file": "bow-draw-stone-shaper-ne.png",
+   "frames": 4
+  },
+  {
+   "id": "bow-draw-stone-shaper-se",
+   "label": "Bow draw SE (Stone-shaper)",
+   "category": "Animations",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 4,
+   "rows": 1,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 28
+   },
+   "file": "bow-draw-stone-shaper-se.png",
    "frames": 4
   },
   {
@@ -4433,6 +4946,564 @@
    "frames": 1
   },
   {
+   "id": "item-recurve_bow",
+   "label": "Recurve Bow",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-recurve_bow.png",
+   "frames": 1
+  },
+  {
+   "id": "item-sling",
+   "label": "Sling",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-sling.png",
+   "frames": 1
+  },
+  {
+   "id": "item-worn_sword",
+   "label": "Worn Sword",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-worn_sword.png",
+   "frames": 1
+  },
+  {
+   "id": "item-worn_dagger",
+   "label": "Worn Dagger",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-worn_dagger.png",
+   "frames": 1
+  },
+  {
+   "id": "item-worn_bow",
+   "label": "Worn Bow",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-worn_bow.png",
+   "frames": 1
+  },
+  {
+   "id": "item-oak_staff",
+   "label": "Oak Staff",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-oak_staff.png",
+   "frames": 1
+  },
+  {
+   "id": "item-warding_staff",
+   "label": "Warding Staff",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-warding_staff.png",
+   "frames": 1
+  },
+  {
+   "id": "item-storm_staff",
+   "label": "Storm Staff",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-storm_staff.png",
+   "frames": 1
+  },
+  {
+   "id": "item-leather_jerkin",
+   "label": "Leather Jerkin",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-leather_jerkin.png",
+   "frames": 1
+  },
+  {
+   "id": "item-iron_mail",
+   "label": "Iron Mail",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-iron_mail.png",
+   "frames": 1
+  },
+  {
+   "id": "item-warden_plate",
+   "label": "Warden's Plate",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-warden_plate.png",
+   "frames": 1
+  },
+  {
+   "id": "item-dragonscale_mail",
+   "label": "Dragonscale Mail",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-dragonscale_mail.png",
+   "frames": 1
+  },
+  {
+   "id": "item-swift_boots",
+   "label": "Swift Boots",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-swift_boots.png",
+   "frames": 1
+  },
+  {
+   "id": "item-windrunner_boots",
+   "label": "Windrunner Boots",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-windrunner_boots.png",
+   "frames": 1
+  },
+  {
+   "id": "item-warding_charm",
+   "label": "Warding Charm",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-warding_charm.png",
+   "frames": 1
+  },
+  {
+   "id": "item-vigor_ring",
+   "label": "Ring of Vigor",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-vigor_ring.png",
+   "frames": 1
+  },
+  {
+   "id": "item-strength_band",
+   "label": "Strength Band",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-strength_band.png",
+   "frames": 1
+  },
+  {
+   "id": "item-sage_amulet",
+   "label": "Sage Amulet",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-sage_amulet.png",
+   "frames": 1
+  },
+  {
+   "id": "item-giants_belt",
+   "label": "Giant's Belt",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-giants_belt.png",
+   "frames": 1
+  },
+  {
+   "id": "item-hawkeye_pendant",
+   "label": "Hawkeye Pendant",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-hawkeye_pendant.png",
+   "frames": 1
+  },
+  {
+   "id": "item-guardian_sigil",
+   "label": "Guardian Sigil",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-guardian_sigil.png",
+   "frames": 1
+  },
+  {
+   "id": "item-sage_circlet",
+   "label": "Sage's Circlet",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-sage_circlet.png",
+   "frames": 1
+  },
+  {
+   "id": "item-summit_crown",
+   "label": "Crown of the Summit",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-summit_crown.png",
+   "frames": 1
+  },
+  {
+   "id": "item-phoenix_heart",
+   "label": "Phoenix Heart",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-phoenix_heart.png",
+   "frames": 1
+  },
+  {
+   "id": "item-stormcaller_band",
+   "label": "Stormcaller Band",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-stormcaller_band.png",
+   "frames": 1
+  },
+  {
+   "id": "item-stone_idol",
+   "label": "Stone Idol",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-stone_idol.png",
+   "frames": 1
+  },
+  {
+   "id": "icon-gold",
+   "label": "Gold (a golden mushroom)",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 16,
+   "h": 16,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 8,
+    "y": 8
+   },
+   "file": "hud-icons/icon-gold.png",
+   "frames": 1
+  },
+  {
+   "id": "icon-xp",
+   "label": "Experience points (a star of light)",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 16,
+   "h": 16,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 8,
+    "y": 8
+   },
+   "file": "hud-icons/icon-xp.png",
+   "frames": 1
+  },
+  {
+   "id": "icon-skull-green",
+   "label": "Fight difficulty: easy (green skull)",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 16,
+   "h": 16,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 8,
+    "y": 8
+   },
+   "file": "hud-icons/icon-skull-green.png",
+   "frames": 1
+  },
+  {
+   "id": "icon-skull-yellow",
+   "label": "Fight difficulty: even (yellow skull)",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 16,
+   "h": 16,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 8,
+    "y": 8
+   },
+   "file": "hud-icons/icon-skull-yellow.png",
+   "frames": 1
+  },
+  {
+   "id": "icon-skull-red",
+   "label": "Fight difficulty: hard (red skull)",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 16,
+   "h": 16,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 8,
+    "y": 8
+   },
+   "file": "hud-icons/icon-skull-red.png",
+   "frames": 1
+  },
+  {
    "id": "blood-pool",
    "label": "Blood pool",
    "category": "Decals",
@@ -4457,6 +5528,24 @@
     "Pool 5",
     "Pool 6"
    ]
+  },
+  {
+   "id": "body-explosion",
+   "label": "Body explosion",
+   "category": "Animations",
+   "kind": "animation",
+   "place": "ground",
+   "w": 48,
+   "h": 48,
+   "cols": 6,
+   "rows": 1,
+   "fps": 12,
+   "anchor": {
+    "x": 24,
+    "y": 34
+   },
+   "file": "body-explosion.png",
+   "frames": 6
   },
   {
    "id": "all-tree",
