@@ -45,7 +45,7 @@ UNITS = [
     Unit('arrows', 'make_arrow'),
     Unit('bows', 'make_bow', depends=tuple('make_' + p.replace('-', '_') for p in BOW_PEOPLE)),
     Unit('bone', 'make_bone'),
-    Unit('amulets', 'make_amulets'),
+    Unit('amulets', 'make_amulets', depends=('make_weapon_icons3d',)),
     Unit('rock', 'make_rock'),
     Unit('nodemap', 'make_nodemap'),
     Unit('buildings', 'make_buildings'),

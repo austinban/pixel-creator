@@ -427,7 +427,7 @@ python3 tools/make_assets.py
 Eleven more melee weapons (dagger, stiletto, kris, bone dagger, greatsword, scimitar, battle axe, war hammer, spiked mace, spear and
 crystal staff) are drawn by `tools/make_melee.py` along the same swing and written into that folder: `python3 tools/make_melee.py --out sprites/weapons`.
 The bows are the one 3D bow model in several shapes (`tools/make_bow.py`: longbow, shortbow, recurve, elven), and the **Amulets** category holds eight
-shop pendants (`tools/make_amulets.py`), images only.
+shop pendants (`tools/make_amulets.py`), images only. The amulets and every weapon's display icon are small 3D models, ray-cast with the creatures' renderer and finished with painted details (`tools/make_weapon_icons3d.py`), with the weapons, bows included, on the same 45 degree diagonal.
 
 Every weapon also has a 32 x 32 **display icon** (category "Weapon icons", `tools/make_weapon_icons.py`), tied to it by name: the weapon's assets are
 `weapon-NAME-ne` and `-se`, its icon is `icon-weapon-NAME`, and each side carries the other's id (`icon` on the weapon, `icon_for` on the icon). The
