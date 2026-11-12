@@ -54,6 +54,7 @@ UNITS = [
     Unit('fungi', 'make_fungi'),
     Unit('trees', 'make_trees'),
     Unit('slot-icons', 'make_slot_icons'),
+    Unit('hud-icons', 'make_hud_icons'),
     Unit('item-icons', 'make_item_icons3d', depends=('make_item_icons',)),
     Unit('blood-pool', 'make_blood_pool'),
     Unit('body-explosion', 'make_body_explosion'),

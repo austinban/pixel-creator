@@ -239,6 +239,8 @@ The **body explosion** is the burst of gore when a corpse is destroyed, in the *
 The **slot icons** are three 32 x 32 pictures in the **UI** category for the Weapon, Armor and Trinket slots (a sword, a breastplate, a gem ring), made by `tools/make_slot_icons.py`
 (`--preview` shows them enlarged) and shipped in `sprites/assets/slot-icons/` with a README and `slot-icons.json`.
 
+The **text icons** are five 16 x 16 pictures in the **UI** category for the game's text (`tools/make_hud_icons.py`; `--preview` shows them enlarged and at text size): `icon-gold` (a little golden mushroom), `icon-xp` (a four-point star of cyan light) and `icon-skull-green`, `-yellow` and `-red`, one skull in three colours for an easy, an even and a hard fight. They are in `sprites/assets/hud-icons/` with a README and `hud-icons.json`.
+
 The **item pictures** are 26 inventory icons, 32 x 32, in the **Item icons** category (`tools/make_item_icons3d.py`; `--preview` shows them enlarged), for the items the game's `docs/pixel-creator-requests.md` lists as having no picture (weapons, armour and trinkets, ids `item-recurve_bow` to `item-stone_idol`). Each is a small 3D model rendered with the creatures' renderer (ellipsoids, rods and blocks, see `creature.py`) with its details painted over it; the weapons all lie at 45 degrees, rising to the right. A flat version of the same 26 is in `tools/make_item_icons.py` for comparison. They are in `sprites/assets/item-icons/` with a README, including the one-line copy into the game's `assets/sprites/items/`, and `item-icons.json`.
 
 The **movement point dot** is a small UI element, 7 × 7 pixels, in the **UI** category: a filled dot (the move

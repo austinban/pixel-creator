@@ -569,6 +569,55 @@ class Panel(unittest.TestCase):
         self.assertTrue(all(ch == '.' for ch in rows[0]), 'a mushroom is cut off by the pad')
 
 
+class HudIcons(unittest.TestCase):
+    """The text icons: gold (a golden mushroom), experience (a star) and the three difficulty skulls, 16 x 16 each, outlined, and the skulls the same picture in three colours."""
+
+    def assets(self):
+        return {a['id']: a for a in assets_of('hud-icons')}
+
+    def test_five_16_pixel_stills(self):
+        assets = self.assets()
+        self.assertEqual(sorted(assets), ['icon-gold', 'icon-skull-green', 'icon-skull-red', 'icon-skull-yellow', 'icon-xp'])
+        for a in assets.values():
+            self.assertEqual((a['category'], a['kind'], a['place'], a['w'], a['h'], len(a['frames'])), ('UI', 'still', 'none', 16, 16, 1), a['id'])
+            rows = a['frames'][0]
+            self.assertEqual((len(rows), len(rows[0])), (16, 16), a['id'])
+            self.assertGreater(sum(c != '.' for r in rows for c in r), 60, a['id'])
+
+    def test_every_icon_is_outlined(self):
+        for a in self.assets().values():
+            rows = a['frames'][0]
+            for y in range(16):
+                for x in range(16):
+                    if rows[y][x] in '.O':
+                        continue
+                    for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+                        nx, ny = x + dx, y + dy
+                        self.assertTrue(0 <= nx < 16 and 0 <= ny < 16 and rows[ny][nx] != '.', f'{a["id"]}: a bare edge at {x},{y}')
+
+    def test_the_skulls_are_one_picture_in_three_colours(self):
+        assets = self.assets()
+        masks = {c: [''.join('X' if ch != '.' else '.' for ch in r) for r in assets[f'icon-skull-{c}']['frames'][0]] for c in ('green', 'yellow', 'red')}
+        self.assertEqual(masks['green'], masks['yellow'])
+        self.assertEqual(masks['green'], masks['red'])
+        self.assertEqual(len({tuple(assets[f'icon-skull-{c}']['frames'][0]) for c in ('green', 'yellow', 'red')}), 3)
+        used = {c: set(''.join(assets[f'icon-skull-{c}']['frames'][0])) - set('.Ox') for c in ('green', 'yellow', 'red')}
+        self.assertEqual(used['green'], {'z', 'A'})                                # light and middle: lime and green
+        self.assertEqual(used['yellow'], {'d', 'b'})                               # yellow and amber
+        self.assertEqual(used['red'], {'c', 'e'})                                  # salmon and coral
+        rows = assets['icon-skull-green']['frames'][0]                          # 13 x 14, from (1, 1)
+        self.assertEqual((min(i for r in rows for i, c in enumerate(r) if c != '.'), max(i for r in rows for i, c in enumerate(r) if c != '.')), (1, 13))
+        self.assertEqual((min(y for y, r in enumerate(rows) if r.strip('.')), max(y for y, r in enumerate(rows) if r.strip('.'))), (1, 14))
+
+    def test_gold_is_golden_and_experience_is_cyan(self):
+        assets = self.assets()
+        gold = set(''.join(assets['icon-gold']['frames'][0])) - set('.O')
+        self.assertTrue({'d', 'b', 'a'} <= gold, gold)
+        xp = set(''.join(assets['icon-xp']['frames'][0])) - set('.O')
+        self.assertTrue(xp <= set('rotn') | {'m'}, xp)
+        self.assertIn('o', xp)
+
+
 class AllTree(unittest.TestCase):
     """The All Tree, the victory screen's display piece: a 384 x 448 still and a 12-frame loop, the tree cropped by the top edge and the frames loop-safe."""
 
