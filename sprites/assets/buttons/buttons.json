@@ -5,16 +5,6 @@
   "low",
   "red"
  ],
- "heights": {
-  "std": 48,
-  "short": 32
- },
- "widths": {
-  "sm": 128,
-  "md": 192,
-  "lg": 256,
-  "xl": 384
- },
  "states": [
   "default",
   "hovered",
@@ -52,7 +42,32 @@
   "short-xl": [
    384,
    32
+  ],
+  "short-xs": [
+   48,
+   32
+  ],
+  "compact-sm": [
+   112,
+   40
+  ],
+  "icon-sq": [
+   36,
+   36
   ]
  },
- "files": "ui-button-COLOURWAY-HEIGHT-WIDTH.png, three cells side by side: default, hovered, active"
+ "body": {
+  "std-sm": 44,
+  "std-md": 44,
+  "std-lg": 44,
+  "std-xl": 44,
+  "short-sm": 29,
+  "short-md": 29,
+  "short-lg": 29,
+  "short-xl": 29,
+  "short-xs": 29,
+  "compact-sm": 36,
+  "icon-sq": 33
+ },
+ "files": "ui-button-COLOURWAY-SIZE.png, three cells side by side: default, hovered, active; SIZE is HEIGHT-WIDTH, a key of `cells`"
 }

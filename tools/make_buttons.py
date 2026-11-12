@@ -59,8 +59,12 @@ COLOURWAYS = {
     'red': dict(label='Red', states=RED, remap={}),
 }
 # heights (the body and its slab) and widths: the corner radius and the gold brackets follow the height
-HEIGHTS = {'std': dict(label='Standard', h=48, slab=4), 'short': dict(label='Short', h=32, slab=3)}
+HEIGHTS = {'std': dict(label='Standard', h=48, slab=4), 'short': dict(label='Short', h=32, slab=3),
+           'compact': dict(label='Compact', h=40, slab=4), 'icon': dict(label='Icon', h=36, slab=3)}
 WIDTHS = {'sm': 128, 'md': 192, 'lg': 256, 'xl': 384}
+GRID_HEIGHTS = ('std', 'short')                       # the grid: these heights at each of WIDTHS
+# sizes of their own, by name: (height, width name, width). A button this narrow is two half-caps, no middle.
+EXTRA = {'short-xs': ('short', 'xs', 48), 'compact-sm': ('compact', 'sm', 112), 'icon-sq': ('icon', 'sq', 36)}
 STATES = PRIMARY
 REMAP = {}
 ORDER = ['default', 'hovered', 'active']
@@ -211,7 +215,10 @@ def piece(state, which):
 
 
 def assemble(state, width):
-    """A whole button `width` wide (at least two caps): left cap, as many middles as it takes, right cap."""
+    """A whole button `width` wide: left cap, as many middles as it takes, right cap. Under two caps wide it is two halves that meet in the middle."""
+    if width < 2 * CAP:
+        half = width // 2
+        return [''.join(pixel(state, c, y, 'L') for c in range(half)) + ''.join(pixel(state, CAP - (width - x), y, 'R') for x in range(half, width)) for y in range(H)]
     left, mid, right = piece(state, 'left'), piece(state, 'middle'), piece(state, 'right')
     inner = width - 2 * CAP
     return [left[y] + (mid[y] * (-(-inner // MID)))[:inner] + right[y] for y in range(H)]
@@ -222,25 +229,28 @@ def sheet_id(colourway, height, width):
 
 
 def build_assets():
-    """24 buttons: 3 colourways by 2 heights by 4 widths, each its own sheet of its 3 states (default, hovered, active), `ui-button-COLOURWAY-HEIGHT-WIDTH`."""
+    """33 buttons: 3 colourways by (2 heights by 4 widths, and the 3 sizes of their own), each its own sheet of its 3 states (default, hovered, active), `ui-button-COLOURWAY-HEIGHT-WIDTH`."""
     out = []
     for colourway, cw in COLOURWAYS.items():
-        for height, hd in HEIGHTS.items():
+        sizes = [(h, wn, WIDTHS[wn]) for h in GRID_HEIGHTS for wn in WIDTHS] + list(EXTRA.values())
+        for height, width, w in sizes:
             configure(height, colourway)
-            for width, w in WIDTHS.items():
-                make = family(CATEGORY, w, H, (0, 0), place='none', folder=FOLDER)
-                out.append(make(sheet_id(colourway, height, width), f"Button, {cw['label'].lower()}, {hd['label'].lower()}, {width}", 'variants', [assemble(st, w) for st in ORDER],
-                                names=[STATES[st]['label'] for st in ORDER], cols=3, rows=1,
-                                button={'colourway': colourway, 'height': height, 'width': width, 'states': ORDER, 'cell': [w, H]}))
+            make = family(CATEGORY, w, H, (0, 0), place='none', folder=FOLDER)
+            out.append(make(sheet_id(colourway, height, width), f"Button, {cw['label'].lower()}, {HEIGHTS[height]['label'].lower()}, {width}", 'variants', [assemble(st, w) for st in ORDER],
+                            names=[STATES[st]['label'] for st in ORDER], cols=3, rows=1,
+                            button={'colourway': colourway, 'height': height, 'width': width, 'states': ORDER, 'cell': [w, H], 'body': HB}))
     configure('std', 'primary')
     return out
 
 
 def write_package(folder):
-    sizes = {f'{h}-{w}': [WIDTHS[w], HEIGHTS[h]['h']] for h in HEIGHTS for w in WIDTHS}
+    sizes = {f'{h}-{wn}': [WIDTHS[wn], HEIGHTS[h]['h']] for h in GRID_HEIGHTS for wn in WIDTHS}
+    sizes.update({name: [w, HEIGHTS[h]['h']] for name, (h, wn, w) in EXTRA.items()})
+    body = {f'{h}-{wn}': HEIGHTS[h]['h'] - HEIGHTS[h]['slab'] for h in GRID_HEIGHTS for wn in WIDTHS}
+    body.update({name: HEIGHTS[h]['h'] - HEIGHTS[h]['slab'] for name, (h, wn, w) in EXTRA.items()})
     write_json(folder, 'buttons.json', 'The button sheets in this folder. See README.md beside this file for the whole story.',
-               {'colourways': list(COLOURWAYS), 'heights': {h: HEIGHTS[h]['h'] for h in HEIGHTS}, 'widths': WIDTHS, 'states': ORDER, 'cells': sizes,
-                'files': 'ui-button-COLOURWAY-HEIGHT-WIDTH.png, three cells side by side: default, hovered, active'})
+               {'colourways': list(COLOURWAYS), 'states': ORDER, 'cells': sizes, 'body': body,
+                'files': 'ui-button-COLOURWAY-SIZE.png, three cells side by side: default, hovered, active; SIZE is HEIGHT-WIDTH, a key of `cells`'})
 
 
 def _rgb():
@@ -266,14 +276,13 @@ def preview(path, scale=2):
     folder.mkdir(parents=True, exist_ok=True)
     rows = []
     for colourway in COLOURWAYS:
-        for height in HEIGHTS:
+        for height, width, w in [(h, wn, WIDTHS[wn]) for h in GRID_HEIGHTS for wn in WIDTHS] + list(EXTRA.values()):
             configure(height, colourway)
-            for width, w in WIDTHS.items():
-                sheet = Image.new('RGBA', (3 * w, H), (0, 0, 0, 0))
-                for i, st in enumerate(ORDER):
-                    sheet.alpha_composite(_image(assemble(st, w), rgb), (i * w, 0))
-                sheet.save(folder / (sheet_id(colourway, height, width) + '.png'))
-                rows.append((colourway, height, width, sheet))
+            sheet = Image.new('RGBA', (3 * w, H), (0, 0, 0, 0))
+            for i, st in enumerate(ORDER):
+                sheet.alpha_composite(_image(assemble(st, w), rgb), (i * w, 0))
+            sheet.save(folder / (sheet_id(colourway, height, width) + '.png'))
+            rows.append((colourway, height, width, sheet))
     configure('std', 'primary')
     # contact sheet: per colourway a block; per height a row of the four widths' default, then hovered, then active
     blocks = []

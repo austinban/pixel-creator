@@ -318,19 +318,23 @@ class Water(unittest.TestCase):
 
 
 class Buttons(unittest.TestCase):
-    """The menu buttons: 24 sheets (3 colourways by 2 heights by 4 widths), three states each, rounded, outlined and inside their cells."""
+    """The menu buttons: 33 sheets (3 colourways by 11 sizes), three states each, rounded, outlined and inside their cells."""
 
     def assets(self):
         return {a['id']: a for a in assets_of('buttons')}
 
-    def test_twenty_four_sheets_of_three_states(self):
+    def test_thirty_three_sheets_of_three_states(self):
         import make_buttons as mb
         assets = self.assets()
-        self.assertEqual(len(assets), 24)
+        self.assertEqual(len(assets), 33)
         for a in assets.values():
             self.assertEqual((a['category'], a['kind'], len(a['frames']), a['cols'], a['rows']), ('UI', 'variants', 3, 3, 1), a['id'])
-            b = a['button']
-            self.assertEqual((a['w'], a['h']), (mb.WIDTHS[b['width']], mb.HEIGHTS[b['height']]['h']), a['id'])
+            self.assertEqual([a['w'], a['h']], a['button']['cell'], a['id'])
+        for name, cell in (('short-xs', (48, 32)), ('compact-sm', (112, 40)), ('icon-sq', (36, 36))):
+            for colourway in ('primary', 'low', 'red'):
+                a = assets[f'ui-button-{colourway}-{name}']
+                self.assertEqual((a['w'], a['h']), cell, a['id'])
+        self.assertEqual(assets['ui-button-red-compact-sm']['button']['body'], 36)
         self.assertEqual({a['button']['colourway'] for a in assets.values()}, {'primary', 'low', 'red'})
 
     def test_every_state_is_outlined_inside_its_cell_with_rounded_corners_and_no_gaps(self):

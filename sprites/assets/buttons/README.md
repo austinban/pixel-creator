@@ -1,6 +1,6 @@
 # Menu buttons
 
-Reusable buttons for menus, drawn after the game's main menu: a dark bar in a steel bevel with gold corner brackets, rounded ends, a slab under it for depth, and moss, scratches and chips for wear. They are in category **UI** (`tools/make_buttons.py`), **24 sheets**: 3 colourways by 2 heights by 4 widths. A button has **no label**: draw your own text over the middle.
+Reusable buttons for menus, drawn after the game's main menu: a dark bar in a steel bevel with gold corner brackets, rounded ends, a slab under it for depth, and moss, scratches and chips for wear. They are in category **UI** (`tools/make_buttons.py`), **33 sheets**: 3 colourways by 11 sizes (2 heights by 4 widths, and three small sizes of their own). A button has **no label**: draw your own text over the middle.
 
 Each sheet is **three cells side by side, one per state**: `default`, `hovered`, `active`. A cell is the whole button at its size, so the sheet is three times as wide as a button.
 
@@ -11,7 +11,17 @@ Each sheet is **three cells side by side, one per state**: `default`, `hovered`,
 | `lg` | 256 | 256 x 48 | 256 x 32 |
 | `xl` | 384 | 384 x 48 | 384 x 32 |
 
-Files are `ui-button-COLOURWAY-HEIGHT-WIDTH.png`, for example `ui-button-red-short-xl.png`: colourway `primary`, `low` (low contrast) or `red`; height `std` or `short`; width `sm`, `md`, `lg` or `xl`. `buttons.json` lists them with their cell sizes.
+Three more sizes of their own, for tight places:
+
+| Size | Cell | Notes |
+|---|---|---|
+| `short-xs` | 48 x 32 | the short height at 48 wide (body 29 rows, slab 3) |
+| `compact-sm` | 112 x 40 | a compact height (body 36 rows, slab 4) |
+| `icon-sq` | 36 x 36 | a square for an icon (body 33 rows, slab 3); put the icon on the body |
+
+Buttons under 80 wide are two half-caps that meet in the middle, so they have no repeating middle.
+
+Files are `ui-button-COLOURWAY-HEIGHT-WIDTH.png`, for example `ui-button-red-short-xl.png`: colourway `primary`, `low` (low contrast) or `red`; height `std` or `short`; width `sm`, `md`, `lg` or `xl`. The three extras are `ui-button-COLOURWAY-short-xs`, `-compact-sm` and `-icon-sq`. `buttons.json` lists them with their cell sizes.
 
 ## The states
 

@@ -224,7 +224,7 @@ The **animated water** moves all 36 water tiles of the ground sheet, normal and 
 10 frames at 4 a second, ids `water-COL-ROW` and `water-corrupted-COL-ROW` after the ground sheet's cell. The water drifts one tile's width over the loop and the foam crest runs along the shore; the cube, outline and silhouette do not change. The game starts each tile one frame after the one behind it (`(frame + (x + y)) % 10`) for a slow wave. They are in `sprites/assets/water/` with a README and `water.json`.
 
 The **menu buttons** are reusable buttons in the **UI** category (`tools/make_buttons.py`; `--preview DIR` writes every sheet and a contact sheet): a purple bar in a steel bevel with gold corner brackets, rounded ends, a slab for depth and moss, scratches and chips
-for wear. 24 sheets, `ui-button-COLOURWAY-HEIGHT-WIDTH`: colourways **primary**, **low** (low contrast) and **red**, heights **std** (48) and **short** (32), widths **sm** 128, **md** 192, **lg** 256 and **xl** 384. Each sheet is three cells, the states
+for wear. 33 sheets, `ui-button-COLOURWAY-HEIGHT-WIDTH`: colourways **primary**, **low** (low contrast) and **red**, heights **std** (48) and **short** (32), widths **sm** 128, **md** 192, **lg** 256 and **xl** 384, plus three small sizes of their own: **short-xs** 48 x 32, **compact-sm** 112 x 40 and **icon-sq** 36 x 36. Each sheet is three cells, the states
 **default**, **hovered** and **active**. They have no label. They are in `sprites/assets/buttons/` with a README and `buttons.json`.
 
 The **blood pool** is a decal for a ground tile, in the **Decals** category (`tools/make_blood_pool.py`; `--preview` shows it over a grass tile, alone and under a dead character): six irregular pools, 32 x 16, on the tile's top face
