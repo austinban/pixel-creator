@@ -54,6 +54,7 @@ UNITS = [
     Unit('trees', 'make_trees'),
     Unit('slot-icons', 'make_slot_icons'),
     Unit('blood-pool', 'make_blood_pool'),
+    Unit('body-explosion', 'make_body_explosion'),
     Unit('all-tree', 'make_all_tree'),
     Unit('all-tree-fall', 'make_all_tree_fall'),
     Unit('all-tree-wide', 'make_all_tree', func='build_wide_assets'),

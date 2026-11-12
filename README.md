@@ -230,6 +230,8 @@ for wear. 24 sheets, `ui-button-COLOURWAY-HEIGHT-WIDTH`: colourways **primary**,
 The **blood pool** is a decal for a ground tile, in the **Decals** category (`tools/make_blood_pool.py`; `--preview` shows it over a grass tile, alone and under a dead character): six irregular pools, 32 x 16, on the tile's top face
 and anchored at its middle (16, 8) like the tile overlays, so one goes where the tile is and a character's dead pose is drawn over it. A pool stays inside the diamond, has no outline, and is a dark rim, a deep red body and a wetter middle with a glint.
 
+The **body explosion** is the burst of gore when a corpse is destroyed, in the **Animations** category (`tools/make_body_explosion.py`; `--preview` shows the frames over a grass tile and writes a gif): `body-explosion`, six frames at 12 a second on a 48 x 48 cell anchored at (24, 34), the middle of the body on the ground, in the blood pool's own four colours with no outline. A hot core bursts, a cloud swells and chunks and drops are thrown out along the ground's isometric plane, the cloud breaks up and the pieces fall, and the last frames are only the splatters where they landed. It is generic, the same burst for every body.
+
 The **slot icons** are three 32 x 32 pictures in the **UI** category for the Weapon, Armor and Trinket slots (a sword, a breastplate, a gem ring), made by `tools/make_slot_icons.py`
 (`--preview` shows them enlarged) and shipped in `sprites/assets/slot-icons/` with a README and `slot-icons.json`.
 

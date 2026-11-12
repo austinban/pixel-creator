@@ -414,6 +414,37 @@ class BloodPool(unittest.TestCase):
         self.assertEqual(len(shapes), 6, 'six different pools')
 
 
+class BodyExplosion(unittest.TestCase):
+    """The body explosion: six frames on a 48 x 48 cell, in the blood pool's four colours only, bursting, peaking and leaving only splatters."""
+
+    def asset(self):
+        return {a['id']: a for a in assets_of('body-explosion')}['body-explosion']
+
+    def test_six_frames_on_a_48_cell_anchored_at_the_body(self):
+        a = self.asset()
+        self.assertEqual((a['w'], a['h'], a['category'], a['kind'], a['place'], a['fps'], a['anchor']), (48, 48, 'Animations', 'animation', 'ground', 12, {'x': 24, 'y': 34}))
+        self.assertEqual(len(a['frames']), 6)
+        for rows in a['frames']:
+            self.assertEqual((len(rows), len(rows[0])), (48, 48))
+
+    def test_it_uses_only_the_blood_pools_colours_and_no_outline(self):
+        a = self.asset()
+        for rows in a['frames']:
+            self.assertTrue(set(''.join(rows)) <= set('.uhij'), set(''.join(rows)))
+
+    def test_it_bursts_peaks_and_leaves_only_splatters(self):
+        counts = [sum(c != '.' for row in rows for c in row) for rows in self.asset()['frames']]
+        self.assertIn(counts.index(max(counts)), (1, 2), counts)                # the biggest frame is the second or the third
+        self.assertGreater(max(counts), 2 * counts[0], counts)                  # it grew out of the burst
+        self.assertLess(counts[5], max(counts) // 2, counts)                    # and is mostly gone by the last frame
+        self.assertGreater(counts[5], 30, 'the splatters are left on the ground')
+        self.assertEqual(len({tuple(r) for r in self.asset()['frames']}), 6, 'two frames are the same')
+
+    def test_it_is_the_same_every_time(self):
+        import make_body_explosion as m
+        self.assertEqual(m.build_assets()[0]['frames'], m.build_assets()[0]['frames'])
+
+
 class AllTree(unittest.TestCase):
     """The All Tree, the victory screen's display piece: a 384 x 448 still and a 12-frame loop, the tree cropped by the top edge and the frames loop-safe."""
 
@@ -613,7 +644,7 @@ class Registry(unittest.TestCase):
 
     def test_every_asset_record_has_the_keys_the_page_and_the_game_read(self):
         required = {'id', 'label', 'category', 'kind', 'place', 'w', 'h', 'cols', 'rows', 'fps', 'anchor', 'frames'}
-        for name in ('chests', 'fungi', 'trees', 'slot-icons', 'blood-pool', 'all-tree', 'all-tree-fall', 'all-tree-wide', 'all-tree-fall-wide', 'traps', 'bazaar', 'crystal', 'rock', 'amulets', 'buildings', 'nodemap'):
+        for name in ('chests', 'fungi', 'trees', 'slot-icons', 'blood-pool', 'body-explosion', 'all-tree', 'all-tree-fall', 'all-tree-wide', 'all-tree-fall-wide', 'traps', 'bazaar', 'crystal', 'rock', 'amulets', 'buildings', 'nodemap'):
             for a in assets_of(name):
                 self.assertLessEqual(required, set(a), f'{name}: {a.get("id")} lacks {required - set(a)}')
                 self.assertIn(a['kind'], ('still', 'animation', 'variants'), a['id'])
