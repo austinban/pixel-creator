@@ -317,6 +317,79 @@ class Water(unittest.TestCase):
             self.assertEqual(len(table), 9)
 
 
+class Panel(unittest.TestCase):
+    """The menu panel: nine pieces and a ready-made one, outlined, rounded, with no gaps, and joining without a seam."""
+
+    def assets(self):
+        return {a['id']: a for a in assets_of('panel')}
+
+    def test_nine_pieces_and_a_ready_made_one_at_the_sizes_the_readme_gives(self):
+        assets = self.assets()
+        self.assertEqual(len(assets), 15)
+        sizes = {'tl': (40, 54), 't': (64, 54), 'tr': (40, 54), 'l': (40, 64), 'c': (64, 64), 'r': (40, 64), 'bl': (40, 44), 'b': (64, 44), 'br': (40, 44), 't2': (64, 54), 't3': (64, 54), 't4': (64, 54), 't5': (64, 54), 't6': (64, 54)}
+        for name, (w, h) in sizes.items():
+            a = assets['ui-panel-' + name]
+            self.assertEqual((a['category'], a['kind'], len(a['frames']), a['w'], a['h']), ('UI', 'still', 1, w, h), name)
+            self.assertEqual((len(a['frames'][0]), len(a['frames'][0][0])), (h, w), name)
+        self.assertEqual((assets['ui-panel']['w'], assets['ui-panel']['h']), (320, 138))
+
+    def test_the_whole_panel_is_outlined_rounded_and_has_no_gaps(self):
+        import make_panel as mp
+        for width, height in ((320, 120), (80, 80), (203, 131)):
+            rows = mp.assemble(width, height)
+            self.assertEqual((len(rows[0]), len(rows)), (width, mp.PAD + height + mp.SLAB), (width, height))
+            self.assertEqual(rows[mp.PAD][0], '.', 'a square corner')
+            body = rows[mp.PAD + mp.CH: mp.PAD + height - mp.CH]
+            for y, row in enumerate(body):
+                self.assertEqual(row[0], 'O', f'row {y}: the left edge is not outlined')
+                self.assertEqual(row[-1], 'O', f'row {y}: the right edge is not outlined')
+                self.assertNotIn('.', row, f'row {y}: a gap in the panel')
+
+    def test_the_pieces_wrap_and_the_panel_is_the_same_every_time(self):
+        import make_panel as mp
+        self.assertEqual(mp.assemble(320, 120), mp.assemble(320, 120))
+        # a wider panel is the narrower one with more of the wrapping pieces: the corners and the first 64-wide runs are the same
+        narrow, wide = mp.assemble(200, 120), mp.assemble(400, 120)
+        for y in range(len(narrow)):
+            self.assertEqual(narrow[y][:mp.CW + mp.TILE], wide[y][:mp.CW + mp.TILE], y)
+        # the left and right edges wrap top to bottom: a taller panel repeats them every 64 rows
+        tall = mp.assemble(200, 400)
+        mid = [row for row in tall[mp.PAD + mp.CH: mp.PAD + 400 - mp.CH]]
+        for y in range(len(mid) - mp.TILE):
+            self.assertEqual(mid[y], mid[y + mp.TILE], y)
+
+    def test_the_six_top_edges_follow_each_other_in_any_order_without_a_seam(self):
+        import make_panel as mp
+        self.assertEqual(len(mp.TOP_VARIANTS), 6)
+        self.assertAlmostEqual(sum(mp.TOP_WEIGHTS), 1.0)
+        base = mp.piece('T')
+        pieces = {v: mp.piece(v) for v in mp.TOP_VARIANTS}
+        for v, rows in pieces.items():
+            self.assertEqual((len(rows), len(rows[0])), (len(base), mp.TILE), v)
+        self.assertEqual(len({tuple(rows) for rows in pieces.values()}), 6, 'two top edges are the same picture')
+        for v, rows in pieces.items():
+            for y in range(len(base)):
+                for x in list(range(0, 4)) + list(range(mp.TILE - 4, mp.TILE)):
+                    self.assertEqual(rows[y][x], base[y][x], f'{v} differs at its end ({x}, {y}): it would not join')
+
+    def test_the_random_choice_is_stable_and_uses_every_picture(self):
+        import make_panel as mp
+        picks = [mp.pick_top(i, 1) for i in range(400)]
+        self.assertEqual(picks, [mp.pick_top(i, 1) for i in range(400)])
+        self.assertEqual(set(picks), set(mp.TOP_VARIANTS))
+        self.assertLess(picks.count('T'), picks.count('T2'))             # the busy one least, the mossy one most
+
+    def test_it_has_mushrooms_and_vines_in_palette_roles(self):
+        import make_panel as mp
+        rows = mp.assemble(320, 120)
+        text = ''.join(rows)
+        for role in 'ji' 'rq' 'AzB':                             # pink and teal caps, and the greens of the moss and vines
+            self.assertIn(role, text, role)
+        self.assertTrue(set(text) <= set('.OABCDabcdeghijklmnopqrstuvwxyz'), set(text))
+        self.assertTrue(any(ch != '.' for ch in rows[1]), 'the pad has more headroom than the mushrooms use')          # the tallest mushroom, with its outline, reaches row 1 of the pad
+        self.assertTrue(all(ch == '.' for ch in rows[0]), 'a mushroom is cut off by the pad')
+
+
 class Buttons(unittest.TestCase):
     """The menu buttons: 33 sheets (3 colourways by 11 sizes), three states each, rounded, outlined and inside their cells."""
 
@@ -449,126 +522,6 @@ class BodyExplosion(unittest.TestCase):
         self.assertEqual(m.build_assets()[0]['frames'], m.build_assets()[0]['frames'])
 
 
-class ItemIcons(unittest.TestCase):
-    """The 26 item pictures: 32 x 32 stills, outlined, in palette roles, with the weapons on the same diagonal."""
-
-    IDS = ['recurve_bow', 'sling', 'worn_sword', 'worn_dagger', 'worn_bow', 'oak_staff', 'warding_staff', 'storm_staff', 'leather_jerkin', 'iron_mail', 'warden_plate', 'dragonscale_mail',
-           'swift_boots', 'windrunner_boots', 'warding_charm', 'vigor_ring', 'strength_band', 'sage_amulet', 'giants_belt', 'hawkeye_pendant', 'guardian_sigil', 'sage_circlet',
-           'summit_crown', 'phoenix_heart', 'stormcaller_band', 'stone_idol']
-
-    def assets(self):
-        return {a['id']: a for a in assets_of('item-icons')}
-
-    def test_twenty_six_32_pixel_stills_named_for_the_games_ids(self):
-        assets = self.assets()
-        self.assertEqual(sorted(assets), sorted('item-' + i for i in self.IDS))
-        for a in assets.values():
-            self.assertEqual((a['category'], a['kind'], a['place'], a['w'], a['h'], len(a['frames'])), ('Item icons', 'still', 'none', 32, 32, 1), a['id'])
-            rows = a['frames'][0]
-            self.assertEqual((len(rows), len(rows[0])), (32, 32), a['id'])
-            self.assertGreater(sum(c != '.' for r in rows for c in r), 120, f'{a["id"]} is nearly empty')
-            self.assertEqual(rows[0][0], '.', a['id'])
-
-    def test_every_icon_is_outlined_and_inside_its_cell(self):
-        for a in self.assets().values():
-            rows = a['frames'][0]
-            for y in range(32):
-                for x in range(32):
-                    if rows[y][x] in '.O':
-                        continue
-                    for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                        nx, ny = x + dx, y + dy
-                        if not (0 <= nx < 32 and 0 <= ny < 32):
-                            continue                                             # an icon may run to the edge of its cell
-                        self.assertNotEqual(rows[ny][nx], '.', f'{a["id"]}: a bare edge at {x},{y}')
-
-    def test_the_weapons_lie_on_one_diagonal_rising_to_the_right(self):
-        for name in ('recurve_bow', 'worn_sword', 'worn_dagger', 'worn_bow', 'oak_staff', 'warding_staff', 'storm_staff'):
-            rows = self.assets()['item-' + name]['frames'][0]
-            pts = [(x, y) for y, r in enumerate(rows) for x, c in enumerate(r) if c not in '.O']
-            n = len(pts)
-            mx, my = sum(p[0] for p in pts) / n, sum(p[1] for p in pts) / n
-            cov = sum((x - mx) * (y - my) for x, y in pts) / n
-            self.assertLess(cov, 0, f'{name} does not slope up to the right')          # y grows downwards, so a rise to the right is a negative covariance
-
-    def test_it_is_the_same_every_time(self):
-        import make_item_icons3d as m
-        self.assertEqual([a['frames'] for a in m.build_assets()], [a['frames'] for a in m.build_assets()])
-
-
-class Panel(unittest.TestCase):
-    """The menu panel: nine pieces and a ready-made one, outlined, rounded, with no gaps, and joining without a seam."""
-
-    def assets(self):
-        return {a['id']: a for a in assets_of('panel')}
-
-    def test_nine_pieces_and_a_ready_made_one_at_the_sizes_the_readme_gives(self):
-        assets = self.assets()
-        self.assertEqual(len(assets), 15)
-        sizes = {'tl': (40, 54), 't': (64, 54), 'tr': (40, 54), 'l': (40, 64), 'c': (64, 64), 'r': (40, 64), 'bl': (40, 44), 'b': (64, 44), 'br': (40, 44), 't2': (64, 54), 't3': (64, 54), 't4': (64, 54), 't5': (64, 54), 't6': (64, 54)}
-        for name, (w, h) in sizes.items():
-            a = assets['ui-panel-' + name]
-            self.assertEqual((a['category'], a['kind'], len(a['frames']), a['w'], a['h']), ('UI', 'still', 1, w, h), name)
-            self.assertEqual((len(a['frames'][0]), len(a['frames'][0][0])), (h, w), name)
-        self.assertEqual((assets['ui-panel']['w'], assets['ui-panel']['h']), (320, 138))
-
-    def test_the_whole_panel_is_outlined_rounded_and_has_no_gaps(self):
-        import make_panel as mp
-        for width, height in ((320, 120), (80, 80), (203, 131)):
-            rows = mp.assemble(width, height)
-            self.assertEqual((len(rows[0]), len(rows)), (width, mp.PAD + height + mp.SLAB), (width, height))
-            self.assertEqual(rows[mp.PAD][0], '.', 'a square corner')
-            body = rows[mp.PAD + mp.CH: mp.PAD + height - mp.CH]
-            for y, row in enumerate(body):
-                self.assertEqual(row[0], 'O', f'row {y}: the left edge is not outlined')
-                self.assertEqual(row[-1], 'O', f'row {y}: the right edge is not outlined')
-                self.assertNotIn('.', row, f'row {y}: a gap in the panel')
-
-    def test_the_pieces_wrap_and_the_panel_is_the_same_every_time(self):
-        import make_panel as mp
-        self.assertEqual(mp.assemble(320, 120), mp.assemble(320, 120))
-        # a wider panel is the narrower one with more of the wrapping pieces: the corners and the first 64-wide runs are the same
-        narrow, wide = mp.assemble(200, 120), mp.assemble(400, 120)
-        for y in range(len(narrow)):
-            self.assertEqual(narrow[y][:mp.CW + mp.TILE], wide[y][:mp.CW + mp.TILE], y)
-        # the left and right edges wrap top to bottom: a taller panel repeats them every 64 rows
-        tall = mp.assemble(200, 400)
-        mid = [row for row in tall[mp.PAD + mp.CH: mp.PAD + 400 - mp.CH]]
-        for y in range(len(mid) - mp.TILE):
-            self.assertEqual(mid[y], mid[y + mp.TILE], y)
-
-    def test_the_six_top_edges_follow_each_other_in_any_order_without_a_seam(self):
-        import make_panel as mp
-        self.assertEqual(len(mp.TOP_VARIANTS), 6)
-        self.assertAlmostEqual(sum(mp.TOP_WEIGHTS), 1.0)
-        base = mp.piece('T')
-        pieces = {v: mp.piece(v) for v in mp.TOP_VARIANTS}
-        for v, rows in pieces.items():
-            self.assertEqual((len(rows), len(rows[0])), (len(base), mp.TILE), v)
-        self.assertEqual(len({tuple(rows) for rows in pieces.values()}), 6, 'two top edges are the same picture')
-        for v, rows in pieces.items():
-            for y in range(len(base)):
-                for x in list(range(0, 4)) + list(range(mp.TILE - 4, mp.TILE)):
-                    self.assertEqual(rows[y][x], base[y][x], f'{v} differs at its end ({x}, {y}): it would not join')
-
-    def test_the_random_choice_is_stable_and_uses_every_picture(self):
-        import make_panel as mp
-        picks = [mp.pick_top(i, 1) for i in range(400)]
-        self.assertEqual(picks, [mp.pick_top(i, 1) for i in range(400)])
-        self.assertEqual(set(picks), set(mp.TOP_VARIANTS))
-        self.assertLess(picks.count('T'), picks.count('T2'))             # the busy one least, the mossy one most
-
-    def test_it_has_mushrooms_and_vines_in_palette_roles(self):
-        import make_panel as mp
-        rows = mp.assemble(320, 120)
-        text = ''.join(rows)
-        for role in 'ji' 'rq' 'AzB':                             # pink and teal caps, and the greens of the moss and vines
-            self.assertIn(role, text, role)
-        self.assertTrue(set(text) <= set('.OABCDabcdeghijklmnopqrstuvwxyz'), set(text))
-        self.assertTrue(any(ch != '.' for ch in rows[1]), 'the pad has more headroom than the mushrooms use')          # the tallest mushroom, with its outline, reaches row 1 of the pad
-        self.assertTrue(all(ch == '.' for ch in rows[0]), 'a mushroom is cut off by the pad')
-
-
 class HudIcons(unittest.TestCase):
     """The text icons: gold (a golden mushroom), experience (a star) and the three difficulty skulls, 16 x 16 each, outlined, and the skulls the same picture in three colours."""
 
@@ -616,6 +569,53 @@ class HudIcons(unittest.TestCase):
         xp = set(''.join(assets['icon-xp']['frames'][0])) - set('.O')
         self.assertTrue(xp <= set('rotn') | {'m'}, xp)
         self.assertIn('o', xp)
+
+
+class ItemIcons(unittest.TestCase):
+    """The 26 item pictures: 32 x 32 stills, outlined, in palette roles, with the weapons on the same diagonal."""
+
+    IDS = ['recurve_bow', 'sling', 'worn_sword', 'worn_dagger', 'worn_bow', 'oak_staff', 'warding_staff', 'storm_staff', 'leather_jerkin', 'iron_mail', 'warden_plate', 'dragonscale_mail',
+           'swift_boots', 'windrunner_boots', 'warding_charm', 'vigor_ring', 'strength_band', 'sage_amulet', 'giants_belt', 'hawkeye_pendant', 'guardian_sigil', 'sage_circlet',
+           'summit_crown', 'phoenix_heart', 'stormcaller_band', 'stone_idol']
+
+    def assets(self):
+        return {a['id']: a for a in assets_of('item-icons')}
+
+    def test_twenty_six_32_pixel_stills_named_for_the_games_ids(self):
+        assets = self.assets()
+        self.assertEqual(sorted(assets), sorted('item-' + i for i in self.IDS))
+        for a in assets.values():
+            self.assertEqual((a['category'], a['kind'], a['place'], a['w'], a['h'], len(a['frames'])), ('Item icons', 'still', 'none', 32, 32, 1), a['id'])
+            rows = a['frames'][0]
+            self.assertEqual((len(rows), len(rows[0])), (32, 32), a['id'])
+            self.assertGreater(sum(c != '.' for r in rows for c in r), 120, f'{a["id"]} is nearly empty')
+            self.assertEqual(rows[0][0], '.', a['id'])
+
+    def test_every_icon_is_outlined_and_inside_its_cell(self):
+        for a in self.assets().values():
+            rows = a['frames'][0]
+            for y in range(32):
+                for x in range(32):
+                    if rows[y][x] in '.O':
+                        continue
+                    for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+                        nx, ny = x + dx, y + dy
+                        if not (0 <= nx < 32 and 0 <= ny < 32):
+                            continue                                             # an icon may run to the edge of its cell
+                        self.assertNotEqual(rows[ny][nx], '.', f'{a["id"]}: a bare edge at {x},{y}')
+
+    def test_the_weapons_lie_on_one_diagonal_rising_to_the_right(self):
+        for name in ('recurve_bow', 'worn_sword', 'worn_dagger', 'worn_bow', 'oak_staff', 'warding_staff', 'storm_staff'):
+            rows = self.assets()['item-' + name]['frames'][0]
+            pts = [(x, y) for y, r in enumerate(rows) for x, c in enumerate(r) if c not in '.O']
+            n = len(pts)
+            mx, my = sum(p[0] for p in pts) / n, sum(p[1] for p in pts) / n
+            cov = sum((x - mx) * (y - my) for x, y in pts) / n
+            self.assertLess(cov, 0, f'{name} does not slope up to the right')          # y grows downwards, so a rise to the right is a negative covariance
+
+    def test_it_is_the_same_every_time(self):
+        import make_item_icons3d as m
+        self.assertEqual([a['frames'] for a in m.build_assets()], [a['frames'] for a in m.build_assets()])
 
 
 class AllTree(unittest.TestCase):
