@@ -37,6 +37,7 @@ UNITS = [
     Unit('elite', 'make_elite', inputs=(SPRITES / 'rat-king',)),
     Unit('ui', 'make_ui'),
     Unit('buttons', 'make_buttons'),
+    Unit('panel', 'make_panel'),
     Unit('bridge', 'make_bridge'),
     Unit('vine', 'make_vine'),
     Unit('fire', 'make_fire'),

@@ -227,6 +227,10 @@ The **menu buttons** are reusable buttons in the **UI** category (`tools/make_bu
 for wear. 33 sheets, `ui-button-COLOURWAY-HEIGHT-WIDTH`: colourways **primary**, **low** (low contrast) and **red**, heights **std** (48) and **short** (32), widths **sm** 128, **md** 192, **lg** 256 and **xl** 384, plus three small sizes of their own: **short-xs** 48 x 32, **compact-sm** 112 x 40 and **icon-sq** 36 x 36. Each sheet is three cells, the states
 **default**, **hovered** and **active**. They have no label. They are in `sprites/assets/buttons/` with a README and `buttons.json`.
 
+The **menu panel** replaces the plain dark box behind a screen's text, in the **UI** category (`tools/make_panel.py`; `--preview` shows it at two sizes beside a button, and its nine pieces): the buttons' steel bevel and gold brackets around a dark ink fill, with moss on the top edge,
+pink and glowing teal mushrooms growing off the corners and vines crawling over the frame and hanging into the panel. It is a **nine-slice**, `ui-panel-tl`, `-t`, `-tr`, `-l`, `-c`, `-r`, `-bl`, `-b` and `-br` (corners 40 x 40 of body, the edges and the fill wrap at 64, so any size from 80 x 80 up),
+plus `ui-panel`, a ready-made 320 x 120. The top edge has **six pictures** (`ui-panel-t`, `-t2` to `-t6`: vines, mossy, small mushrooms, one vine, big caps, glow-worms) that join in any order, for the game to mix at random. The top row has 14 rows of mushroom above the body and the bottom row 4 of slab. It has no text. They are in `sprites/assets/panel/` with a README that shows how to draw it and where to keep text, and `panel.json`.
+
 The **blood pool** is a decal for a ground tile, in the **Decals** category (`tools/make_blood_pool.py`; `--preview` shows it over a grass tile, alone and under a dead character): six irregular pools, 32 x 16, on the tile's top face
 and anchored at its middle (16, 8) like the tile overlays, so one goes where the tile is and a character's dead pose is drawn over it. A pool stays inside the diamond, has no outline, and is a dark rim, a deep red body and a wetter middle with a glint.
 

@@ -1,0 +1,101 @@
+{
+ "about": "The nine-slice panel pieces in this folder. See README.md beside this file for the whole story.",
+ "pieces": {
+  "tl": [
+   40,
+   54
+  ],
+  "t": [
+   64,
+   54
+  ],
+  "tr": [
+   40,
+   54
+  ],
+  "l": [
+   40,
+   64
+  ],
+  "c": [
+   64,
+   64
+  ],
+  "r": [
+   40,
+   64
+  ],
+  "bl": [
+   40,
+   44
+  ],
+  "b": [
+   64,
+   44
+  ],
+  "br": [
+   40,
+   44
+  ],
+  "t2": [
+   64,
+   54
+  ],
+  "t3": [
+   64,
+   54
+  ],
+  "t4": [
+   64,
+   54
+  ],
+  "t5": [
+   64,
+   54
+  ],
+  "t6": [
+   64,
+   54
+  ]
+ },
+ "order": [
+  "tl",
+  "t",
+  "tr",
+  "l",
+  "c",
+  "r",
+  "bl",
+  "b",
+  "br"
+ ],
+ "top_edges": [
+  "t",
+  "t2",
+  "t3",
+  "t4",
+  "t5",
+  "t6"
+ ],
+ "top_edge_weights": [
+  0.12,
+  0.28,
+  0.2,
+  0.15,
+  0.13,
+  0.12
+ ],
+ "slice": [
+  40,
+  40
+ ],
+ "wrap": 64,
+ "pad": 14,
+ "slab": 4,
+ "minimum": [
+  80,
+  80
+ ],
+ "steel": 7,
+ "files": "ui-panel-PIECE.png, PIECE is a key of `pieces`; the top edge is any of `top_edges` (t, t2 ... t6), picked by `top_edge_weights`; ui-panel.png is a ready-made panel, body 320 x 120"
+}
