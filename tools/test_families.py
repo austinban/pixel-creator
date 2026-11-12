@@ -445,6 +445,53 @@ class BodyExplosion(unittest.TestCase):
         self.assertEqual(m.build_assets()[0]['frames'], m.build_assets()[0]['frames'])
 
 
+class ItemIcons(unittest.TestCase):
+    """The 26 item pictures: 32 x 32 stills, outlined, in palette roles, with the weapons on the same diagonal."""
+
+    IDS = ['recurve_bow', 'sling', 'worn_sword', 'worn_dagger', 'worn_bow', 'oak_staff', 'warding_staff', 'storm_staff', 'leather_jerkin', 'iron_mail', 'warden_plate', 'dragonscale_mail',
+           'swift_boots', 'windrunner_boots', 'warding_charm', 'vigor_ring', 'strength_band', 'sage_amulet', 'giants_belt', 'hawkeye_pendant', 'guardian_sigil', 'sage_circlet',
+           'summit_crown', 'phoenix_heart', 'stormcaller_band', 'stone_idol']
+
+    def assets(self):
+        return {a['id']: a for a in assets_of('item-icons')}
+
+    def test_twenty_six_32_pixel_stills_named_for_the_games_ids(self):
+        assets = self.assets()
+        self.assertEqual(sorted(assets), sorted('item-' + i for i in self.IDS))
+        for a in assets.values():
+            self.assertEqual((a['category'], a['kind'], a['place'], a['w'], a['h'], len(a['frames'])), ('Item icons', 'still', 'none', 32, 32, 1), a['id'])
+            rows = a['frames'][0]
+            self.assertEqual((len(rows), len(rows[0])), (32, 32), a['id'])
+            self.assertGreater(sum(c != '.' for r in rows for c in r), 120, f'{a["id"]} is nearly empty')
+            self.assertEqual(rows[0][0], '.', a['id'])
+
+    def test_every_icon_is_outlined_and_inside_its_cell(self):
+        for a in self.assets().values():
+            rows = a['frames'][0]
+            for y in range(32):
+                for x in range(32):
+                    if rows[y][x] in '.O':
+                        continue
+                    for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+                        nx, ny = x + dx, y + dy
+                        if not (0 <= nx < 32 and 0 <= ny < 32):
+                            continue                                             # an icon may run to the edge of its cell
+                        self.assertNotEqual(rows[ny][nx], '.', f'{a["id"]}: a bare edge at {x},{y}')
+
+    def test_the_weapons_lie_on_one_diagonal_rising_to_the_right(self):
+        for name in ('recurve_bow', 'worn_sword', 'worn_dagger', 'worn_bow', 'oak_staff', 'warding_staff', 'storm_staff'):
+            rows = self.assets()['item-' + name]['frames'][0]
+            pts = [(x, y) for y, r in enumerate(rows) for x, c in enumerate(r) if c not in '.O']
+            n = len(pts)
+            mx, my = sum(p[0] for p in pts) / n, sum(p[1] for p in pts) / n
+            cov = sum((x - mx) * (y - my) for x, y in pts) / n
+            self.assertLess(cov, 0, f'{name} does not slope up to the right')          # y grows downwards, so a rise to the right is a negative covariance
+
+    def test_it_is_the_same_every_time(self):
+        import make_item_icons3d as m
+        self.assertEqual([a['frames'] for a in m.build_assets()], [a['frames'] for a in m.build_assets()])
+
+
 class AllTree(unittest.TestCase):
     """The All Tree, the victory screen's display piece: a 384 x 448 still and a 12-frame loop, the tree cropped by the top edge and the frames loop-safe."""
 

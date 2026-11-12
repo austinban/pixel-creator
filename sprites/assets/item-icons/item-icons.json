@@ -1,0 +1,139 @@
+{
+ "about": "The item pictures in this folder, named as the game names them. See README.md beside this file.",
+ "cell": [
+  32,
+  32
+ ],
+ "items": {
+  "recurve_bow": {
+   "label": "Recurve Bow",
+   "file": "item-recurve_bow.png",
+   "game_file": "recurve_bow.png"
+  },
+  "sling": {
+   "label": "Sling",
+   "file": "item-sling.png",
+   "game_file": "sling.png"
+  },
+  "worn_sword": {
+   "label": "Worn Sword",
+   "file": "item-worn_sword.png",
+   "game_file": "worn_sword.png"
+  },
+  "worn_dagger": {
+   "label": "Worn Dagger",
+   "file": "item-worn_dagger.png",
+   "game_file": "worn_dagger.png"
+  },
+  "worn_bow": {
+   "label": "Worn Bow",
+   "file": "item-worn_bow.png",
+   "game_file": "worn_bow.png"
+  },
+  "oak_staff": {
+   "label": "Oak Staff",
+   "file": "item-oak_staff.png",
+   "game_file": "oak_staff.png"
+  },
+  "warding_staff": {
+   "label": "Warding Staff",
+   "file": "item-warding_staff.png",
+   "game_file": "warding_staff.png"
+  },
+  "storm_staff": {
+   "label": "Storm Staff",
+   "file": "item-storm_staff.png",
+   "game_file": "storm_staff.png"
+  },
+  "leather_jerkin": {
+   "label": "Leather Jerkin",
+   "file": "item-leather_jerkin.png",
+   "game_file": "leather_jerkin.png"
+  },
+  "iron_mail": {
+   "label": "Iron Mail",
+   "file": "item-iron_mail.png",
+   "game_file": "iron_mail.png"
+  },
+  "warden_plate": {
+   "label": "Warden's Plate",
+   "file": "item-warden_plate.png",
+   "game_file": "warden_plate.png"
+  },
+  "dragonscale_mail": {
+   "label": "Dragonscale Mail",
+   "file": "item-dragonscale_mail.png",
+   "game_file": "dragonscale_mail.png"
+  },
+  "swift_boots": {
+   "label": "Swift Boots",
+   "file": "item-swift_boots.png",
+   "game_file": "swift_boots.png"
+  },
+  "windrunner_boots": {
+   "label": "Windrunner Boots",
+   "file": "item-windrunner_boots.png",
+   "game_file": "windrunner_boots.png"
+  },
+  "warding_charm": {
+   "label": "Warding Charm",
+   "file": "item-warding_charm.png",
+   "game_file": "warding_charm.png"
+  },
+  "vigor_ring": {
+   "label": "Ring of Vigor",
+   "file": "item-vigor_ring.png",
+   "game_file": "vigor_ring.png"
+  },
+  "strength_band": {
+   "label": "Strength Band",
+   "file": "item-strength_band.png",
+   "game_file": "strength_band.png"
+  },
+  "sage_amulet": {
+   "label": "Sage Amulet",
+   "file": "item-sage_amulet.png",
+   "game_file": "sage_amulet.png"
+  },
+  "giants_belt": {
+   "label": "Giant's Belt",
+   "file": "item-giants_belt.png",
+   "game_file": "giants_belt.png"
+  },
+  "hawkeye_pendant": {
+   "label": "Hawkeye Pendant",
+   "file": "item-hawkeye_pendant.png",
+   "game_file": "hawkeye_pendant.png"
+  },
+  "guardian_sigil": {
+   "label": "Guardian Sigil",
+   "file": "item-guardian_sigil.png",
+   "game_file": "guardian_sigil.png"
+  },
+  "sage_circlet": {
+   "label": "Sage's Circlet",
+   "file": "item-sage_circlet.png",
+   "game_file": "sage_circlet.png"
+  },
+  "summit_crown": {
+   "label": "Crown of the Summit",
+   "file": "item-summit_crown.png",
+   "game_file": "summit_crown.png"
+  },
+  "phoenix_heart": {
+   "label": "Phoenix Heart",
+   "file": "item-phoenix_heart.png",
+   "game_file": "phoenix_heart.png"
+  },
+  "stormcaller_band": {
+   "label": "Stormcaller Band",
+   "file": "item-stormcaller_band.png",
+   "game_file": "stormcaller_band.png"
+  },
+  "stone_idol": {
+   "label": "Stone Idol",
+   "file": "item-stone_idol.png",
+   "game_file": "stone_idol.png"
+  }
+ }
+}
