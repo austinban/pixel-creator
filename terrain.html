@@ -27,6 +27,10 @@
       <div class="btn-group wide">
         <button id="regen" class="btn btn-primary">New map</button>
       </div>
+      <label class="field wide">Set
+        <select id="set"></select>
+      </label>
+      <p class="hint" id="setBlurb"></p>
       <label class="field wide">Seed<input id="seed" type="number" min="0" step="1"></label>
       <label class="field wide">Size
         <select id="size">
@@ -50,7 +54,21 @@
           <option value="sunken" selected>Sunken</option>
         </select>
       </label>
-      <label class="check"><input id="props" type="checkbox" checked> Scatter trees, bushes and rocks</label>
+      <label class="field wide">Weather
+        <select id="weather">
+          <option value="set" selected>The set's (maybe)</option>
+          <option value="none">None</option>
+          <option value="weather-rain-light">Light rain</option>
+          <option value="weather-rain-heavy">Heavy rain</option>
+          <option value="weather-fog-light">Light fog</option>
+          <option value="weather-fog-dense">Dense fog</option>
+          <option value="weather-mist-low">Low mist</option>
+          <option value="weather-spore-haze">Spore haze</option>
+          <option value="weather-embers">Embers</option>
+          <option value="weather-petals">Petals</option>
+        </select>
+      </label>
+      <label class="check"><input id="props" type="checkbox" checked> Scatter props and place rocks (the set's)</label>
       <label class="check"><input id="bridge" type="checkbox" checked> Bridge across the water (sunken water)</label>
     </section>
 
@@ -76,15 +94,16 @@
 
 <section class="empty" id="missing" hidden>
   <h2>No assets found</h2>
-  <p>This page reads <code>assets/data.js</code>, which is built by:</p>
-  <pre>python3 tools/make_assets.py</pre>
+  <p>This page reads <code>assets/data.js</code> and <code>assets/sets.js</code>, which are built by:</p>
+  <pre>python3 tools/make_assets.py
+python3 tools/make_sets.py</pre>
   <p>Then reload.</p>
 </section>
 
 <script>
   // Load the newest copy of every script. A plain static server lets the browser keep old copies, so a rebuilt asset or an edit
   // would not show until a hard refresh; a changing ?v= on each address makes it fetch them fresh every time the page opens.
-  ['files.js', 'assets/data.js', 'terrain.js'].forEach(function (src) { document.write('<script src="' + src + '?v=' + Date.now() + '"><\/script>'); });
+  ['files.js', 'assets/data.js', 'assets/sets.js', 'terrain.js'].forEach(function (src) { document.write('<script src="' + src + '?v=' + Date.now() + '"><\/script>'); });
 </script>
 </body>
 </html>

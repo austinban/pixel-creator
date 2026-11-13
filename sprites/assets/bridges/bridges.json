@@ -1,0 +1,660 @@
+{
+ "about": "The bridges in this folder. See README.md beside this file.",
+ "deck_levels": 1,
+ "walk_min": 0.6,
+ "margin": 6,
+ "bridges": {
+  "bridge-arch-3x1": {
+   "label": "Stone arch bridge, 3 cells, along x (SE)",
+   "file": "bridge-arch-3x1.png",
+   "size": [
+    3,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ]
+   ],
+   "run": "x",
+   "walkable": true,
+   "walkable_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ]
+   ]
+  },
+  "bridge-arch-1x3": {
+   "label": "Stone arch bridge, 3 cells, along y (SW)",
+   "file": "bridge-arch-1x3.png",
+   "size": [
+    1,
+    3
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ]
+   ],
+   "run": "y",
+   "walkable": true,
+   "walkable_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ]
+   ]
+  },
+  "bridge-arch-5x1": {
+   "label": "Stone arch bridge, 5 cells, along x (SE)",
+   "file": "bridge-arch-5x1.png",
+   "size": [
+    5,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ],
+    [
+     3,
+     0
+    ],
+    [
+     4,
+     0
+    ]
+   ],
+   "run": "x",
+   "walkable": true,
+   "walkable_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ],
+    [
+     3,
+     0
+    ],
+    [
+     4,
+     0
+    ]
+   ]
+  },
+  "bridge-arch-1x5": {
+   "label": "Stone arch bridge, 5 cells, along y (SW)",
+   "file": "bridge-arch-1x5.png",
+   "size": [
+    1,
+    5
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     0,
+     4
+    ]
+   ],
+   "run": "y",
+   "walkable": true,
+   "walkable_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     0,
+     4
+    ]
+   ]
+  },
+  "bridge-broken-5x1": {
+   "label": "Broken stone bridge, 5 cells, along x (SE)",
+   "file": "bridge-broken-5x1.png",
+   "size": [
+    5,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ],
+    [
+     3,
+     0
+    ],
+    [
+     4,
+     0
+    ]
+   ],
+   "run": "x",
+   "walkable": false,
+   "walkable_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     3,
+     0
+    ],
+    [
+     4,
+     0
+    ]
+   ]
+  },
+  "bridge-broken-1x5": {
+   "label": "Broken stone bridge, 5 cells, along y (SW)",
+   "file": "bridge-broken-1x5.png",
+   "size": [
+    1,
+    5
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     0,
+     4
+    ]
+   ],
+   "run": "y",
+   "walkable": false,
+   "walkable_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     0,
+     4
+    ]
+   ]
+  },
+  "bridge-plank-3x1": {
+   "label": "Rotted plank bridge, 3 cells, along x (SE)",
+   "file": "bridge-plank-3x1.png",
+   "size": [
+    3,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ]
+   ],
+   "run": "x",
+   "walkable": true,
+   "walkable_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ]
+   ]
+  },
+  "bridge-plank-1x3": {
+   "label": "Rotted plank bridge, 3 cells, along y (SW)",
+   "file": "bridge-plank-1x3.png",
+   "size": [
+    1,
+    3
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ]
+   ],
+   "run": "y",
+   "walkable": true,
+   "walkable_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ]
+   ]
+  },
+  "bridge-plank-5x1": {
+   "label": "Rotted plank bridge, 5 cells, along x (SE)",
+   "file": "bridge-plank-5x1.png",
+   "size": [
+    5,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ],
+    [
+     3,
+     0
+    ],
+    [
+     4,
+     0
+    ]
+   ],
+   "run": "x",
+   "walkable": true,
+   "walkable_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ],
+    [
+     3,
+     0
+    ],
+    [
+     4,
+     0
+    ]
+   ]
+  },
+  "bridge-plank-1x5": {
+   "label": "Rotted plank bridge, 5 cells, along y (SW)",
+   "file": "bridge-plank-1x5.png",
+   "size": [
+    1,
+    5
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     0,
+     4
+    ]
+   ],
+   "run": "y",
+   "walkable": true,
+   "walkable_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     0,
+     4
+    ]
+   ]
+  },
+  "bridge-corrupt-3x1": {
+   "label": "Overgrown stone bridge, 3 cells, along x (SE)",
+   "file": "bridge-corrupt-3x1.png",
+   "size": [
+    3,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ]
+   ],
+   "run": "x",
+   "walkable": true,
+   "walkable_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ]
+   ]
+  },
+  "bridge-corrupt-1x3": {
+   "label": "Overgrown stone bridge, 3 cells, along y (SW)",
+   "file": "bridge-corrupt-1x3.png",
+   "size": [
+    1,
+    3
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ]
+   ],
+   "run": "y",
+   "walkable": true,
+   "walkable_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ]
+   ]
+  },
+  "bridge-corrupt-5x1": {
+   "label": "Overgrown stone bridge, 5 cells, along x (SE)",
+   "file": "bridge-corrupt-5x1.png",
+   "size": [
+    5,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ],
+    [
+     3,
+     0
+    ],
+    [
+     4,
+     0
+    ]
+   ],
+   "run": "x",
+   "walkable": true,
+   "walkable_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ],
+    [
+     3,
+     0
+    ],
+    [
+     4,
+     0
+    ]
+   ]
+  },
+  "bridge-corrupt-1x5": {
+   "label": "Overgrown stone bridge, 5 cells, along y (SW)",
+   "file": "bridge-corrupt-1x5.png",
+   "size": [
+    1,
+    5
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     0,
+     4
+    ]
+   ],
+   "run": "y",
+   "walkable": true,
+   "walkable_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     0,
+     4
+    ]
+   ]
+  }
+ }
+}

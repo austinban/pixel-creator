@@ -36,6 +36,12 @@ Tests get assets through `buildcache.assets_of(name)`, so a test run does not re
 **Tests** are split by what they protect: `test_conventions.py` (characters, walks, weapons, the bow), `test_abilities.py`, `test_ground.py`, `test_families.py` (chests, bazaar, traps, node map, buildings, registry and cache),
 `test_handoff.py` (what the game reads, and the editor's Save to sprites/ guard, which runs `tools/test_save.js` in node).
 
+## Terrain sets
+
+Pieces are grouped into **sets** so a map feels like one place (`tools/sets.py`: groups with a role, a ground they fit and a style; sets that combine them; twins that swap one for the other). `python3 tools/make_sets.py` writes `assets/sets.js`
+(the terrain page's **Set** menu), `sprites/assets/sets/sets.json` (for the game) and `SETS.md`; `tools/test_sets.py` checks that every piece exists and fits its ground. When a new family is wired in, add its group to `tools/sets.py` and name it in the
+sets it suits. [HOW-IT-WORKS.md](HOW-IT-WORKS.md) explains it all.
+
 ## Ground themes
 
 `sprites/assets/ground.png` is the original ground sheet (512 x 416, 32 x 32 cells; it is not ours, so it is not committed). `sprites/assets/ground-corrupted.png` is the second theme, **cell for cell the same layout**, made by

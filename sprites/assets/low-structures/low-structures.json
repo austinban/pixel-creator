@@ -1,0 +1,926 @@
+{
+ "about": "The low climbable structures in this folder. See README.md beside this file.",
+ "level": 16,
+ "walk_min": 0.6,
+ "margin": 6,
+ "pieces": {
+  "low-hay-1x1-h1": {
+   "label": "Haybale stack 1 x 1, 1 high",
+   "file": "low-hay-1x1-h1.png",
+   "kind": "hay",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": true,
+   "levels": 1.0,
+   "overgrown": false,
+   "cell_levels": {
+    "0,0": 1
+   },
+   "top_cover": {
+    "0,0": 1.0
+   }
+  },
+  "low-hay-1x1-h2": {
+   "label": "Haybale stack 1 x 1, 2 high",
+   "file": "low-hay-1x1-h2.png",
+   "kind": "hay",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": true,
+   "levels": 2.0,
+   "overgrown": false,
+   "cell_levels": {
+    "0,0": 2
+   },
+   "top_cover": {
+    "0,0": 1.0
+   }
+  },
+  "low-hay-1x2-h1": {
+   "label": "Haybale stack 1 x 2, 1 high",
+   "file": "low-hay-1x2-h1.png",
+   "kind": "hay",
+   "size": [
+    1,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "walkable": true,
+   "levels": 1.0,
+   "overgrown": false,
+   "cell_levels": {
+    "0,0": 1,
+    "0,1": 1
+   },
+   "top_cover": {
+    "0,0": 1.0,
+    "0,1": 1.0
+   }
+  },
+  "low-hay-2x1-h1": {
+   "label": "Haybale stack 2 x 1, 1 high",
+   "file": "low-hay-2x1-h1.png",
+   "kind": "hay",
+   "size": [
+    2,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "walkable": true,
+   "levels": 1.0,
+   "overgrown": false,
+   "cell_levels": {
+    "0,0": 1,
+    "1,0": 1
+   },
+   "top_cover": {
+    "0,0": 1.0,
+    "1,0": 1.0
+   }
+  },
+  "low-hay-2x2-h1": {
+   "label": "Haybale stack 2 x 2, 1 high",
+   "file": "low-hay-2x2-h1.png",
+   "kind": "hay",
+   "size": [
+    2,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ]
+   ],
+   "walkable": true,
+   "levels": 1.0,
+   "overgrown": false,
+   "cell_levels": {
+    "0,0": 1,
+    "0,1": 1,
+    "1,0": 1,
+    "1,1": 1
+   },
+   "top_cover": {
+    "0,0": 1.0,
+    "0,1": 1.0,
+    "1,0": 1.0,
+    "1,1": 1.0
+   }
+  },
+  "low-hay-2x2-stepped": {
+   "label": "Haybale stack 2 x 2, stepped",
+   "file": "low-hay-2x2-stepped.png",
+   "kind": "hay",
+   "size": [
+    2,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ]
+   ],
+   "walkable": true,
+   "levels": 2.0,
+   "overgrown": false,
+   "cell_levels": {
+    "0,0": 2,
+    "0,1": 1,
+    "1,0": 1,
+    "1,1": 1
+   },
+   "top_cover": {
+    "0,0": 1.0,
+    "0,1": 1.0,
+    "1,0": 1.0,
+    "1,1": 1.0
+   }
+  },
+  "low-hay-2x1-stepped": {
+   "label": "Haybale stack 2 x 1, stepped",
+   "file": "low-hay-2x1-stepped.png",
+   "kind": "hay",
+   "size": [
+    2,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "walkable": true,
+   "levels": 2.0,
+   "overgrown": false,
+   "cell_levels": {
+    "0,0": 2,
+    "1,0": 1
+   },
+   "top_cover": {
+    "0,0": 1.0,
+    "1,0": 1.0
+   }
+  },
+  "low-hay-1x2-stepped": {
+   "label": "Haybale stack 1 x 2, stepped",
+   "file": "low-hay-1x2-stepped.png",
+   "kind": "hay",
+   "size": [
+    1,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "walkable": true,
+   "levels": 2.0,
+   "overgrown": false,
+   "cell_levels": {
+    "0,0": 2,
+    "0,1": 1
+   },
+   "top_cover": {
+    "0,0": 1.0,
+    "0,1": 1.0
+   }
+  },
+  "low-hay-3x1-stepped": {
+   "label": "Haybale stack 3 x 1, stepped",
+   "file": "low-hay-3x1-stepped.png",
+   "kind": "hay",
+   "size": [
+    3,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ]
+   ],
+   "walkable": true,
+   "levels": 2.0,
+   "overgrown": false,
+   "cell_levels": {
+    "0,0": 2,
+    "1,0": 1,
+    "2,0": 1
+   },
+   "top_cover": {
+    "0,0": 1.0,
+    "1,0": 1.0,
+    "2,0": 1.0
+   }
+  },
+  "low-crates-1x1-h1": {
+   "label": "Crate pile 1 x 1, 1 high",
+   "file": "low-crates-1x1-h1.png",
+   "kind": "crates",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": true,
+   "levels": 1.0,
+   "overgrown": false,
+   "cell_levels": {
+    "0,0": 1
+   },
+   "top_cover": {
+    "0,0": 1.0
+   }
+  },
+  "low-crates-1x1-h2": {
+   "label": "Crate pile 1 x 1, 2 high",
+   "file": "low-crates-1x1-h2.png",
+   "kind": "crates",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": true,
+   "levels": 2.0,
+   "overgrown": false,
+   "cell_levels": {
+    "0,0": 2
+   },
+   "top_cover": {
+    "0,0": 1.0
+   }
+  },
+  "low-crates-2x1-stepped": {
+   "label": "Crate pile 2 x 1, stepped",
+   "file": "low-crates-2x1-stepped.png",
+   "kind": "crates",
+   "size": [
+    2,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "walkable": true,
+   "levels": 2.0,
+   "overgrown": false,
+   "cell_levels": {
+    "0,0": 2,
+    "1,0": 1
+   },
+   "top_cover": {
+    "0,0": 1.0,
+    "1,0": 1.0
+   }
+  },
+  "low-crates-1x2-stepped": {
+   "label": "Crate pile 1 x 2, stepped",
+   "file": "low-crates-1x2-stepped.png",
+   "kind": "crates",
+   "size": [
+    1,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "walkable": true,
+   "levels": 2.0,
+   "overgrown": false,
+   "cell_levels": {
+    "0,0": 2,
+    "0,1": 1
+   },
+   "top_cover": {
+    "0,0": 1.0,
+    "0,1": 1.0
+   }
+  },
+  "low-crates-2x2-stepped": {
+   "label": "Crate pile 2 x 2, stepped",
+   "file": "low-crates-2x2-stepped.png",
+   "kind": "crates",
+   "size": [
+    2,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ]
+   ],
+   "walkable": true,
+   "levels": 2.0,
+   "overgrown": false,
+   "cell_levels": {
+    "0,0": 2,
+    "0,1": 1,
+    "1,0": 1,
+    "1,1": 1
+   },
+   "top_cover": {
+    "0,0": 1.0,
+    "0,1": 1.0,
+    "1,0": 1.0,
+    "1,1": 1.0
+   }
+  },
+  "low-crates-l-stepped": {
+   "label": "Crate pile, L, stepped",
+   "file": "low-crates-l-stepped.png",
+   "kind": "crates",
+   "size": [
+    2,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "walkable": true,
+   "levels": 2.0,
+   "overgrown": false,
+   "cell_levels": {
+    "0,0": 2,
+    "0,1": 1,
+    "1,0": 1
+   },
+   "top_cover": {
+    "0,0": 1.0,
+    "0,1": 1.0,
+    "1,0": 1.0
+   }
+  },
+  "low-stall-1x1": {
+   "label": "Market stall 1 x 1, canvas roof (walkable)",
+   "file": "low-stall-1x1.png",
+   "kind": "stall",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": true,
+   "levels": 1.0,
+   "overgrown": false,
+   "cell_levels": {
+    "0,0": 1
+   },
+   "top_cover": {
+    "0,0": 1.0
+   }
+  },
+  "low-stall-1x1-cool": {
+   "label": "Market stall 1 x 1, teal canvas roof (walkable)",
+   "file": "low-stall-1x1-cool.png",
+   "kind": "stall",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": true,
+   "levels": 1.0,
+   "overgrown": false,
+   "cell_levels": {
+    "0,0": 1
+   },
+   "top_cover": {
+    "0,0": 1.0
+   }
+  },
+  "low-stall-2x1": {
+   "label": "Market stall 2 x 1, canvas roof (walkable)",
+   "file": "low-stall-2x1.png",
+   "kind": "stall",
+   "size": [
+    2,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "walkable": true,
+   "levels": 1.0,
+   "overgrown": false,
+   "cell_levels": {
+    "0,0": 1,
+    "1,0": 1
+   },
+   "top_cover": {
+    "0,0": 1.0,
+    "1,0": 1.0
+   }
+  },
+  "low-stall-1x2": {
+   "label": "Market stall 1 x 2, canvas roof (walkable)",
+   "file": "low-stall-1x2.png",
+   "kind": "stall",
+   "size": [
+    1,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "walkable": true,
+   "levels": 1.0,
+   "overgrown": false,
+   "cell_levels": {
+    "0,0": 1,
+    "0,1": 1
+   },
+   "top_cover": {
+    "0,0": 1.0,
+    "0,1": 1.0
+   }
+  },
+  "low-stall-slope-1x1": {
+   "label": "Market stall 1 x 1, sloping awning",
+   "file": "low-stall-slope-1x1.png",
+   "kind": "stall",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 1.0,
+   "overgrown": false,
+   "cover": "high"
+  },
+  "low-stall-slope-2x1": {
+   "label": "Market stall 2 x 1, sloping awning",
+   "file": "low-stall-slope-2x1.png",
+   "kind": "stall",
+   "size": [
+    2,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 1.0,
+   "overgrown": false,
+   "cover": "high"
+  },
+  "low-shed-1x1-h1-se": {
+   "label": "Shed 1 x 1, 1 high, open to the SE",
+   "file": "low-shed-1x1-h1-se.png",
+   "kind": "shed",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": true,
+   "levels": 1.0,
+   "overgrown": false,
+   "cell_levels": {
+    "0,0": 1
+   },
+   "top_cover": {
+    "0,0": 1.0
+   }
+  },
+  "low-shed-1x1-h1-sw": {
+   "label": "Shed 1 x 1, 1 high, open to the SW",
+   "file": "low-shed-1x1-h1-sw.png",
+   "kind": "shed",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": true,
+   "levels": 1.0,
+   "overgrown": false,
+   "cell_levels": {
+    "0,0": 1
+   },
+   "top_cover": {
+    "0,0": 1.0
+   }
+  },
+  "low-shed-1x1-h2-se": {
+   "label": "Shed 1 x 1, 2 high, open to the SE",
+   "file": "low-shed-1x1-h2-se.png",
+   "kind": "shed",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": true,
+   "levels": 2.0,
+   "overgrown": false,
+   "cell_levels": {
+    "0,0": 2
+   },
+   "top_cover": {
+    "0,0": 1.0
+   }
+  },
+  "low-shed-1x1-h2-sw": {
+   "label": "Shed 1 x 1, 2 high, open to the SW",
+   "file": "low-shed-1x1-h2-sw.png",
+   "kind": "shed",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": true,
+   "levels": 2.0,
+   "overgrown": false,
+   "cell_levels": {
+    "0,0": 2
+   },
+   "top_cover": {
+    "0,0": 1.0
+   }
+  },
+  "low-shed-2x1-h1-sw": {
+   "label": "Shed 2 x 1, 1 high, open to the SW",
+   "file": "low-shed-2x1-h1-sw.png",
+   "kind": "shed",
+   "size": [
+    2,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "walkable": true,
+   "levels": 1.0,
+   "overgrown": false,
+   "cell_levels": {
+    "0,0": 1,
+    "1,0": 1
+   },
+   "top_cover": {
+    "0,0": 1.0,
+    "1,0": 1.0
+   }
+  },
+  "low-shed-1x2-h1-se": {
+   "label": "Shed 1 x 2, 1 high, open to the SE",
+   "file": "low-shed-1x2-h1-se.png",
+   "kind": "shed",
+   "size": [
+    1,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "walkable": true,
+   "levels": 1.0,
+   "overgrown": false,
+   "cell_levels": {
+    "0,0": 1,
+    "0,1": 1
+   },
+   "top_cover": {
+    "0,0": 1.0,
+    "0,1": 1.0
+   }
+  },
+  "low-cart-hay": {
+   "label": "Hay cart (along SE)",
+   "file": "low-cart-hay.png",
+   "kind": "cart",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": true,
+   "levels": 1.0,
+   "overgrown": false,
+   "cell_levels": {
+    "0,0": 1
+   },
+   "top_cover": {
+    "0,0": 0.75
+   }
+  },
+  "low-cart-crates": {
+   "label": "Crate cart (along SW)",
+   "file": "low-cart-crates.png",
+   "kind": "cart",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": true,
+   "levels": 1.0,
+   "overgrown": false,
+   "cell_levels": {
+    "0,0": 1
+   },
+   "top_cover": {
+    "0,0": 0.75
+   }
+  },
+  "low-wagon-2x1-hay": {
+   "label": "Hay wagon 2 x 1",
+   "file": "low-wagon-2x1-hay.png",
+   "kind": "wagon",
+   "size": [
+    2,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "walkable": true,
+   "levels": 1.0,
+   "overgrown": false,
+   "cell_levels": {
+    "0,0": 1,
+    "1,0": 1
+   },
+   "top_cover": {
+    "0,0": 0.75,
+    "1,0": 0.75
+   }
+  },
+  "low-wagon-2x1-crates": {
+   "label": "Crate wagon 2 x 1",
+   "file": "low-wagon-2x1-crates.png",
+   "kind": "wagon",
+   "size": [
+    2,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "walkable": true,
+   "levels": 1.0,
+   "overgrown": false,
+   "cell_levels": {
+    "0,0": 1,
+    "1,0": 1
+   },
+   "top_cover": {
+    "0,0": 0.75,
+    "1,0": 0.75
+   }
+  },
+  "low-wagon-1x2-hay": {
+   "label": "Hay wagon 1 x 2",
+   "file": "low-wagon-1x2-hay.png",
+   "kind": "wagon",
+   "size": [
+    1,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "walkable": true,
+   "levels": 1.0,
+   "overgrown": false,
+   "cell_levels": {
+    "0,0": 1,
+    "0,1": 1
+   },
+   "top_cover": {
+    "0,0": 0.75,
+    "0,1": 0.75
+   }
+  }
+ }
+}

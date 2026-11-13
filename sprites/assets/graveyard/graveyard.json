@@ -1,0 +1,16 @@
+{
+ "about": "The graveyard and ritual pieces in this folder. See README.md beside this file.",
+ "walk_min": 0.6,
+ "lantern": {
+  "frames": 4,
+  "fps": 6
+ },
+ "circles": {
+  "sizes": [
+   2,
+   3,
+   4
+  ],
+  "about": "flat decals on the ground diamond of n x n cells"
+ }
+}

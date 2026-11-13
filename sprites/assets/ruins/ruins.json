@@ -1,0 +1,1433 @@
+{
+ "about": "The ruined building pieces in this folder. See README.md beside this file.",
+ "level": 16,
+ "walk_min": 0.6,
+ "margin": 6,
+ "pieces": {
+  "ruin-wall-x-h05": {
+   "label": "Broken wall along x, 0.5 high",
+   "file": "ruin-wall-x-h05.png",
+   "kind": "wall",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 0.5,
+   "overgrown": false,
+   "cover": "low"
+  },
+  "ruin-wall-y-h05": {
+   "label": "Broken wall along y, 0.5 high",
+   "file": "ruin-wall-y-h05.png",
+   "kind": "wall",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 0.5,
+   "overgrown": false,
+   "cover": "low"
+  },
+  "ruin-wall-x-h1": {
+   "label": "Broken wall along x, 1 high",
+   "file": "ruin-wall-x-h1.png",
+   "kind": "wall",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 1.0,
+   "overgrown": false,
+   "cover": "high"
+  },
+  "ruin-wall-y-h1": {
+   "label": "Broken wall along y, 1 high",
+   "file": "ruin-wall-y-h1.png",
+   "kind": "wall",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 1.0,
+   "overgrown": false,
+   "cover": "high"
+  },
+  "ruin-wall-x-h2": {
+   "label": "Broken wall along x, 2 high",
+   "file": "ruin-wall-x-h2.png",
+   "kind": "wall",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 2.0,
+   "overgrown": false,
+   "cover": "full"
+  },
+  "ruin-wall-y-h2": {
+   "label": "Broken wall along y, 2 high",
+   "file": "ruin-wall-y-h2.png",
+   "kind": "wall",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 2.0,
+   "overgrown": false,
+   "cover": "full"
+  },
+  "ruin-wall-2x1-h1": {
+   "label": "Long broken wall 2 x 1, 1 high",
+   "file": "ruin-wall-2x1-h1.png",
+   "kind": "wall",
+   "size": [
+    2,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 1.0,
+   "overgrown": false,
+   "cover": "high"
+  },
+  "ruin-wall-1x2-h1": {
+   "label": "Long broken wall 1 x 2, 1 high",
+   "file": "ruin-wall-1x2-h1.png",
+   "kind": "wall",
+   "size": [
+    1,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "walkable": false,
+   "levels": 1.0,
+   "overgrown": false,
+   "cover": "high"
+  },
+  "ruin-wall-2x1-h2": {
+   "label": "Long broken wall 2 x 1, 2 high",
+   "file": "ruin-wall-2x1-h2.png",
+   "kind": "wall",
+   "size": [
+    2,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 2.0,
+   "overgrown": false,
+   "cover": "full"
+  },
+  "ruin-wall-1x2-h2": {
+   "label": "Long broken wall 1 x 2, 2 high",
+   "file": "ruin-wall-1x2-h2.png",
+   "kind": "wall",
+   "size": [
+    1,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "walkable": false,
+   "levels": 2.0,
+   "overgrown": false,
+   "cover": "full"
+  },
+  "ruin-corner-se-sw-h1": {
+   "label": "Broken corner (se-sw), 1 high",
+   "file": "ruin-corner-se-sw-h1.png",
+   "kind": "corner",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 1.0,
+   "overgrown": false,
+   "cover": "high"
+  },
+  "ruin-corner-se-ne-h1": {
+   "label": "Broken corner (se-ne), 1 high",
+   "file": "ruin-corner-se-ne-h1.png",
+   "kind": "corner",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 1.0,
+   "overgrown": false,
+   "cover": "high"
+  },
+  "ruin-corner-nw-sw-h1": {
+   "label": "Broken corner (nw-sw), 1 high",
+   "file": "ruin-corner-nw-sw-h1.png",
+   "kind": "corner",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 1.0,
+   "overgrown": false,
+   "cover": "high"
+  },
+  "ruin-corner-nw-ne-h1": {
+   "label": "Broken corner (nw-ne), 1 high",
+   "file": "ruin-corner-nw-ne-h1.png",
+   "kind": "corner",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 1.0,
+   "overgrown": false,
+   "cover": "high"
+  },
+  "ruin-corner-se-sw-h2": {
+   "label": "Broken corner (se-sw), 2 high",
+   "file": "ruin-corner-se-sw-h2.png",
+   "kind": "corner",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 2.0,
+   "overgrown": false,
+   "cover": "full"
+  },
+  "ruin-corner-se-ne-h2": {
+   "label": "Broken corner (se-ne), 2 high",
+   "file": "ruin-corner-se-ne-h2.png",
+   "kind": "corner",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 2.0,
+   "overgrown": false,
+   "cover": "full"
+  },
+  "ruin-corner-nw-sw-h2": {
+   "label": "Broken corner (nw-sw), 2 high",
+   "file": "ruin-corner-nw-sw-h2.png",
+   "kind": "corner",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 2.0,
+   "overgrown": false,
+   "cover": "full"
+  },
+  "ruin-corner-nw-ne-h2": {
+   "label": "Broken corner (nw-ne), 2 high",
+   "file": "ruin-corner-nw-ne-h2.png",
+   "kind": "corner",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 2.0,
+   "overgrown": false,
+   "cover": "full"
+  },
+  "ruin-tee-se-h1": {
+   "label": "Broken tee, stub se, 1 high",
+   "file": "ruin-tee-se-h1.png",
+   "kind": "tee",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 1.0,
+   "overgrown": false,
+   "cover": "high"
+  },
+  "ruin-tee-sw-h1": {
+   "label": "Broken tee, stub sw, 1 high",
+   "file": "ruin-tee-sw-h1.png",
+   "kind": "tee",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 1.0,
+   "overgrown": false,
+   "cover": "high"
+  },
+  "ruin-tee-nw-h1": {
+   "label": "Broken tee, stub nw, 1 high",
+   "file": "ruin-tee-nw-h1.png",
+   "kind": "tee",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 1.0,
+   "overgrown": false,
+   "cover": "high"
+  },
+  "ruin-tee-ne-h1": {
+   "label": "Broken tee, stub ne, 1 high",
+   "file": "ruin-tee-ne-h1.png",
+   "kind": "tee",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 1.0,
+   "overgrown": false,
+   "cover": "high"
+  },
+  "ruin-arch-x": {
+   "label": "Broken arch, wall along x",
+   "file": "ruin-arch-x.png",
+   "kind": "arch",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 1.75,
+   "overgrown": false,
+   "cover": "full"
+  },
+  "ruin-arch-y": {
+   "label": "Broken arch, wall along y",
+   "file": "ruin-arch-y.png",
+   "kind": "arch",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 1.75,
+   "overgrown": false,
+   "cover": "full"
+  },
+  "ruin-heap-1x1": {
+   "label": "Heap of fallen stone 1x1",
+   "file": "ruin-heap-1x1.png",
+   "kind": "heap",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 0.56,
+   "overgrown": false,
+   "cover": "low"
+  },
+  "ruin-heap-1x2": {
+   "label": "Heap of fallen stone 1x2",
+   "file": "ruin-heap-1x2.png",
+   "kind": "heap",
+   "size": [
+    1,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "walkable": false,
+   "levels": 0.62,
+   "overgrown": false,
+   "cover": "low"
+  },
+  "ruin-heap-2x1": {
+   "label": "Heap of fallen stone 2x1",
+   "file": "ruin-heap-2x1.png",
+   "kind": "heap",
+   "size": [
+    2,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 0.56,
+   "overgrown": false,
+   "cover": "low"
+  },
+  "ruin-heap-2x2": {
+   "label": "Heap of fallen stone 2x2",
+   "file": "ruin-heap-2x2.png",
+   "kind": "heap",
+   "size": [
+    2,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ]
+   ],
+   "walkable": false,
+   "levels": 0.75,
+   "overgrown": false,
+   "cover": "low"
+  },
+  "ruin-heap-l-n": {
+   "label": "Heap of fallen stone l-n",
+   "file": "ruin-heap-l-n.png",
+   "kind": "heap",
+   "size": [
+    2,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ]
+   ],
+   "walkable": false,
+   "levels": 0.69,
+   "overgrown": false,
+   "cover": "low"
+  },
+  "ruin-heap-l-e": {
+   "label": "Heap of fallen stone l-e",
+   "file": "ruin-heap-l-e.png",
+   "kind": "heap",
+   "size": [
+    2,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     1
+    ]
+   ],
+   "walkable": false,
+   "levels": 0.62,
+   "overgrown": false,
+   "cover": "low"
+  },
+  "ruin-heap-l-s": {
+   "label": "Heap of fallen stone l-s",
+   "file": "ruin-heap-l-s.png",
+   "kind": "heap",
+   "size": [
+    2,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 0.56,
+   "overgrown": false,
+   "cover": "low"
+  },
+  "ruin-heap-l-w": {
+   "label": "Heap of fallen stone l-w",
+   "file": "ruin-heap-l-w.png",
+   "kind": "heap",
+   "size": [
+    2,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ]
+   ],
+   "walkable": false,
+   "levels": 0.62,
+   "overgrown": false,
+   "cover": "low"
+  },
+  "ruin-floor-1x1": {
+   "label": "Foundation floor 1x1",
+   "file": "ruin-floor-1x1.png",
+   "kind": "floor",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": true,
+   "levels": 0.5,
+   "overgrown": false,
+   "cell_levels": {
+    "0,0": 0.5
+   },
+   "top_cover": {
+    "0,0": 0.88
+   }
+  },
+  "ruin-floor-1x2": {
+   "label": "Foundation floor 1x2",
+   "file": "ruin-floor-1x2.png",
+   "kind": "floor",
+   "size": [
+    1,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "walkable": true,
+   "levels": 0.72,
+   "overgrown": false,
+   "cell_levels": {
+    "0,0": 0.5,
+    "0,1": 0.5
+   },
+   "top_cover": {
+    "0,0": 0.78,
+    "0,1": 0.73
+   }
+  },
+  "ruin-floor-2x1": {
+   "label": "Foundation floor 2x1",
+   "file": "ruin-floor-2x1.png",
+   "kind": "floor",
+   "size": [
+    2,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "walkable": true,
+   "levels": 0.72,
+   "overgrown": false,
+   "cell_levels": {
+    "0,0": 0.5,
+    "1,0": 0.5
+   },
+   "top_cover": {
+    "0,0": 0.94,
+    "1,0": 0.88
+   }
+  },
+  "ruin-floor-2x2": {
+   "label": "Foundation floor 2x2",
+   "file": "ruin-floor-2x2.png",
+   "kind": "floor",
+   "size": [
+    2,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ]
+   ],
+   "walkable": true,
+   "levels": 0.72,
+   "overgrown": false,
+   "cell_levels": {
+    "0,0": 0.5,
+    "0,1": 0.5,
+    "1,0": 0.5,
+    "1,1": 0.5
+   },
+   "top_cover": {
+    "0,0": 0.94,
+    "0,1": 1.0,
+    "1,0": 0.98,
+    "1,1": 0.7
+   }
+  },
+  "ruin-floor-l-n": {
+   "label": "Foundation floor l-n",
+   "file": "ruin-floor-l-n.png",
+   "kind": "floor",
+   "size": [
+    2,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ]
+   ],
+   "walkable": true,
+   "levels": 0.5,
+   "overgrown": false,
+   "cell_levels": {
+    "0,1": 0.5,
+    "1,0": 0.5,
+    "1,1": 0.5
+   },
+   "top_cover": {
+    "0,1": 0.75,
+    "1,0": 0.88,
+    "1,1": 0.94
+   }
+  },
+  "ruin-floor-l-e": {
+   "label": "Foundation floor l-e",
+   "file": "ruin-floor-l-e.png",
+   "kind": "floor",
+   "size": [
+    2,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     1
+    ]
+   ],
+   "walkable": true,
+   "levels": 0.72,
+   "overgrown": false,
+   "cell_levels": {
+    "0,0": 0.5,
+    "0,1": 0.5,
+    "1,1": 0.5
+   },
+   "top_cover": {
+    "0,0": 0.88,
+    "0,1": 0.94,
+    "1,1": 0.88
+   }
+  },
+  "ruin-floor-l-s": {
+   "label": "Foundation floor l-s",
+   "file": "ruin-floor-l-s.png",
+   "kind": "floor",
+   "size": [
+    2,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "walkable": true,
+   "levels": 0.72,
+   "overgrown": false,
+   "cell_levels": {
+    "0,0": 0.5,
+    "0,1": 0.5,
+    "1,0": 0.5
+   },
+   "top_cover": {
+    "0,0": 0.86,
+    "0,1": 0.73,
+    "1,0": 0.8
+   }
+  },
+  "ruin-floor-l-w": {
+   "label": "Foundation floor l-w",
+   "file": "ruin-floor-l-w.png",
+   "kind": "floor",
+   "size": [
+    2,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ]
+   ],
+   "walkable": true,
+   "levels": 0.72,
+   "overgrown": false,
+   "cell_levels": {
+    "0,0": 0.5,
+    "1,0": 0.5,
+    "1,1": 0.5
+   },
+   "top_cover": {
+    "0,0": 0.88,
+    "1,0": 0.86,
+    "1,1": 0.77
+   }
+  },
+  "ruin-wall-x-h2-grown": {
+   "label": "Broken wall along x, 2 high, overgrown",
+   "file": "ruin-wall-x-h2-grown.png",
+   "kind": "wall",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 2.11,
+   "overgrown": true,
+   "cover": "full"
+  },
+  "ruin-wall-y-h2-grown": {
+   "label": "Broken wall along y, 2 high, overgrown",
+   "file": "ruin-wall-y-h2-grown.png",
+   "kind": "wall",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 2.17,
+   "overgrown": true,
+   "cover": "full"
+  },
+  "ruin-wall-x-h1-grown": {
+   "label": "Broken wall along x, 1 high, overgrown",
+   "file": "ruin-wall-x-h1-grown.png",
+   "kind": "wall",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 1.11,
+   "overgrown": true,
+   "cover": "high"
+  },
+  "ruin-wall-y-h1-grown": {
+   "label": "Broken wall along y, 1 high, overgrown",
+   "file": "ruin-wall-y-h1-grown.png",
+   "kind": "wall",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 1.11,
+   "overgrown": true,
+   "cover": "high"
+  },
+  "ruin-wall-2x1-h2-grown": {
+   "label": "Long broken wall 2 x 1, 2 high, overgrown",
+   "file": "ruin-wall-2x1-h2-grown.png",
+   "kind": "wall",
+   "size": [
+    2,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 2.11,
+   "overgrown": true,
+   "cover": "full"
+  },
+  "ruin-wall-1x2-h2-grown": {
+   "label": "Long broken wall 1 x 2, 2 high, overgrown",
+   "file": "ruin-wall-1x2-h2-grown.png",
+   "kind": "wall",
+   "size": [
+    1,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "walkable": false,
+   "levels": 2.11,
+   "overgrown": true,
+   "cover": "full"
+  },
+  "ruin-corner-se-sw-h2-grown": {
+   "label": "Broken corner (se-sw), 2 high, overgrown",
+   "file": "ruin-corner-se-sw-h2-grown.png",
+   "kind": "corner",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 2.11,
+   "overgrown": true,
+   "cover": "full"
+  },
+  "ruin-corner-se-ne-h2-grown": {
+   "label": "Broken corner (se-ne), 2 high, overgrown",
+   "file": "ruin-corner-se-ne-h2-grown.png",
+   "kind": "corner",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 2.11,
+   "overgrown": true,
+   "cover": "full"
+  },
+  "ruin-corner-nw-sw-h2-grown": {
+   "label": "Broken corner (nw-sw), 2 high, overgrown",
+   "file": "ruin-corner-nw-sw-h2-grown.png",
+   "kind": "corner",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 2.17,
+   "overgrown": true,
+   "cover": "full"
+  },
+  "ruin-corner-nw-ne-h2-grown": {
+   "label": "Broken corner (nw-ne), 2 high, overgrown",
+   "file": "ruin-corner-nw-ne-h2-grown.png",
+   "kind": "corner",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 2.17,
+   "overgrown": true,
+   "cover": "full"
+  },
+  "ruin-tee-se-h1-grown": {
+   "label": "Broken tee, stub se, 1 high, overgrown",
+   "file": "ruin-tee-se-h1-grown.png",
+   "kind": "tee",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 1.18,
+   "overgrown": true,
+   "cover": "high"
+  },
+  "ruin-tee-sw-h1-grown": {
+   "label": "Broken tee, stub sw, 1 high, overgrown",
+   "file": "ruin-tee-sw-h1-grown.png",
+   "kind": "tee",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 1.18,
+   "overgrown": true,
+   "cover": "high"
+  },
+  "ruin-arch-x-grown": {
+   "label": "Broken arch, wall along x, overgrown",
+   "file": "ruin-arch-x-grown.png",
+   "kind": "arch",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 1.86,
+   "overgrown": true,
+   "cover": "full"
+  },
+  "ruin-arch-y-grown": {
+   "label": "Broken arch, wall along y, overgrown",
+   "file": "ruin-arch-y-grown.png",
+   "kind": "arch",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 1.86,
+   "overgrown": true,
+   "cover": "full"
+  },
+  "ruin-heap-1x1-grown": {
+   "label": "Heap of fallen stone 1x1, overgrown",
+   "file": "ruin-heap-1x1-grown.png",
+   "kind": "heap",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 0.8,
+   "overgrown": true,
+   "cover": "low"
+  },
+  "ruin-heap-2x2-grown": {
+   "label": "Heap of fallen stone 2x2, overgrown",
+   "file": "ruin-heap-2x2-grown.png",
+   "kind": "heap",
+   "size": [
+    2,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ]
+   ],
+   "walkable": false,
+   "levels": 0.8,
+   "overgrown": true,
+   "cover": "low"
+  },
+  "ruin-heap-1x2-grown": {
+   "label": "Heap of fallen stone 1x2, overgrown",
+   "file": "ruin-heap-1x2-grown.png",
+   "kind": "heap",
+   "size": [
+    1,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "walkable": false,
+   "levels": 0.86,
+   "overgrown": true,
+   "cover": "low"
+  },
+  "ruin-floor-2x2-grown": {
+   "label": "Foundation floor 2x2, overgrown",
+   "file": "ruin-floor-2x2-grown.png",
+   "kind": "floor",
+   "size": [
+    2,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ]
+   ],
+   "walkable": true,
+   "levels": 0.9,
+   "overgrown": true,
+   "cell_levels": {
+    "0,0": 0.5,
+    "0,1": 0.5,
+    "1,0": 0.5,
+    "1,1": 0.5
+   },
+   "top_cover": {
+    "0,0": 0.95,
+    "0,1": 0.94,
+    "1,0": 0.86,
+    "1,1": 0.78
+   }
+  },
+  "ruin-floor-1x1-grown": {
+   "label": "Foundation floor 1x1, overgrown",
+   "file": "ruin-floor-1x1-grown.png",
+   "kind": "floor",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": true,
+   "levels": 0.72,
+   "overgrown": true,
+   "cell_levels": {
+    "0,0": 0.5
+   },
+   "top_cover": {
+    "0,0": 0.78
+   }
+  },
+  "ruin-floor-2x1-grown": {
+   "label": "Foundation floor 2x1, overgrown",
+   "file": "ruin-floor-2x1-grown.png",
+   "kind": "floor",
+   "size": [
+    2,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "walkable": true,
+   "levels": 0.83,
+   "overgrown": true,
+   "cell_levels": {
+    "0,0": 0.5,
+    "1,0": 0.5
+   },
+   "top_cover": {
+    "0,0": 0.75,
+    "1,0": 0.75
+   }
+  },
+  "ruin-floor-l-n-grown": {
+   "label": "Foundation floor l-n, overgrown",
+   "file": "ruin-floor-l-n-grown.png",
+   "kind": "floor",
+   "size": [
+    2,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ]
+   ],
+   "walkable": true,
+   "levels": 0.9,
+   "overgrown": true,
+   "cell_levels": {
+    "0,1": 0.5,
+    "1,0": 0.5,
+    "1,1": 0.5
+   },
+   "top_cover": {
+    "0,1": 0.75,
+    "1,0": 0.73,
+    "1,1": 0.88
+   }
+  }
+ }
+}

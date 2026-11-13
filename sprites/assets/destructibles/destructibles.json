@@ -1,0 +1,148 @@
+{
+ "about": "The destructibles in this folder. See README.md beside this file.",
+ "fps": 12,
+ "frames": 6,
+ "states": [
+  "intact",
+  "damaged",
+  "destroyed"
+ ],
+ "pieces": {
+  "barricade-1x1": {
+   "label": "Barricade 1 x 1",
+   "size": [
+    1,
+    1
+   ],
+   "blocks": true,
+   "blocks_when_destroyed": false,
+   "explosive": false,
+   "cover_levels": 0.8,
+   "files": {
+    "intact": "barricade-1x1.png (frame 1)",
+    "damaged": "barricade-1x1.png (frame 2)",
+    "destroyed": "barricade-1x1.png (frame 3)",
+    "animation": "barricade-1x1-destroy.png"
+   }
+  },
+  "barricade-1x2": {
+   "label": "Barricade 1 x 2",
+   "size": [
+    1,
+    2
+   ],
+   "blocks": true,
+   "blocks_when_destroyed": false,
+   "explosive": false,
+   "cover_levels": 0.8,
+   "files": {
+    "intact": "barricade-1x2.png (frame 1)",
+    "damaged": "barricade-1x2.png (frame 2)",
+    "destroyed": "barricade-1x2.png (frame 3)",
+    "animation": "barricade-1x2-destroy.png"
+   }
+  },
+  "barrel-explosive": {
+   "label": "Explosive barrel",
+   "size": [
+    1,
+    1
+   ],
+   "blocks": true,
+   "blocks_when_destroyed": false,
+   "explosive": true,
+   "cover_levels": 0.62,
+   "files": {
+    "intact": "barrel-explosive.png (frame 1)",
+    "damaged": "barrel-explosive.png (frame 2)",
+    "destroyed": "barrel-explosive.png (frame 3)",
+    "animation": "barrel-explosive-destroy.png"
+   }
+  },
+  "barrel-stack": {
+   "label": "Barrel stack",
+   "size": [
+    1,
+    1
+   ],
+   "blocks": true,
+   "blocks_when_destroyed": false,
+   "explosive": false,
+   "cover_levels": 1.2,
+   "files": {
+    "intact": "barrel-stack.png (frame 1)",
+    "damaged": "barrel-stack.png (frame 2)",
+    "destroyed": "barrel-stack.png (frame 3)",
+    "animation": "barrel-stack-destroy.png"
+   }
+  },
+  "wall-1x1": {
+   "label": "Breakable wall 1 x 1",
+   "size": [
+    1,
+    1
+   ],
+   "blocks": true,
+   "blocks_when_destroyed": false,
+   "explosive": false,
+   "cover_levels": 1.0,
+   "files": {
+    "intact": "wall-1x1.png (frame 1)",
+    "damaged": "wall-1x1.png (frame 2)",
+    "destroyed": "wall-1x1.png (frame 3)",
+    "animation": "wall-1x1-destroy.png"
+   }
+  },
+  "wall-1x2": {
+   "label": "Breakable wall 1 x 2",
+   "size": [
+    1,
+    2
+   ],
+   "blocks": true,
+   "blocks_when_destroyed": false,
+   "explosive": false,
+   "cover_levels": 1.0,
+   "files": {
+    "intact": "wall-1x2.png (frame 1)",
+    "damaged": "wall-1x2.png (frame 2)",
+    "destroyed": "wall-1x2.png (frame 3)",
+    "animation": "wall-1x2-destroy.png"
+   }
+  },
+  "urns": {
+   "label": "Clay urns",
+   "size": [
+    1,
+    1
+   ],
+   "blocks": true,
+   "blocks_when_destroyed": false,
+   "explosive": false,
+   "cover_levels": 0.45,
+   "files": {
+    "intact": "urns.png (frame 1)",
+    "damaged": "urns.png (frame 2)",
+    "destroyed": "urns.png (frame 3)",
+    "animation": "urns-destroy.png"
+   }
+  },
+  "haycart": {
+   "label": "Hay cart",
+   "size": [
+    2,
+    1
+   ],
+   "blocks": true,
+   "blocks_when_destroyed": false,
+   "explosive": false,
+   "cover_levels": 0.75,
+   "files": {
+    "intact": "haycart.png (frame 1)",
+    "damaged": "haycart.png (frame 2)",
+    "destroyed": "haycart.png (frame 3)",
+    "animation": "haycart-destroy.png"
+   }
+  }
+ }
+}
