@@ -68,7 +68,7 @@ def render_view(parts, decals, ramps, yaw_deg, size=300, scale=1.0, eye=(0, 0, 0
 
     # Fit the model to the picture: the screen extent of every ellipsoid's bounding sphere.
     centres = np.array([B @ p[1] for p in placed] + [B @ (np.array(q) * scale) for q in fit_points])
-    radii = np.array([p[2].max() for p in placed] + [0.0] * len(fit_points))
+    radii = np.array([(np.linalg.norm(p[2]) if p[0].get('box') else p[2].max()) for p in placed] + [0.0] * len(fit_points))
     lo = (centres[:, :2] - radii[:, None]).min(axis=0)
     hi = (centres[:, :2] + radii[:, None]).max(axis=0)
     span = max(hi[0] - lo[0], hi[1] - lo[1]) * 1.08
@@ -92,17 +92,32 @@ def render_view(parts, decals, ramps, yaw_deg, size=300, scale=1.0, eye=(0, 0, 0
     for q, c, r, R, Rt in placed:
         o = ((origin - c) @ Rt.T) / r
         d = (Rt @ direction) / r
-        a = float(d @ d)
-        b = o @ d
-        cc = (o * o).sum(axis=-1) - 1.0
-        disc = b * b - a * cc
-        hit = disc >= 0
-        t = np.where(hit, (-b + np.sqrt(np.where(hit, disc, 0))) / a, -1e9)
-        nearer = hit & (t > best_t)
-        if not nearer.any():
-            continue
-        u = o + t[..., None] * d
-        nrm = (u / r) @ R.T
+        if q.get('box'):                                # a block: the way out of the unit cube, by the slab method
+            with np.errstate(all='ignore'):
+                safe = np.where(np.abs(d) < 1e-12, 1e-12, d)
+                t1, t2 = (-1 - o) / safe, (1 - o) / safe
+            lo, hi = np.minimum(t1, t2), np.maximum(t1, t2)
+            t_in, t_out = lo.max(axis=-1), hi.min(axis=-1)
+            face = hi.argmin(axis=-1)
+            hit = t_in <= t_out
+            t = np.where(hit, t_out, -1e9)
+            nearer = hit & (t > best_t)
+            if not nearer.any():
+                continue
+            unit = np.eye(3)[face] * np.sign(np.where(np.abs(d) < 1e-12, 1.0, d))[face][..., None]
+            nrm = unit @ R.T
+        else:
+            a = float(d @ d)
+            b = o @ d
+            cc = (o * o).sum(axis=-1) - 1.0
+            disc = b * b - a * cc
+            hit = disc >= 0
+            t = np.where(hit, (-b + np.sqrt(np.where(hit, disc, 0))) / a, -1e9)
+            nearer = hit & (t > best_t)
+            if not nearer.any():
+                continue
+            u = o + t[..., None] * d
+            nrm = (u / r) @ R.T
         nrm /= np.maximum(np.linalg.norm(nrm, axis=-1, keepdims=True), 1e-9)
         nc = nrm @ B.T
         s = 0.22 + 0.78 * np.clip(nc @ light, 0.0, None)

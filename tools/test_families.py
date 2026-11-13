@@ -317,20 +317,97 @@ class Water(unittest.TestCase):
             self.assertEqual(len(table), 9)
 
 
+class Panel(unittest.TestCase):
+    """The menu panel: nine pieces and a ready-made one, outlined, rounded, with no gaps, and joining without a seam."""
+
+    def assets(self):
+        return {a['id']: a for a in assets_of('panel')}
+
+    def test_nine_pieces_and_a_ready_made_one_at_the_sizes_the_readme_gives(self):
+        assets = self.assets()
+        self.assertEqual(len(assets), 15)
+        sizes = {'tl': (40, 54), 't': (64, 54), 'tr': (40, 54), 'l': (40, 64), 'c': (64, 64), 'r': (40, 64), 'bl': (40, 44), 'b': (64, 44), 'br': (40, 44), 't2': (64, 54), 't3': (64, 54), 't4': (64, 54), 't5': (64, 54), 't6': (64, 54)}
+        for name, (w, h) in sizes.items():
+            a = assets['ui-panel-' + name]
+            self.assertEqual((a['category'], a['kind'], len(a['frames']), a['w'], a['h']), ('UI', 'still', 1, w, h), name)
+            self.assertEqual((len(a['frames'][0]), len(a['frames'][0][0])), (h, w), name)
+        self.assertEqual((assets['ui-panel']['w'], assets['ui-panel']['h']), (320, 138))
+
+    def test_the_whole_panel_is_outlined_rounded_and_has_no_gaps(self):
+        import make_panel as mp
+        for width, height in ((320, 120), (80, 80), (203, 131)):
+            rows = mp.assemble(width, height)
+            self.assertEqual((len(rows[0]), len(rows)), (width, mp.PAD + height + mp.SLAB), (width, height))
+            self.assertEqual(rows[mp.PAD][0], '.', 'a square corner')
+            body = rows[mp.PAD + mp.CH: mp.PAD + height - mp.CH]
+            for y, row in enumerate(body):
+                self.assertEqual(row[0], 'O', f'row {y}: the left edge is not outlined')
+                self.assertEqual(row[-1], 'O', f'row {y}: the right edge is not outlined')
+                self.assertNotIn('.', row, f'row {y}: a gap in the panel')
+
+    def test_the_pieces_wrap_and_the_panel_is_the_same_every_time(self):
+        import make_panel as mp
+        self.assertEqual(mp.assemble(320, 120), mp.assemble(320, 120))
+        # a wider panel is the narrower one with more of the wrapping pieces: the corners and the first 64-wide runs are the same
+        narrow, wide = mp.assemble(200, 120), mp.assemble(400, 120)
+        for y in range(len(narrow)):
+            self.assertEqual(narrow[y][:mp.CW + mp.TILE], wide[y][:mp.CW + mp.TILE], y)
+        # the left and right edges wrap top to bottom: a taller panel repeats them every 64 rows
+        tall = mp.assemble(200, 400)
+        mid = [row for row in tall[mp.PAD + mp.CH: mp.PAD + 400 - mp.CH]]
+        for y in range(len(mid) - mp.TILE):
+            self.assertEqual(mid[y], mid[y + mp.TILE], y)
+
+    def test_the_six_top_edges_follow_each_other_in_any_order_without_a_seam(self):
+        import make_panel as mp
+        self.assertEqual(len(mp.TOP_VARIANTS), 6)
+        self.assertAlmostEqual(sum(mp.TOP_WEIGHTS), 1.0)
+        base = mp.piece('T')
+        pieces = {v: mp.piece(v) for v in mp.TOP_VARIANTS}
+        for v, rows in pieces.items():
+            self.assertEqual((len(rows), len(rows[0])), (len(base), mp.TILE), v)
+        self.assertEqual(len({tuple(rows) for rows in pieces.values()}), 6, 'two top edges are the same picture')
+        for v, rows in pieces.items():
+            for y in range(len(base)):
+                for x in list(range(0, 4)) + list(range(mp.TILE - 4, mp.TILE)):
+                    self.assertEqual(rows[y][x], base[y][x], f'{v} differs at its end ({x}, {y}): it would not join')
+
+    def test_the_random_choice_is_stable_and_uses_every_picture(self):
+        import make_panel as mp
+        picks = [mp.pick_top(i, 1) for i in range(400)]
+        self.assertEqual(picks, [mp.pick_top(i, 1) for i in range(400)])
+        self.assertEqual(set(picks), set(mp.TOP_VARIANTS))
+        self.assertLess(picks.count('T'), picks.count('T2'))             # the busy one least, the mossy one most
+
+    def test_it_has_mushrooms_and_vines_in_palette_roles(self):
+        import make_panel as mp
+        rows = mp.assemble(320, 120)
+        text = ''.join(rows)
+        for role in 'ji' 'rq' 'AzB':                             # pink and teal caps, and the greens of the moss and vines
+            self.assertIn(role, text, role)
+        self.assertTrue(set(text) <= set('.OABCDabcdeghijklmnopqrstuvwxyz'), set(text))
+        self.assertTrue(any(ch != '.' for ch in rows[1]), 'the pad has more headroom than the mushrooms use')          # the tallest mushroom, with its outline, reaches row 1 of the pad
+        self.assertTrue(all(ch == '.' for ch in rows[0]), 'a mushroom is cut off by the pad')
+
+
 class Buttons(unittest.TestCase):
-    """The menu buttons: 24 sheets (3 colourways by 2 heights by 4 widths), three states each, rounded, outlined and inside their cells."""
+    """The menu buttons: 33 sheets (3 colourways by 11 sizes), three states each, rounded, outlined and inside their cells."""
 
     def assets(self):
         return {a['id']: a for a in assets_of('buttons')}
 
-    def test_twenty_four_sheets_of_three_states(self):
+    def test_thirty_three_sheets_of_three_states(self):
         import make_buttons as mb
         assets = self.assets()
-        self.assertEqual(len(assets), 24)
+        self.assertEqual(len(assets), 33)
         for a in assets.values():
             self.assertEqual((a['category'], a['kind'], len(a['frames']), a['cols'], a['rows']), ('UI', 'variants', 3, 3, 1), a['id'])
-            b = a['button']
-            self.assertEqual((a['w'], a['h']), (mb.WIDTHS[b['width']], mb.HEIGHTS[b['height']]['h']), a['id'])
+            self.assertEqual([a['w'], a['h']], a['button']['cell'], a['id'])
+        for name, cell in (('short-xs', (48, 32)), ('compact-sm', (112, 40)), ('icon-sq', (36, 36))):
+            for colourway in ('primary', 'low', 'red'):
+                a = assets[f'ui-button-{colourway}-{name}']
+                self.assertEqual((a['w'], a['h']), cell, a['id'])
+        self.assertEqual(assets['ui-button-red-compact-sm']['button']['body'], 36)
         self.assertEqual({a['button']['colourway'] for a in assets.values()}, {'primary', 'low', 'red'})
 
     def test_every_state_is_outlined_inside_its_cell_with_rounded_corners_and_no_gaps(self):
@@ -412,6 +489,285 @@ class BloodPool(unittest.TestCase):
                 self.assertNotEqual(rows[y][x], 'O', 'a stain has no outline')
             shapes.add(tuple(rows))
         self.assertEqual(len(shapes), 6, 'six different pools')
+
+
+class BodyExplosion(unittest.TestCase):
+    """The body explosion: six frames on a 48 x 48 cell, in the blood pool's four colours only, bursting, peaking and leaving only splatters."""
+
+    def asset(self):
+        return {a['id']: a for a in assets_of('body-explosion')}['body-explosion']
+
+    def test_six_frames_on_a_48_cell_anchored_at_the_body(self):
+        a = self.asset()
+        self.assertEqual((a['w'], a['h'], a['category'], a['kind'], a['place'], a['fps'], a['anchor']), (48, 48, 'Animations', 'animation', 'ground', 12, {'x': 24, 'y': 34}))
+        self.assertEqual(len(a['frames']), 6)
+        for rows in a['frames']:
+            self.assertEqual((len(rows), len(rows[0])), (48, 48))
+
+    def test_it_uses_only_the_blood_pools_colours_and_no_outline(self):
+        a = self.asset()
+        for rows in a['frames']:
+            self.assertTrue(set(''.join(rows)) <= set('.uhij'), set(''.join(rows)))
+
+    def test_it_bursts_peaks_and_leaves_only_splatters(self):
+        counts = [sum(c != '.' for row in rows for c in row) for rows in self.asset()['frames']]
+        self.assertIn(counts.index(max(counts)), (1, 2), counts)                # the biggest frame is the second or the third
+        self.assertGreater(max(counts), 2 * counts[0], counts)                  # it grew out of the burst
+        self.assertLess(counts[5], max(counts) // 2, counts)                    # and is mostly gone by the last frame
+        self.assertGreater(counts[5], 30, 'the splatters are left on the ground')
+        self.assertEqual(len({tuple(r) for r in self.asset()['frames']}), 6, 'two frames are the same')
+
+    def test_it_is_the_same_every_time(self):
+        import make_body_explosion as m
+        self.assertEqual(m.build_assets()[0]['frames'], m.build_assets()[0]['frames'])
+
+
+class Rocks(unittest.TestCase):
+    """The rock kit: blocky ledges and crags and natural slabs and stones, on footprints of 1 x 1 to 2 x 2, 1 x 3 and L, some with flat tops a unit can walk on."""
+
+    def assets(self):
+        return {a['id']: a for a in assets_of('rocks')}
+
+    def test_every_rock_is_a_ground_still_sized_to_its_footprint(self):
+        import make_rocks as m
+        assets = self.assets()
+        self.assertEqual(sorted(assets), sorted(s[0] for s in m.SHAPES))
+        for a in assets.values():
+            fx, fy = a['footprint']['size']
+            self.assertEqual((a['category'], a['kind'], a['place'], len(a['frames'])), ('Nature', 'still', 'ground', 1), a['id'])
+            self.assertEqual(a['w'], 16 * (fx + fy) + 2 * m.MARGIN, a['id'])
+            self.assertEqual(a['anchor']['x'], a['w'] // 2, a['id'])                 # the middle of the footprint is the middle of the picture
+            rows = a['frames'][0]
+            self.assertEqual((len(rows[0]), len(rows)), (a['w'], a['h']), a['id'])
+            low = max(y for y, r in enumerate(rows) if r.strip('.'))
+            front = max(i + j + 2 for i, j in a['footprint']['cells'])
+            self.assertGreaterEqual(low, a['anchor']['y'] + 8 * front - 4 * (fx + fy) - 7, a['id'])      # it stands on the ground diamond of its lowest cell, not above it
+            self.assertLess(low, a['h'], a['id'])
+
+    def test_the_footprints_are_the_ones_promised(self):
+        shapes = {a['footprint']['size'][0] * 10 + a['footprint']['size'][1] for a in self.assets().values()}
+        for size in (11, 12, 21, 22, 13, 31):
+            self.assertIn(size, shapes)
+        ls = [a for a in self.assets().values() if len(a['footprint']['cells']) in (3, 4) and a['footprint']['size'] in ([2, 2], [3, 2], [2, 3])]
+        self.assertGreaterEqual(len(ls), 8)                                              # the L, in all its turns
+        for a in self.assets().values():
+            cells = {tuple(c) for c in a['footprint']['cells']}
+            fx, fy = a['footprint']['size']
+            self.assertTrue(any(c[0] == 0 for c in cells) and any(c[1] == 0 for c in cells) and any(c[0] == fx - 1 for c in cells) and any(c[1] == fy - 1 for c in cells), a['id'])
+
+    def test_a_walkable_rock_has_a_flat_top_over_every_cell(self):
+        import make_rocks as m
+        walk = [a for a in self.assets().values() if a['walkable']]
+        self.assertGreaterEqual(len(walk), 36)
+        for a in walk:
+            self.assertEqual(sorted(a['top_cover']), sorted(f'{i},{j}' for i, j in a['footprint']['cells']), a['id'])
+            self.assertGreaterEqual(min(a['top_cover'].values()), m.WALK_MIN, a['id'])
+            self.assertIn(a['levels'], (1, 2), a['id'])                                  # whole levels, so it lines up with the ground's steps
+
+    def test_crags_and_stones_are_never_walkable_and_ledges_and_slabs_are(self):
+        for a in self.assets().values():
+            if a['id'].startswith(('rock-crag', 'rock-stone')):
+                self.assertFalse(a['walkable'], a['id'])
+                self.assertNotIn('top_cover', a)
+            else:
+                self.assertTrue(a['walkable'], a['id'])
+
+    def test_every_rock_is_outlined(self):
+        for a in self.assets().values():
+            rows = a['frames'][0]
+            h, w = len(rows), len(rows[0])
+            for y in range(h):
+                for x in range(w):
+                    if rows[y][x] in '.O':
+                        continue
+                    for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+                        nx, ny = x + dx, y + dy
+                        self.assertTrue(0 <= nx < w and 0 <= ny < h and rows[ny][nx] != '.', f'{a["id"]}: a bare edge at {x},{y}')
+
+    def test_a_natural_rock_never_undercuts(self):
+        import make_rocks as m
+        for sid, label, cells, kind, levels in m.SHAPES:
+            if kind in ('slab', 'stone'):
+                blobs = m.build_slab(cells, levels, m.seed_of(sid)) if kind == 'slab' else m.build_stones(cells, levels, m.seed_of(sid), sid)
+                for b in blobs:
+                    self.assertLessEqual(b.c[2], 0.0, sid)                              # widest at the ground, so it only narrows going up
+
+    def test_the_variants_differ_and_it_is_the_same_every_time(self):
+        import make_rocks as m
+        pics = {tuple(a['frames'][0]) for a in self.assets().values()}
+        self.assertEqual(len(pics), len(self.assets()))
+        self.assertEqual(m.render(*m.SHAPES[0][2:4], m.SHAPES[0][4], 7), m.render(*m.SHAPES[0][2:4], m.SHAPES[0][4], 7))
+
+
+class UiControls(unittest.TestCase):
+    """The slider (track, fill, knob) and the toggle: pieces that join, the sizes the game is told, outlined, and the states differing."""
+
+    def assets(self):
+        return {a['id']: a for a in assets_of('ui-controls')}
+
+    def test_the_pieces_and_their_sizes(self):
+        assets = self.assets()
+        sizes = {'ui-slider-track-left': (8, 16), 'ui-slider-track-mid': (32, 16), 'ui-slider-track-right': (8, 16), 'ui-slider-fill-left': (8, 16), 'ui-slider-fill-mid': (32, 16),
+                 'ui-slider-knob-default': (24, 24), 'ui-slider-knob-hovered': (24, 24), 'ui-slider-knob-pressed': (24, 24),
+                 'ui-toggle-off': (44, 22), 'ui-toggle-off-hovered': (44, 22), 'ui-toggle-on': (44, 22), 'ui-toggle-on-hovered': (44, 22)}
+        self.assertEqual(sorted(assets), sorted(sizes))
+        for id, (w, h) in sizes.items():
+            a = assets[id]
+            self.assertEqual((a['category'], a['kind'], a['place'], a['w'], a['h'], len(a['frames'])), ('UI', 'still', 'none', w, h, 1), id)
+            rows = a['frames'][0]
+            self.assertEqual((len(rows[0]), len(rows)), (w, h), id)
+
+    def test_the_wrapping_middle_joins_itself(self):
+        a = self.assets()
+        for id in ('ui-slider-track-mid', 'ui-slider-fill-mid'):
+            rows = a[id]['frames'][0]
+            for y in range(16):
+                # the first and last columns of a middle are the same kind of pixel in the same rows, so a run of them has no seam
+                self.assertEqual(rows[y][0] == '.', rows[y][-1] == '.', f'{id} row {y}')
+
+    def test_the_track_caps_meet_the_middle(self):
+        a = self.assets()
+        for y in range(16):
+            self.assertEqual(a['ui-slider-track-left']['frames'][0][y][-1] == '.', a['ui-slider-track-mid']['frames'][0][y][0] == '.', y)
+            self.assertEqual(a['ui-slider-track-right']['frames'][0][y][0] == '.', a['ui-slider-track-mid']['frames'][0][y][-1] == '.', y)
+
+    def test_the_fill_sits_inside_the_trough(self):
+        a = self.assets()
+        for piece in ('left', 'mid'):
+            rows = a[f'ui-slider-fill-{piece}']['frames'][0]
+            for y in (0, 1, 2, 13, 14, 15):
+                self.assertTrue(all(c == '.' for c in rows[y]), f'fill {piece} row {y}')
+
+    def test_every_round_piece_is_outlined(self):
+        for id, a in self.assets().items():
+            if 'fill' in id:
+                continue
+            rows = a['frames'][0]
+            h, w = len(rows), len(rows[0])
+            for y in range(h):
+                for x in range(w):
+                    if rows[y][x] in '.OzA':                                      # moss may sit over the outline
+                        continue
+                    for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+                        nx, ny = x + dx, y + dy
+                        if 0 <= nx < w and 0 <= ny < h:                       # a cap's open side is allowed
+                            self.assertNotEqual(rows[ny][nx], '.', f'{id}: a bare edge at {x},{y}')
+
+    def test_the_states_differ(self):
+        a = self.assets()
+        for group in (('ui-slider-knob-default', 'ui-slider-knob-hovered', 'ui-slider-knob-pressed'),
+                      ('ui-toggle-off', 'ui-toggle-off-hovered', 'ui-toggle-on', 'ui-toggle-on-hovered')):
+            self.assertEqual(len({tuple(a[i]['frames'][0]) for i in group}), len(group))
+
+    def test_the_toggle_knob_is_at_the_left_when_off_and_the_right_when_on(self):
+        a = self.assets()
+        def bead(id):
+            rows = a[id]['frames'][0]
+            xs = [x for r in rows for x, c in enumerate(r) if c in 'dba']
+            return sum(xs) / len(xs) if xs else None
+        self.assertGreater(bead('ui-toggle-on'), 30)
+        off = a['ui-toggle-off']['frames'][0]
+        self.assertTrue(any(c != '.' for c in off[11][:12]))
+
+    def test_it_is_the_same_every_time(self):
+        import make_ui_controls as m
+        self.assertEqual([x['frames'] for x in m.build_assets()], [x['frames'] for x in m.build_assets()])
+
+
+class HudIcons(unittest.TestCase):
+    """The text icons: gold (a golden mushroom), experience (a star) and the three difficulty skulls, 16 x 16 each, outlined, and the skulls the same picture in three colours."""
+
+    def assets(self):
+        return {a['id']: a for a in assets_of('hud-icons')}
+
+    def test_five_16_pixel_stills(self):
+        assets = self.assets()
+        self.assertEqual(sorted(assets), ['icon-gold', 'icon-skull-green', 'icon-skull-red', 'icon-skull-yellow', 'icon-xp'])
+        for a in assets.values():
+            self.assertEqual((a['category'], a['kind'], a['place'], a['w'], a['h'], len(a['frames'])), ('UI', 'still', 'none', 16, 16, 1), a['id'])
+            rows = a['frames'][0]
+            self.assertEqual((len(rows), len(rows[0])), (16, 16), a['id'])
+            self.assertGreater(sum(c != '.' for r in rows for c in r), 60, a['id'])
+
+    def test_every_icon_is_outlined(self):
+        for a in self.assets().values():
+            rows = a['frames'][0]
+            for y in range(16):
+                for x in range(16):
+                    if rows[y][x] in '.O':
+                        continue
+                    for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+                        nx, ny = x + dx, y + dy
+                        self.assertTrue(0 <= nx < 16 and 0 <= ny < 16 and rows[ny][nx] != '.', f'{a["id"]}: a bare edge at {x},{y}')
+
+    def test_the_skulls_are_one_picture_in_three_colours(self):
+        assets = self.assets()
+        masks = {c: [''.join('X' if ch != '.' else '.' for ch in r) for r in assets[f'icon-skull-{c}']['frames'][0]] for c in ('green', 'yellow', 'red')}
+        self.assertEqual(masks['green'], masks['yellow'])
+        self.assertEqual(masks['green'], masks['red'])
+        self.assertEqual(len({tuple(assets[f'icon-skull-{c}']['frames'][0]) for c in ('green', 'yellow', 'red')}), 3)
+        used = {c: set(''.join(assets[f'icon-skull-{c}']['frames'][0])) - set('.Ox') for c in ('green', 'yellow', 'red')}
+        self.assertEqual(used['green'], {'z', 'A'})                                # light and middle: lime and green
+        self.assertEqual(used['yellow'], {'d', 'b'})                               # yellow and amber
+        self.assertEqual(used['red'], {'c', 'e'})                                  # salmon and coral
+        rows = assets['icon-skull-green']['frames'][0]                          # 13 x 14, from (1, 1)
+        self.assertEqual((min(i for r in rows for i, c in enumerate(r) if c != '.'), max(i for r in rows for i, c in enumerate(r) if c != '.')), (1, 13))
+        self.assertEqual((min(y for y, r in enumerate(rows) if r.strip('.')), max(y for y, r in enumerate(rows) if r.strip('.'))), (1, 14))
+
+    def test_gold_is_golden_and_experience_is_cyan(self):
+        assets = self.assets()
+        gold = set(''.join(assets['icon-gold']['frames'][0])) - set('.O')
+        self.assertTrue({'d', 'b', 'a'} <= gold, gold)
+        xp = set(''.join(assets['icon-xp']['frames'][0])) - set('.O')
+        self.assertTrue(xp <= set('rotn') | {'m'}, xp)
+        self.assertIn('o', xp)
+
+
+class ItemIcons(unittest.TestCase):
+    """The 26 item pictures: 32 x 32 stills, outlined, in palette roles, with the weapons on the same diagonal."""
+
+    IDS = ['recurve_bow', 'sling', 'worn_sword', 'worn_dagger', 'worn_bow', 'oak_staff', 'warding_staff', 'storm_staff', 'leather_jerkin', 'iron_mail', 'warden_plate', 'dragonscale_mail',
+           'swift_boots', 'windrunner_boots', 'warding_charm', 'vigor_ring', 'strength_band', 'sage_amulet', 'giants_belt', 'hawkeye_pendant', 'guardian_sigil', 'sage_circlet',
+           'summit_crown', 'phoenix_heart', 'stormcaller_band', 'stone_idol']
+
+    def assets(self):
+        return {a['id']: a for a in assets_of('item-icons')}
+
+    def test_twenty_six_32_pixel_stills_named_for_the_games_ids(self):
+        assets = self.assets()
+        self.assertEqual(sorted(assets), sorted('item-' + i for i in self.IDS))
+        for a in assets.values():
+            self.assertEqual((a['category'], a['kind'], a['place'], a['w'], a['h'], len(a['frames'])), ('Item icons', 'still', 'none', 32, 32, 1), a['id'])
+            rows = a['frames'][0]
+            self.assertEqual((len(rows), len(rows[0])), (32, 32), a['id'])
+            self.assertGreater(sum(c != '.' for r in rows for c in r), 120, f'{a["id"]} is nearly empty')
+            self.assertEqual(rows[0][0], '.', a['id'])
+
+    def test_every_icon_is_outlined_and_inside_its_cell(self):
+        for a in self.assets().values():
+            rows = a['frames'][0]
+            for y in range(32):
+                for x in range(32):
+                    if rows[y][x] in '.O':
+                        continue
+                    for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+                        nx, ny = x + dx, y + dy
+                        if not (0 <= nx < 32 and 0 <= ny < 32):
+                            continue                                             # an icon may run to the edge of its cell
+                        self.assertNotEqual(rows[ny][nx], '.', f'{a["id"]}: a bare edge at {x},{y}')
+
+    def test_the_weapons_lie_on_one_diagonal_rising_to_the_right(self):
+        for name in ('recurve_bow', 'worn_sword', 'worn_dagger', 'worn_bow', 'oak_staff', 'warding_staff', 'storm_staff'):
+            rows = self.assets()['item-' + name]['frames'][0]
+            pts = [(x, y) for y, r in enumerate(rows) for x, c in enumerate(r) if c not in '.O']
+            n = len(pts)
+            mx, my = sum(p[0] for p in pts) / n, sum(p[1] for p in pts) / n
+            cov = sum((x - mx) * (y - my) for x, y in pts) / n
+            self.assertLess(cov, 0, f'{name} does not slope up to the right')          # y grows downwards, so a rise to the right is a negative covariance
+
+    def test_it_is_the_same_every_time(self):
+        import make_item_icons3d as m
+        self.assertEqual([a['frames'] for a in m.build_assets()], [a['frames'] for a in m.build_assets()])
 
 
 class AllTree(unittest.TestCase):
@@ -613,7 +969,7 @@ class Registry(unittest.TestCase):
 
     def test_every_asset_record_has_the_keys_the_page_and_the_game_read(self):
         required = {'id', 'label', 'category', 'kind', 'place', 'w', 'h', 'cols', 'rows', 'fps', 'anchor', 'frames'}
-        for name in ('chests', 'fungi', 'trees', 'slot-icons', 'blood-pool', 'all-tree', 'all-tree-fall', 'all-tree-wide', 'all-tree-fall-wide', 'traps', 'bazaar', 'crystal', 'rock', 'amulets', 'buildings', 'nodemap'):
+        for name in ('chests', 'fungi', 'trees', 'slot-icons', 'blood-pool', 'body-explosion', 'all-tree', 'all-tree-fall', 'all-tree-wide', 'all-tree-fall-wide', 'traps', 'bazaar', 'crystal', 'rock', 'amulets', 'buildings', 'nodemap'):
             for a in assets_of(name):
                 self.assertLessEqual(required, set(a), f'{name}: {a.get("id")} lacks {required - set(a)}')
                 self.assertIn(a['kind'], ('still', 'animation', 'variants'), a['id'])

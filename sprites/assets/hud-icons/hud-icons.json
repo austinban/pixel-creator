@@ -1,0 +1,37 @@
+{
+ "about": "The small text icons in this folder. See README.md beside this file.",
+ "cell": [
+  16,
+  16
+ ],
+ "icons": {
+  "gold": {
+   "label": "Gold (a golden mushroom)",
+   "file": "icon-gold.png"
+  },
+  "xp": {
+   "label": "Experience points (a star of light)",
+   "file": "icon-xp.png"
+  },
+  "skull-green": {
+   "label": "Fight difficulty: easy (green skull)",
+   "file": "icon-skull-green.png"
+  },
+  "skull-yellow": {
+   "label": "Fight difficulty: even (yellow skull)",
+   "file": "icon-skull-yellow.png"
+  },
+  "skull-red": {
+   "label": "Fight difficulty: hard (red skull)",
+   "file": "icon-skull-red.png"
+  }
+ },
+ "skull": {
+  "size": [
+   13,
+   14
+  ],
+  "advance": 14,
+  "about": "a skull fills 13 x 14 of its 16 x 16 cell, from (1, 1); put them 14 pixels apart in a row"
+ }
+}

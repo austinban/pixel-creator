@@ -2180,6 +2180,75 @@
    ]
   },
   {
+   "id": "ui-button-primary-short-xs",
+   "label": "Button, primary, short, xs",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 48,
+   "h": 32,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-primary-short-xs.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-primary-compact-sm",
+   "label": "Button, primary, compact, sm",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 112,
+   "h": 40,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-primary-compact-sm.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-primary-icon-sq",
+   "label": "Button, primary, icon, sq",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 36,
+   "h": 36,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-primary-icon-sq.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
    "id": "ui-button-low-std-sm",
    "label": "Button, low contrast, standard, sm",
    "category": "UI",
@@ -2356,6 +2425,75 @@
     "y": 0
    },
    "file": "buttons/ui-button-low-short-xl.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-low-short-xs",
+   "label": "Button, low contrast, short, xs",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 48,
+   "h": 32,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-low-short-xs.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-low-compact-sm",
+   "label": "Button, low contrast, compact, sm",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 112,
+   "h": 40,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-low-compact-sm.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-low-icon-sq",
+   "label": "Button, low contrast, icon, sq",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 36,
+   "h": 36,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-low-icon-sq.png",
    "frames": 3,
    "names": [
     "Default",
@@ -2546,6 +2684,345 @@
     "Hovered",
     "Active"
    ]
+  },
+  {
+   "id": "ui-button-red-short-xs",
+   "label": "Button, red, short, xs",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 48,
+   "h": 32,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-red-short-xs.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-red-compact-sm",
+   "label": "Button, red, compact, sm",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 112,
+   "h": 40,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-red-compact-sm.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-button-red-icon-sq",
+   "label": "Button, red, icon, sq",
+   "category": "UI",
+   "kind": "variants",
+   "place": "none",
+   "w": 36,
+   "h": 36,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "buttons/ui-button-red-icon-sq.png",
+   "frames": 3,
+   "names": [
+    "Default",
+    "Hovered",
+    "Active"
+   ]
+  },
+  {
+   "id": "ui-panel-tl",
+   "label": "Panel, TL",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 40,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "panel/ui-panel-tl.png",
+   "frames": 1
+  },
+  {
+   "id": "ui-panel-t",
+   "label": "Panel, T, vines",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 64,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "panel/ui-panel-t.png",
+   "frames": 1
+  },
+  {
+   "id": "ui-panel-tr",
+   "label": "Panel, TR",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 40,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "panel/ui-panel-tr.png",
+   "frames": 1
+  },
+  {
+   "id": "ui-panel-l",
+   "label": "Panel, L",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 40,
+   "h": 64,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "panel/ui-panel-l.png",
+   "frames": 1
+  },
+  {
+   "id": "ui-panel-c",
+   "label": "Panel, C",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 64,
+   "h": 64,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "panel/ui-panel-c.png",
+   "frames": 1
+  },
+  {
+   "id": "ui-panel-r",
+   "label": "Panel, R",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 40,
+   "h": 64,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "panel/ui-panel-r.png",
+   "frames": 1
+  },
+  {
+   "id": "ui-panel-bl",
+   "label": "Panel, BL",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 40,
+   "h": 44,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "panel/ui-panel-bl.png",
+   "frames": 1
+  },
+  {
+   "id": "ui-panel-b",
+   "label": "Panel, B",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 64,
+   "h": 44,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "panel/ui-panel-b.png",
+   "frames": 1
+  },
+  {
+   "id": "ui-panel-br",
+   "label": "Panel, BR",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 40,
+   "h": 44,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "panel/ui-panel-br.png",
+   "frames": 1
+  },
+  {
+   "id": "ui-panel-t2",
+   "label": "Panel, T2, mossy",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 64,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "panel/ui-panel-t2.png",
+   "frames": 1
+  },
+  {
+   "id": "ui-panel-t3",
+   "label": "Panel, T3, mushrooms",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 64,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "panel/ui-panel-t3.png",
+   "frames": 1
+  },
+  {
+   "id": "ui-panel-t4",
+   "label": "Panel, T4, one vine",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 64,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "panel/ui-panel-t4.png",
+   "frames": 1
+  },
+  {
+   "id": "ui-panel-t5",
+   "label": "Panel, T5, big caps",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 64,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "panel/ui-panel-t5.png",
+   "frames": 1
+  },
+  {
+   "id": "ui-panel-t6",
+   "label": "Panel, T6, glow-worms",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 64,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "panel/ui-panel-t6.png",
+   "frames": 1
+  },
+  {
+   "id": "ui-panel",
+   "label": "Panel, ready-made",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 320,
+   "h": 138,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "panel/ui-panel.png",
+   "frames": 1
   },
   {
    "id": "bridge",
@@ -3062,6 +3539,42 @@
    "frames": 4
   },
   {
+   "id": "bow-draw-stone-shaper-ne",
+   "label": "Bow draw NE (Stone-shaper)",
+   "category": "Animations",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 4,
+   "rows": 1,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 28
+   },
+   "file": "bow-draw-stone-shaper-ne.png",
+   "frames": 4
+  },
+  {
+   "id": "bow-draw-stone-shaper-se",
+   "label": "Bow draw SE (Stone-shaper)",
+   "category": "Animations",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 4,
+   "rows": 1,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 28
+   },
+   "file": "bow-draw-stone-shaper-se.png",
+   "frames": 4
+  },
+  {
    "id": "bow-draw-bones-ne",
    "label": "Bow draw NE (Bones)",
    "category": "Animations",
@@ -3292,6 +3805,1122 @@
     "Twin rocks",
     "Slab"
    ]
+  },
+  {
+   "id": "rock-ledge-1x1-h1",
+   "label": "Rock ledge 1 x 1, 1 high",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 38,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 28
+   },
+   "file": "rocks/rock-ledge-1x1-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-ledge-1x2-h1",
+   "label": "Rock ledge 1 x 2, 1 high",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 46,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 32
+   },
+   "file": "rocks/rock-ledge-1x2-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-ledge-2x1-h1",
+   "label": "Rock ledge 2 x 1, 1 high",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 46,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 32
+   },
+   "file": "rocks/rock-ledge-2x1-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-ledge-2x2-h1",
+   "label": "Rock ledge 2 x 2, 1 high",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 36
+   },
+   "file": "rocks/rock-ledge-2x2-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-ledge-1x1-h2",
+   "label": "Rock ledge 1 x 1, 2 high",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 44
+   },
+   "file": "rocks/rock-ledge-1x1-h2.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-ledge-1x2-h2",
+   "label": "Rock ledge 1 x 2, 2 high",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 62,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 48
+   },
+   "file": "rocks/rock-ledge-1x2-h2.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-ledge-2x1-h2",
+   "label": "Rock ledge 2 x 1, 2 high",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 62,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 48
+   },
+   "file": "rocks/rock-ledge-2x1-h2.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-ledge-2x2-h2",
+   "label": "Rock ledge 2 x 2, 2 high",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 70,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 52
+   },
+   "file": "rocks/rock-ledge-2x2-h2.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-ledge-1x3-h1",
+   "label": "Rock ledge 1 x 3, 1 high",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 36
+   },
+   "file": "rocks/rock-ledge-1x3-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-ledge-3x1-h1",
+   "label": "Rock ledge 3 x 1, 1 high",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 36
+   },
+   "file": "rocks/rock-ledge-3x1-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-ledge-1x3-h2",
+   "label": "Rock ledge 1 x 3, 2 high",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 70,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 52
+   },
+   "file": "rocks/rock-ledge-1x3-h2.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-ledge-3x1-h2",
+   "label": "Rock ledge 3 x 1, 2 high",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 70,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 52
+   },
+   "file": "rocks/rock-ledge-3x1-h2.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-ledge-l-n-h1",
+   "label": "Rock ledge, L (empty n), 1 high",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 36
+   },
+   "file": "rocks/rock-ledge-l-n-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-ledge-l-e-h1",
+   "label": "Rock ledge, L (empty e), 1 high",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 36
+   },
+   "file": "rocks/rock-ledge-l-e-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-ledge-l-s-h1",
+   "label": "Rock ledge, L (empty s), 1 high",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 36
+   },
+   "file": "rocks/rock-ledge-l-s-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-ledge-l-w-h1",
+   "label": "Rock ledge, L (empty w), 1 high",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 36
+   },
+   "file": "rocks/rock-ledge-l-w-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-ledge-l-n-h2",
+   "label": "Rock ledge, L (empty n), 2 high",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 70,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 52
+   },
+   "file": "rocks/rock-ledge-l-n-h2.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-ledge-l-e-h2",
+   "label": "Rock ledge, L (empty e), 2 high",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 70,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 52
+   },
+   "file": "rocks/rock-ledge-l-e-h2.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-ledge-l-s-h2",
+   "label": "Rock ledge, L (empty s), 2 high",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 70,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 52
+   },
+   "file": "rocks/rock-ledge-l-s-h2.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-ledge-l-w-h2",
+   "label": "Rock ledge, L (empty w), 2 high",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 70,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 52
+   },
+   "file": "rocks/rock-ledge-l-w-h2.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-ledge-l4-0-h1",
+   "label": "Rock ledge, long L (turn 0), 1 high",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 92,
+   "h": 62,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 46,
+    "y": 40
+   },
+   "file": "rocks/rock-ledge-l4-0-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-ledge-l4-1-h1",
+   "label": "Rock ledge, long L (turn 1), 1 high",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 92,
+   "h": 62,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 46,
+    "y": 40
+   },
+   "file": "rocks/rock-ledge-l4-1-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-ledge-l4-2-h1",
+   "label": "Rock ledge, long L (turn 2), 1 high",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 92,
+   "h": 62,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 46,
+    "y": 40
+   },
+   "file": "rocks/rock-ledge-l4-2-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-ledge-l4-3-h1",
+   "label": "Rock ledge, long L (turn 3), 1 high",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 92,
+   "h": 62,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 46,
+    "y": 40
+   },
+   "file": "rocks/rock-ledge-l4-3-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-crag-1x1-a",
+   "label": "Boulder",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 33,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 23
+   },
+   "file": "rocks/rock-crag-1x1-a.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-crag-1x1-b",
+   "label": "Crag",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 45,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 35
+   },
+   "file": "rocks/rock-crag-1x1-b.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-crag-1x1-c",
+   "label": "Tall crag",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 63,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 53
+   },
+   "file": "rocks/rock-crag-1x1-c.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-crag-1x2",
+   "label": "Crag ridge 1 x 2",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 64,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 50
+   },
+   "file": "rocks/rock-crag-1x2.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-crag-2x1",
+   "label": "Crag ridge 2 x 1",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 60,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 46
+   },
+   "file": "rocks/rock-crag-2x1.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-crag-2x2",
+   "label": "Massif 2 x 2",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 89,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 71
+   },
+   "file": "rocks/rock-crag-2x2.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-crag-1x3",
+   "label": "Long ridge 1 x 3",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 66,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 48
+   },
+   "file": "rocks/rock-crag-1x3.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-crag-3x1",
+   "label": "Long ridge 3 x 1",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 68,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 50
+   },
+   "file": "rocks/rock-crag-3x1.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-crag-l-n",
+   "label": "Scree, L (empty n)",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 60,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 42
+   },
+   "file": "rocks/rock-crag-l-n.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-crag-l-e",
+   "label": "Scree, L (empty e)",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 62,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 44
+   },
+   "file": "rocks/rock-crag-l-e.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-crag-l-s",
+   "label": "Scree, L (empty s)",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 61,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 43
+   },
+   "file": "rocks/rock-crag-l-s.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-crag-l-w",
+   "label": "Scree, L (empty w)",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 62,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 44
+   },
+   "file": "rocks/rock-crag-l-w.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-slab-1x1-h1",
+   "label": "Worn slab 1 x 1, 1 high",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 38,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 28
+   },
+   "file": "rocks/rock-slab-1x1-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-slab-1x2-h1",
+   "label": "Worn slab 1 x 2, 1 high",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 46,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 32
+   },
+   "file": "rocks/rock-slab-1x2-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-slab-2x1-h1",
+   "label": "Worn slab 2 x 1, 1 high",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 46,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 32
+   },
+   "file": "rocks/rock-slab-2x1-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-slab-2x2-h1",
+   "label": "Worn slab 2 x 2, 1 high",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 36
+   },
+   "file": "rocks/rock-slab-2x2-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-slab-1x1-h2",
+   "label": "Worn slab 1 x 1, 2 high",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 44
+   },
+   "file": "rocks/rock-slab-1x1-h2.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-slab-1x2-h2",
+   "label": "Worn slab 1 x 2, 2 high",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 62,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 48
+   },
+   "file": "rocks/rock-slab-1x2-h2.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-slab-2x1-h2",
+   "label": "Worn slab 2 x 1, 2 high",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 62,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 48
+   },
+   "file": "rocks/rock-slab-2x1-h2.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-slab-2x2-h2",
+   "label": "Worn slab 2 x 2, 2 high",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 70,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 52
+   },
+   "file": "rocks/rock-slab-2x2-h2.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-slab-1x3-h1",
+   "label": "Worn slab 1 x 3, 1 high",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 36
+   },
+   "file": "rocks/rock-slab-1x3-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-slab-3x1-h1",
+   "label": "Worn slab 3 x 1, 1 high",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 36
+   },
+   "file": "rocks/rock-slab-3x1-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-slab-l-n-h1",
+   "label": "Worn slab, L (empty n), 1 high",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 36
+   },
+   "file": "rocks/rock-slab-l-n-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-slab-l-e-h1",
+   "label": "Worn slab, L (empty e), 1 high",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 36
+   },
+   "file": "rocks/rock-slab-l-e-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-slab-l-s-h1",
+   "label": "Worn slab, L (empty s), 1 high",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 36
+   },
+   "file": "rocks/rock-slab-l-s-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-slab-l-w-h1",
+   "label": "Worn slab, L (empty w), 1 high",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 36
+   },
+   "file": "rocks/rock-slab-l-w-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-stone-boulder",
+   "label": "Boulder",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 33,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 23
+   },
+   "file": "rocks/rock-stone-boulder.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-stone-round",
+   "label": "Round stone",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 43,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 33
+   },
+   "file": "rocks/rock-stone-round.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-stone-standing",
+   "label": "Standing stone",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 62,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 52
+   },
+   "file": "rocks/rock-stone-standing.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-stone-pair-1x2",
+   "label": "Stone pair 1 x 2",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 49,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 35
+   },
+   "file": "rocks/rock-stone-pair-1x2.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-stone-pair-2x1",
+   "label": "Stone pair 2 x 1",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 47,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 33
+   },
+   "file": "rocks/rock-stone-pair-2x1.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-stone-cluster",
+   "label": "Stone cluster 2 x 2",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 70,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 52
+   },
+   "file": "rocks/rock-stone-cluster.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-stone-outcrop-1x3",
+   "label": "Outcrop 1 x 3",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 60,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 42
+   },
+   "file": "rocks/rock-stone-outcrop-1x3.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-stone-outcrop-3x1",
+   "label": "Outcrop 3 x 1",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 64,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 46
+   },
+   "file": "rocks/rock-stone-outcrop-3x1.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-stone-scree-n",
+   "label": "Scree, L (empty n)",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 55,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 37
+   },
+   "file": "rocks/rock-stone-scree-n.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-stone-scree-e",
+   "label": "Scree, L (empty e)",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 56,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 38
+   },
+   "file": "rocks/rock-stone-scree-e.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-stone-scree-s",
+   "label": "Scree, L (empty s)",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 57,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 39
+   },
+   "file": "rocks/rock-stone-scree-s.png",
+   "frames": 1
+  },
+  {
+   "id": "rock-stone-scree-w",
+   "label": "Scree, L (empty w)",
+   "category": "Nature",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 55,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 37
+   },
+   "file": "rocks/rock-stone-scree-w.png",
+   "frames": 1
   },
   {
    "id": "nodemap-grass-shore",
@@ -4433,6 +6062,780 @@
    "frames": 1
   },
   {
+   "id": "item-recurve_bow",
+   "label": "Recurve Bow",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-recurve_bow.png",
+   "frames": 1
+  },
+  {
+   "id": "item-sling",
+   "label": "Sling",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-sling.png",
+   "frames": 1
+  },
+  {
+   "id": "item-worn_sword",
+   "label": "Worn Sword",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-worn_sword.png",
+   "frames": 1
+  },
+  {
+   "id": "item-worn_dagger",
+   "label": "Worn Dagger",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-worn_dagger.png",
+   "frames": 1
+  },
+  {
+   "id": "item-worn_bow",
+   "label": "Worn Bow",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-worn_bow.png",
+   "frames": 1
+  },
+  {
+   "id": "item-oak_staff",
+   "label": "Oak Staff",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-oak_staff.png",
+   "frames": 1
+  },
+  {
+   "id": "item-warding_staff",
+   "label": "Warding Staff",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-warding_staff.png",
+   "frames": 1
+  },
+  {
+   "id": "item-storm_staff",
+   "label": "Storm Staff",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-storm_staff.png",
+   "frames": 1
+  },
+  {
+   "id": "item-leather_jerkin",
+   "label": "Leather Jerkin",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-leather_jerkin.png",
+   "frames": 1
+  },
+  {
+   "id": "item-iron_mail",
+   "label": "Iron Mail",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-iron_mail.png",
+   "frames": 1
+  },
+  {
+   "id": "item-warden_plate",
+   "label": "Warden's Plate",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-warden_plate.png",
+   "frames": 1
+  },
+  {
+   "id": "item-dragonscale_mail",
+   "label": "Dragonscale Mail",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-dragonscale_mail.png",
+   "frames": 1
+  },
+  {
+   "id": "item-swift_boots",
+   "label": "Swift Boots",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-swift_boots.png",
+   "frames": 1
+  },
+  {
+   "id": "item-windrunner_boots",
+   "label": "Windrunner Boots",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-windrunner_boots.png",
+   "frames": 1
+  },
+  {
+   "id": "item-warding_charm",
+   "label": "Warding Charm",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-warding_charm.png",
+   "frames": 1
+  },
+  {
+   "id": "item-vigor_ring",
+   "label": "Ring of Vigor",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-vigor_ring.png",
+   "frames": 1
+  },
+  {
+   "id": "item-strength_band",
+   "label": "Strength Band",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-strength_band.png",
+   "frames": 1
+  },
+  {
+   "id": "item-sage_amulet",
+   "label": "Sage Amulet",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-sage_amulet.png",
+   "frames": 1
+  },
+  {
+   "id": "item-giants_belt",
+   "label": "Giant's Belt",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-giants_belt.png",
+   "frames": 1
+  },
+  {
+   "id": "item-hawkeye_pendant",
+   "label": "Hawkeye Pendant",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-hawkeye_pendant.png",
+   "frames": 1
+  },
+  {
+   "id": "item-guardian_sigil",
+   "label": "Guardian Sigil",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-guardian_sigil.png",
+   "frames": 1
+  },
+  {
+   "id": "item-sage_circlet",
+   "label": "Sage's Circlet",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-sage_circlet.png",
+   "frames": 1
+  },
+  {
+   "id": "item-summit_crown",
+   "label": "Crown of the Summit",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-summit_crown.png",
+   "frames": 1
+  },
+  {
+   "id": "item-phoenix_heart",
+   "label": "Phoenix Heart",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-phoenix_heart.png",
+   "frames": 1
+  },
+  {
+   "id": "item-stormcaller_band",
+   "label": "Stormcaller Band",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-stormcaller_band.png",
+   "frames": 1
+  },
+  {
+   "id": "item-stone_idol",
+   "label": "Stone Idol",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-stone_idol.png",
+   "frames": 1
+  },
+  {
+   "id": "icon-gold",
+   "label": "Gold (a golden mushroom)",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 16,
+   "h": 16,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 8,
+    "y": 8
+   },
+   "file": "hud-icons/icon-gold.png",
+   "frames": 1
+  },
+  {
+   "id": "icon-xp",
+   "label": "Experience points (a star of light)",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 16,
+   "h": 16,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 8,
+    "y": 8
+   },
+   "file": "hud-icons/icon-xp.png",
+   "frames": 1
+  },
+  {
+   "id": "icon-skull-green",
+   "label": "Fight difficulty: easy (green skull)",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 16,
+   "h": 16,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 8,
+    "y": 8
+   },
+   "file": "hud-icons/icon-skull-green.png",
+   "frames": 1
+  },
+  {
+   "id": "icon-skull-yellow",
+   "label": "Fight difficulty: even (yellow skull)",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 16,
+   "h": 16,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 8,
+    "y": 8
+   },
+   "file": "hud-icons/icon-skull-yellow.png",
+   "frames": 1
+  },
+  {
+   "id": "icon-skull-red",
+   "label": "Fight difficulty: hard (red skull)",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 16,
+   "h": 16,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 8,
+    "y": 8
+   },
+   "file": "hud-icons/icon-skull-red.png",
+   "frames": 1
+  },
+  {
+   "id": "ui-slider-track-left",
+   "label": "Slider track, left",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 8,
+   "h": 16,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "ui-controls/ui-slider-track-left.png",
+   "frames": 1
+  },
+  {
+   "id": "ui-slider-track-mid",
+   "label": "Slider track, mid",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 16,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "ui-controls/ui-slider-track-mid.png",
+   "frames": 1
+  },
+  {
+   "id": "ui-slider-track-right",
+   "label": "Slider track, right",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 8,
+   "h": 16,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "ui-controls/ui-slider-track-right.png",
+   "frames": 1
+  },
+  {
+   "id": "ui-slider-fill-left",
+   "label": "Slider fill, left",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 8,
+   "h": 16,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "ui-controls/ui-slider-fill-left.png",
+   "frames": 1
+  },
+  {
+   "id": "ui-slider-fill-mid",
+   "label": "Slider fill, mid",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 16,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "ui-controls/ui-slider-fill-mid.png",
+   "frames": 1
+  },
+  {
+   "id": "ui-slider-knob-default",
+   "label": "Slider knob, default",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 24,
+   "h": 24,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 12,
+    "y": 12
+   },
+   "file": "ui-controls/ui-slider-knob-default.png",
+   "frames": 1
+  },
+  {
+   "id": "ui-slider-knob-hovered",
+   "label": "Slider knob, hovered",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 24,
+   "h": 24,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 12,
+    "y": 12
+   },
+   "file": "ui-controls/ui-slider-knob-hovered.png",
+   "frames": 1
+  },
+  {
+   "id": "ui-slider-knob-pressed",
+   "label": "Slider knob, pressed",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 24,
+   "h": 24,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 12,
+    "y": 12
+   },
+   "file": "ui-controls/ui-slider-knob-pressed.png",
+   "frames": 1
+  },
+  {
+   "id": "ui-toggle-off",
+   "label": "Toggle off",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 44,
+   "h": 22,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "ui-controls/ui-toggle-off.png",
+   "frames": 1
+  },
+  {
+   "id": "ui-toggle-off-hovered",
+   "label": "Toggle off, hovered",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 44,
+   "h": 22,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "ui-controls/ui-toggle-off-hovered.png",
+   "frames": 1
+  },
+  {
+   "id": "ui-toggle-on",
+   "label": "Toggle on",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 44,
+   "h": 22,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "ui-controls/ui-toggle-on.png",
+   "frames": 1
+  },
+  {
+   "id": "ui-toggle-on-hovered",
+   "label": "Toggle on, hovered",
+   "category": "UI",
+   "kind": "still",
+   "place": "none",
+   "w": 44,
+   "h": 22,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "ui-controls/ui-toggle-on-hovered.png",
+   "frames": 1
+  },
+  {
    "id": "blood-pool",
    "label": "Blood pool",
    "category": "Decals",
@@ -4457,6 +6860,24 @@
     "Pool 5",
     "Pool 6"
    ]
+  },
+  {
+   "id": "body-explosion",
+   "label": "Body explosion",
+   "category": "Animations",
+   "kind": "animation",
+   "place": "ground",
+   "w": 48,
+   "h": 48,
+   "cols": 6,
+   "rows": 1,
+   "fps": 12,
+   "anchor": {
+    "x": 24,
+    "y": 34
+   },
+   "file": "body-explosion.png",
+   "frames": 6
   },
   {
    "id": "all-tree",

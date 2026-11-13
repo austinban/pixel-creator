@@ -2,7 +2,8 @@
 """Amulets: pendant icons for the shop. Only an image each, nothing that is worn or animated.
 
 A 32 x 32 icon in the shared palette roles: a short chain hanging from the top and a pendant under it, lit from the upper left like everything
-else, with a one-pixel outline. Each is a stack of shapes (a mask and a ramp, shaded from the light), so a new one is a few lines.
+else, with a one-pixel outline. They are small 3D models (make_weapon_icons3d.py); this module has the build, the preview, and the `Icon` shape-stack the equipment slot icons are
+still drawn with, and the shared ramps.
 
     python3 tools/make_amulets.py --preview previews/amulets.png
 """
@@ -131,130 +132,18 @@ class Icon:
         return [''.join(r) for r in self.grid]
 
 
-def bail(icon, cy, ramp='gold'):
-    icon.layer(ring(16, cy, 0.9, 2.2), ramp)
-
-
-def ruby_heart():
-    i = Icon()
-    i.chain(((5, 1), (27, 1)), (16, 8))
-    bail(i, 9)
-    i.layer(heart(16, 20, 9.5), 'gold')
-    i.layer(heart(16, 20.4, 7.0), 'ruby')
-    i.dot(12, 17, 't')
-    return i.outline()
-
-
-def sapphire_round():
-    i = Icon()
-    i.chain(((5, 1), (27, 1)), (16, 8), 'silver')
-    bail(i, 9, 'silver')
-    i.layer(disc(16, 20, 9.2), 'silver')
-    i.layer(disc(16, 20, 6.6), 'sapphire')
-    i.layer(disc(16, 20, 3.0), 'sapphire', flat=3)
-    i.layer(disc(15.5, 19.5, 1.6), 'sapphire', flat=0)
-    i.dot(12, 16, 't')
-    return i.outline()
-
-
-def emerald_cut():
-    i = Icon()
-    i.chain(((5, 1), (27, 1)), (16, 8))
-    bail(i, 9)
-    i.layer(diamond(16, 20, 8.6, 10.6), 'gold')
-    i.layer(diamond(16, 20, 6.2, 8.2), 'emerald')
-    i.layer(poly([(16, 12.5), (21.5, 20), (16, 27.5), (10.5, 20)]), 'emerald', flat=None)
-    i.layer(poly([(16, 14.6), (19.4, 20), (16, 25.4), (12.6, 20)]), 'emerald', flat=2)
-    i.dot(13, 17, 't')
-    return i.outline()
-
-
-def sunstone():
-    i = Icon()
-    i.chain(((5, 1), (27, 1)), (16, 8))
-    bail(i, 9)
-    for k in range(8):
-        a = k * math.pi / 4
-        c, s = math.cos(a), math.sin(a)
-        tip = (16 + c * 11.5, 20 + s * 11.5)
-        l = (16 + math.cos(a - 0.38) * 7, 20 + math.sin(a - 0.38) * 7)
-        r = (16 + math.cos(a + 0.38) * 7, 20 + math.sin(a + 0.38) * 7)
-        i.layer(poly([tip, l, r]), 'gold', centre=(16, 20), radius=11)
-    i.layer(disc(16, 20, 7.0), 'gold')
-    i.layer(disc(16, 20, 4.6), 'topaz', centre=(16, 20), radius=5)
-    i.layer(disc(16, 20, 2.6), 'topaz', flat=1)
-    i.dot(14, 18, 't')
-    return i.outline()
-
-
-def moon():
-    i = Icon()
-    i.chain(((5, 1), (27, 1)), (16, 8), 'silver')
-    bail(i, 9, 'silver')
-    i.layer(minus(disc(16, 20, 9.6), disc(20.4, 18.2, 8.2)), 'silver', centre=(16, 20), radius=10)
-    i.layer(poly([(23.5, 21), (24.4, 23.6), (27, 24.4), (24.4, 25.2), (23.5, 27.8), (22.6, 25.2), (20, 24.4), (22.6, 23.6)]), 'gold', flat=1)
-    return i.outline()
-
-
-def skull():
-    i = Icon()
-    i.chain(((5, 1), (27, 1)), (16, 8), 'cord')
-    bail(i, 9, 'cord')
-    i.layer(union(ellipse(16, 18.4, 8.6, 8.0), rect(11.5, 21, 20.5, 27.4)), 'bone', centre=(16, 20), radius=10)
-    i.layer(ellipse(12.6, 18.4, 2.1, 2.6), 'hole', flat=0)
-    i.layer(ellipse(19.4, 18.4, 2.1, 2.6), 'hole', flat=0)
-    i.layer(poly([(16, 20.8), (14.7, 23.4), (17.3, 23.4)]), 'hole', flat=0)
-    for x in (13, 15, 17, 19):
-        i.layer(rect(x - 0.5, 25.2, x + 0.4, 27.4), 'bone', flat=2)
-    return i.outline()
-
-
-def rose():
-    i = Icon()
-    i.chain(((5, 1), (27, 1)), (16, 8))
-    bail(i, 9)
-    i.layer(ellipse(9.6, 22.4, 4.8, 2.2), 'leaf')
-    i.layer(ellipse(22.4, 22.4, 4.8, 2.2), 'leaf')
-    i.layer(disc(16, 18.6, 8.2), 'rose')
-    i.layer(ring(16, 18.6, 4.4, 5.4), 'rose', flat=3)
-    i.layer(ring(16, 18.6, 1.8, 2.7), 'rose', flat=3)
-    i.layer(disc(16, 18.6, 1.0), 'rose', flat=3)
-    i.layer(poly([(14, 25.8), (18, 25.8), (16, 28.6)]), 'leaf')
-    i.dot(12, 14, 't')
-    return i.outline()
-
-
-def rune_stone():
-    i = Icon()
-    i.chain(((5, 1), (27, 1)), (16, 8), 'steel')
-    bail(i, 9, 'steel')
-    hexagon = poly([(16, 11), (24.2, 15.6), (24.2, 24.4), (16, 29), (7.8, 24.4), (7.8, 15.6)])
-    i.layer(hexagon, 'stone', centre=(16, 20), radius=10)
-    i.layer(poly([(16, 13.4), (22.2, 16.9), (22.2, 23.1), (16, 26.6), (9.8, 23.1), (9.8, 16.9)]), 'stone', centre=(16, 20), radius=9, flat=1)
-    # a carved rune: a vertical stroke with two arms and a foot
-    for (x0, y0, x1, y1) in ((15, 15, 16, 25), (12, 17, 15, 18), (16, 20, 20, 21), (12, 23, 15, 24)):
-        i.layer(rect(x0, y0, x1, y1), 'rune', flat=1)
-    return i.outline()
-
-
-AMULETS = [
-    ('ruby-heart', 'Ruby heart', ruby_heart),
-    ('sapphire', 'Sapphire', sapphire_round),
-    ('emerald', 'Emerald', emerald_cut),
-    ('sunstone', 'Sunstone', sunstone),
-    ('moon', 'Moon', moon),
-    ('skull', 'Bone skull', skull),
-    ('rose', 'Rose', rose),
-    ('rune-stone', 'Rune stone', rune_stone),
-]
+def amulet_list():
+    """The eight amulets as (id, label, drawing): small 3D models, drawn in make_weapon_icons3d.py (loaded here, when it is wanted, because that module builds on this one's ramps)."""
+    import make_weapon_icons3d
+    return make_weapon_icons3d.AMULETS
 
 
 def preview(path, scale=8):
     from PIL import Image, ImageDraw
     rgb = {c: tuple(int(h[i:i + 2], 16) for i in (0, 2, 4)) for c, _, _, _, h in ep.ROLES}
-    sheet = Image.new('RGBA', (len(AMULETS) * (CELL * scale + 8), CELL * scale + 28), (60, 64, 74, 255))
+    sheet = Image.new('RGBA', (len(amulet_list()) * (CELL * scale + 8), CELL * scale + 28), (60, 64, 74, 255))
     d = ImageDraw.Draw(sheet)
-    for k, (_, label, make) in enumerate(AMULETS):
+    for k, (_, label, make) in enumerate(amulet_list()):
         cell = Image.new('RGBA', (CELL, CELL), (0, 0, 0, 0))
         for y, line in enumerate(make()):
             for x, ch in enumerate(line):
@@ -276,11 +165,11 @@ def main():
 
 def build_assets():
     # Amulets: pendant icons for the shop, one image each (nothing is worn), as the variants of one asset.
-    amulet_frames = [make() for _, _, make in AMULETS]
+    amulet_frames = [make() for _, _, make in amulet_list()]
     cols, rows = sheet_layout(len(amulet_frames))
     amulet_asset = {
         'id': 'amulets', 'label': 'Amulets (shop icons)', 'category': 'Amulets', 'kind': 'variants', 'place': 'none',
-        'names': [label for _, label, _ in AMULETS],
+        'names': [label for _, label, _ in amulet_list()],
         'w': CELL, 'h': CELL, 'cols': cols, 'rows': rows, 'fps': 0,
         'anchor': {'x': CELL // 2, 'y': CELL // 2},
         'frames': amulet_frames,

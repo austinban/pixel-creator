@@ -105,13 +105,14 @@ I3 = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
 
 
 # --- building a creature -------------------------------------------------------------------
-def part(c, r, mat, name, R=None):
+def part(c, r, mat, name, R=None, box=False):
     """An ellipsoid: centre, the three radii, its material, a name, and its orientation.
 
+    With `box=True` it is a rectangular block with the same three half-sizes, flat faces and square edges, not an ellipsoid.
     Parts with the same name are one piece; where a nearer piece overlaps a different one,
     the edge falls into shadow, which is what separates a leg from the body.
     """
-    return dict(c=c, r=r, R=R or I3, mat=mat, part=name)
+    return dict(c=c, r=r, R=R or I3, mat=mat, part=name, box=box)
 
 
 def two_bone(hip, target, upper, lower, knee_forward):
@@ -165,7 +166,7 @@ def render_frame(parts, decals, facing, origin, ramps, scale=1.0, decal_part='he
         d = mv(Rt, direction)
         d = (d[0] / r[0], d[1] / r[1], d[2] / r[2])
         cam = mv(B, q['c'])
-        prepared.append((q, Rt, r, d, d[0] * d[0] + d[1] * d[1] + d[2] * d[2], ox + cam[0], oy - cam[1], max(r) + 0.05))
+        prepared.append((q, Rt, r, d, d[0] * d[0] + d[1] * d[1] + d[2] * d[2], ox + cam[0], oy - cam[1], (math.sqrt(sum(x * x for x in r)) if q.get('box') else max(r)) + 0.05))
 
     best = {}               # (pixel row, column, sub-sample) -> (t, material, part, shade): the nearest ellipsoid on that ray
     for q, Rt, r, d, a, cx, cy, reach in prepared:
@@ -180,16 +181,35 @@ def render_frame(parts, decals, facing, origin, ramps, scale=1.0, decal_part='he
                         origin_m = mv(Bt, (sx - ox, oy - sy, 0.0))
                         o = mv(Rt, sub(origin_m, q['c']))
                         o = (o[0] / r[0], o[1] / r[1], o[2] / r[2])
-                        b = o[0] * d[0] + o[1] * d[1] + o[2] * d[2]
-                        c = o[0] * o[0] + o[1] * o[1] + o[2] * o[2] - 1
-                        disc = b * b - a * c
-                        if disc < 0:
-                            continue
-                        t = (-b + math.sqrt(disc)) / a
+                        if q.get('box'):                    # a block: the ray's way out of the unit cube, by the slab method
+                            t_in, t_out, face = -1e18, 1e18, 0
+                            for k in range(3):
+                                if abs(d[k]) < 1e-12:
+                                    if abs(o[k]) > 1:
+                                        t_out = -1e18
+                                    continue
+                                t1, t2 = (-1 - o[k]) / d[k], (1 - o[k]) / d[k]
+                                lo, hi = min(t1, t2), max(t1, t2)
+                                t_in = max(t_in, lo)
+                                if hi < t_out:
+                                    t_out, face = hi, k
+                            if t_in > t_out:
+                                continue
+                            t = t_out
+                        else:
+                            b = o[0] * d[0] + o[1] * d[1] + o[2] * d[2]
+                            c = o[0] * o[0] + o[1] * o[1] + o[2] * o[2] - 1
+                            disc = b * b - a * c
+                            if disc < 0:
+                                continue
+                            t = (-b + math.sqrt(disc)) / a
                         key = (py, px, i, j)
                         if key not in best or t > best[key][0]:
                             u = tuple(o[k] + t * d[k] for k in range(3))
-                            n = mv(q['R'], (u[0] / r[0], u[1] / r[1], u[2] / r[2]))
+                            if q.get('box'):
+                                n = mv(q['R'], tuple((1.0 if d[face] > 0 else -1.0) if k == face else 0.0 for k in range(3)))
+                            else:
+                                n = mv(q['R'], (u[0] / r[0], u[1] / r[1], u[2] / r[2]))
                             m = math.sqrt(sum(x * x for x in n)) or 1
                             nc = mv(B, tuple(x / m for x in n))
                             shade = 0.22 + 0.78 * max(0.0, sum(nc[k] * LIGHT[k] for k in range(3)))
