@@ -373,7 +373,41 @@
     "stair-ramp-h2-se",
     "stair-ramp-h2-sw"
    ],
-   "twin": null
+   "twin": "stairs-scaffold"
+  },
+  "stairs-scaffold": {
+   "label": "Scaffold stairs and ramps",
+   "role": "connector",
+   "fits": "any",
+   "style": "timber",
+   "note": "Wood plank twins of the stone stairs: the same 24 footprints, heights and directions, open timber frames. The stepped ones have no rail; the ramps do.",
+   "ids": [
+    "scaffold-h1-ne",
+    "scaffold-h1-nw",
+    "scaffold-h1-se",
+    "scaffold-h1-sw",
+    "scaffold-h2-ne",
+    "scaffold-h2-nw",
+    "scaffold-h2-se",
+    "scaffold-h2-sw",
+    "scaffold-ledge-ramp-h1-ne",
+    "scaffold-ledge-ramp-h1-nw",
+    "scaffold-ledge-ramp-h1-se",
+    "scaffold-ledge-ramp-h1-sw",
+    "scaffold-ledge-ramp-h2-ne",
+    "scaffold-ledge-ramp-h2-nw",
+    "scaffold-ledge-ramp-h2-se",
+    "scaffold-ledge-ramp-h2-sw",
+    "scaffold-ramp-h1-ne",
+    "scaffold-ramp-h1-nw",
+    "scaffold-ramp-h1-se",
+    "scaffold-ramp-h1-sw",
+    "scaffold-ramp-h2-ne",
+    "scaffold-ramp-h2-nw",
+    "scaffold-ramp-h2-se",
+    "scaffold-ramp-h2-sw"
+   ],
+   "twin": "stairs-new"
   },
   "ruins-walls": {
    "label": "Ruined walls",
@@ -1142,7 +1176,7 @@
     }
    ],
    "connectors": [
-    "stairs-new"
+    "stairs-scaffold"
    ],
    "structures": [],
    "weather": {
@@ -1414,7 +1448,9 @@
      "per100": 40
     }
    ],
-   "connectors": [],
+   "connectors": [
+    "stairs-scaffold"
+   ],
    "structures": [
     "docks"
    ],
@@ -1511,7 +1547,8 @@
    "water": null,
    "decals": [],
    "connectors": [
-    "stairs-new"
+    "stairs-new",
+    "stairs-scaffold"
    ],
    "structures": [
     "buildings"
@@ -1636,7 +1673,9 @@
    },
    "water": null,
    "decals": [],
-   "connectors": [],
+   "connectors": [
+    "stairs-scaffold"
+   ],
    "structures": [
     "buildings"
    ],
@@ -2003,7 +2042,9 @@
      "per100": 5
     }
    ],
-   "connectors": [],
+   "connectors": [
+    "stairs-scaffold"
+   ],
    "structures": [
     "docks-corrupted"
    ],

@@ -5607,6 +5607,438 @@
    "frames": 1
   },
   {
+   "id": "scaffold-h1-se",
+   "label": "Scaffold stairs, 1 up, rising toward SE",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 46,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 32
+   },
+   "file": "scaffold-stairs/scaffold-h1-se.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-h1-nw",
+   "label": "Scaffold stairs, 1 up, rising toward NW",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 46,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 32
+   },
+   "file": "scaffold-stairs/scaffold-h1-nw.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-h1-sw",
+   "label": "Scaffold stairs, 1 up, rising toward SW",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 46,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 32
+   },
+   "file": "scaffold-stairs/scaffold-h1-sw.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-h1-ne",
+   "label": "Scaffold stairs, 1 up, rising toward NE",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 46,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 32
+   },
+   "file": "scaffold-stairs/scaffold-h1-ne.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-h2-se",
+   "label": "Scaffold stairs, 2 up, rising toward SE",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 70,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 52
+   },
+   "file": "scaffold-stairs/scaffold-h2-se.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-h2-nw",
+   "label": "Scaffold stairs, 2 up, rising toward NW",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 70,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 52
+   },
+   "file": "scaffold-stairs/scaffold-h2-nw.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-h2-sw",
+   "label": "Scaffold stairs, 2 up, rising toward SW",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 70,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 52
+   },
+   "file": "scaffold-stairs/scaffold-h2-sw.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-h2-ne",
+   "label": "Scaffold stairs, 2 up, rising toward NE",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 70,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 52
+   },
+   "file": "scaffold-stairs/scaffold-h2-ne.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-ramp-h1-se",
+   "label": "Scaffold ramp, 1 up, rising toward SE",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 40
+   },
+   "file": "scaffold-stairs/scaffold-ramp-h1-se.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-ramp-h1-nw",
+   "label": "Scaffold ramp, 1 up, rising toward NW",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 40
+   },
+   "file": "scaffold-stairs/scaffold-ramp-h1-nw.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-ramp-h1-sw",
+   "label": "Scaffold ramp, 1 up, rising toward SW",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 40
+   },
+   "file": "scaffold-stairs/scaffold-ramp-h1-sw.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-ramp-h1-ne",
+   "label": "Scaffold ramp, 1 up, rising toward NE",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 40
+   },
+   "file": "scaffold-stairs/scaffold-ramp-h1-ne.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-ramp-h2-se",
+   "label": "Scaffold ramp, 2 up, rising toward SE",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 78,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 60
+   },
+   "file": "scaffold-stairs/scaffold-ramp-h2-se.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-ramp-h2-nw",
+   "label": "Scaffold ramp, 2 up, rising toward NW",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 78,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 60
+   },
+   "file": "scaffold-stairs/scaffold-ramp-h2-nw.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-ramp-h2-sw",
+   "label": "Scaffold ramp, 2 up, rising toward SW",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 78,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 60
+   },
+   "file": "scaffold-stairs/scaffold-ramp-h2-sw.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-ramp-h2-ne",
+   "label": "Scaffold ramp, 2 up, rising toward NE",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 78,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 60
+   },
+   "file": "scaffold-stairs/scaffold-ramp-h2-ne.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-ledge-ramp-h1-se",
+   "label": "Scaffold ledge with a ramp, 1 up, rising toward SE",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 55,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 41
+   },
+   "file": "scaffold-stairs/scaffold-ledge-ramp-h1-se.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-ledge-ramp-h1-nw",
+   "label": "Scaffold ledge with a ramp, 1 up, rising toward NW",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 55,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 41
+   },
+   "file": "scaffold-stairs/scaffold-ledge-ramp-h1-nw.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-ledge-ramp-h1-sw",
+   "label": "Scaffold ledge with a ramp, 1 up, rising toward SW",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 55,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 41
+   },
+   "file": "scaffold-stairs/scaffold-ledge-ramp-h1-sw.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-ledge-ramp-h1-ne",
+   "label": "Scaffold ledge with a ramp, 1 up, rising toward NE",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 55,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 41
+   },
+   "file": "scaffold-stairs/scaffold-ledge-ramp-h1-ne.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-ledge-ramp-h2-se",
+   "label": "Scaffold ledge with a ramp, 2 up, rising toward SE",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 79,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 61
+   },
+   "file": "scaffold-stairs/scaffold-ledge-ramp-h2-se.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-ledge-ramp-h2-nw",
+   "label": "Scaffold ledge with a ramp, 2 up, rising toward NW",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 79,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 61
+   },
+   "file": "scaffold-stairs/scaffold-ledge-ramp-h2-nw.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-ledge-ramp-h2-sw",
+   "label": "Scaffold ledge with a ramp, 2 up, rising toward SW",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 79,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 61
+   },
+   "file": "scaffold-stairs/scaffold-ledge-ramp-h2-sw.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-ledge-ramp-h2-ne",
+   "label": "Scaffold ledge with a ramp, 2 up, rising toward NE",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 79,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 61
+   },
+   "file": "scaffold-stairs/scaffold-ledge-ramp-h2-ne.png",
+   "frames": 1
+  },
+  {
    "id": "ruin-wall-x-h05",
    "label": "Broken wall along x, 0.5 high",
    "category": "Ruins",

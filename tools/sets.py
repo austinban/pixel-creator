@@ -76,6 +76,8 @@ GROUPS = {
     'stairs': dict(label='Ground stairs', role='cover', fits='any', style='blocky', ids=['ground-0-1', 'ground-1-1'], note='Two stair cubes from the ground sheet.'),
     'stairs-new': dict(label='Stairs and ramps', role='connector', fits='any', style='blocky', prefix='stair-',
                        note='1 and 2 levels, stairs, ramps and ramps ending in a ledge, in four directions; the high end is flush with a ledge or slab of the same height.'),
+    'stairs-scaffold': dict(label='Scaffold stairs and ramps', role='connector', fits='any', style='timber', prefix='scaffold-',
+                            note='Wood plank twins of the stone stairs: the same 24 footprints, heights and directions, open timber frames. The stepped ones have no rail; the ramps do.'),
     'ruins-walls': dict(label='Ruined walls', role='cover', fits='any', style='blocky', regex=r'^ruin-(wall|corner|tee|arch)-(?!2x1|1x2)(?!.*-grown$).*',
                         note='Broken walls at half, one and two levels, corners, tees and arches: cover and line-of-sight blockers, never walkable. Each says `cover` low, high or full.'),
     'ruins-walls-grown': dict(label='Overgrown ruined walls', role='cover', fits='any', style='fungal', regex=r'^ruin-(wall|corner|tee|arch)-(?!2x1|1x2).*-grown$',
@@ -145,7 +147,7 @@ SETS = {
         features=dict(per100=3.0, groups={'rocks-slab': 3, 'rocks-stone': 3, 'low-hay': 1}),
         water=dict(per100=8.0, groups={'stepping-stones': 3}),
         decals=[dict(group='lily-pads', on='water', per100=18), dict(group='reeds', on='shore', per100=30)],
-        connectors=['stairs-new'],
+        connectors=['stairs-scaffold'],
         weather=dict(chance=0.3, groups={'weather-petals': 2, 'weather-rain': 1}),
     ),
     'highland': dict(
@@ -167,6 +169,7 @@ SETS = {
         features=dict(per100=2.0, groups={'rocks-slab': 2, 'rocks-stone': 3}),
         water=dict(per100=7.0, groups={'stepping-stones': 3, 'rowboats': 1}),
         decals=[dict(group='lily-pads', on='water', per100=22), dict(group='reeds', on='shore', per100=40)],
+        connectors=['stairs-scaffold'],
         structures=['docks'],
         weather=dict(chance=0.35, groups={'weather-fog': 2, 'weather-rain': 2}),
     ),
@@ -176,7 +179,7 @@ SETS = {
         grass=[((0, 0), 12), ((9, 1), 4)], lake=0, level='flush', bridge=None,
         scatter=dict(density=0.13, groups={'fences': 3, 'crates': 3, 'bushes': 2, 'trees-temperate': 1, 'destructibles-small': 3}),
         features=dict(per100=3.5, groups={'low-stalls': 3, 'low-hay': 3, 'low-carts': 2, 'rocks-ledge': 2, 'destructibles-long': 1}),
-        connectors=['stairs-new'],
+        connectors=['stairs-new', 'stairs-scaffold'],
         structures=['buildings'],
         weather=dict(chance=0.2, groups={'weather-rain': 1}),
     ),
@@ -186,6 +189,7 @@ SETS = {
         grass=[((0, 0), 8), ((9, 1), 6), ((8, 7), 2)], lake=0, level='flush', bridge=None,
         scatter=dict(density=0.15, groups={'trees-dead': 3, 'fences': 2, 'crates': 2, 'logs': 2, 'ground-props-plain': 1, 'ruins-walls': 4, 'ruins-walls-grown': 1, 'destructibles-small': 2}),
         features=dict(per100=4.5, groups={'ruins-heaps': 3, 'ruins-walls-long': 2, 'ruins-floors': 2, 'ruins-floors-grown': 1, 'ruins-heaps-grown': 1, 'rocks-crag': 1, 'low-hay': 1, 'destructibles-long': 1}),
+        connectors=['stairs-scaffold'],
         structures=['buildings'],
         weather=dict(chance=0.6, groups={'weather-embers': 3, 'weather-fog': 1}),
     ),
@@ -216,13 +220,14 @@ SETS = {
         features=dict(per100=2.5, groups={'rocks-stone': 3, 'rocks-slab': 1, 'shelf-fungus': 1, 'thorn-walls': 1}),
         water=dict(per100=8.0, groups={'stepping-stones': 3}),
         decals=[dict(group='mushroom-pads', on='water', per100=24), dict(group='reeds-corrupted', on='shore', per100=45), dict(group='mycelium', on='land', per100=5)],
+        connectors=['stairs-scaffold'],
         structures=['docks-corrupted'],
         weather=dict(chance=0.8, groups={'weather-haze': 3, 'weather-fog': 2}),
     ),
 }
 
 # Groups that are two looks of the same thing: same role, same footprints, so a map can swap one for the other and keep every rule. (Symmetric.)
-TWINS = [('rocks-ledge', 'rocks-slab'), ('rocks-crag', 'rocks-stone'), ('trees-temperate', 'mushroom-trees'), ('ground-props-plain', 'ground-props-corrupted')]
+TWINS = [('stairs-new', 'stairs-scaffold'), ('rocks-ledge', 'rocks-slab'), ('rocks-crag', 'rocks-stone'), ('trees-temperate', 'mushroom-trees'), ('ground-props-plain', 'ground-props-corrupted')]
 
 
 def fits(group, ground):

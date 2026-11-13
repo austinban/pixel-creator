@@ -50,6 +50,7 @@ UNITS = [
     Unit('rocks', 'make_rocks'),
     Unit('bridges', 'make_bridges', depends=('make_stairs',)),
     Unit('stairs', 'make_stairs'),
+    Unit('scaffold-stairs', 'make_scaffold_stairs', depends=('make_stairs', 'voxelkit')),
     Unit('ruins', 'make_ruins'),
     Unit('low-structures', 'make_lowstructures'),
     Unit('corrupted-terrain', 'make_corrupted_terrain'),

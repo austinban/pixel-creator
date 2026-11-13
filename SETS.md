@@ -29,7 +29,7 @@ Every piece in a set fits its ground, and pieces that share a style stay cohesiv
 | In the water (8.0 per 100 water cells) | Stepping stones (3) |
 | Decals | Lily pads (on water, 18 per 100), Reeds (on shore, 30 per 100) |
 | Crossing | Plank bridges |
-| Stairs and ramps | Stairs and ramps |
+| Stairs and ramps | Scaffold stairs and ramps |
 | Weather (30% of maps) | Petals (2), Rain (1) |
 
 ### Highland (`highland`, plain ground)
@@ -53,6 +53,7 @@ Every piece in a set fits its ground, and pieces that share a style stay cohesiv
 | In the water (7.0 per 100 water cells) | Stepping stones (3), Rowboats (1) |
 | Decals | Lily pads (on water, 22 per 100), Reeds (on shore, 40 per 100) |
 | Crossing | Stone arch bridges |
+| Stairs and ramps | Scaffold stairs and ramps |
 | Structures | Docks |
 | Weather (35% of maps) | Fog and mist (2), Rain (2) |
 
@@ -62,7 +63,7 @@ Every piece in a set fits its ground, and pieces that share a style stay cohesiv
 |---|---|
 | Scatter (density 13%) | Fences (3), Crates (3), Bushes and hedges (2), Temperate trees (1), Small destructibles (3) |
 | Features (3.5 per 100 cells) | Stalls and sheds (3), Haybales and crate piles (3), Carts and wagons (2), Blocky ledges (2), Long destructibles (1) |
-| Stairs and ramps | Stairs and ramps |
+| Stairs and ramps | Stairs and ramps, Scaffold stairs and ramps |
 | Structures | Buildings |
 | Weather (20% of maps) | Rain (1) |
 
@@ -72,6 +73,7 @@ Every piece in a set fits its ground, and pieces that share a style stay cohesiv
 |---|---|
 | Scatter (density 15%) | Dead tree (3), Fences (2), Crates (2), Logs (2), Plain ground props (1), Ruined walls (4), Overgrown ruined walls (1), Small destructibles (2) |
 | Features (4.5 per 100 cells) | Rubble heaps (3), Long ruined walls (2), Foundation floors (2), Overgrown floors (1), Overgrown rubble (1), Blocky crags (1), Haybales and crate piles (1), Long destructibles (1) |
+| Stairs and ramps | Scaffold stairs and ramps |
 | Structures | Buildings |
 | Weather (60% of maps) | Embers (3), Fog and mist (1) |
 
@@ -104,6 +106,7 @@ Every piece in a set fits its ground, and pieces that share a style stay cohesiv
 | In the water (8.0 per 100 water cells) | Stepping stones (3) |
 | Decals | Mushroom pads (on water, 24 per 100), Corrupted reeds (on shore, 45 per 100), Mycelium veins (on land, 5 per 100) |
 | Crossing | Corrupted bridges |
+| Stairs and ramps | Scaffold stairs and ramps |
 | Structures | Corrupted docks |
 | Weather (80% of maps) | Spore haze (3), Fog and mist (2) |
 
@@ -130,7 +133,8 @@ Every piece in a set fits its ground, and pieces that share a style stay cohesiv
 | `bridges-corrupt` Corrupted bridges | crossing | corrupted | fungal | 4 | spore-hollow, sunken-marsh | Plum stone with vines and mushrooms, 3 and 5 cells. Walkable. |
 | `bridges-broken` Broken bridges | crossing | any | blocky | 2 | - | A 5-cell arch bridge with a gap: the two ends are walkable, the middle is not. Scenery for a ruined crossing. |
 | `stairs` Ground stairs | cover | any | blocky | 2 | - | Two stair cubes from the ground sheet. |
-| `stairs-new` Stairs and ramps | connector | any | blocky | 24 | meadow, highland, market-town | 1 and 2 levels, stairs, ramps and ramps ending in a ledge, in four directions; the high end is flush with a ledge or slab of the same height. |
+| `stairs-new` Stairs and ramps | connector | any | blocky | 24 | highland, market-town | 1 and 2 levels, stairs, ramps and ramps ending in a ledge, in four directions; the high end is flush with a ledge or slab of the same height. |
+| `stairs-scaffold` Scaffold stairs and ramps | connector | any | timber | 24 | meadow, riverbank, market-town, fallen-town, sunken-marsh | Wood plank twins of the stone stairs: the same 24 footprints, heights and directions, open timber frames. The stepped ones have no rail; the ramps do. |
 | `ruins-walls` Ruined walls | cover | any | blocky | 20 | fallen-town | Broken walls at half, one and two levels, corners, tees and arches: cover and line-of-sight blockers, never walkable. Each says `cover` low, high or full. |
 | `ruins-walls-grown` Overgrown ruined walls | cover | any | fungal | 12 | fallen-town | The same walls with vines, moss and mushrooms: for corrupted maps and old ruins. |
 | `ruins-walls-long` Long ruined walls | blocker | any | blocky | 6 | fallen-town | Two cells long, one or two levels: cover and sight blockers. |
@@ -182,8 +186,9 @@ Every piece in a set fits its ground, and pieces that share a style stay cohesiv
 - `ground-props-plain` (natural) and `ground-props-corrupted` (fungal): scatter; fits plain and corrupted.
 - `rocks-ledge` (blocky) and `rocks-slab` (natural): platform; fits any and any.
 - `rocks-crag` (blocky) and `rocks-stone` (natural): blocker; fits any and any.
+- `stairs-new` (blocky) and `stairs-scaffold` (timber): connector; fits any and any.
 
-**Fits `any`** means the piece is drawn on either ground without a variant: `trees-dead`, `logs`, `fences`, `crates`, `rocks-ledge`, `rocks-slab`, `rocks-crag`, `rocks-stone`, `bridges-stone`, `bridges-plank`, `bridges-broken`, `stairs`, `stairs-new`, `ruins-walls`, `ruins-walls-grown`, `ruins-walls-long`, `ruins-heaps`, `ruins-heaps-grown`, `ruins-floors`, `ruins-floors-grown`, `low-hay`, `low-stalls`, `low-carts`, `gravestones`, `cairns-bones`, `monuments`, `rune-altar`, `spirit-lanterns`, `iron-fences`, `ritual-circles`, `rowboats`, `stepping-stones`, `destructibles-small`, `destructibles-long`, `weather-rain`, `weather-fog`, `weather-embers`, `weather-ripples`, `traps`, `chests`, `buildings`.
+**Fits `any`** means the piece is drawn on either ground without a variant: `trees-dead`, `logs`, `fences`, `crates`, `rocks-ledge`, `rocks-slab`, `rocks-crag`, `rocks-stone`, `bridges-stone`, `bridges-plank`, `bridges-broken`, `stairs`, `stairs-new`, `stairs-scaffold`, `ruins-walls`, `ruins-walls-grown`, `ruins-walls-long`, `ruins-heaps`, `ruins-heaps-grown`, `ruins-floors`, `ruins-floors-grown`, `low-hay`, `low-stalls`, `low-carts`, `gravestones`, `cairns-bones`, `monuments`, `rune-altar`, `spirit-lanterns`, `iron-fences`, `ritual-circles`, `rowboats`, `stepping-stones`, `destructibles-small`, `destructibles-long`, `weather-rain`, `weather-fog`, `weather-embers`, `weather-ripples`, `traps`, `chests`, `buildings`.
 
 **Fits one ground only:** `trees-temperate` (plain), `bushes` (plain), `mushroom-trees` (corrupted), `ground-props-plain` (plain), `ground-props-corrupted` (corrupted), `bridge-plank` (plain), `bridges-corrupt` (corrupted), `mycelium` (corrupted), `shelf-fungus` (corrupted), `spore-vents` (corrupted), `thorn-walls` (corrupted), `docks` (plain), `docks-corrupted` (corrupted), `waterfalls` (plain), `waterfalls-corrupted` (corrupted), `lily-pads` (plain), `mushroom-pads` (corrupted), `reeds` (plain), `reeds-corrupted` (corrupted), `weather-haze` (corrupted), `weather-petals` (plain). Do not put these in a set on the other ground.
 

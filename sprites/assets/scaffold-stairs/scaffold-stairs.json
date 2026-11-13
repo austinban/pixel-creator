@@ -1,0 +1,632 @@
+{
+ "about": "The scaffold stairs in this folder. See README.md beside this file.",
+ "step": 4,
+ "walk_min": 0.6,
+ "margin": 6,
+ "pieces": {
+  "scaffold-h1-se": {
+   "label": "Scaffold stairs, 1 up, rising toward SE",
+   "file": "scaffold-h1-se.png",
+   "size": [
+    2,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "up": "se",
+   "rise_levels": 1,
+   "run_cells": 2,
+   "flat_cells": 0,
+   "walkable": true,
+   "stone_twin": "stair-h1-se"
+  },
+  "scaffold-h1-nw": {
+   "label": "Scaffold stairs, 1 up, rising toward NW",
+   "file": "scaffold-h1-nw.png",
+   "size": [
+    2,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "up": "nw",
+   "rise_levels": 1,
+   "run_cells": 2,
+   "flat_cells": 0,
+   "walkable": true,
+   "stone_twin": "stair-h1-nw"
+  },
+  "scaffold-h1-sw": {
+   "label": "Scaffold stairs, 1 up, rising toward SW",
+   "file": "scaffold-h1-sw.png",
+   "size": [
+    1,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "up": "sw",
+   "rise_levels": 1,
+   "run_cells": 2,
+   "flat_cells": 0,
+   "walkable": true,
+   "stone_twin": "stair-h1-sw"
+  },
+  "scaffold-h1-ne": {
+   "label": "Scaffold stairs, 1 up, rising toward NE",
+   "file": "scaffold-h1-ne.png",
+   "size": [
+    1,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "up": "ne",
+   "rise_levels": 1,
+   "run_cells": 2,
+   "flat_cells": 0,
+   "walkable": true,
+   "stone_twin": "stair-h1-ne"
+  },
+  "scaffold-h2-se": {
+   "label": "Scaffold stairs, 2 up, rising toward SE",
+   "file": "scaffold-h2-se.png",
+   "size": [
+    3,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ]
+   ],
+   "up": "se",
+   "rise_levels": 2,
+   "run_cells": 3,
+   "flat_cells": 0,
+   "walkable": true,
+   "stone_twin": "stair-h2-se"
+  },
+  "scaffold-h2-nw": {
+   "label": "Scaffold stairs, 2 up, rising toward NW",
+   "file": "scaffold-h2-nw.png",
+   "size": [
+    3,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ]
+   ],
+   "up": "nw",
+   "rise_levels": 2,
+   "run_cells": 3,
+   "flat_cells": 0,
+   "walkable": true,
+   "stone_twin": "stair-h2-nw"
+  },
+  "scaffold-h2-sw": {
+   "label": "Scaffold stairs, 2 up, rising toward SW",
+   "file": "scaffold-h2-sw.png",
+   "size": [
+    1,
+    3
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ]
+   ],
+   "up": "sw",
+   "rise_levels": 2,
+   "run_cells": 3,
+   "flat_cells": 0,
+   "walkable": true,
+   "stone_twin": "stair-h2-sw"
+  },
+  "scaffold-h2-ne": {
+   "label": "Scaffold stairs, 2 up, rising toward NE",
+   "file": "scaffold-h2-ne.png",
+   "size": [
+    1,
+    3
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ]
+   ],
+   "up": "ne",
+   "rise_levels": 2,
+   "run_cells": 3,
+   "flat_cells": 0,
+   "walkable": true,
+   "stone_twin": "stair-h2-ne"
+  },
+  "scaffold-ramp-h1-se": {
+   "label": "Scaffold ramp, 1 up, rising toward SE",
+   "file": "scaffold-ramp-h1-se.png",
+   "size": [
+    2,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "up": "se",
+   "rise_levels": 1,
+   "run_cells": 2,
+   "flat_cells": 0,
+   "walkable": true,
+   "stone_twin": "stair-ramp-h1-se"
+  },
+  "scaffold-ramp-h1-nw": {
+   "label": "Scaffold ramp, 1 up, rising toward NW",
+   "file": "scaffold-ramp-h1-nw.png",
+   "size": [
+    2,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "up": "nw",
+   "rise_levels": 1,
+   "run_cells": 2,
+   "flat_cells": 0,
+   "walkable": true,
+   "stone_twin": "stair-ramp-h1-nw"
+  },
+  "scaffold-ramp-h1-sw": {
+   "label": "Scaffold ramp, 1 up, rising toward SW",
+   "file": "scaffold-ramp-h1-sw.png",
+   "size": [
+    1,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "up": "sw",
+   "rise_levels": 1,
+   "run_cells": 2,
+   "flat_cells": 0,
+   "walkable": true,
+   "stone_twin": "stair-ramp-h1-sw"
+  },
+  "scaffold-ramp-h1-ne": {
+   "label": "Scaffold ramp, 1 up, rising toward NE",
+   "file": "scaffold-ramp-h1-ne.png",
+   "size": [
+    1,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "up": "ne",
+   "rise_levels": 1,
+   "run_cells": 2,
+   "flat_cells": 0,
+   "walkable": true,
+   "stone_twin": "stair-ramp-h1-ne"
+  },
+  "scaffold-ramp-h2-se": {
+   "label": "Scaffold ramp, 2 up, rising toward SE",
+   "file": "scaffold-ramp-h2-se.png",
+   "size": [
+    3,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ]
+   ],
+   "up": "se",
+   "rise_levels": 2,
+   "run_cells": 3,
+   "flat_cells": 0,
+   "walkable": true,
+   "stone_twin": "stair-ramp-h2-se"
+  },
+  "scaffold-ramp-h2-nw": {
+   "label": "Scaffold ramp, 2 up, rising toward NW",
+   "file": "scaffold-ramp-h2-nw.png",
+   "size": [
+    3,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ]
+   ],
+   "up": "nw",
+   "rise_levels": 2,
+   "run_cells": 3,
+   "flat_cells": 0,
+   "walkable": true,
+   "stone_twin": "stair-ramp-h2-nw"
+  },
+  "scaffold-ramp-h2-sw": {
+   "label": "Scaffold ramp, 2 up, rising toward SW",
+   "file": "scaffold-ramp-h2-sw.png",
+   "size": [
+    1,
+    3
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ]
+   ],
+   "up": "sw",
+   "rise_levels": 2,
+   "run_cells": 3,
+   "flat_cells": 0,
+   "walkable": true,
+   "stone_twin": "stair-ramp-h2-sw"
+  },
+  "scaffold-ramp-h2-ne": {
+   "label": "Scaffold ramp, 2 up, rising toward NE",
+   "file": "scaffold-ramp-h2-ne.png",
+   "size": [
+    1,
+    3
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ]
+   ],
+   "up": "ne",
+   "rise_levels": 2,
+   "run_cells": 3,
+   "flat_cells": 0,
+   "walkable": true,
+   "stone_twin": "stair-ramp-h2-ne"
+  },
+  "scaffold-ledge-ramp-h1-se": {
+   "label": "Scaffold ledge with a ramp, 1 up, rising toward SE",
+   "file": "scaffold-ledge-ramp-h1-se.png",
+   "size": [
+    2,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "up": "se",
+   "rise_levels": 1,
+   "run_cells": 1,
+   "flat_cells": 1,
+   "walkable": true,
+   "stone_twin": "stair-ledge-ramp-h1-se"
+  },
+  "scaffold-ledge-ramp-h1-nw": {
+   "label": "Scaffold ledge with a ramp, 1 up, rising toward NW",
+   "file": "scaffold-ledge-ramp-h1-nw.png",
+   "size": [
+    2,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "up": "nw",
+   "rise_levels": 1,
+   "run_cells": 1,
+   "flat_cells": 1,
+   "walkable": true,
+   "stone_twin": "stair-ledge-ramp-h1-nw"
+  },
+  "scaffold-ledge-ramp-h1-sw": {
+   "label": "Scaffold ledge with a ramp, 1 up, rising toward SW",
+   "file": "scaffold-ledge-ramp-h1-sw.png",
+   "size": [
+    1,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "up": "sw",
+   "rise_levels": 1,
+   "run_cells": 1,
+   "flat_cells": 1,
+   "walkable": true,
+   "stone_twin": "stair-ledge-ramp-h1-sw"
+  },
+  "scaffold-ledge-ramp-h1-ne": {
+   "label": "Scaffold ledge with a ramp, 1 up, rising toward NE",
+   "file": "scaffold-ledge-ramp-h1-ne.png",
+   "size": [
+    1,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "up": "ne",
+   "rise_levels": 1,
+   "run_cells": 1,
+   "flat_cells": 1,
+   "walkable": true,
+   "stone_twin": "stair-ledge-ramp-h1-ne"
+  },
+  "scaffold-ledge-ramp-h2-se": {
+   "label": "Scaffold ledge with a ramp, 2 up, rising toward SE",
+   "file": "scaffold-ledge-ramp-h2-se.png",
+   "size": [
+    3,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ]
+   ],
+   "up": "se",
+   "rise_levels": 2,
+   "run_cells": 2,
+   "flat_cells": 1,
+   "walkable": true,
+   "stone_twin": "stair-ledge-ramp-h2-se"
+  },
+  "scaffold-ledge-ramp-h2-nw": {
+   "label": "Scaffold ledge with a ramp, 2 up, rising toward NW",
+   "file": "scaffold-ledge-ramp-h2-nw.png",
+   "size": [
+    3,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ]
+   ],
+   "up": "nw",
+   "rise_levels": 2,
+   "run_cells": 2,
+   "flat_cells": 1,
+   "walkable": true,
+   "stone_twin": "stair-ledge-ramp-h2-nw"
+  },
+  "scaffold-ledge-ramp-h2-sw": {
+   "label": "Scaffold ledge with a ramp, 2 up, rising toward SW",
+   "file": "scaffold-ledge-ramp-h2-sw.png",
+   "size": [
+    1,
+    3
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ]
+   ],
+   "up": "sw",
+   "rise_levels": 2,
+   "run_cells": 2,
+   "flat_cells": 1,
+   "walkable": true,
+   "stone_twin": "stair-ledge-ramp-h2-sw"
+  },
+  "scaffold-ledge-ramp-h2-ne": {
+   "label": "Scaffold ledge with a ramp, 2 up, rising toward NE",
+   "file": "scaffold-ledge-ramp-h2-ne.png",
+   "size": [
+    1,
+    3
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ]
+   ],
+   "up": "ne",
+   "rise_levels": 2,
+   "run_cells": 2,
+   "flat_cells": 1,
+   "walkable": true,
+   "stone_twin": "stair-ledge-ramp-h2-ne"
+  }
+ }
+}
