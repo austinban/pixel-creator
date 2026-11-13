@@ -1,0 +1,30 @@
+{
+ "about": "The slider and toggle pieces in this folder. See README.md beside this file.",
+ "slider": {
+  "track_height": 16,
+  "cap": 8,
+  "mid": 32,
+  "fill_inset": 3,
+  "knob": [
+   24,
+   24
+  ],
+  "knob_states": [
+   "default",
+   "hovered",
+   "pressed"
+  ]
+ },
+ "toggle": {
+  "size": [
+   44,
+   22
+  ],
+  "states": [
+   "off",
+   "off-hovered",
+   "on",
+   "on-hovered"
+  ]
+ }
+}
