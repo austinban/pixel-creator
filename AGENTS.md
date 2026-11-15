@@ -57,13 +57,32 @@ sets it suits. [HOW-IT-WORKS.md](HOW-IT-WORKS.md) explains it all.
 The game pulls art with `tools/sync_sprites.py` in its own repo, one way. What it reads and must stay put: the character, weapon and bow sheets by filename and size, `sprites/assets/ground.png` and `ground-corrupted.png`, and
 `assets/data.js`, including the ids `crystal`, `rock`, `facing`, `facing-pale`, `weapon-bow-ne`, `weapon-bow-se`, `arrow-iso` and `arrow` (`test_handoff.py` checks them). **`assets/data.js` has a top-level `"format"` number**
 (`DATA_FORMAT` in `tools/make_assets.py`, now 1): bump it when a key is renamed or the layout changes, not when assets are added, so the game can notice by itself. The facing marker is a 20 x 14 cell, two frames, anchored at (10, 8):
-tell the game's side before changing either. The palette has 31 roles (`D` Abyss teal) and the roles list is in `data.js`, so a role added or renamed is a change to tell them about. Check you have not broken the game's side from its repo with
+tell the game's side before changing either. The palette has 34 roles (`D` Abyss teal; `E` Scarlet, `F` Red and `G` Blood, the red ramp) and the roles list is in `data.js`, so a role added or renamed is a change to tell them about. Check you have not broken the game's side from its repo with
 `python3 tools/sync_sprites.py --dry-run`; it writes nothing and should end with `0 error(s)`.
 
 Two ways to get an edited character to the game without a hand-made ZIP, on the Characters page: **Export for the game (ZIP, 1x)** is always true size and has a `pixel-creator.json`
 (`{"format": 1, "kind": "character", "set": ..., "base": ..., "scale": 1, "cell": [32, 32]}`) beside the PNGs, and **Save to sprites/ (1x)** (Chromium only) writes the PNGs and the same manifest straight to `sprites/<set>/`
 using the File System Access API (`sprites-save.js`), asking for the repo's `sprites/` folder once and remembering it. It refuses a set that would replace a generated one: a name that is a base, a folder with no `pixel-creator.json` of ours, or `assets` and `weapons`.
 The manifest is not a sprite, so a reader of `sprites/<set>/` skips it.
+
+## The contract with the game
+
+Art made here should work in the game with no change on its side. What makes that so:
+
+- **pixel-creator decides what the game pulls.** `tools/game_export.py` lists the folders and files the game takes, and `make_assets.py` writes it as
+  `sprites/assets/game-export.json`, which the game's sync merges into its own manifest. A new family the game should have is a line in `EXPORT`; a folder of
+  sheets that is not for the game is a line in `NOT_FOR_GAME` with the reason. `test_handoff.py` fails on a folder of sheets in neither.
+- **The numbers travel with the sheets.** Every sheet's cell, frames, fps and anchor are in `sprites/assets/manifest.json` (and a family's own JSON, such as
+  `traps.json` or the `sheets` of `abilities.json`), and the game reads them from there: a trap or an effect drawn at another size or speed needs no edit there.
+- **The game decides which ability plays which sheet.** Its `assets/data/ability_fx.json` (in the game's ids) is the table it reads; the `abilities`,
+  `statuses` and `reused` sections of `abilities.json` here are suggestions and the Assets page's labels. Ship a sheet, then add its row on the game's side.
+- **Coverage, both ways.** The game writes its ids (abilities, statuses, items, traps, classes and the places an effect can go) to `tools/game_ids.json` in
+  its repo. `python3 tools/coverage.py` reads it (from `GAME_DIR`, default `~/GodotProjects/iso-fft-like`) and lists what the game has with no art and what art
+  here the game plays nowhere; `test_handoff.py` fails if a trap the game lays has no picture or a place used here is one the game does not know.
+- **The game syncs from a commit.** Its sync reads this repo at a ref (`HEAD` by default), not the working tree, so uncommitted work never reaches it; only
+  what is never committed here (the character and weapon folders, the ground sheets) is read from disk. Commit before asking the game to sync.
+- **One preview.** `python3 tools/preview.py ID ...` (or `--grep`) draws any sheets labelled, on a tile at their anchor, at 1x and 2x, in `previews/`. Use it
+  for every approval, whatever the family.
 
 ## Known loose ends
 
