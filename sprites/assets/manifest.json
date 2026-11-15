@@ -10251,6 +10251,150 @@
    "frames": 6
   },
   {
+   "id": "trap-snare",
+   "label": "Snare - placed (waiting on the ground)",
+   "category": "Traps",
+   "kind": "still",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 24
+   },
+   "file": "traps/trap-snare.png",
+   "frames": 1
+  },
+  {
+   "id": "trap-snare-triggered",
+   "label": "Snare - triggered (animation)",
+   "category": "Traps",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 6,
+   "rows": 1,
+   "fps": 10,
+   "anchor": {
+    "x": 16,
+    "y": 24
+   },
+   "file": "traps/trap-snare-triggered.png",
+   "frames": 6
+  },
+  {
+   "id": "trap-spikepit",
+   "label": "Spike pit - placed (waiting on the ground)",
+   "category": "Traps",
+   "kind": "still",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 24
+   },
+   "file": "traps/trap-spikepit.png",
+   "frames": 1
+  },
+  {
+   "id": "trap-spikepit-triggered",
+   "label": "Spike pit - triggered (animation)",
+   "category": "Traps",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 6,
+   "rows": 1,
+   "fps": 10,
+   "anchor": {
+    "x": 16,
+    "y": 24
+   },
+   "file": "traps/trap-spikepit-triggered.png",
+   "frames": 6
+  },
+  {
+   "id": "trap-tripwire",
+   "label": "Tripwire - placed (waiting on the ground)",
+   "category": "Traps",
+   "kind": "still",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 24
+   },
+   "file": "traps/trap-tripwire.png",
+   "frames": 1
+  },
+  {
+   "id": "trap-tripwire-triggered",
+   "label": "Tripwire - triggered (animation)",
+   "category": "Traps",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 6,
+   "rows": 1,
+   "fps": 10,
+   "anchor": {
+    "x": 16,
+    "y": 24
+   },
+   "file": "traps/trap-tripwire-triggered.png",
+   "frames": 6
+  },
+  {
+   "id": "trap-mine",
+   "label": "Mine - placed (waiting on the ground)",
+   "category": "Traps",
+   "kind": "still",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 24
+   },
+   "file": "traps/trap-mine.png",
+   "frames": 1
+  },
+  {
+   "id": "trap-mine-triggered",
+   "label": "Mine - triggered (animation)",
+   "category": "Traps",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 6,
+   "rows": 1,
+   "fps": 10,
+   "anchor": {
+    "x": 16,
+    "y": 24
+   },
+   "file": "traps/trap-mine-triggered.png",
+   "frames": 6
+  },
+  {
    "id": "chest-common-ne",
    "label": "Common chest - NE, shut",
    "category": "Chests",
@@ -11274,6 +11418,456 @@
     "y": 16
    },
    "file": "item-icons/item-stone_idol.png",
+   "frames": 1
+  },
+  {
+   "id": "item-padded_gambeson",
+   "label": "Padded Gambeson",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-padded_gambeson.png",
+   "frames": 1
+  },
+  {
+   "id": "item-mystic_robe",
+   "label": "Mystic Robe",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-mystic_robe.png",
+   "frames": 1
+  },
+  {
+   "id": "item-rangers_cloak",
+   "label": "Ranger's Cloak",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-rangers_cloak.png",
+   "frames": 1
+  },
+  {
+   "id": "item-scale_coat",
+   "label": "Scale Coat",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-scale_coat.png",
+   "frames": 1
+  },
+  {
+   "id": "item-brigandine",
+   "label": "Brigandine",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-brigandine.png",
+   "frames": 1
+  },
+  {
+   "id": "item-iron_band",
+   "label": "Iron Band",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-iron_band.png",
+   "frames": 1
+  },
+  {
+   "id": "item-climbing_hooks",
+   "label": "Climbing Hooks",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-climbing_hooks.png",
+   "frames": 1
+  },
+  {
+   "id": "item-trappers_kit",
+   "label": "Trapper's Kit",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-trappers_kit.png",
+   "frames": 1
+  },
+  {
+   "id": "item-fleet_anklet",
+   "label": "Fleet Anklet",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-fleet_anklet.png",
+   "frames": 1
+  },
+  {
+   "id": "item-eagle_feather",
+   "label": "Eagle Feather",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-eagle_feather.png",
+   "frames": 1
+  },
+  {
+   "id": "item-hunters_token",
+   "label": "Hunter's Token",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-hunters_token.png",
+   "frames": 1
+  },
+  {
+   "id": "item-headsmans_brand",
+   "label": "Headsman's Brand",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-headsmans_brand.png",
+   "frames": 1
+  },
+  {
+   "id": "item-quickening_charm",
+   "label": "Quickening Charm",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-quickening_charm.png",
+   "frames": 1
+  },
+  {
+   "id": "item-cinder_charm",
+   "label": "Cinder Charm",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-cinder_charm.png",
+   "frames": 1
+  },
+  {
+   "id": "item-leech_fang",
+   "label": "Leech Fang",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-leech_fang.png",
+   "frames": 1
+  },
+  {
+   "id": "item-pike",
+   "label": "Pike",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-pike.png",
+   "frames": 1
+  },
+  {
+   "id": "item-heavy_sling",
+   "label": "Heavy Sling",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-heavy_sling.png",
+   "frames": 1
+  },
+  {
+   "id": "item-healing_draught",
+   "label": "Healing Draught",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-healing_draught.png",
+   "frames": 1
+  },
+  {
+   "id": "item-greater_draught",
+   "label": "Greater Draught",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-greater_draught.png",
+   "frames": 1
+  },
+  {
+   "id": "item-grand_elixir",
+   "label": "Grand Elixir",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-grand_elixir.png",
+   "frames": 1
+  },
+  {
+   "id": "item-cleansing_salve",
+   "label": "Cleansing Salve",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-cleansing_salve.png",
+   "frames": 1
+  },
+  {
+   "id": "item-revive_tonic",
+   "label": "Revive Tonic",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-revive_tonic.png",
+   "frames": 1
+  },
+  {
+   "id": "item-fire_bomb",
+   "label": "Fire Bomb",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-fire_bomb.png",
+   "frames": 1
+  },
+  {
+   "id": "item-blast_charge",
+   "label": "Blast Charge",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-blast_charge.png",
+   "frames": 1
+  },
+  {
+   "id": "item-caltrop_pouch",
+   "label": "Caltrop Pouch",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-caltrop_pouch.png",
    "frames": 1
   },
   {
@@ -12419,6 +13013,114 @@
    "frames": 6
   },
   {
+   "id": "icon-sight-pop",
+   "label": "Deadeye (gold reticle) - pop-up above the head (once)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "above",
+   "w": 24,
+   "h": 32,
+   "cols": 8,
+   "rows": 1,
+   "fps": 10,
+   "anchor": {
+    "x": 12,
+    "y": 30
+   },
+   "file": "abilities/icon-sight-pop.png",
+   "frames": 8
+  },
+  {
+   "id": "icon-sight-loop",
+   "label": "Deadeye (gold reticle) - status icon (loops)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "above",
+   "w": 24,
+   "h": 32,
+   "cols": 6,
+   "rows": 1,
+   "fps": 6,
+   "anchor": {
+    "x": 12,
+    "y": 30
+   },
+   "file": "abilities/icon-sight-loop.png",
+   "frames": 6
+  },
+  {
+   "id": "icon-jaw-pop",
+   "label": "Trapped (steel jaw) - pop-up above the head (once)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "above",
+   "w": 24,
+   "h": 32,
+   "cols": 8,
+   "rows": 1,
+   "fps": 10,
+   "anchor": {
+    "x": 12,
+    "y": 30
+   },
+   "file": "abilities/icon-jaw-pop.png",
+   "frames": 8
+  },
+  {
+   "id": "icon-jaw-loop",
+   "label": "Trapped (steel jaw) - status icon (loops)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "above",
+   "w": 24,
+   "h": 32,
+   "cols": 6,
+   "rows": 1,
+   "fps": 6,
+   "anchor": {
+    "x": 12,
+    "y": 30
+   },
+   "file": "abilities/icon-jaw-loop.png",
+   "frames": 6
+  },
+  {
+   "id": "icon-cripple-pop",
+   "label": "Crippled (cracked bone) - pop-up above the head (once)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "above",
+   "w": 24,
+   "h": 32,
+   "cols": 8,
+   "rows": 1,
+   "fps": 10,
+   "anchor": {
+    "x": 12,
+    "y": 30
+   },
+   "file": "abilities/icon-cripple-pop.png",
+   "frames": 8
+  },
+  {
+   "id": "icon-cripple-loop",
+   "label": "Crippled (cracked bone) - status icon (loops)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "above",
+   "w": 24,
+   "h": 32,
+   "cols": 6,
+   "rows": 1,
+   "fps": 6,
+   "anchor": {
+    "x": 12,
+    "y": 30
+   },
+   "file": "abilities/icon-cripple-loop.png",
+   "frames": 6
+  },
+  {
    "id": "vanish-violet",
    "label": "Vanish - Violet (blink, swap)",
    "category": "Abilities",
@@ -12614,6 +13316,276 @@
     "y": 44
    },
    "file": "abilities/surface-firewall.png",
+   "frames": 8
+  },
+  {
+   "id": "surface-thorns",
+   "label": "Ground loop - Thorns (brambles, for a wall of three)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 16,
+    "y": 44
+   },
+   "file": "abilities/surface-thorns.png",
+   "frames": 8
+  },
+  {
+   "id": "sweep-scythe-se",
+   "label": "Scythe sweep (SE; mirrored for the other side)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 8,
+   "rows": 1,
+   "fps": 10,
+   "anchor": {
+    "x": 24,
+    "y": 56
+   },
+   "file": "abilities/sweep-scythe-se.png",
+   "frames": 8
+  },
+  {
+   "id": "sweep-scythe-ne",
+   "label": "Scythe sweep (NE; mirrored for the other side)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 8,
+   "rows": 1,
+   "fps": 10,
+   "anchor": {
+    "x": 24,
+    "y": 56
+   },
+   "file": "abilities/sweep-scythe-ne.png",
+   "frames": 8
+  },
+  {
+   "id": "burst-explosion",
+   "label": "Explosion - five plots",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 80,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 40,
+    "y": 38
+   },
+   "file": "abilities/burst-explosion.png",
+   "frames": 8
+  },
+  {
+   "id": "burst-explosion-tile",
+   "label": "Explosion - one plot",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 16,
+    "y": 44
+   },
+   "file": "abilities/burst-explosion-tile.png",
+   "frames": 8
+  },
+  {
+   "id": "burst-grasp-tile",
+   "label": "Grasping hands - one plot",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 16,
+    "y": 44
+   },
+   "file": "abilities/burst-grasp-tile.png",
+   "frames": 8
+  },
+  {
+   "id": "burst-mindspore",
+   "label": "Mind spores - five plots",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 80,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 40,
+    "y": 38
+   },
+   "file": "abilities/burst-mindspore.png",
+   "frames": 8
+  },
+  {
+   "id": "burst-mindspore-tile",
+   "label": "Mind spores - one plot",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 16,
+    "y": 44
+   },
+   "file": "abilities/burst-mindspore-tile.png",
+   "frames": 8
+  },
+  {
+   "id": "burst-potion-tile",
+   "label": "Potion - one plot",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 16,
+    "y": 44
+   },
+   "file": "abilities/burst-potion-tile.png",
+   "frames": 8
+  },
+  {
+   "id": "burst-elixir-tile",
+   "label": "Elixir - one plot",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 16,
+    "y": 44
+   },
+   "file": "abilities/burst-elixir-tile.png",
+   "frames": 8
+  },
+  {
+   "id": "burst-wave-tile",
+   "label": "Force wave - one plot",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 16,
+    "y": 44
+   },
+   "file": "abilities/burst-wave-tile.png",
+   "frames": 8
+  },
+  {
+   "id": "burst-crit-tile",
+   "label": "Critical hit - one plot",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 16,
+    "y": 44
+   },
+   "file": "abilities/burst-crit-tile.png",
+   "frames": 8
+  },
+  {
+   "id": "burst-impact-tile",
+   "label": "Heavy impact - one plot",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 16,
+    "y": 44
+   },
+   "file": "abilities/burst-impact-tile.png",
+   "frames": 8
+  },
+  {
+   "id": "burst-streak-tile",
+   "label": "Piercing streak - one plot",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 16,
+    "y": 44
+   },
+   "file": "abilities/burst-streak-tile.png",
+   "frames": 8
+  },
+  {
+   "id": "burst-nick-tile",
+   "label": "Nick - one plot",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 16,
+    "y": 44
+   },
+   "file": "abilities/burst-nick-tile.png",
    "frames": 8
   },
   {

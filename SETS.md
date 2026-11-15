@@ -174,7 +174,7 @@ Every piece in a set fits its ground, and pieces that share a style stay cohesiv
 | `weather-embers` Embers | overlay | any | weather | 1 | fallen-town |  |
 | `weather-petals` Petals | overlay | plain | weather | 1 | meadow |  |
 | `weather-ripples` Rain ripples and splashes | decor | any | weather | 2 | - | Ground and water decals for rain; one shot. |
-| `traps` Traps | hazard | any | iron | 4 | - |  |
+| `traps` Traps | hazard | any | iron | 12 | - |  |
 | `chests` Chests | decor | any | timber | 12 | - |  |
 | `buildings` Buildings | structure | any | blocky | 12 | market-town, fallen-town | The kit of walls and roofs; `-aged` pieces are the weathered versions that sit in a ruined or corrupted town. |
 

@@ -1004,7 +1004,15 @@
     "trap-beartrap",
     "trap-beartrap-triggered",
     "trap-caltrops",
-    "trap-caltrops-triggered"
+    "trap-caltrops-triggered",
+    "trap-mine",
+    "trap-mine-triggered",
+    "trap-snare",
+    "trap-snare-triggered",
+    "trap-spikepit",
+    "trap-spikepit-triggered",
+    "trap-tripwire",
+    "trap-tripwire-triggered"
    ],
    "twin": null
   },

@@ -6,6 +6,8 @@ The model is made in screen space: `u` to the right, `v` up and `w` towards the 
 each piece faces the viewer as it is drawn and only the light and the depth between pieces are 3D. The 2D versions are in make_item_icons.py; this file has the same 26 ids, so the two can be
 compared on a sheet and one chosen. Palette roles only, a one-pixel outline, 32 x 32.
 
+The 25 items added after them (more armour, trinkets, the pike and the heavy sling, and the one-use supplies, from the game's ContentLibrary and Economy) are only drawn here, with no flat twin.
+
     python3 tools/make_item_icons3d.py --preview previews/item-icons3d.png     all of them, enlarged, with their names
 """
 import argparse
@@ -31,6 +33,13 @@ EXTRA = {
     'cloud': ('t', 't', 'r', 'q'),
     'wing': ('t', 't', 'r', 'q'),
     'seam': ('p', 'l', 'k', 'w'),
+    'quilt': ('t', 'C', 'c', 'e'),            # undyed padded cloth
+    'robe': ('v', 'v', 'u', 'w'),             # a violet robe
+    'black': ('l', 'k', 'w', 'x'),            # a bomb's black iron
+    'glass': ('t', 'r', 'q', 'p'),            # a flask's neck
+    'potion': ('c', 'j', 'i', 'h'),           # red liquid
+    'feather_brown': ('b', 'a', 'g', 'w'),
+    'red_hot': ('d', 'a', 'e', 'h'),          # iron glowing from the fire
 }
 RAMPS.update(EXTRA)
 
@@ -477,6 +486,300 @@ def stone_idol():
     return finish(g)
 
 
+# --- the later items: more armour, trinkets, two weapons and the supplies -------------------
+def padded_gambeson():
+    g = render(tunic('quilt', 'pale_wood'))
+    for y in range(CELL):                                                                 # quilting: a diamond lattice of stitched seams
+        for x in range(CELL):
+            if g[y][x] in 'tCc' and ((x + y) % 5 == 0 or (x - y) % 5 == 0):
+                g[y][x] = 'c' if g[y][x] != 'c' else 'e'
+    paint(g, [(0, v) for v in range(8, -8, -2)], 'g')                                      # toggles down the front
+    return finish(g)
+
+
+def mystic_robe():
+    parts = [E(0, -3.0, 0, 7.6, 11.4, 4.2, 'robe', 'body'), E(0, -11.6, 0.4, 10.4, 2.6, 4.4, 'robe', 'hem'), E(0, 7.4, 0, 8.4, 3.4, 3.8, 'robe', 'shoulders'),
+             E(10.0, 2.6, 0, 3.4, 7.0, 3.0, 'robe', 'sleeveR', -18), E(-10.0, 2.6, 0, 3.4, 7.0, 3.0, 'robe', 'sleeveL', 18),
+             E(0, 10.4, 1.4, 2.6, 1.4, 2.4, 'hole', 'neck'), Bx(0, -0.4, 4.0, 7.8, 1.3, 1.0, 'gold', 'sash'), S(-3.4, -0.4, 4.8, 1.6, 'gold', 'knot'),
+             rod((-3.4, -1.2), (-4.6, -8.0), 0.8, 'gold', 'tailA', 4.4), rod((-3.0, -1.2), (-1.6, -7.0), 0.8, 'gold', 'tailB', 4.2)]
+    g = render(parts)
+    paint(g, [(u, -12) for u in range(-9, 10)], 'd')                                      # gold trim round the hem
+    px_paint(g, [(6, 6), (25, 9), (5, 24)], 'v', only_inside=False)                           # a few sparkles
+    return finish(g)
+
+
+def rangers_cloak():
+    parts = [E(0, -3.4, 0, 9.2, 10.4, 3.6, 'moss', 'cloak', 0), E(0, -12.0, 0.2, 10.6, 2.2, 3.6, 'moss', 'hem'),
+             E(0, 7.6, 0.8, 6.2, 6.2, 4.4, 'moss', 'hood'), E(0, 6.6, 3.6, 3.8, 4.2, 2.4, 'hole', 'face'),
+             S(0, 1.0, 4.2, 1.5, 'bronze', 'clasp')]
+    g = render(parts)
+    for u in (-5, 5):                                                                     # folds down the cloak
+        paint(g, [(u, v) for v in range(-2, -12, -1)], 's')
+    paint(g, [(-0.5, 2), (-1, 1.5)], 't')
+    return finish(g)
+
+
+def scale_coat():
+    g = render(tunic('dull_steel', 'leather'))
+    ramp = RAMPS['dull_steel']
+    for y in range(CELL):                                                                 # rows of overlapping scales, each a rounded cap: a lit top, a dark rim below
+        for x in range(CELL):
+            c = g[y][x]
+            if c in ramp and 6 <= y <= 25:
+                off = (y // 3 % 2) * 2
+                sx, sy = (x + off) % 4, y % 3
+                i = ramp.index(c)
+                if sy == 2 and sx != 3 or sx == 3 and sy != 0:
+                    g[y][x] = ramp[min(3, i + 2)] if i < 2 else 'x'
+                elif sy == 0 and sx in (1, 2):
+                    g[y][x] = 't' if i == 0 else ramp[max(0, i - 1)]
+    return finish(g)
+
+
+def brigandine():
+    parts = tunic('black', 'rust', sleeves=False) + [E(9.0, 6.0, 0.4, 3.0, 3.6, 3.0, 'black', 'padR', -20), E(-9.0, 6.0, 0.4, 3.0, 3.6, 3.0, 'black', 'padL', 20)]
+    g = render(parts)
+    for v in (5, 0, -5):                                                                  # three bands of plates, each riveted
+        for u in range(-6, 7, 3):
+            paint(g, [(u, v)], 'd')
+        paint(g, [(u, v - 1.4) for u in range(-7, 8)], 'x')
+    paint(g, [(0, v) for v in range(8, -9, -1)], 'x')                                     # the front opening
+    paint(g, [(-1, v) for v in range(7, -8, -3)], 'b')                                    # buckles
+    return finish(g)
+
+
+def iron_band():
+    parts = ring(0, -0.5, 9.0, 8.6, 2.6, 36, 'iron', 'band')
+    g = render(parts)
+    paint(g, [(-7, 3), (-6, 5), (-5, 6), (-4, 7)], 't')                                    # a plain glint
+    return finish(g)
+
+
+def climbing_hooks():
+    parts = []
+    for cu, cv, w, tag in ((-6.6, 1.6, 0.0, 'a'), (6.0, -0.4, 0.6, 'b')):                 # a pair, side by side
+        parts += ring(cu, cv + 7.4, 3.4, 2.8, 1.0, 20, 'leather', 'loop' + tag, w)       # a leather hand loop...
+        parts.append(Bx(cu, cv + 3.4, w + 0.4, 5.2, 1.5, 1.8, 'dark_iron', 'bar' + tag))  # ...on an iron bar...
+        for k, du in enumerate((-3.4, 0.2)):                                              # ...with two big talons, each a hook curling back up to a point
+            x0 = cu + du
+            pts = [(x0, cv + 2.6), (x0, cv - 3.0), (x0 + 1.0, cv - 6.6), (x0 + 3.2, cv - 7.2), (x0 + 4.2, cv - 5.2)]
+            for j, (a, b) in enumerate(zip(pts, pts[1:])):
+                parts.append(rod(a, b, 1.3 - 0.24 * j, 'iron', f'hook{tag}{k}{j}', w + 0.4, grow=0.4))
+    g = render(parts)
+    for cu, cv in ((-6.6, 1.6), (6.0, -0.4)):
+        paint(g, [(cu + du + 4.2, cv - 5.2) for du in (-3.4, 0.2)], 't')                   # bright points
+        paint(g, [(cu + du - 0.6, cv - 1 - j) for du in (-3.4, 0.2) for j in range(3)], 'q')
+    return finish(g)
+
+
+def trappers_kit():
+    parts = [E(0, -4.4, 0, 9.6, 8.0, 4.4, 'leather', 'bag'), E(0, 3.6, 0.4, 5.6, 2.0, 3.6, 'rust', 'neck'), Bx(0, 2.4, 2.4, 6.0, 0.8, 1.6, 'cord', 'tie'),
+             S(6.0, 2.2, 2.6, 1.3, 'cord', 'knot'), Bx(0, 6.2, -0.4, 7.6, 1.2, 1.2, 'dark_iron', 'jaw')]   # the trap's iron jaw poking out of the top
+    g = render(parts)
+    for x in (10, 14, 18, 22):                                                             # its teeth: tall steel points along the jaw
+        for dy, half in ((0, 0), (1, 0), (2, 1), (3, 1)):
+            px_paint(g, [(x + dx, 5 + dy) for dx in range(-half, half + 1)], 'q', only_inside=False)
+        px_paint(g, [(x, 5), (x, 6), (x - 1, 7)], 't', only_inside=False)
+    for u in range(-8, 9, 2):                                                             # stitching round the bag
+        paint(g, [(u, -10.6 + 2.4 * (abs(u) / 9) ** 2)], 'b')
+    paint(g, [(-5, -1.4), (-4, -0.4)], 't')
+    return finish(g)
+
+
+def fleet_anklet():
+    parts = ring(0, -5.6, 10.0, 4.4, 1.15, 40, 'silver', 'band', 0) + [S(-6.6, -2.8, 0.8, 1.3, 'teal', 'bead1'), S(6.6, -2.8, 0.8, 1.3, 'teal', 'bead2')]
+    parts += [rod((1.0, -1.4), (6.6, 12.4), 2.2, 'wing', 'vane', 1.2, flat=0.5), rod((0.2, -3.0), (6.2, 12.6), 0.45, 'cream', 'quill', 2.2)]
+    g = render(parts)
+    for k in range(4):                                                                    # barbs on the feather
+        paint(g, [(2.6 + k * 1.2, 2.0 + k * 2.6), (4.6 + k * 1.2, 1.4 + k * 2.6)], 'q')
+    return finish(g)
+
+
+def eagle_feather():
+    parts = [E(2.0, 2.0, 0, 13.0, 4.6, 1.4, 'feather_brown', 'vane', 45), E(9.4, 9.4, 0.6, 4.4, 3.8, 1.2, 'pale', 'tip', 45),
+             rod((-12.6, -12.6), (11.0, 11.0), 0.5, 'cream', 'quill', 1.8)]
+    g = render(parts)
+    for t in (-3, 1, 5):                                                                   # dark bars across the vane
+        line_px(g, (int(16 + t - 3.4), int(16 - t - 3.4)), (int(16 + t + 3.4), int(16 - t + 3.4)), 'g')
+    px_paint(g, [(13, 22), (18, 19), (22, 15)], 't')                                       # a split in the vane
+    return finish(g)
+
+
+def hunters_token():
+    parts = chain([(-9, 15), (-4, 10.5), (0, 8.4)], 0.7, 'cord', 'cordL') + chain([(9, 15), (4, 10.5), (0, 8.4)], 0.7, 'cord', 'cordR') + [S(0, 8.0, 0.6, 1.6, 'cord', 'bail')]
+    parts += [E(0, -1.8, 0, 9.0, 9.4, 2.6, 'bone', 'token'), S(-6.4, 6.0, 1.2, 1.2, 'feather_brown', 'bead')]
+    g = render(parts)
+    line_px(g, (11, 23), (21, 13), 'g')                                                    # a carved arrow, rising to the right
+    px_paint(g, [(18, 13), (19, 13), (20, 13), (21, 14), (21, 15), (21, 16), (19, 14), (20, 15)], 'g')
+    px_paint(g, [(10, 21), (11, 21), (12, 21), (13, 24), (13, 23), (13, 22)], 'e')
+    return finish(g)
+
+
+def headsmans_brand():
+    parts = [rod((-12.5, -12.5), (-5.5, -5.5), 1.8, 'wood', 'handle'), S(-5.2, -5.2, 0.4, 1.8, 'iron', 'ferrule'), rod((-5, -5), (7.4, 7.4), 1.0, 'dark_iron', 'rod'),
+             Bx(4.4, 8.8, 0.4, 2.6, 2.2, 1.2, 'red_hot', 'cheek', 45),                   # an axe-head brand glowing red-hot: a cheek on the rod...
+             E(2.4, 10.8, 0.6, 5.8, 2.2, 1.2, 'red_hot', 'blade', 45)]                   # ...and a broad curved edge facing up and out
+    g = render(parts)
+    paint(g, [(-1.6, 12.6), (-0.6, 13.6), (0.4, 13.8), (1.4, 13.4), (2.4, 13.0)], 'd')     # the edge, hottest
+    paint(g, [(0.4, 12.6), (1.4, 12.0)], 't')
+    px_paint(g, [(10, 1), (8, 5), (13, 0), (25, 6), (23, 2)], 'b', only_inside=False)       # heat sparks
+    px_paint(g, [(11, 3), (26, 3)], 'e', only_inside=False)
+    px_paint(g, [(6, 25), (7, 24)], 'k')                                                   # binding on the handle
+    return finish(g)
+
+
+def charm_on_cord(cord='cord'):
+    return chain([(-9, 15), (-4, 10.5), (0, 8.6)], 0.7, cord, 'cordL') + chain([(9, 15), (4, 10.5), (0, 8.6)], 0.7, cord, 'cordR') + [S(0, 8.2, 0.6, 1.6, cord, 'bail')]
+
+
+def quickening_charm():
+    parts = charm_on_cord('silver') + ring(0, -2.6, 8.4, 8.4, 1.1, 32, 'silver', 'rim', 1.0) + [S(0, -2.6, 0, 8.2, 'teal', 'charm')]
+    g = render(parts)
+    for k in range(18):                                                                    # a swirl winding in
+        a = k * 0.62
+        r = 6.4 - k * 0.3
+        paint(g, [(r * math.cos(a), -2.6 + r * math.sin(a))], 'o')
+    for a, b in (((17, 14), (14, 19)), ((14, 19), (18, 19)), ((18, 19), (15, 24))):        # and a bolt through it
+        line_px(g, a, b, 'd')
+    return finish(g)
+
+
+def cinder_charm():
+    parts = charm_on_cord() + [E(0, -2.4, 0, 7.6, 9.6, 3.0, 'dark_iron', 'cage'), S(0, -3.0, 2.6, 5.0, 'ember', 'ember'), S(-0.6, -2.4, 4.6, 2.6, 'flame', 'core')]
+    for k, u in enumerate((-3.0, 0.0, 3.0)):                                              # iron bars across the glow
+        parts.append(rod((u, 6.0), (u * 0.9, -11.4), 0.55, 'dark_iron', f'bar{k}', 4.4))
+    g = render(parts)
+    paint(g, [(-1, -1.4)], 't')
+    px_paint(g, [(24, 13), (26, 10), (7, 16), (5, 12), (25, 19)], 'b', only_inside=False)  # embers drifting off
+    return finish(g)
+
+
+def leech_fang():
+    parts = charm_on_cord() + [E(0, 6.0, 0.4, 3.6, 1.8, 2.6, 'bone', 'cap')]
+    pts = [(0.0, 5.6), (1.2, 1.0), (1.8, -3.8), (0.8, -8.4), (-1.6, -12.4)]
+    for k, (a, b) in enumerate(zip(pts, pts[1:])):                                         # a long curved fang, thinning to its point
+        parts.append(rod(a, b, 3.0 - k * 0.65, 'potion', f'fang{k}', 1.0, grow=0.8))
+    g = render(parts)
+    paint(g, [(-0.6, 3), (-0.2, 0), (0.2, -3), (-0.4, -6)], 'c')
+    px_paint(g, [(14, 29), (15, 30)], 'i', only_inside=False)                                # a drop at the point
+    return finish(g)
+
+
+def pike():
+    parts = [rod((-13.6, -13.6), (7.2, 7.2), 1.0, 'dark_wood', 'shaft'), E(11.4, 11.4, 0.5, 4.8, 1.4, 1.0, 'steel', 'head', 45),
+             E(7.0, 7.0, 0.6, 1.0, 2.0, 1.2, 'iron', 'collar', 45), rod((-13.6, -13.6), (-11.6, -11.6), 1.3, 'iron', 'butt')]
+    g = render(parts)
+    line_px(g, (25, 6), (28, 3), 't')
+    return finish(g)
+
+
+def heavy_sling():
+    parts = [E(0.4, -0.4, 0, 7.4, 5.2, 3.2, 'leather', 'pouch', 35), S(0.6, -0.2, 2.4, 4.4, 'stone', 'stone'),
+             rod((-4.2, -4.4), (-9, -9.5), 1.4, 'leather', 'cordA'), rod((5.0, 3.6), (9.8, 8.8), 1.3, 'leather', 'cordB'),
+             S(10.6, 9.6, 0, 2.0, 'rust', 'knot')] + ring(-10.6, -11.2, 2.6, 2.6, 1.3, 14, 'leather', 'loop')
+    g = render(parts)
+    for u, v in ((-4, 3.8), (-1, 5.2), (2, 5.0), (5, 3.0)):                                 # stitching on the pouch rim
+        paint(g, [(u, v)], 'b')
+    paint(g, [(-1.8, 2.0), (-1.0, 2.6)], 'r')
+    return finish(g)
+
+
+def flask(body_r, body_v, neck_h, cork='wood', liquid='potion'):
+    return [S(0, body_v, 0, body_r, liquid, 'body'), Bx(0, body_v + body_r + neck_h / 2 - 0.6, 0, 1.9, neck_h / 2, 1.8, 'glass', 'neck'),
+            Bx(0, body_v + body_r + neck_h + 0.4, 0.2, 2.3, 1.3, 2.0, cork, 'cork')]
+
+
+def healing_draught():
+    parts = flask(6.2, -5.0, 3.6)
+    g = render(parts)
+    paint(g, [(-3, -2), (-2, -1), (-3, -3)], 't')
+    return finish(g)
+
+
+def greater_draught():
+    parts = flask(9.0, -4.0, 3.6, cork='gold') + [Bx(0, 5.0, 0.2, 2.8, 0.8, 2.2, 'gold', 'lip')]
+    parts += ring(0, -4.0, 7.6, 2.4, 0.9, 30, 'gold', 'band', 2.2)
+    g = render(parts)
+    paint(g, [(-5, 0), (-4, 1), (-5, -1), (-6, -1)], 't')
+    paint(g, [(0, -4.0)], 'd')
+    return finish(g)
+
+
+def grand_elixir():
+    parts = [E(0, -3.6, 0, 5.8, 9.8, 4.0, 'gold', 'body'), Bx(0, 8.0, 0, 1.7, 2.2, 1.6, 'glass', 'neck'), E(0, 11.6, 0.3, 3.0, 2.2, 2.0, 'bronze', 'stopper'),
+             Bx(0, -13.0, 0.3, 5.0, 1.2, 3.0, 'bronze', 'foot'), E(-1.0, -2.0, 2.4, 2.6, 5.0, 1.4, 'cream', 'glow')]
+    g = render(parts)
+    for x, y in ((6, 9), (25, 12), (24, 23), (7, 21)):                                     # it glows: sparkles round it
+        for dx, dy in ((0, 0), (1, 0), (-1, 0), (0, 1), (0, -1)):
+            px_paint(g, [(x + dx, y + dy)], 'd' if (dx, dy) != (0, 0) else 't', only_inside=False)
+    return finish(g)
+
+
+def cleansing_salve():
+    parts = [Bx(0, -4.2, 0, 11.0, 4.0, 4.0, 'steel', 'tin'), E(0, -8.2, 0.2, 11.0, 2.2, 3.6, 'steel', 'base')]
+    parts += ring(0, 0.2, 10.4, 4.0, 1.0, 36, 'silver', 'rim', 1.2) + [E(0, 0.2, 0.6, 9.6, 3.4, 1.6, 'emerald', 'salve')]
+    parts += [E(1.2, 1.0, 2.6, 2.8, 1.4, 0.8, 'leaf', 'leaf', 20)]
+    g = render(parts)
+    paint(g, [(-6, 1), (-5, 1.5), (-4, 2)], 'r')                                           # a sheen on the salve
+    paint(g, [(-9, -3), (-9, -4), (-9, -5)], 't')
+    paint(g, [(u, -4.2) for u in range(-10, 11)], 'l')                                     # the seam round the tin
+    return finish(g)
+
+
+def revive_tonic():
+    parts = [E(-1.4, -3.0, 0, 4.4, 9.0, 3.4, 'gold', 'vial', -8), Bx(-0.2, 7.4, 0, 1.6, 1.8, 1.6, 'glass', 'neck', -8), E(0.2, 10.2, 0.3, 2.4, 1.8, 2.0, 'wood', 'cork', -8)]
+    parts += [rod((1.8, 5.4), (11.4, 13.4), 2.0, 'ember', 'feather', 3.0, flat=0.5), rod((2.2, 4.2), (6.0, 7.6), 0.6, 'flame', 'tip', 4.2),
+              Bx(-0.6, 3.4, 3.4, 3.8, 0.8, 0.8, 'cord', 'tie', -8)]
+    g = render(parts)
+    paint(g, [(-3.6, 0), (-3.4, -1), (-3.2, -2)], 't')
+    paint(g, [(6, 9.4), (8, 11), (10, 12.4)], 'd')
+    return finish(g)
+
+
+def fire_bomb():
+    parts = [S(-1.6, -3.6, 0, 9.2, 'black', 'bomb'), Bx(2.4, 5.6, 0.8, 2.6, 1.8, 2.2, 'iron', 'collar', -35)]
+    parts += chain([(3.6, 7.0), (6.0, 9.6), (8.6, 10.2)], 0.7, 'cream', 'fuse', 0.6)
+    parts += [S(10.2, 10.6, 1.2, 2.2, 'flame', 'spark')]
+    g = render(parts)
+    paint(g, [(-6, 1), (-5, 2), (-6, 0), (-4, 2)], 'p')
+    px_paint(g, [(28, 2), (29, 6), (23, 2), (30, 3)], 'd', only_inside=False)
+    return finish(g)
+
+
+def blast_charge():
+    parts = []
+    for k, (u, w) in enumerate(((-6.4, -0.4), (6.4, -0.4), (0.0, 1.0))):                 # a bound bundle of three fat paper tubes
+        parts.append(E(u, -2.4, w, 3.5, 9.6, 3.0, 'quilt', f'tube{k}'))
+    parts += [Bx(0, -0.6, 3.8, 10.4, 2.0, 1.0, 'potion', 'band'), Bx(0, -8.6, 3.8, 9.6, 0.9, 1.0, 'cord', 'band2')]
+    parts += chain([(0, 7.2), (2.4, 11.0), (5.6, 12.0)], 0.7, 'black', 'fuse', 2.0) + [S(7.4, 12.2, 2.8, 2.0, 'flame', 'spark')]
+    g = render(parts)
+    for x in (13, 19):                                                                     # the gaps between the tubes
+        line_px(g, (x, 9), (x, 27), 'e')
+    paint(g, [(-1, 2.6), (-1, 3.6)], 'i')
+    px_paint(g, [(26, 2), (27, 6), (21, 1), (28, 4)], 'd', only_inside=False)
+    return finish(g)
+
+
+def caltrop(parts, cu, cv, w, tag, turn=0):
+    for k in range(4):                                                                     # four spikes, one always pointing up
+        a = math.radians(90 + turn + k * 90)
+        r = 3.6 if k % 2 == 0 else 3.0
+        parts.append(rod((cu, cv), (cu + r * math.cos(a), cv + r * math.sin(a)), 0.75, 'iron', f'cal{tag}{k}', w, grow=-0.3))
+    parts.append(S(cu, cv, w + 0.6, 1.1, 'steel', f'calc{tag}'))
+
+
+def caltrop_pouch():
+    parts = [E(-5.0, 4.4, 0, 7.6, 6.6, 4.0, 'leather', 'pouch', -30), E(1.6, 0.2, 1.0, 2.6, 3.8, 3.0, 'rust', 'mouth', -30), Bx(-0.4, 1.6, 2.6, 0.8, 3.6, 1.0, 'cord', 'tie', -30),
+             E(2.6, -0.6, 2.8, 1.6, 2.8, 0.8, 'hole', 'opening', -30)]                  # a pouch on its side, its mouth open to the lower right
+    for k, (cu, cv, turn) in enumerate(((6.8, -3.4, 15), (11.0, -9.6, 40), (2.4, -9.6, 0), (-6.4, -10.4, 30))):
+        caltrop(parts, cu, cv, 2.0, k, turn)
+    g = render(parts)
+    paint(g, [(-9, 7), (-8, 8)], 't')
+    for cu, cv in ((6.8, -3.4), (11.0, -9.6), (2.4, -9.6), (-6.4, -10.4)):
+        paint(g, [(cu - 0.6, cv + 0.4)], 't')
+    return finish(g)
+
+
 ITEMS = [
     ('recurve_bow', 'Recurve Bow', recurve_bow), ('sling', 'Sling', sling), ('worn_sword', 'Worn Sword', worn_sword), ('worn_dagger', 'Worn Dagger', worn_dagger),
     ('worn_bow', 'Worn Bow', worn_bow), ('oak_staff', 'Oak Staff', oak_staff), ('warding_staff', 'Warding Staff', warding_staff), ('storm_staff', 'Storm Staff', storm_staff),
@@ -485,6 +788,15 @@ ITEMS = [
     ('strength_band', 'Strength Band', strength_band), ('sage_amulet', 'Sage Amulet', sage_amulet), ('giants_belt', "Giant's Belt", giants_belt), ('hawkeye_pendant', 'Hawkeye Pendant', hawkeye_pendant),
     ('guardian_sigil', 'Guardian Sigil', guardian_sigil), ('sage_circlet', "Sage's Circlet", sage_circlet), ('summit_crown', 'Crown of the Summit', summit_crown), ('phoenix_heart', 'Phoenix Heart', phoenix_heart),
     ('stormcaller_band', 'Stormcaller Band', stormcaller_band), ('stone_idol', 'Stone Idol', stone_idol),
+    ('padded_gambeson', 'Padded Gambeson', padded_gambeson), ('mystic_robe', 'Mystic Robe', mystic_robe), ('rangers_cloak', "Ranger's Cloak", rangers_cloak),
+    ('scale_coat', 'Scale Coat', scale_coat), ('brigandine', 'Brigandine', brigandine),
+    ('iron_band', 'Iron Band', iron_band), ('climbing_hooks', 'Climbing Hooks', climbing_hooks), ('trappers_kit', "Trapper's Kit", trappers_kit), ('fleet_anklet', 'Fleet Anklet', fleet_anklet),
+    ('eagle_feather', 'Eagle Feather', eagle_feather), ('hunters_token', "Hunter's Token", hunters_token), ('headsmans_brand', "Headsman's Brand", headsmans_brand),
+    ('quickening_charm', 'Quickening Charm', quickening_charm), ('cinder_charm', 'Cinder Charm', cinder_charm), ('leech_fang', 'Leech Fang', leech_fang),
+    ('pike', 'Pike', pike), ('heavy_sling', 'Heavy Sling', heavy_sling),
+    ('healing_draught', 'Healing Draught', healing_draught), ('greater_draught', 'Greater Draught', greater_draught), ('grand_elixir', 'Grand Elixir', grand_elixir),
+    ('cleansing_salve', 'Cleansing Salve', cleansing_salve), ('revive_tonic', 'Revive Tonic', revive_tonic), ('fire_bomb', 'Fire Bomb', fire_bomb),
+    ('blast_charge', 'Blast Charge', blast_charge), ('caltrop_pouch', 'Caltrop Pouch', caltrop_pouch),
 ]
 
 

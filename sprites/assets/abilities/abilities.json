@@ -664,6 +664,96 @@
    ],
    "label": "Confuse (spiral) - status icon (loops)"
   },
+  "icon-sight-pop": {
+   "file": "icon-sight-pop.png",
+   "frames": 8,
+   "cell": [
+    24,
+    32
+   ],
+   "fps": 10,
+   "loops": false,
+   "anchor": [
+    12,
+    30
+   ],
+   "label": "Deadeye (gold reticle) - pop-up above the head (once)"
+  },
+  "icon-sight-loop": {
+   "file": "icon-sight-loop.png",
+   "frames": 6,
+   "cell": [
+    24,
+    32
+   ],
+   "fps": 6,
+   "loops": true,
+   "anchor": [
+    12,
+    30
+   ],
+   "label": "Deadeye (gold reticle) - status icon (loops)"
+  },
+  "icon-jaw-pop": {
+   "file": "icon-jaw-pop.png",
+   "frames": 8,
+   "cell": [
+    24,
+    32
+   ],
+   "fps": 10,
+   "loops": false,
+   "anchor": [
+    12,
+    30
+   ],
+   "label": "Trapped (steel jaw) - pop-up above the head (once)"
+  },
+  "icon-jaw-loop": {
+   "file": "icon-jaw-loop.png",
+   "frames": 6,
+   "cell": [
+    24,
+    32
+   ],
+   "fps": 6,
+   "loops": true,
+   "anchor": [
+    12,
+    30
+   ],
+   "label": "Trapped (steel jaw) - status icon (loops)"
+  },
+  "icon-cripple-pop": {
+   "file": "icon-cripple-pop.png",
+   "frames": 8,
+   "cell": [
+    24,
+    32
+   ],
+   "fps": 10,
+   "loops": false,
+   "anchor": [
+    12,
+    30
+   ],
+   "label": "Crippled (cracked bone) - pop-up above the head (once)"
+  },
+  "icon-cripple-loop": {
+   "file": "icon-cripple-loop.png",
+   "frames": 6,
+   "cell": [
+    24,
+    32
+   ],
+   "fps": 6,
+   "loops": true,
+   "anchor": [
+    12,
+    30
+   ],
+   "label": "Crippled (cracked bone) - status icon (loops)"
+  },
   "vanish-violet": {
    "file": "vanish-violet.png",
    "frames": 8,
@@ -828,6 +918,231 @@
     44
    ],
    "label": "Ground loop - Fire wall (flames, for a line of three)"
+  },
+  "surface-thorns": {
+   "file": "surface-thorns.png",
+   "frames": 8,
+   "cell": [
+    32,
+    56
+   ],
+   "fps": 8,
+   "loops": true,
+   "anchor": [
+    16,
+    44
+   ],
+   "label": "Ground loop - Thorns (brambles, for a wall of three)"
+  },
+  "sweep-scythe-se": {
+   "file": "sweep-scythe-se.png",
+   "frames": 8,
+   "cell": [
+    96,
+    96
+   ],
+   "fps": 10,
+   "loops": false,
+   "anchor": [
+    24,
+    56
+   ],
+   "label": "Scythe sweep (SE; mirrored for the other side)"
+  },
+  "sweep-scythe-ne": {
+   "file": "sweep-scythe-ne.png",
+   "frames": 8,
+   "cell": [
+    96,
+    96
+   ],
+   "fps": 10,
+   "loops": false,
+   "anchor": [
+    24,
+    56
+   ],
+   "label": "Scythe sweep (NE; mirrored for the other side)"
+  },
+  "burst-explosion": {
+   "file": "burst-explosion.png",
+   "frames": 8,
+   "cell": [
+    80,
+    56
+   ],
+   "fps": 8,
+   "loops": false,
+   "anchor": [
+    40,
+    38
+   ],
+   "label": "Explosion - five plots"
+  },
+  "burst-explosion-tile": {
+   "file": "burst-explosion-tile.png",
+   "frames": 8,
+   "cell": [
+    32,
+    56
+   ],
+   "fps": 8,
+   "loops": false,
+   "anchor": [
+    16,
+    44
+   ],
+   "label": "Explosion - one plot"
+  },
+  "burst-grasp-tile": {
+   "file": "burst-grasp-tile.png",
+   "frames": 8,
+   "cell": [
+    32,
+    56
+   ],
+   "fps": 8,
+   "loops": false,
+   "anchor": [
+    16,
+    44
+   ],
+   "label": "Grasping hands - one plot"
+  },
+  "burst-mindspore": {
+   "file": "burst-mindspore.png",
+   "frames": 8,
+   "cell": [
+    80,
+    56
+   ],
+   "fps": 8,
+   "loops": false,
+   "anchor": [
+    40,
+    38
+   ],
+   "label": "Mind spores - five plots"
+  },
+  "burst-mindspore-tile": {
+   "file": "burst-mindspore-tile.png",
+   "frames": 8,
+   "cell": [
+    32,
+    56
+   ],
+   "fps": 8,
+   "loops": false,
+   "anchor": [
+    16,
+    44
+   ],
+   "label": "Mind spores - one plot"
+  },
+  "burst-potion-tile": {
+   "file": "burst-potion-tile.png",
+   "frames": 8,
+   "cell": [
+    32,
+    56
+   ],
+   "fps": 8,
+   "loops": false,
+   "anchor": [
+    16,
+    44
+   ],
+   "label": "Potion - one plot"
+  },
+  "burst-elixir-tile": {
+   "file": "burst-elixir-tile.png",
+   "frames": 8,
+   "cell": [
+    32,
+    56
+   ],
+   "fps": 8,
+   "loops": false,
+   "anchor": [
+    16,
+    44
+   ],
+   "label": "Elixir - one plot"
+  },
+  "burst-wave-tile": {
+   "file": "burst-wave-tile.png",
+   "frames": 8,
+   "cell": [
+    32,
+    56
+   ],
+   "fps": 8,
+   "loops": false,
+   "anchor": [
+    16,
+    44
+   ],
+   "label": "Force wave - one plot"
+  },
+  "burst-crit-tile": {
+   "file": "burst-crit-tile.png",
+   "frames": 8,
+   "cell": [
+    32,
+    56
+   ],
+   "fps": 8,
+   "loops": false,
+   "anchor": [
+    16,
+    44
+   ],
+   "label": "Critical hit - one plot"
+  },
+  "burst-impact-tile": {
+   "file": "burst-impact-tile.png",
+   "frames": 8,
+   "cell": [
+    32,
+    56
+   ],
+   "fps": 8,
+   "loops": false,
+   "anchor": [
+    16,
+    44
+   ],
+   "label": "Heavy impact - one plot"
+  },
+  "burst-streak-tile": {
+   "file": "burst-streak-tile.png",
+   "frames": 8,
+   "cell": [
+    32,
+    56
+   ],
+   "fps": 8,
+   "loops": false,
+   "anchor": [
+    16,
+    44
+   ],
+   "label": "Piercing streak - one plot"
+  },
+  "burst-nick-tile": {
+   "file": "burst-nick-tile.png",
+   "frames": 8,
+   "cell": [
+    32,
+    56
+   ],
+   "fps": 8,
+   "loops": false,
+   "anchor": [
+    16,
+    44
+   ],
+   "label": "Nick - one plot"
   }
  },
  "abilities": {
@@ -1270,6 +1585,398 @@
      "note": "one tile on each of the three cells, each started on a different frame so the flames do not move together"
     }
    ]
+  },
+  "thornwall": {
+   "label": "Thornwall",
+   "area": "line of 3",
+   "family": "ground",
+   "effects": [
+    {
+     "sheet": "surface-thorns",
+     "at": "cells:line3",
+     "how": "loop",
+     "note": "one tile on each of the three cells for as long as the thorns stand; start each on a different frame"
+    }
+   ]
+  },
+  "use-fire-bomb": {
+   "label": "Fire Bomb (supply)",
+   "area": "radius 1, thrown 2 tiles",
+   "family": "burst",
+   "effects": [
+    {
+     "sheet": "burst-explosion",
+     "at": "aimed",
+     "how": "once",
+     "note": "the five-plot sheet covers the whole area"
+    }
+   ]
+  },
+  "use-blast-charge": {
+   "label": "Blast Charge (supply)",
+   "area": "radius 1, thrown 2 tiles",
+   "family": "burst",
+   "effects": [
+    {
+     "sheet": "burst-explosion",
+     "at": "aimed",
+     "how": "once",
+     "note": "the five-plot sheet covers the whole area"
+    }
+   ]
+  },
+  "grasp": {
+   "label": "Grasp (Zombie)",
+   "area": "1 tile, adjacent",
+   "family": "burst",
+   "effects": [
+    {
+     "sheet": "burst-grasp-tile",
+     "at": "target",
+     "how": "once",
+     "note": "hands clawing out of the ground at the target"
+    }
+   ]
+  },
+  "mind-spore": {
+   "label": "Mind Spore",
+   "area": "1 tile",
+   "family": "burst",
+   "effects": [
+    {
+     "sheet": "burst-mindspore-tile",
+     "at": "target",
+     "how": "once"
+    }
+   ]
+  },
+  "dominion": {
+   "label": "Dominion",
+   "area": "1 tile",
+   "family": "burst",
+   "effects": [
+    {
+     "sheet": "burst-mindspore-tile",
+     "at": "target",
+     "how": "once"
+    }
+   ]
+  },
+  "sap": {
+   "label": "Sap",
+   "area": "1 tile",
+   "family": "burst",
+   "effects": [
+    {
+     "sheet": "burst-mindspore-tile",
+     "at": "target",
+     "how": "once"
+    }
+   ]
+  },
+  "use-healing-draught": {
+   "label": "Healing Draught (supply)",
+   "area": "1 tile, adjacent",
+   "family": "burst",
+   "effects": [
+    {
+     "sheet": "burst-potion-tile",
+     "at": "target",
+     "how": "once"
+    }
+   ]
+  },
+  "use-greater-draught": {
+   "label": "Greater Draught (supply)",
+   "area": "1 tile, adjacent",
+   "family": "burst",
+   "effects": [
+    {
+     "sheet": "burst-potion-tile",
+     "at": "target",
+     "how": "once"
+    }
+   ]
+  },
+  "use-grand-elixir": {
+   "label": "Grand Elixir (supply)",
+   "area": "1 tile, adjacent",
+   "family": "burst",
+   "effects": [
+    {
+     "sheet": "burst-elixir-tile",
+     "at": "target",
+     "how": "once"
+    }
+   ]
+  },
+  "bark": {
+   "label": "Bark",
+   "area": "cone, 3 deep",
+   "family": "burst",
+   "effects": [
+    {
+     "sheet": "burst-wave-tile",
+     "at": "cells:line",
+     "how": "once",
+     "note": "one tile on each cell of the cone, nearest the caster first, so it fans out"
+    }
+   ]
+  },
+  "scythe-sweep": {
+   "label": "Scythe Sweep (Mantis)",
+   "area": "cone: the cell in front and the three beyond",
+   "family": "sweep",
+   "effects": [
+    {
+     "sheet": "sweep-scythe",
+     "at": "caster-facing",
+     "how": "once",
+     "note": "one stroke over the whole cone, at the attacker's feet: `sweep-scythe-ne` when it faces up the screen, `-se` down it; NW and SW are those flipped left to right"
+    }
+   ]
+  },
+  "spore-burst": {
+   "label": "Spore Burst (Puffball)",
+   "area": "radius 1",
+   "family": "burst",
+   "effects": [
+    {
+     "sheet": "burst-spore",
+     "at": "aimed",
+     "how": "once"
+    }
+   ]
+  },
+  "spore-shot": {
+   "label": "Spore Shot (Blood Mushroom)",
+   "area": "1 tile",
+   "family": "burst",
+   "effects": [
+    {
+     "sheet": "burst-spore-tile",
+     "at": "target",
+     "how": "once"
+    }
+   ]
+  },
+  "totem-blast": {
+   "label": "Totem Blast",
+   "area": "radius 3 foes",
+   "family": "burst",
+   "effects": [
+    {
+     "sheet": "burst-static-tile",
+     "at": "target",
+     "how": "once",
+     "note": "on each foe it burns"
+    }
+   ]
+  },
+  "use-cleansing-salve": {
+   "label": "Cleansing Salve (supply)",
+   "area": "1 tile, adjacent",
+   "family": "ring",
+   "effects": [
+    {
+     "sheet": "ring-cleanse",
+     "at": "target",
+     "how": "once"
+    }
+   ]
+  },
+  "use-revive-tonic": {
+   "label": "Revive Tonic (supply)",
+   "area": "1 fallen ally, adjacent",
+   "family": "ring",
+   "effects": [
+    {
+     "sheet": "ring-inspire",
+     "at": "aimed",
+     "how": "once"
+    }
+   ]
+  },
+  "warning-shot": {
+   "label": "Warning Shot",
+   "area": "1 tile",
+   "family": "icon",
+   "effects": [
+    {
+     "sheet": "icon-mark-pop",
+     "at": "target-head",
+     "how": "once"
+    }
+   ]
+  },
+  "disengage": {
+   "label": "Disengage",
+   "area": "caster only",
+   "family": "ring",
+   "effects": [
+    {
+     "sheet": "ring-dash",
+     "at": "caster-facing",
+     "how": "once",
+     "note": "Dash's ring, the way the caster faces"
+    }
+   ]
+  },
+  "snare": {
+   "label": "Snare",
+   "area": "1 tile",
+   "family": "burst",
+   "effects": [
+    {
+     "sheet": "burst-dust-small-tile",
+     "at": "aimed",
+     "how": "once",
+     "note": "a puff as the trap is set"
+    }
+   ]
+  },
+  "bear-trap": {
+   "label": "Bear Trap",
+   "area": "1 tile",
+   "family": "burst",
+   "effects": [
+    {
+     "sheet": "burst-dust-small-tile",
+     "at": "aimed",
+     "how": "once",
+     "note": "a puff as the trap is set"
+    }
+   ]
+  },
+  "spike-pit": {
+   "label": "Spike Pit",
+   "area": "1 tile",
+   "family": "burst",
+   "effects": [
+    {
+     "sheet": "burst-dust-small-tile",
+     "at": "aimed",
+     "how": "once",
+     "note": "a puff as the trap is set"
+    }
+   ]
+  },
+  "trapmaster": {
+   "label": "Trapmaster",
+   "area": "1 tile",
+   "family": "burst",
+   "effects": [
+    {
+     "sheet": "burst-dust-small-tile",
+     "at": "aimed",
+     "how": "once",
+     "note": "a puff as the trap is set"
+    }
+   ]
+  },
+  "caltrops": {
+   "label": "Caltrops",
+   "area": "line of 3",
+   "family": "burst",
+   "effects": [
+    {
+     "sheet": "burst-dust-small-tile",
+     "at": "cells:line3",
+     "how": "once",
+     "note": "a puff on each cell as the traps are set"
+    }
+   ]
+  },
+  "use-caltrop-pouch": {
+   "label": "Caltrop Pouch (supply)",
+   "area": "line of 3",
+   "family": "burst",
+   "effects": [
+    {
+     "sheet": "burst-dust-small-tile",
+     "at": "cells:line3",
+     "how": "once",
+     "note": "a puff on each cell as the traps are set"
+    }
+   ]
+  },
+  "headshot": {
+   "label": "Headshot",
+   "area": "1 tile",
+   "family": "burst",
+   "effects": [
+    {
+     "sheet": "burst-crit-tile",
+     "at": "target",
+     "how": "once",
+     "note": "a crit star on the one struck"
+    }
+   ]
+  },
+  "called-shot": {
+   "label": "Called Shot",
+   "area": "1 tile",
+   "family": "burst",
+   "effects": [
+    {
+     "sheet": "burst-impact-tile",
+     "at": "target",
+     "how": "once",
+     "note": "a heavy blow"
+    }
+   ]
+  },
+  "piercing-shot": {
+   "label": "Piercing Shot",
+   "area": "1 tile",
+   "family": "burst",
+   "effects": [
+    {
+     "sheet": "burst-streak-tile",
+     "at": "target",
+     "how": "once",
+     "note": "a streak passing through"
+    }
+   ]
+  },
+  "hamstring": {
+   "label": "Hamstring",
+   "area": "1 tile",
+   "family": "burst",
+   "effects": [
+    {
+     "sheet": "burst-nick-tile",
+     "at": "target",
+     "how": "once",
+     "note": "a nick low on the legs"
+    }
+   ]
+  },
+  "deadeye": {
+   "label": "Deadeye",
+   "area": "caster only",
+   "family": "icon",
+   "effects": [
+    {
+     "sheet": "icon-sight-pop",
+     "at": "target-head",
+     "how": "once",
+     "note": "over the caster, who is the one it lands on"
+    }
+   ]
+  },
+  "minefield": {
+   "label": "Minefield",
+   "area": "radius 1",
+   "family": "burst",
+   "effects": [
+    {
+     "sheet": "burst-dust-small-tile",
+     "at": "cells:radius1",
+     "how": "once",
+     "note": "a puff on each cell as the mines are set"
+    }
+   ]
   }
  },
  "statuses": {
@@ -1330,6 +2037,21 @@
    "at": "unit-feet",
    "how": "existing",
    "note": "the existing vine animation, as it is"
+  },
+  "crippled": {
+   "sheet": "icon-cripple-loop",
+   "at": "unit-head",
+   "how": "loop"
+  },
+  "trapped": {
+   "sheet": "icon-jaw-loop",
+   "at": "unit-head",
+   "how": "loop"
+  },
+  "deadeye": {
+   "sheet": "icon-sight-loop",
+   "at": "unit-head",
+   "how": "loop"
   }
  },
  "reused": {

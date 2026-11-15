@@ -83,12 +83,18 @@ class Traps(unittest.TestCase):
     def test_the_assets_are_grouped_and_named(self):
         import make_traps as mt
         assets = {a['id']: a for a in assets_of('traps')}
-        self.assertEqual(set(assets), {'trap-caltrops', 'trap-caltrops-triggered', 'trap-beartrap', 'trap-beartrap-triggered'})
+        names = ('caltrops', 'beartrap', 'snare', 'spikepit', 'tripwire', 'mine')
+        self.assertEqual(set(assets), {f'trap-{n}' for n in names} | {f'trap-{n}-triggered' for n in names})
+        self.assertEqual(set(mt.TRAPS), set(names))
         for a in assets.values():
             self.assertEqual((a['category'], a['folder'], a['place']), ('Traps', 'traps', 'ground'), a['id'])
         self.assertEqual(len(assets['trap-caltrops']['frames']), 1)
         self.assertEqual(len(assets['trap-beartrap-triggered']['frames']), len(mt.BEARTRAP_FRAMES))
         self.assertEqual(assets['trap-caltrops-triggered']['kind'], 'animation')
+        for name in names:                                                     # every trap the same cell, anchor and layout: one still, one animation
+            placed, anim = assets[f'trap-{name}'], assets[f'trap-{name}-triggered']
+            self.assertEqual((placed['w'], placed['h'], placed['anchor'], placed['kind'], len(placed['frames'])), (32, 32, {'x': 16, 'y': 24}, 'still', 1), name)
+            self.assertEqual((anim['w'], anim['h'], anim['anchor'], anim['kind'], len(anim['frames'])), (32, 32, {'x': 16, 'y': 24}, 'animation', 6), name)
 
     def test_every_frame_is_inside_the_cell_and_outlined_in_the_palette(self):
         import make_traps as mt
@@ -724,16 +730,19 @@ class HudIcons(unittest.TestCase):
 
 
 class ItemIcons(unittest.TestCase):
-    """The 26 item pictures: 32 x 32 stills, outlined, in palette roles, with the weapons on the same diagonal."""
+    """The 51 item pictures: 32 x 32 stills, outlined, in palette roles, with the weapons on the same diagonal."""
 
     IDS = ['recurve_bow', 'sling', 'worn_sword', 'worn_dagger', 'worn_bow', 'oak_staff', 'warding_staff', 'storm_staff', 'leather_jerkin', 'iron_mail', 'warden_plate', 'dragonscale_mail',
            'swift_boots', 'windrunner_boots', 'warding_charm', 'vigor_ring', 'strength_band', 'sage_amulet', 'giants_belt', 'hawkeye_pendant', 'guardian_sigil', 'sage_circlet',
-           'summit_crown', 'phoenix_heart', 'stormcaller_band', 'stone_idol']
+           'summit_crown', 'phoenix_heart', 'stormcaller_band', 'stone_idol',
+           'padded_gambeson', 'mystic_robe', 'rangers_cloak', 'scale_coat', 'brigandine', 'iron_band', 'climbing_hooks', 'trappers_kit', 'fleet_anklet', 'eagle_feather',
+           'hunters_token', 'headsmans_brand', 'quickening_charm', 'cinder_charm', 'leech_fang', 'pike', 'heavy_sling',
+           'healing_draught', 'greater_draught', 'grand_elixir', 'cleansing_salve', 'revive_tonic', 'fire_bomb', 'blast_charge', 'caltrop_pouch']
 
     def assets(self):
         return {a['id']: a for a in assets_of('item-icons')}
 
-    def test_twenty_six_32_pixel_stills_named_for_the_games_ids(self):
+    def test_32_pixel_stills_named_for_the_games_ids(self):
         assets = self.assets()
         self.assertEqual(sorted(assets), sorted('item-' + i for i in self.IDS))
         for a in assets.values():
@@ -757,7 +766,7 @@ class ItemIcons(unittest.TestCase):
                         self.assertNotEqual(rows[ny][nx], '.', f'{a["id"]}: a bare edge at {x},{y}')
 
     def test_the_weapons_lie_on_one_diagonal_rising_to_the_right(self):
-        for name in ('recurve_bow', 'worn_sword', 'worn_dagger', 'worn_bow', 'oak_staff', 'warding_staff', 'storm_staff'):
+        for name in ('recurve_bow', 'worn_sword', 'worn_dagger', 'worn_bow', 'oak_staff', 'warding_staff', 'storm_staff', 'pike'):
             rows = self.assets()['item-' + name]['frames'][0]
             pts = [(x, y) for y, r in enumerate(rows) for x, c in enumerate(r) if c not in '.O']
             n = len(pts)
