@@ -40,6 +40,8 @@ EXTRA = {
     'potion': ('c', 'j', 'i', 'h'),           # red liquid
     'feather_brown': ('b', 'a', 'g', 'w'),
     'red_hot': ('d', 'a', 'e', 'h'),          # iron glowing from the fire
+    'red': ('E', 'F', 'G', 'O'),              # the palette's true red: a war-wrap, a thorn's tip
+    'thorn': ('z', 'A', 'B', 's'),            # living thorns
 }
 RAMPS.update(EXTRA)
 
@@ -780,6 +782,148 @@ def caltrop_pouch():
     return finish(g)
 
 
+# --- the second shelf: bows and armour made for builds (proposed; not in ITEMS until the preview is approved) --------------------------
+def _simple_bow(arc, limb, grip, string='cream', w_limb=1.45):
+    T = lambda p: rotp(p, BOW_TURN)
+    top, bottom = arc[0], arc[-1]
+    gu, gv = T((min(a for a, _ in arc) + 0.3, 0.3))
+    parts = chain([T(p) for p in arc], w_limb, limb, 'limb') + [rod(T(top), T(bottom), 0.4, string, 'string', -1.5),
+                                                                 E(gu, gv, 0.5, 1.7, 2.6, 2.0, grip, 'grip', BOW_TURN)]
+    return parts, T
+
+
+def hunting_bow():
+    """A plain, light bow of pale wood with a brown feather tied at the grip: the cheap quick one."""
+    arc = [(5.5, 12.5), (0.8, 9.0), (-1.6, 4.0), (-2.2, 0.0), (-1.6, -4.0), (0.8, -9.0), (5.5, -12.5)]
+    parts, T = _simple_bow(arc, 'pale_wood', 'leather', w_limb=1.3)
+    fu, fv = T((-4.0, -2.0))
+    parts.append(E(fu, fv, 1.2, 1.1, 3.6, 0.8, 'feather_brown', 'feather', BOW_TURN + 30))
+    g = render(parts)
+    return finish(g)
+
+
+def snarebow():
+    """A short dark recurve with a coil of snare cord looped over its lower limb: the trapper's."""
+    top = [(7.0, 12.5), (3.6, 10.6), (0.0, 6.6), (-2.0, 2.0), (-2.4, 0.0)]
+    T = lambda p: rotp(p, BOW_TURN)
+    parts = chain([T(p) for p in top], 1.35, 'dark_wood', 'limbT') + chain([T((a, -b)) for a, b in reversed(top)], 1.35, 'dark_wood', 'limbB')
+    gu, gv = T((-2.4, 0.0))
+    parts += [rod(T((7.0, 12.5)), T((7.0, -12.5)), 0.4, 'cream', 'string', -1.5), E(gu, gv, 0.5, 1.7, 2.8, 2.0, 'cord', 'grip', BOW_TURN)]
+    cu, cv = T((1.6, -8.4))
+    parts += ring(cu, cv, 3.2, 2.4, 0.7, 18, 'cord', 'coil', 1.6)
+    g = render(parts)
+    lu, lv = T((3.0, -11.6))
+    px_paint(g, [pix(lu, lv), pix(lu + 0.8, lv - 1.2)], 'b')        # the loose end of the cord
+    return finish(g)
+
+
+def marksmans_bow():
+    """A long, straight-limbed bow of pale wood with gold-capped tips and a small sight notch at the grip: the sharpshooter's."""
+    arc = [(4.0, 14.0), (1.0, 10.0), (-1.0, 5.0), (-1.6, 0.0), (-1.0, -5.0), (1.0, -10.0), (4.0, -14.0)]
+    parts, T = _simple_bow(arc, 'pale_wood', 'cord', w_limb=1.2)
+    for tip, tag in (((4.0, 14.0)), 'a'), (((4.0, -14.0)), 'b'):
+        tu, tv = T(tip)
+        parts.append(S(tu, tv, 0.6, 1.2, 'gold', 'cap' + tag))
+    su, sv = T((-1.0, 2.4))
+    parts.append(Bx(su, sv, 1.2, 0.8, 1.2, 0.8, 'gold', 'sight', BOW_TURN))
+    g = render(parts)
+    return finish(g)
+
+
+def warbow():
+    """A heavy bow, thick dark limbs bound with iron bands and a red war-wrap at the grip: the one that marks."""
+    arc = [(5.0, 13.0), (1.0, 9.5), (-2.0, 4.5), (-2.8, 0.0), (-2.0, -4.5), (1.0, -9.5), (5.0, -13.0)]
+    parts, T = _simple_bow(arc, 'dark_wood', 'red', w_limb=1.8)
+    for k, v in enumerate((7.0, -7.0)):
+        bu, bv = T((-0.6 if v > 0 else -0.6, v))
+        parts.append(Bx(bu, bv, 0.8, 2.2, 0.7, 1.9, 'dark_iron', 'band%d' % k, BOW_TURN))
+    g = render(parts)
+    return finish(g)
+
+
+def whisperwind_bow():
+    """A pale, airy bow whose limbs end in white feathers, the string faintly aglow: the rare one from a chest."""
+    arc = [(5.5, 12.0), (1.0, 8.5), (-1.4, 4.0), (-2.0, 0.0), (-1.4, -4.0), (1.0, -8.5), (5.5, -12.0)]
+    parts, T = _simple_bow(arc, 'cloud', 'teal', string='glow', w_limb=1.3)
+    for tip, tag, turn in (((5.5, 12.0)), 'a', 40), (((5.5, -12.0)), 'b', -40):
+        tu, tv = T(tip)
+        parts.append(E(tu, tv, 1.0, 1.2, 3.2, 0.7, 'wing', 'plume' + tag, BOW_TURN + turn))
+    g = render(parts)
+    px_paint(g, [(6, 7), (26, 22), (25, 6)], 'o', only_inside=False)  # a few motes of wind
+    return finish(g)
+
+
+def studded_leather():
+    """A leather jerkin set with rows of steel studs: light armour for the quick."""
+    parts = tunic('leather', 'rust', sleeves=False) + [E(8.4, 6.6, 0.4, 2.8, 3.2, 2.8, 'leather', 'padR', -18), E(-8.4, 6.6, 0.4, 2.8, 3.2, 2.8, 'leather', 'padL', 18)]
+    g = render(parts)
+    for v in (5, 1, -3, -7):
+        for u in range(-5 + (1 if v % 2 else 0), 6, 3):
+            paint(g, [(u, v)], 't')
+            paint(g, [(u, v - 1)], 'p')
+    return finish(g)
+
+
+def chain_shirt():
+    """A short shirt of mail with leather at the hem and neck: the first piece of a wall."""
+    g = render(tunic('steel', 'leather'))
+    darker(g, 'steel', every=lambda x, y: (x + 2 * (y % 2)) % 3 == 0)
+    lighter(g, 'steel', every=lambda x, y: (x + y) % 5 == 0 and y < 14)
+    return finish(g)
+
+
+def shadow_garb():
+    """Close-fitting black garb with a deep hood and a violet sash: for those who strike and slip away."""
+    parts = [E(0, -3.0, 0, 7.4, 10.0, 4.0, 'black', 'body'), E(0, -11.6, 0.3, 8.6, 2.2, 4.0, 'black', 'hem'),
+             E(0, 7.4, 0.8, 6.0, 6.0, 4.4, 'black', 'hood'), E(0, 6.4, 3.4, 3.4, 3.8, 2.4, 'hole', 'face'),
+             E(9.4, 2.6, 0, 3.0, 6.4, 2.8, 'black', 'sleeveR', -16), E(-9.4, 2.6, 0, 3.0, 6.4, 2.8, 'black', 'sleeveL', 16),
+             Bx(0, -2.4, 4.0, 7.6, 1.2, 1.0, 'robe', 'sash'), rod((3.6, -3.0), (5.0, -9.0), 0.8, 'robe', 'tail', 4.2)]
+    g = render(parts)
+    paint(g, [(-1.0, 6.4), (1.0, 6.4)], 'v')                                               # eyes in the dark of the hood
+    return finish(g)
+
+
+def trappers_leathers():
+    """Rough green-and-brown leathers with a coil of rope over one shoulder and a pouch at the hip: they walk through their own traps."""
+    parts = tunic('leather', 'moss') + ring(-4.0, 4.0, 4.6, 3.6, 1.0, 22, 'cord', 'coil', 3.2) + [E(5.2, -6.4, 3.0, 2.8, 2.6, 2.0, 'rust', 'pouch')]
+    g = render(parts)
+    paint(g, [(5.2, -5.2), (4.2, -5.2), (6.2, -5.2)], 'b')                                 # the pouch's flap
+    for u in range(-6, 7, 2):
+        paint(g, [(u, -9.6)], 's')                                                         # a green-stitched hem
+    return finish(g)
+
+
+def thorned_mail():
+    """Mail grown through with thorns, red at their tips: whoever strikes it is struck back."""
+    g = render(tunic('steel', 'dark_iron'))
+    darker(g, 'steel', every=lambda x, y: (x + 2 * (y % 2)) % 4 == 0)
+    thorns = [(-9, 9), (-10, 7), (9, 9), (10, 7), (-4, 3), (4, 3), (0, -2), (-5, -6), (5, -6)]
+    for u, v in thorns:
+        paint(g, [(u, v)], 'B')
+        paint(g, [(u + (1 if u > 0 else -1), v + 1)], 'A', only_inside=False)
+        paint(g, [(u + (2 if u > 0 else -2), v + 2)], 'F', only_inside=False)                   # the red tip
+    return finish(g)
+
+
+def bulwark_plate():
+    """Massive plate: broad pauldrons, a thick breastplate and a gold boss in its middle. A wall that barely moves."""
+    parts = [E(0, -1.4, 0, 9.8, 11.4, 5.0, 'plate', 'breast'), E(-10.0, 7.6, 1.0, 4.8, 3.8, 3.8, 'plate', 'padL', 18), E(10.0, 7.6, 1.0, 4.8, 3.8, 3.8, 'plate', 'padR', -18),
+             Bx(0, -8.6, 1.8, 9.4, 1.4, 1.8, 'dark_iron', 'skirt'), S(0, 0.6, 4.6, 2.6, 'gold', 'boss'), E(0, 10.6, 1.6, 2.8, 1.2, 2.2, 'hole', 'neck')]
+    g = render(parts)
+    for u, v in ((-8, 3), (8, 3), (-7, -5), (7, -5), (-10, 8), (10, 8)):
+        paint(g, [(u, v)], 't')                                                            # rivets
+    paint(g, [(0, 1.6), (-0.8, 1.2)], 't')
+    return finish(g)
+
+
+NEW_ITEMS = [
+    ('hunting_bow', 'Hunting Bow', hunting_bow), ('snarebow', 'Snarebow', snarebow), ('marksmans_bow', "Marksman's Bow", marksmans_bow),
+    ('warbow', 'Warbow', warbow), ('whisperwind_bow', 'Whisperwind Bow', whisperwind_bow),
+    ('studded_leather', 'Studded Leather', studded_leather), ('chain_shirt', 'Chain Shirt', chain_shirt), ('shadow_garb', 'Shadow Garb', shadow_garb),
+    ('trappers_leathers', "Trapper's Leathers", trappers_leathers), ('thorned_mail', 'Thorned Mail', thorned_mail), ('bulwark_plate', 'Bulwark Plate', bulwark_plate),
+]
+
+
 ITEMS = [
     ('recurve_bow', 'Recurve Bow', recurve_bow), ('sling', 'Sling', sling), ('worn_sword', 'Worn Sword', worn_sword), ('worn_dagger', 'Worn Dagger', worn_dagger),
     ('worn_bow', 'Worn Bow', worn_bow), ('oak_staff', 'Oak Staff', oak_staff), ('warding_staff', 'Warding Staff', warding_staff), ('storm_staff', 'Storm Staff', storm_staff),
@@ -812,16 +956,17 @@ def write_package(folder):
                {'cell': [CELL, CELL], 'items': {id: {'label': label, 'file': f'item-{id}.png', 'game_file': f'{id}.png'} for id, label, _ in ITEMS}})
 
 
-def preview(path, scale=6):
+def preview(path, scale=6, items=None):
     from PIL import Image, ImageDraw
     import extract_poses as ep
+    items = items or ITEMS
     rgb = {c: tuple(int(h[i:i + 2], 16) for i in (0, 2, 4)) for c, _, _, _, h in ep.ROLES}
     cols = 7
     cw, ch = CELL * scale + 12, CELL * scale + 24
-    n = len(ITEMS)
+    n = len(items)
     sheet = Image.new('RGBA', (cols * cw + 12, ((n + cols - 1) // cols) * ch + 12), (44, 40, 76, 255))
     d = ImageDraw.Draw(sheet)
-    for k, (id, label, make_icon) in enumerate(ITEMS):
+    for k, (id, label, make_icon) in enumerate(items):
         cell = Image.new('RGBA', (CELL, CELL), (0, 0, 0, 0))
         for y, line in enumerate(make_icon()):
             for x, c in enumerate(line):
@@ -836,10 +981,11 @@ def preview(path, scale=6):
 def main():
     parser = argparse.ArgumentParser(description=__doc__.split('\n')[0])
     parser.add_argument('--preview', type=Path, help='every item, enlarged, with its name')
+    parser.add_argument('--new', action='store_true', help='with --preview: only the proposed ones not yet in ITEMS (NEW_ITEMS)')
     args = parser.parse_args()
     if args.preview:
         args.preview.parent.mkdir(parents=True, exist_ok=True)
-        preview(args.preview)
+        preview(args.preview, items=NEW_ITEMS if args.new else None)
         print('the 3D item icons, enlarged ->', args.preview)
 
 
