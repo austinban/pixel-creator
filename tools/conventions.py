@@ -89,7 +89,7 @@ HEIGHT = {'attack': (22, 27), 'bow': (22, 27), 'charging': (24, 26), 'damage': (
 # The generated people kneel when worn out (down on one knee, head bowed), which is taller than the
 # originals' slump. Their own range, measured from their kneel; the originals keep theirs.
 KNEEL_HEIGHT = (22, 26)
-KNEELERS = {'human', 'slim', 'human-sleek', 'slim-sleek', 'ninja', 'ranger', 'verdant', 'fey', 'golden-mushroom', 'fungal-zombie', 'blood-cultist', 'stone-shaper', 'hexweaver', 'bones', 'undead', 'paladin', 'blossom', 'earthbender'}
+KNEELERS = {'human', 'slim', 'human-sleek', 'slim-sleek', 'ninja', 'ranger', 'ranger-pure', 'ranger-corrupted', 'verdant', 'fey', 'golden-mushroom', 'fungal-zombie', 'blood-cultist', 'stone-shaper', 'hexweaver', 'bones', 'undead', 'paladin', 'blossom', 'earthbender'}
 HEIGHT_SLACK = {'release': 2}    # one row either side of the originals' range (two for a cast, which
 HEIGHT_SLACK_DEFAULT = 1        # relies on arms thrown above the head that a shorter-armed figure cannot fully reach)
 MASS_SLACK = 0.92               # a little under the lightest original is still allowed
