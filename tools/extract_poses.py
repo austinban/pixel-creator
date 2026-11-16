@@ -34,6 +34,7 @@ GROUND = 28  # last row of the feet in every upright frame
 GROUPS = [
     ('warm', 'Orange & gold'),
     ('rose', 'Coral & plum'),
+    ('red', 'Red'),
     ('magenta', 'Magenta'),
     ('violet', 'Violet'),
     ('blue', 'Blue'),
@@ -76,6 +77,11 @@ ROLES = [
     ('B', 'emerald', 'Emerald', 'green', '12804f'),
     ('C', 'sand', 'Sand', 'neutral', 'd9c598'),
     ('D', 'abyss', 'Abyss teal', 'teal', '083a45'),      # darker than Deep teal: the shaded side of the corrupted water
+    # A true red, for what must read as blood, fire-red or a red potion: coral and magenta both stood in for it before, and neither is red.
+    # Lit to deep, with the outline as the fourth step of a ramp (see conventions.check_ramps).
+    ('E', 'scarlet', 'Scarlet', 'red', 'e04a3f'),
+    ('F', 'red', 'Red', 'red', 'b8262e'),
+    ('G', 'blood', 'Blood', 'red', '6e1420'),
 ]
 
 # The colours the roles had before the moodier palette (the source PNGs that are not ours, such as the ground sheet and the weapon strips, still use them).

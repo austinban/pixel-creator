@@ -80,7 +80,7 @@ class AbilityAnimations(unittest.TestCase):
     def test_a_looping_sheet_comes_back_to_where_it_started(self):
         """The ground loops are periodic in their frame count: the frame after the last one is the first."""
         import make_ground_fx as gf
-        for kind in ('mire', 'slick', 'firewall'):
+        for kind in ('mire', 'slick', 'firewall', 'thorns'):
             draw = gf.KINDS[kind][1]
             self.assertEqual(draw(0), draw(gf.FRAMES), kind)
 

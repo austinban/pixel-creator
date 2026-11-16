@@ -3,10 +3,12 @@
 
     mark      a crosshair                  silence   sealed lips
     stun      stars                        charm     a heart                  confuse   a spiral
+    sight     a gold reticle (Deadeye)     jaw       a steel trap jaw (Trapped)
+    cripple   a cracked bone (Crippled)
 
 Each glyph is drawn at 14 x 14 with a dark outline, in its own colours. `icon-NAME-pop` is the pop-up (8 frames, plays once: it pops in bigger than it settles, rises a little and
 dissolves away) and `icon-NAME-loop` is the status icon (6 frames, loops: the stars orbit, the spiral turns, the heart beats, the crosshair closes in, the stitches on the lips
-twitch). The cell is 24 x 32 and the anchor (12, 30) is the point just above the unit's head that the glyph sits over.
+twitch, the reticle's brackets breathe, the jaw snaps, the bone's halves part). The cell is 24 x 32 and the anchor (12, 30) is the point just above the unit's head that the glyph sits over.
 
     python3 tools/make_icons.py --preview previews/icons.png
 """
@@ -120,12 +122,78 @@ def spiral(g, cx, cy, phase):
     g.put(cx, cy, 't')
 
 
+def reticle(g, cx, cy, phase):
+    """A gold aiming reticle: a ring, four ticks pointing in at a red dot, and corner brackets that breathe in and out."""
+    g.ellipse(cx, cy, 4.6, 4.6, 'd', thick=1.2)
+    for k in range(4):
+        a = k * math.pi / 2
+        for j in (2, 3):
+            g.put(cx + math.cos(a) * j, cy + math.sin(a) * j, 'b')
+    g.put(cx, cy, 'j')
+    b = 7 + (1 if math.sin(phase * 2 * math.pi) > 0.3 else 0)    # how far out the brackets sit
+    for sx in (-1, 1):
+        for sy in (-1, 1):
+            x, y = cx + sx * b - (1 if sx > 0 else 0), cy + sy * b - (1 if sy > 0 else 0)
+            g.put(x, y, 't')
+            g.put(x - sx, y, 'd'), g.put(x - 2 * sx, y, 'd')
+            g.put(x, y - sy, 'd'), g.put(x, y - 2 * sy, 'd')
+
+
+def trap_jaw(g, cx, cy, phase):
+    """A small steel trap from the side: a coiled hinge on the left, a flat lower jaw and an upper jaw that swings on it, saw teeth along both, snapping shut
+    and opening again."""
+    a = (0.12, 0.12, 0.3, 0.5, 0.3, 0.12)[int(phase * 6) % 6]  # how far the upper jaw is open, in radians
+    hx, hy = cx - 6, cy + 2
+    for k in range(13):                                      # the lower jaw, flat
+        x = hx + k
+        g.put(x, hy + 1, 'p'), g.put(x, hy + 2, 'l')
+        if k >= 2 and k % 2 == 0:
+            g.put(x, hy, 't')
+    ux, uy = math.cos(a), -math.sin(a)                       # the upper jaw, along (ux, uy) from the hinge
+    nx, ny = math.sin(a), math.cos(a)                        # pointing down at the lower jaw
+    for i in range(27):
+        k = i / 2
+        x, y = hx + ux * k, hy - 1 + uy * k
+        g.put(x, y, 't')
+        g.put(x - nx, y - ny, 'p')
+    for k in range(3, 13, 2):                                # its teeth, between the lower jaw's
+        x, y = hx + ux * k, hy - 1 + uy * k
+        g.put(x + nx, y + ny, 't')
+    g.disc(hx + 0.5, hy + 0.5, 2.2, 'p')                     # the coiled hinge
+    g.put(hx, hy, 'k'), g.put(hx - 1, hy - 1, 't')
+
+
+def cracked_bone(g, cx, cy, phase):
+    """A pale red bone, upper right to lower left, snapped through the middle: the two halves part a pixel and close again."""
+    gap = 1.0 + 1.0 * (0.5 - 0.5 * math.cos(phase * 2 * math.pi))
+    ux, uy = 0.7071, -0.7071                                 # along the bone
+    vx, vy = 0.7071, 0.7071                                  # across it
+    ends = ((-5.6, -1.4), (-5.6, 1.4), (5.6, -1.4), (5.6, 1.4))   # the knobs, two at each end
+    for y in range(int(cy - 9), int(cy + 10)):
+        for x in range(int(cx - 9), int(cx + 10)):
+            px, py = x + 0.5 - cx, y + 0.5 - cy
+            t, d = px * ux + py * uy, px * vx + py * vy
+            crack = 0.9 * (1 if int(math.floor(d + 2)) % 2 else -1)      # a zigzag break across the shaft
+            half = 1 if t > crack else -1
+            t0 = t - half * gap / 2                          # where the pixel would be with the halves pushed together
+            if (t0 - crack) * half < 0.6:                   # the break itself, and the gap the halves leave
+                continue
+            inside = abs(d) <= 1.5 and abs(t0) <= 5.6
+            inside = inside or any(math.hypot(t0 - et, d - ed) <= 1.7 for et, ed in ends)
+            if not inside:
+                continue
+            g.put(x, y, 't' if d < -1.0 else 'c' if d < 0.5 else 'e')
+
+
 GLYPHS = {
     'mark': ('Mark (crosshair)', crosshair),
     'silence': ('Silence (sealed lips)', lips),
     'stun': ('Stun (stars)', stars),
     'charm': ('Charm (heart)', heart),
     'confuse': ('Confuse (spiral)', spiral),
+    'sight': ('Deadeye (gold reticle)', reticle),
+    'jaw': ('Trapped (steel jaw)', trap_jaw),
+    'cripple': ('Crippled (cracked bone)', cracked_bone),
 }
 
 

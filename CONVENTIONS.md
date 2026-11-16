@@ -160,6 +160,8 @@ Every melee weapon, including the six that began as hand-drawn strips (the origi
   `python3 tools/make_assets.py --png-dir sprites/assets`. Keep each ramp's light-to-dark order. Roles are letters, so nothing else changes.
 - A shaded material is a **ramp** of four roles, **light to dark**: lit, base, shade, deep. A ramp
   never gets lighter as it goes down.
+- **Red is its own ramp**: `E` Scarlet, `F` Red, `G` Blood, with the outline `O` as its deep (`EFGO`). Use it for whatever must read as
+  red (blood, a red potion, fire's hottest red, a wound); coral and magenta are not red and should not stand in for it.
 - Shading has four steps, set by how the surface faces the light: lit, base, shade, deep. Where a
   nearer part overlaps another, the edge falls into the deep step. That is what separates a leg from
   a body.

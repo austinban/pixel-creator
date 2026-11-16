@@ -134,6 +134,131 @@
    "label": "Stone Idol",
    "file": "item-stone_idol.png",
    "game_file": "stone_idol.png"
+  },
+  "padded_gambeson": {
+   "label": "Padded Gambeson",
+   "file": "item-padded_gambeson.png",
+   "game_file": "padded_gambeson.png"
+  },
+  "mystic_robe": {
+   "label": "Mystic Robe",
+   "file": "item-mystic_robe.png",
+   "game_file": "mystic_robe.png"
+  },
+  "rangers_cloak": {
+   "label": "Ranger's Cloak",
+   "file": "item-rangers_cloak.png",
+   "game_file": "rangers_cloak.png"
+  },
+  "scale_coat": {
+   "label": "Scale Coat",
+   "file": "item-scale_coat.png",
+   "game_file": "scale_coat.png"
+  },
+  "brigandine": {
+   "label": "Brigandine",
+   "file": "item-brigandine.png",
+   "game_file": "brigandine.png"
+  },
+  "iron_band": {
+   "label": "Iron Band",
+   "file": "item-iron_band.png",
+   "game_file": "iron_band.png"
+  },
+  "climbing_hooks": {
+   "label": "Climbing Hooks",
+   "file": "item-climbing_hooks.png",
+   "game_file": "climbing_hooks.png"
+  },
+  "trappers_kit": {
+   "label": "Trapper's Kit",
+   "file": "item-trappers_kit.png",
+   "game_file": "trappers_kit.png"
+  },
+  "fleet_anklet": {
+   "label": "Fleet Anklet",
+   "file": "item-fleet_anklet.png",
+   "game_file": "fleet_anklet.png"
+  },
+  "eagle_feather": {
+   "label": "Eagle Feather",
+   "file": "item-eagle_feather.png",
+   "game_file": "eagle_feather.png"
+  },
+  "hunters_token": {
+   "label": "Hunter's Token",
+   "file": "item-hunters_token.png",
+   "game_file": "hunters_token.png"
+  },
+  "headsmans_brand": {
+   "label": "Headsman's Brand",
+   "file": "item-headsmans_brand.png",
+   "game_file": "headsmans_brand.png"
+  },
+  "quickening_charm": {
+   "label": "Quickening Charm",
+   "file": "item-quickening_charm.png",
+   "game_file": "quickening_charm.png"
+  },
+  "cinder_charm": {
+   "label": "Cinder Charm",
+   "file": "item-cinder_charm.png",
+   "game_file": "cinder_charm.png"
+  },
+  "leech_fang": {
+   "label": "Leech Fang",
+   "file": "item-leech_fang.png",
+   "game_file": "leech_fang.png"
+  },
+  "pike": {
+   "label": "Pike",
+   "file": "item-pike.png",
+   "game_file": "pike.png"
+  },
+  "heavy_sling": {
+   "label": "Heavy Sling",
+   "file": "item-heavy_sling.png",
+   "game_file": "heavy_sling.png"
+  },
+  "healing_draught": {
+   "label": "Healing Draught",
+   "file": "item-healing_draught.png",
+   "game_file": "healing_draught.png"
+  },
+  "greater_draught": {
+   "label": "Greater Draught",
+   "file": "item-greater_draught.png",
+   "game_file": "greater_draught.png"
+  },
+  "grand_elixir": {
+   "label": "Grand Elixir",
+   "file": "item-grand_elixir.png",
+   "game_file": "grand_elixir.png"
+  },
+  "cleansing_salve": {
+   "label": "Cleansing Salve",
+   "file": "item-cleansing_salve.png",
+   "game_file": "cleansing_salve.png"
+  },
+  "revive_tonic": {
+   "label": "Revive Tonic",
+   "file": "item-revive_tonic.png",
+   "game_file": "revive_tonic.png"
+  },
+  "fire_bomb": {
+   "label": "Fire Bomb",
+   "file": "item-fire_bomb.png",
+   "game_file": "fire_bomb.png"
+  },
+  "blast_charge": {
+   "label": "Blast Charge",
+   "file": "item-blast_charge.png",
+   "game_file": "blast_charge.png"
+  },
+  "caltrop_pouch": {
+   "label": "Caltrop Pouch",
+   "file": "item-caltrop_pouch.png",
+   "game_file": "caltrop_pouch.png"
   }
  }
 }

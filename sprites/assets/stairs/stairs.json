@@ -1,0 +1,608 @@
+{
+ "about": "The stairs and ramps in this folder. See README.md beside this file.",
+ "step": 4,
+ "walk_min": 0.6,
+ "margin": 6,
+ "pieces": {
+  "stair-h1-se": {
+   "label": "Stone stairs, 1 up, rising toward SE",
+   "file": "stair-h1-se.png",
+   "size": [
+    2,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "up": "se",
+   "rise_levels": 1,
+   "run_cells": 2,
+   "flat_cells": 0,
+   "walkable": true
+  },
+  "stair-h1-nw": {
+   "label": "Stone stairs, 1 up, rising toward NW",
+   "file": "stair-h1-nw.png",
+   "size": [
+    2,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "up": "nw",
+   "rise_levels": 1,
+   "run_cells": 2,
+   "flat_cells": 0,
+   "walkable": true
+  },
+  "stair-h1-sw": {
+   "label": "Stone stairs, 1 up, rising toward SW",
+   "file": "stair-h1-sw.png",
+   "size": [
+    1,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "up": "sw",
+   "rise_levels": 1,
+   "run_cells": 2,
+   "flat_cells": 0,
+   "walkable": true
+  },
+  "stair-h1-ne": {
+   "label": "Stone stairs, 1 up, rising toward NE",
+   "file": "stair-h1-ne.png",
+   "size": [
+    1,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "up": "ne",
+   "rise_levels": 1,
+   "run_cells": 2,
+   "flat_cells": 0,
+   "walkable": true
+  },
+  "stair-h2-se": {
+   "label": "Stone stairs, 2 up, rising toward SE",
+   "file": "stair-h2-se.png",
+   "size": [
+    3,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ]
+   ],
+   "up": "se",
+   "rise_levels": 2,
+   "run_cells": 3,
+   "flat_cells": 0,
+   "walkable": true
+  },
+  "stair-h2-nw": {
+   "label": "Stone stairs, 2 up, rising toward NW",
+   "file": "stair-h2-nw.png",
+   "size": [
+    3,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ]
+   ],
+   "up": "nw",
+   "rise_levels": 2,
+   "run_cells": 3,
+   "flat_cells": 0,
+   "walkable": true
+  },
+  "stair-h2-sw": {
+   "label": "Stone stairs, 2 up, rising toward SW",
+   "file": "stair-h2-sw.png",
+   "size": [
+    1,
+    3
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ]
+   ],
+   "up": "sw",
+   "rise_levels": 2,
+   "run_cells": 3,
+   "flat_cells": 0,
+   "walkable": true
+  },
+  "stair-h2-ne": {
+   "label": "Stone stairs, 2 up, rising toward NE",
+   "file": "stair-h2-ne.png",
+   "size": [
+    1,
+    3
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ]
+   ],
+   "up": "ne",
+   "rise_levels": 2,
+   "run_cells": 3,
+   "flat_cells": 0,
+   "walkable": true
+  },
+  "stair-ramp-h1-se": {
+   "label": "Stone ramp, 1 up, rising toward SE",
+   "file": "stair-ramp-h1-se.png",
+   "size": [
+    2,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "up": "se",
+   "rise_levels": 1,
+   "run_cells": 2,
+   "flat_cells": 0,
+   "walkable": true
+  },
+  "stair-ramp-h1-nw": {
+   "label": "Stone ramp, 1 up, rising toward NW",
+   "file": "stair-ramp-h1-nw.png",
+   "size": [
+    2,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "up": "nw",
+   "rise_levels": 1,
+   "run_cells": 2,
+   "flat_cells": 0,
+   "walkable": true
+  },
+  "stair-ramp-h1-sw": {
+   "label": "Stone ramp, 1 up, rising toward SW",
+   "file": "stair-ramp-h1-sw.png",
+   "size": [
+    1,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "up": "sw",
+   "rise_levels": 1,
+   "run_cells": 2,
+   "flat_cells": 0,
+   "walkable": true
+  },
+  "stair-ramp-h1-ne": {
+   "label": "Stone ramp, 1 up, rising toward NE",
+   "file": "stair-ramp-h1-ne.png",
+   "size": [
+    1,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "up": "ne",
+   "rise_levels": 1,
+   "run_cells": 2,
+   "flat_cells": 0,
+   "walkable": true
+  },
+  "stair-ramp-h2-se": {
+   "label": "Stone ramp, 2 up, rising toward SE",
+   "file": "stair-ramp-h2-se.png",
+   "size": [
+    3,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ]
+   ],
+   "up": "se",
+   "rise_levels": 2,
+   "run_cells": 3,
+   "flat_cells": 0,
+   "walkable": true
+  },
+  "stair-ramp-h2-nw": {
+   "label": "Stone ramp, 2 up, rising toward NW",
+   "file": "stair-ramp-h2-nw.png",
+   "size": [
+    3,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ]
+   ],
+   "up": "nw",
+   "rise_levels": 2,
+   "run_cells": 3,
+   "flat_cells": 0,
+   "walkable": true
+  },
+  "stair-ramp-h2-sw": {
+   "label": "Stone ramp, 2 up, rising toward SW",
+   "file": "stair-ramp-h2-sw.png",
+   "size": [
+    1,
+    3
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ]
+   ],
+   "up": "sw",
+   "rise_levels": 2,
+   "run_cells": 3,
+   "flat_cells": 0,
+   "walkable": true
+  },
+  "stair-ramp-h2-ne": {
+   "label": "Stone ramp, 2 up, rising toward NE",
+   "file": "stair-ramp-h2-ne.png",
+   "size": [
+    1,
+    3
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ]
+   ],
+   "up": "ne",
+   "rise_levels": 2,
+   "run_cells": 3,
+   "flat_cells": 0,
+   "walkable": true
+  },
+  "stair-ledge-ramp-h1-se": {
+   "label": "Ledge with a ramp, 1 up, rising toward SE",
+   "file": "stair-ledge-ramp-h1-se.png",
+   "size": [
+    2,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "up": "se",
+   "rise_levels": 1,
+   "run_cells": 1,
+   "flat_cells": 1,
+   "walkable": true
+  },
+  "stair-ledge-ramp-h1-nw": {
+   "label": "Ledge with a ramp, 1 up, rising toward NW",
+   "file": "stair-ledge-ramp-h1-nw.png",
+   "size": [
+    2,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "up": "nw",
+   "rise_levels": 1,
+   "run_cells": 1,
+   "flat_cells": 1,
+   "walkable": true
+  },
+  "stair-ledge-ramp-h1-sw": {
+   "label": "Ledge with a ramp, 1 up, rising toward SW",
+   "file": "stair-ledge-ramp-h1-sw.png",
+   "size": [
+    1,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "up": "sw",
+   "rise_levels": 1,
+   "run_cells": 1,
+   "flat_cells": 1,
+   "walkable": true
+  },
+  "stair-ledge-ramp-h1-ne": {
+   "label": "Ledge with a ramp, 1 up, rising toward NE",
+   "file": "stair-ledge-ramp-h1-ne.png",
+   "size": [
+    1,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "up": "ne",
+   "rise_levels": 1,
+   "run_cells": 1,
+   "flat_cells": 1,
+   "walkable": true
+  },
+  "stair-ledge-ramp-h2-se": {
+   "label": "Ledge with a ramp, 2 up, rising toward SE",
+   "file": "stair-ledge-ramp-h2-se.png",
+   "size": [
+    3,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ]
+   ],
+   "up": "se",
+   "rise_levels": 2,
+   "run_cells": 2,
+   "flat_cells": 1,
+   "walkable": true
+  },
+  "stair-ledge-ramp-h2-nw": {
+   "label": "Ledge with a ramp, 2 up, rising toward NW",
+   "file": "stair-ledge-ramp-h2-nw.png",
+   "size": [
+    3,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ]
+   ],
+   "up": "nw",
+   "rise_levels": 2,
+   "run_cells": 2,
+   "flat_cells": 1,
+   "walkable": true
+  },
+  "stair-ledge-ramp-h2-sw": {
+   "label": "Ledge with a ramp, 2 up, rising toward SW",
+   "file": "stair-ledge-ramp-h2-sw.png",
+   "size": [
+    1,
+    3
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ]
+   ],
+   "up": "sw",
+   "rise_levels": 2,
+   "run_cells": 2,
+   "flat_cells": 1,
+   "walkable": true
+  },
+  "stair-ledge-ramp-h2-ne": {
+   "label": "Ledge with a ramp, 2 up, rising toward NE",
+   "file": "stair-ledge-ramp-h2-ne.png",
+   "size": [
+    1,
+    3
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ]
+   ],
+   "up": "ne",
+   "rise_levels": 2,
+   "run_cells": 2,
+   "flat_cells": 1,
+   "walkable": true
+  }
+ }
+}

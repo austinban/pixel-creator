@@ -189,8 +189,12 @@ def main():
             module = importlib.import_module(unit.module)
             if hasattr(module, 'write_package'):
                 folder = args.png_dir / module.FOLDER
-                if not cached[unit.name] or not folder.exists():
+                # Also when the folder is there but its package file is not (a deleted traps.json is written again, not left missing).
+                if not cached[unit.name] or not folder.exists() or not any(folder.glob('*.json')):
                     module.write_package(folder)
+        # What the game pulls from here (see tools/game_export.py).
+        import game_export
+        game_export.write()
         print(f'{len(manifest)} sheets and manifest.json -> {args.png_dir}')
 
 

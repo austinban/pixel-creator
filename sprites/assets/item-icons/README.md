@@ -1,6 +1,6 @@
 # Item pictures
 
-26 inventory icons for the items the game listed in `docs/pixel-creator-requests.md` (section 5) that had no picture of their own. Each is **32 x 32**, in category **Item icons**, drawn in the shared palette with a one-pixel outline and lit from the upper left, like the amulets and the slot icons. They are made by `tools/make_item_icons3d.py`: each is a small 3D model, rendered with the creatures' renderer, with the details painted over it.
+51 inventory icons: the 26 items the game listed in `docs/pixel-creator-requests.md` (section 5) that had no picture of their own, and 25 added later (more armour and trinkets, the pike, the heavy sling and the one-use supplies). Each is **32 x 32**, in category **Item icons**, drawn in the shared palette with a one-pixel outline and lit from the upper left, like the amulets and the slot icons. They are made by `tools/make_item_icons3d.py`: each is a small 3D model, rendered with the creatures' renderer, with the details painted over it.
 
 ## Using them
 
@@ -13,18 +13,19 @@ for f in sprites/assets/item-icons/item-*.png; do b=$(basename "$f"); cp "$f" ~/
 
 | Group | Items (the game's ids) |
 |---|---|
-| Weapons | `recurve_bow` `sling` `worn_sword` `worn_dagger` `worn_bow` `oak_staff` `warding_staff` `storm_staff` |
-| Armour | `leather_jerkin` `iron_mail` `warden_plate` `dragonscale_mail` |
-| Trinkets | `swift_boots` `windrunner_boots` `warding_charm` `vigor_ring` `strength_band` `sage_amulet` `giants_belt` `hawkeye_pendant` `guardian_sigil` `sage_circlet` `summit_crown` `phoenix_heart` `stormcaller_band` `stone_idol` |
+| Weapons | `recurve_bow` `sling` `worn_sword` `worn_dagger` `worn_bow` `oak_staff` `warding_staff` `storm_staff` `pike` `heavy_sling` |
+| Armour | `leather_jerkin` `iron_mail` `warden_plate` `dragonscale_mail` `padded_gambeson` `mystic_robe` `rangers_cloak` `scale_coat` `brigandine` |
+| Trinkets | `swift_boots` `windrunner_boots` `warding_charm` `vigor_ring` `strength_band` `sage_amulet` `giants_belt` `hawkeye_pendant` `guardian_sigil` `sage_circlet` `summit_crown` `phoenix_heart` `stormcaller_band` `stone_idol` `iron_band` `climbing_hooks` `trappers_kit` `fleet_anklet` `eagle_feather` `hunters_token` `headsmans_brand` `quickening_charm` `cinder_charm` `leech_fang` |
+| Supplies (one use) | `healing_draught` `greater_draught` `grand_elixir` `cleansing_salve` `revive_tonic` `fire_bomb` `blast_charge` `caltrop_pouch` |
 
 ## How they are drawn
 
 - **Weapons all lie on the same diagonal**, 45 degrees, rising to the upper right, to fill the cell: blades, staves, the sling and the bows (a bow is turned to sit on the slope, its string below it).
-- **Armour and trinkets sit in the middle** of the cell, facing the viewer.
+- **Armour, trinkets and supplies sit in the middle** of the cell, facing the viewer.
 - The palette has no true brown, so wood and leather are its orange, plum and grape; there is no pure red either.
 - The icons are palette colours, so they recolour with the rest of the art.
 
 ## Things to know
 
-- A flat (2D) version of the same 26 also exists in the repo (`tools/make_item_icons.py`), kept for comparison; only the 3D set is shipped here.
+- A flat (2D) version of the first 26 also exists in the repo (`tools/make_item_icons.py`), kept for comparison; only the 3D set is shipped here.
 - Three of them are weaker than the rest at this size and could be redrawn if they read badly in the game: `warding_charm`, `guardian_sigil` (flat shields) and `sage_amulet` (the eye is small).

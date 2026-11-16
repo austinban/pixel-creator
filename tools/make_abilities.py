@@ -15,6 +15,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import make_burst  # noqa: E402
 import make_ground_fx  # noqa: E402
 import make_icons  # noqa: E402
+import make_hits  # noqa: E402
+import make_impact  # noqa: E402
 import make_ring  # noqa: E402
 import make_vanish  # noqa: E402
 
@@ -69,6 +71,41 @@ ABILITIES = {
     'mire': dict(label='Mire', area='radius 1', family='ground', effects=[fx_('surface-mire', 'cells:radius1', 'loop', 'one tile on each of the 5 cells; they join into one surface')]),
     'slick-ground': dict(label='Slick Ground', area='radius 1', family='ground', effects=[fx_('surface-slick', 'cells:radius1', 'loop', 'one tile on each of the 5 cells; they join into one surface')]),
     'fire-wall': dict(label='Fire Wall', area='line of 3', family='ground', effects=[fx_('surface-firewall', 'cells:line3', 'loop', 'one tile on each of the three cells, each started on a different frame so the flames do not move together')]),
+    'thornwall': dict(label='Thornwall', area='line of 3', family='ground', effects=[fx_('surface-thorns', 'cells:line3', 'loop', 'one tile on each of the three cells for as long as the thorns stand; start each on a different frame')]),
+    # --- impacts (make_impact.py): what used to borrow the vine, the fire burst or the petals -------------
+    'use-fire-bomb': dict(label='Fire Bomb (supply)', area='radius 1, thrown 2 tiles', family='burst', effects=[fx_('burst-explosion', 'aimed', 'once', 'the five-plot sheet covers the whole area')]),
+    'use-blast-charge': dict(label='Blast Charge (supply)', area='radius 1, thrown 2 tiles', family='burst', effects=[fx_('burst-explosion', 'aimed', 'once', 'the five-plot sheet covers the whole area')]),
+    'grasp': dict(label='Grasp (Zombie)', area='1 tile, adjacent', family='burst', effects=[fx_('burst-grasp-tile', 'target', 'once', 'hands clawing out of the ground at the target')]),
+    'mind-spore': dict(label='Mind Spore', area='1 tile', family='burst', effects=[fx_('burst-mindspore-tile', 'target', 'once')]),
+    'dominion': dict(label='Dominion', area='1 tile', family='burst', effects=[fx_('burst-mindspore-tile', 'target', 'once')]),
+    'sap': dict(label='Sap', area='1 tile', family='burst', effects=[fx_('burst-mindspore-tile', 'target', 'once')]),
+    'use-healing-draught': dict(label='Healing Draught (supply)', area='1 tile, adjacent', family='burst', effects=[fx_('burst-potion-tile', 'target', 'once')]),
+    'use-greater-draught': dict(label='Greater Draught (supply)', area='1 tile, adjacent', family='burst', effects=[fx_('burst-potion-tile', 'target', 'once')]),
+    'use-grand-elixir': dict(label='Grand Elixir (supply)', area='1 tile, adjacent', family='burst', effects=[fx_('burst-elixir-tile', 'target', 'once')]),
+    'bark': dict(label='Bark', area='cone, 3 deep', family='burst', effects=[fx_('burst-wave-tile', 'cells:line', 'once', 'one tile on each cell of the cone, nearest the caster first, so it fans out')]),
+    'scythe-sweep': dict(label='Scythe Sweep (Mantis)', area='cone: the cell in front and the three beyond', family='sweep', effects=[
+        fx_('sweep-scythe', 'caster-facing', 'once', 'one stroke over the whole cone, at the attacker\'s feet: `sweep-scythe-ne` when it faces up the screen, `-se` down it; NW and SW are those flipped left to right')]),
+    # --- the same art, put to work where there was none ----------------------------------------------
+    'spore-burst': dict(label='Spore Burst (Puffball)', area='radius 1', family='burst', effects=[fx_('burst-spore', 'aimed', 'once')]),
+    'spore-shot': dict(label='Spore Shot (Blood Mushroom)', area='1 tile', family='burst', effects=[fx_('burst-spore-tile', 'target', 'once')]),
+    'totem-blast': dict(label='Totem Blast', area='radius 3 foes', family='burst', effects=[fx_('burst-static-tile', 'target', 'once', 'on each foe it burns')]),
+    'use-cleansing-salve': dict(label='Cleansing Salve (supply)', area='1 tile, adjacent', family='ring', effects=[fx_('ring-cleanse', 'target', 'once')]),
+    'use-revive-tonic': dict(label='Revive Tonic (supply)', area='1 fallen ally, adjacent', family='ring', effects=[fx_('ring-inspire', 'aimed', 'once')]),
+    'warning-shot': dict(label='Warning Shot', area='1 tile', family='icon', effects=[fx_('icon-mark-pop', 'target-head', 'once')]),
+    'disengage': dict(label='Disengage', area='caster only', family='ring', effects=[fx_('ring-dash', 'caster-facing', 'once', 'Dash\'s ring, the way the caster faces')]),
+    'snare': dict(label='Snare', area='1 tile', family='burst', effects=[fx_('burst-dust-small-tile', 'aimed', 'once', 'a puff as the trap is set')]),
+    'bear-trap': dict(label='Bear Trap', area='1 tile', family='burst', effects=[fx_('burst-dust-small-tile', 'aimed', 'once', 'a puff as the trap is set')]),
+    'spike-pit': dict(label='Spike Pit', area='1 tile', family='burst', effects=[fx_('burst-dust-small-tile', 'aimed', 'once', 'a puff as the trap is set')]),
+    'trapmaster': dict(label='Trapmaster', area='1 tile', family='burst', effects=[fx_('burst-dust-small-tile', 'aimed', 'once', 'a puff as the trap is set')]),
+    'caltrops': dict(label='Caltrops', area='line of 3', family='burst', effects=[fx_('burst-dust-small-tile', 'cells:line3', 'once', 'a puff on each cell as the traps are set')]),
+    'use-caltrop-pouch': dict(label='Caltrop Pouch (supply)', area='line of 3', family='burst', effects=[fx_('burst-dust-small-tile', 'cells:line3', 'once', 'a puff on each cell as the traps are set')]),
+    # --- hits (make_hits.py): a flash on whoever a shot struck -------------------------------------------
+    'headshot': dict(label='Headshot', area='1 tile', family='burst', effects=[fx_('burst-crit-tile', 'target', 'once', 'a crit star on the one struck')]),
+    'called-shot': dict(label='Called Shot', area='1 tile', family='burst', effects=[fx_('burst-impact-tile', 'target', 'once', 'a heavy blow')]),
+    'piercing-shot': dict(label='Piercing Shot', area='1 tile', family='burst', effects=[fx_('burst-streak-tile', 'target', 'once', 'a streak passing through')]),
+    'hamstring': dict(label='Hamstring', area='1 tile', family='burst', effects=[fx_('burst-nick-tile', 'target', 'once', 'a nick low on the legs')]),
+    'deadeye': dict(label='Deadeye', area='caster only', family='icon', effects=[fx_('icon-sight-pop', 'target-head', 'once', 'over the caster, who is the one it lands on')]),
+    'minefield': dict(label='Minefield', area='radius 1', family='burst', effects=[fx_('burst-dust-small-tile', 'cells:radius1', 'once', 'a puff on each cell as the mines are set')]),
 }
 
 # Looping status icons. The ones with their own art are here; the others reuse what exists.
@@ -78,6 +115,7 @@ STATUSES = {
     'soaked': fx_('ring-status-soaked', 'unit-feet', 'loop'), 'shocked': fx_('ring-status-shocked', 'unit-feet', 'loop'), 'spored': fx_('ring-status-spored', 'unit-feet', 'loop'),
     'rooted': fx_('vine', 'unit-feet', 'existing', 'the existing vine animation, as it is'), 'snared': fx_('vine', 'unit-feet', 'existing', 'the existing vine animation, as it is'),
     'mired': fx_('vine', 'unit-feet', 'existing', 'the existing vine animation, as it is'),
+    'crippled': fx_('icon-cripple-loop', 'unit-head', 'loop'), 'trapped': fx_('icon-jaw-loop', 'unit-head', 'loop'), 'deadeye': fx_('icon-sight-loop', 'unit-head', 'loop'),
 }
 
 # Nothing new is drawn for these.
@@ -94,7 +132,7 @@ def offsets(radius):
             for i in range(-radius, radius + 1) for j in range(-radius, radius + 1) if abs(i) + abs(j) <= radius]
 
 
-FAMILIES = [make_burst, make_ring, make_icons, make_vanish, make_ground_fx]
+FAMILIES = [make_burst, make_ring, make_icons, make_vanish, make_ground_fx, make_impact, make_hits]
 
 
 def build_assets():
@@ -151,7 +189,7 @@ def readme(sheets):
              '- **Dash** has an NE and an SE sheet. The NW and SW ones are those **flipped left to right**.',
              '- **Ground loops** (mire, slick ground, fire wall) are one tile per cell and loop for as long as the effect lasts. The mire and the slick are drawn to **join** the next tile, so five of them are one surface. Start the fire wall\'s',
              '  tiles on different frames so the flames do not move in step.', '']
-    families = {'burst': 'Bursts', 'ring': 'Rings', 'icon': 'Icons over the head', 'vanish': 'Vanish and appear', 'ground': 'Ground loops'}
+    families = {'burst': 'Bursts', 'sweep': 'Sweeps', 'ring': 'Rings', 'icon': 'Icons over the head', 'vanish': 'Vanish and appear', 'ground': 'Ground loops'}
     lines += ['## Which ability plays what', '', 'Area is in cells, a diamond (steps along the two axes added together) round the aimed cell. `once` plays one time, `loop` repeats while the effect lasts.', '']
     for fam, title in families.items():
         lines += [f'### {title}', '', '| Ability | Area | Plays | On | How | Note |', '|---|---|---|---|---|---|']

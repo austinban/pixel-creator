@@ -50,3 +50,45 @@ class DataFile(unittest.TestCase):
     def test_the_roles_are_the_palette(self):
         import extract_poses as ep
         self.assertEqual([r['char'] for r in self.data['roles']], [c for c, *_ in ep.ROLES])
+
+
+class GameExport(unittest.TestCase):
+    """sprites/assets/game-export.json, what the game pulls from here, covers every folder of sheets or says why not."""
+
+    def test_every_folder_of_sheets_is_exported_or_named_as_not_for_the_game(self):
+        import game_export
+        assets = Path(__file__).resolve().parent.parent / 'sprites' / 'assets'
+        exported = {Path(e['from']).name for e in game_export.EXPORT['png_folders']}
+        exported |= {Path(e['from']).parent.name for e in game_export.EXPORT['raw_files']}
+        for folder in sorted(p for p in assets.iterdir() if p.is_dir()):
+            if any(folder.glob('*.png')):
+                self.assertTrue(folder.name in exported or folder.name in game_export.NOT_FOR_GAME,
+                                f'{folder.name} has sheets but is neither in game_export.EXPORT nor NOT_FOR_GAME')
+
+    def test_every_export_names_something_that_is_here(self):
+        import game_export
+        root = Path(__file__).resolve().parent.parent
+        for entry in game_export.EXPORT['png_folders']:
+            self.assertTrue(list((root / entry['from']).glob(entry['pattern'])), f'{entry["from"]}/{entry["pattern"]} matches nothing')
+        for entry in game_export.EXPORT['raw_files']:
+            self.assertTrue((root / entry['from']).is_file(), f'{entry["from"]} is not here')
+
+
+class Coverage(unittest.TestCase):
+    """Against the game's own list (tools/coverage.py): the breaks fail, the rest is a report. Skipped when the game is not beside us."""
+
+    @classmethod
+    def setUpClass(cls):
+        import coverage as cov
+        cls.ids, cls.plans = cov.load_game()
+        cls.report = cov.report(cls.ids, cls.plans) if cls.ids else None
+
+    def setUp(self):
+        if self.report is None:
+            self.skipTest('the game is not at GAME_DIR (~/GodotProjects/iso-fft-like by default)')
+
+    def test_every_trap_the_game_lays_has_a_picture(self):
+        self.assertEqual(self.report['traps the game lays with no picture'], [])
+
+    def test_every_place_an_effect_is_put_here_is_one_the_game_knows(self):
+        self.assertEqual(self.report['places used here the game does not know'], [])

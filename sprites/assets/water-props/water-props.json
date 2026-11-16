@@ -1,0 +1,539 @@
+{
+ "about": "The water props in this folder. See README.md beside this file.",
+ "level": 16,
+ "walk_min": 0.6,
+ "deck_levels": 0.5,
+ "props": {
+  "dock-1x2": {
+   "label": "Dock 1 x 2",
+   "file": "dock-1x2.png",
+   "size": [
+    1,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "walkable": true,
+   "levels": 0.5,
+   "top_cover": {
+    "0,0": 0.75,
+    "0,1": 0.75
+   }
+  },
+  "dock-1x2-corrupted": {
+   "label": "Dock 1 x 2, rotted",
+   "file": "dock-1x2-corrupted.png",
+   "size": [
+    1,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "walkable": true,
+   "levels": 0.5,
+   "top_cover": {
+    "0,0": 0.75,
+    "0,1": 0.75
+   }
+  },
+  "dock-2x1": {
+   "label": "Dock 2 x 1",
+   "file": "dock-2x1.png",
+   "size": [
+    2,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "walkable": true,
+   "levels": 0.5,
+   "top_cover": {
+    "0,0": 0.75,
+    "1,0": 0.75
+   }
+  },
+  "dock-2x1-corrupted": {
+   "label": "Dock 2 x 1, rotted",
+   "file": "dock-2x1-corrupted.png",
+   "size": [
+    2,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "walkable": true,
+   "levels": 0.5,
+   "top_cover": {
+    "0,0": 0.75,
+    "1,0": 0.75
+   }
+  },
+  "dock-1x3": {
+   "label": "Dock 1 x 3",
+   "file": "dock-1x3.png",
+   "size": [
+    1,
+    3
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ]
+   ],
+   "walkable": true,
+   "levels": 0.5,
+   "top_cover": {
+    "0,0": 0.75,
+    "0,1": 0.75,
+    "0,2": 0.75
+   }
+  },
+  "dock-1x3-corrupted": {
+   "label": "Dock 1 x 3, rotted",
+   "file": "dock-1x3-corrupted.png",
+   "size": [
+    1,
+    3
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ]
+   ],
+   "walkable": true,
+   "levels": 0.5,
+   "top_cover": {
+    "0,0": 0.75,
+    "0,1": 0.75,
+    "0,2": 0.75
+   }
+  },
+  "dock-3x1": {
+   "label": "Dock 3 x 1",
+   "file": "dock-3x1.png",
+   "size": [
+    3,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ]
+   ],
+   "walkable": true,
+   "levels": 0.5,
+   "top_cover": {
+    "0,0": 0.75,
+    "1,0": 0.75,
+    "2,0": 0.75
+   }
+  },
+  "dock-3x1-corrupted": {
+   "label": "Dock 3 x 1, rotted",
+   "file": "dock-3x1-corrupted.png",
+   "size": [
+    3,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ]
+   ],
+   "walkable": true,
+   "levels": 0.5,
+   "top_cover": {
+    "0,0": 0.75,
+    "1,0": 0.75,
+    "2,0": 0.75
+   }
+  },
+  "rowboat-2x1": {
+   "label": "Rowboat 2 x 1",
+   "file": "rowboat-2x1.png",
+   "size": [
+    2,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 0.55
+  },
+  "rowboat-1x2": {
+   "label": "Rowboat 1 x 2",
+   "file": "rowboat-1x2.png",
+   "size": [
+    1,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "walkable": false,
+   "levels": 0.55
+  },
+  "stepping-1x1": {
+   "label": "Stepping stone 1 x 1",
+   "file": "stepping-1x1.png",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": true,
+   "levels": 0.5,
+   "top_cover": {
+    "0,0": 0.8
+   }
+  },
+  "stepping-2x1": {
+   "label": "Stepping stones 2 x 1",
+   "file": "stepping-2x1.png",
+   "size": [
+    2,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "walkable": true,
+   "levels": 0.5,
+   "top_cover": {
+    "0,0": 0.8,
+    "1,0": 0.77
+   }
+  },
+  "stepping-1x2": {
+   "label": "Stepping stones 1 x 2",
+   "file": "stepping-1x2.png",
+   "size": [
+    1,
+    2
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "walkable": true,
+   "levels": 0.5,
+   "top_cover": {
+    "0,0": 0.8,
+    "0,1": 0.77
+   }
+  },
+  "stepping-1x3": {
+   "label": "Stepping stones 1 x 3",
+   "file": "stepping-1x3.png",
+   "size": [
+    1,
+    3
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ]
+   ],
+   "walkable": true,
+   "levels": 0.5,
+   "top_cover": {
+    "0,0": 0.8,
+    "0,1": 0.77,
+    "0,2": 0.8
+   }
+  },
+  "stepping-3x1": {
+   "label": "Stepping stones 3 x 1",
+   "file": "stepping-3x1.png",
+   "size": [
+    3,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ]
+   ],
+   "walkable": true,
+   "levels": 0.5,
+   "top_cover": {
+    "0,0": 0.8,
+    "1,0": 0.77,
+    "2,0": 0.8
+   }
+  },
+  "waterfall-ne": {
+   "label": "Waterfall NE",
+   "file": "waterfall-ne.png",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 1.0
+  },
+  "waterfall-ne-corrupted": {
+   "label": "Waterfall NE, corrupted",
+   "file": "waterfall-ne-corrupted.png",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 1.0
+  },
+  "waterfall-se": {
+   "label": "Waterfall SE",
+   "file": "waterfall-se.png",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 1.0
+  },
+  "waterfall-se-corrupted": {
+   "label": "Waterfall SE, corrupted",
+   "file": "waterfall-se-corrupted.png",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false,
+   "levels": 1.0
+  },
+  "lily-pads": {
+   "label": "Lily pads",
+   "file": "lily-pads.png",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false
+  },
+  "mushroom-pads": {
+   "label": "Mushroom pads (corrupted)",
+   "file": "mushroom-pads.png",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false
+  },
+  "reeds": {
+   "label": "Reeds",
+   "file": "reeds.png",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false
+  },
+  "reeds-sway": {
+   "label": "Reeds swaying",
+   "file": "reeds-sway.png",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false
+  },
+  "reeds-corrupted": {
+   "label": "Reeds (corrupted)",
+   "file": "reeds-corrupted.png",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false
+  },
+  "reeds-corrupted-sway": {
+   "label": "Reeds swaying (corrupted)",
+   "file": "reeds-corrupted-sway.png",
+   "size": [
+    1,
+    1
+   ],
+   "cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "walkable": false
+  }
+ }
+}

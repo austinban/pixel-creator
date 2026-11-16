@@ -4923,6 +4923,4753 @@
    "frames": 1
   },
   {
+   "id": "bridge-arch-3x1",
+   "label": "Stone arch bridge, 3 cells, along x (SE)",
+   "category": "Bridges",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 63,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 45
+   },
+   "file": "bridges/bridge-arch-3x1.png",
+   "frames": 1
+  },
+  {
+   "id": "bridge-arch-1x3",
+   "label": "Stone arch bridge, 3 cells, along y (SW)",
+   "category": "Bridges",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 63,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 45
+   },
+   "file": "bridges/bridge-arch-1x3.png",
+   "frames": 1
+  },
+  {
+   "id": "bridge-arch-5x1",
+   "label": "Stone arch bridge, 5 cells, along x (SE)",
+   "category": "Bridges",
+   "kind": "still",
+   "place": "ground",
+   "w": 108,
+   "h": 79,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 54,
+    "y": 53
+   },
+   "file": "bridges/bridge-arch-5x1.png",
+   "frames": 1
+  },
+  {
+   "id": "bridge-arch-1x5",
+   "label": "Stone arch bridge, 5 cells, along y (SW)",
+   "category": "Bridges",
+   "kind": "still",
+   "place": "ground",
+   "w": 108,
+   "h": 79,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 54,
+    "y": 53
+   },
+   "file": "bridges/bridge-arch-1x5.png",
+   "frames": 1
+  },
+  {
+   "id": "bridge-broken-5x1",
+   "label": "Broken stone bridge, 5 cells, along x (SE)",
+   "category": "Bridges",
+   "kind": "still",
+   "place": "ground",
+   "w": 108,
+   "h": 79,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 54,
+    "y": 53
+   },
+   "file": "bridges/bridge-broken-5x1.png",
+   "frames": 1
+  },
+  {
+   "id": "bridge-broken-1x5",
+   "label": "Broken stone bridge, 5 cells, along y (SW)",
+   "category": "Bridges",
+   "kind": "still",
+   "place": "ground",
+   "w": 108,
+   "h": 79,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 54,
+    "y": 53
+   },
+   "file": "bridges/bridge-broken-1x5.png",
+   "frames": 1
+  },
+  {
+   "id": "bridge-plank-3x1",
+   "label": "Rotted plank bridge, 3 cells, along x (SE)",
+   "category": "Bridges",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 63,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 45
+   },
+   "file": "bridges/bridge-plank-3x1.png",
+   "frames": 1
+  },
+  {
+   "id": "bridge-plank-1x3",
+   "label": "Rotted plank bridge, 3 cells, along y (SW)",
+   "category": "Bridges",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 63,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 45
+   },
+   "file": "bridges/bridge-plank-1x3.png",
+   "frames": 1
+  },
+  {
+   "id": "bridge-plank-5x1",
+   "label": "Rotted plank bridge, 5 cells, along x (SE)",
+   "category": "Bridges",
+   "kind": "still",
+   "place": "ground",
+   "w": 108,
+   "h": 79,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 54,
+    "y": 53
+   },
+   "file": "bridges/bridge-plank-5x1.png",
+   "frames": 1
+  },
+  {
+   "id": "bridge-plank-1x5",
+   "label": "Rotted plank bridge, 5 cells, along y (SW)",
+   "category": "Bridges",
+   "kind": "still",
+   "place": "ground",
+   "w": 108,
+   "h": 79,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 54,
+    "y": 53
+   },
+   "file": "bridges/bridge-plank-1x5.png",
+   "frames": 1
+  },
+  {
+   "id": "bridge-corrupt-3x1",
+   "label": "Overgrown stone bridge, 3 cells, along x (SE)",
+   "category": "Bridges",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 67,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 49
+   },
+   "file": "bridges/bridge-corrupt-3x1.png",
+   "frames": 1
+  },
+  {
+   "id": "bridge-corrupt-1x3",
+   "label": "Overgrown stone bridge, 3 cells, along y (SW)",
+   "category": "Bridges",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 67,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 49
+   },
+   "file": "bridges/bridge-corrupt-1x3.png",
+   "frames": 1
+  },
+  {
+   "id": "bridge-corrupt-5x1",
+   "label": "Overgrown stone bridge, 5 cells, along x (SE)",
+   "category": "Bridges",
+   "kind": "still",
+   "place": "ground",
+   "w": 108,
+   "h": 83,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 54,
+    "y": 57
+   },
+   "file": "bridges/bridge-corrupt-5x1.png",
+   "frames": 1
+  },
+  {
+   "id": "bridge-corrupt-1x5",
+   "label": "Overgrown stone bridge, 5 cells, along y (SW)",
+   "category": "Bridges",
+   "kind": "still",
+   "place": "ground",
+   "w": 108,
+   "h": 83,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 54,
+    "y": 57
+   },
+   "file": "bridges/bridge-corrupt-1x5.png",
+   "frames": 1
+  },
+  {
+   "id": "stair-h1-se",
+   "label": "Stone stairs, 1 up, rising toward SE",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 46,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 32
+   },
+   "file": "stairs/stair-h1-se.png",
+   "frames": 1
+  },
+  {
+   "id": "stair-h1-nw",
+   "label": "Stone stairs, 1 up, rising toward NW",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 46,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 32
+   },
+   "file": "stairs/stair-h1-nw.png",
+   "frames": 1
+  },
+  {
+   "id": "stair-h1-sw",
+   "label": "Stone stairs, 1 up, rising toward SW",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 46,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 32
+   },
+   "file": "stairs/stair-h1-sw.png",
+   "frames": 1
+  },
+  {
+   "id": "stair-h1-ne",
+   "label": "Stone stairs, 1 up, rising toward NE",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 46,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 32
+   },
+   "file": "stairs/stair-h1-ne.png",
+   "frames": 1
+  },
+  {
+   "id": "stair-h2-se",
+   "label": "Stone stairs, 2 up, rising toward SE",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 70,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 52
+   },
+   "file": "stairs/stair-h2-se.png",
+   "frames": 1
+  },
+  {
+   "id": "stair-h2-nw",
+   "label": "Stone stairs, 2 up, rising toward NW",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 70,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 52
+   },
+   "file": "stairs/stair-h2-nw.png",
+   "frames": 1
+  },
+  {
+   "id": "stair-h2-sw",
+   "label": "Stone stairs, 2 up, rising toward SW",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 70,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 52
+   },
+   "file": "stairs/stair-h2-sw.png",
+   "frames": 1
+  },
+  {
+   "id": "stair-h2-ne",
+   "label": "Stone stairs, 2 up, rising toward NE",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 70,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 52
+   },
+   "file": "stairs/stair-h2-ne.png",
+   "frames": 1
+  },
+  {
+   "id": "stair-ramp-h1-se",
+   "label": "Stone ramp, 1 up, rising toward SE",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 46,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 32
+   },
+   "file": "stairs/stair-ramp-h1-se.png",
+   "frames": 1
+  },
+  {
+   "id": "stair-ramp-h1-nw",
+   "label": "Stone ramp, 1 up, rising toward NW",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 46,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 32
+   },
+   "file": "stairs/stair-ramp-h1-nw.png",
+   "frames": 1
+  },
+  {
+   "id": "stair-ramp-h1-sw",
+   "label": "Stone ramp, 1 up, rising toward SW",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 46,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 32
+   },
+   "file": "stairs/stair-ramp-h1-sw.png",
+   "frames": 1
+  },
+  {
+   "id": "stair-ramp-h1-ne",
+   "label": "Stone ramp, 1 up, rising toward NE",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 46,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 32
+   },
+   "file": "stairs/stair-ramp-h1-ne.png",
+   "frames": 1
+  },
+  {
+   "id": "stair-ramp-h2-se",
+   "label": "Stone ramp, 2 up, rising toward SE",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 70,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 52
+   },
+   "file": "stairs/stair-ramp-h2-se.png",
+   "frames": 1
+  },
+  {
+   "id": "stair-ramp-h2-nw",
+   "label": "Stone ramp, 2 up, rising toward NW",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 70,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 52
+   },
+   "file": "stairs/stair-ramp-h2-nw.png",
+   "frames": 1
+  },
+  {
+   "id": "stair-ramp-h2-sw",
+   "label": "Stone ramp, 2 up, rising toward SW",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 70,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 52
+   },
+   "file": "stairs/stair-ramp-h2-sw.png",
+   "frames": 1
+  },
+  {
+   "id": "stair-ramp-h2-ne",
+   "label": "Stone ramp, 2 up, rising toward NE",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 70,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 52
+   },
+   "file": "stairs/stair-ramp-h2-ne.png",
+   "frames": 1
+  },
+  {
+   "id": "stair-ledge-ramp-h1-se",
+   "label": "Ledge with a ramp, 1 up, rising toward SE",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 46,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 32
+   },
+   "file": "stairs/stair-ledge-ramp-h1-se.png",
+   "frames": 1
+  },
+  {
+   "id": "stair-ledge-ramp-h1-nw",
+   "label": "Ledge with a ramp, 1 up, rising toward NW",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 46,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 32
+   },
+   "file": "stairs/stair-ledge-ramp-h1-nw.png",
+   "frames": 1
+  },
+  {
+   "id": "stair-ledge-ramp-h1-sw",
+   "label": "Ledge with a ramp, 1 up, rising toward SW",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 46,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 32
+   },
+   "file": "stairs/stair-ledge-ramp-h1-sw.png",
+   "frames": 1
+  },
+  {
+   "id": "stair-ledge-ramp-h1-ne",
+   "label": "Ledge with a ramp, 1 up, rising toward NE",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 46,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 32
+   },
+   "file": "stairs/stair-ledge-ramp-h1-ne.png",
+   "frames": 1
+  },
+  {
+   "id": "stair-ledge-ramp-h2-se",
+   "label": "Ledge with a ramp, 2 up, rising toward SE",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 70,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 52
+   },
+   "file": "stairs/stair-ledge-ramp-h2-se.png",
+   "frames": 1
+  },
+  {
+   "id": "stair-ledge-ramp-h2-nw",
+   "label": "Ledge with a ramp, 2 up, rising toward NW",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 70,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 52
+   },
+   "file": "stairs/stair-ledge-ramp-h2-nw.png",
+   "frames": 1
+  },
+  {
+   "id": "stair-ledge-ramp-h2-sw",
+   "label": "Ledge with a ramp, 2 up, rising toward SW",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 70,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 52
+   },
+   "file": "stairs/stair-ledge-ramp-h2-sw.png",
+   "frames": 1
+  },
+  {
+   "id": "stair-ledge-ramp-h2-ne",
+   "label": "Ledge with a ramp, 2 up, rising toward NE",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 70,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 52
+   },
+   "file": "stairs/stair-ledge-ramp-h2-ne.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-h1-se",
+   "label": "Scaffold stairs, 1 up, rising toward SE",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 46,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 32
+   },
+   "file": "scaffold-stairs/scaffold-h1-se.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-h1-nw",
+   "label": "Scaffold stairs, 1 up, rising toward NW",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 46,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 32
+   },
+   "file": "scaffold-stairs/scaffold-h1-nw.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-h1-sw",
+   "label": "Scaffold stairs, 1 up, rising toward SW",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 46,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 32
+   },
+   "file": "scaffold-stairs/scaffold-h1-sw.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-h1-ne",
+   "label": "Scaffold stairs, 1 up, rising toward NE",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 46,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 32
+   },
+   "file": "scaffold-stairs/scaffold-h1-ne.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-h2-se",
+   "label": "Scaffold stairs, 2 up, rising toward SE",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 70,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 52
+   },
+   "file": "scaffold-stairs/scaffold-h2-se.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-h2-nw",
+   "label": "Scaffold stairs, 2 up, rising toward NW",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 70,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 52
+   },
+   "file": "scaffold-stairs/scaffold-h2-nw.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-h2-sw",
+   "label": "Scaffold stairs, 2 up, rising toward SW",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 70,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 52
+   },
+   "file": "scaffold-stairs/scaffold-h2-sw.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-h2-ne",
+   "label": "Scaffold stairs, 2 up, rising toward NE",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 70,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 52
+   },
+   "file": "scaffold-stairs/scaffold-h2-ne.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-ramp-h1-se",
+   "label": "Scaffold ramp, 1 up, rising toward SE",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 40
+   },
+   "file": "scaffold-stairs/scaffold-ramp-h1-se.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-ramp-h1-nw",
+   "label": "Scaffold ramp, 1 up, rising toward NW",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 40
+   },
+   "file": "scaffold-stairs/scaffold-ramp-h1-nw.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-ramp-h1-sw",
+   "label": "Scaffold ramp, 1 up, rising toward SW",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 40
+   },
+   "file": "scaffold-stairs/scaffold-ramp-h1-sw.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-ramp-h1-ne",
+   "label": "Scaffold ramp, 1 up, rising toward NE",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 40
+   },
+   "file": "scaffold-stairs/scaffold-ramp-h1-ne.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-ramp-h2-se",
+   "label": "Scaffold ramp, 2 up, rising toward SE",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 78,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 60
+   },
+   "file": "scaffold-stairs/scaffold-ramp-h2-se.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-ramp-h2-nw",
+   "label": "Scaffold ramp, 2 up, rising toward NW",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 78,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 60
+   },
+   "file": "scaffold-stairs/scaffold-ramp-h2-nw.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-ramp-h2-sw",
+   "label": "Scaffold ramp, 2 up, rising toward SW",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 78,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 60
+   },
+   "file": "scaffold-stairs/scaffold-ramp-h2-sw.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-ramp-h2-ne",
+   "label": "Scaffold ramp, 2 up, rising toward NE",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 78,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 60
+   },
+   "file": "scaffold-stairs/scaffold-ramp-h2-ne.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-ledge-ramp-h1-se",
+   "label": "Scaffold ledge with a ramp, 1 up, rising toward SE",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 55,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 41
+   },
+   "file": "scaffold-stairs/scaffold-ledge-ramp-h1-se.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-ledge-ramp-h1-nw",
+   "label": "Scaffold ledge with a ramp, 1 up, rising toward NW",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 55,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 41
+   },
+   "file": "scaffold-stairs/scaffold-ledge-ramp-h1-nw.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-ledge-ramp-h1-sw",
+   "label": "Scaffold ledge with a ramp, 1 up, rising toward SW",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 55,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 41
+   },
+   "file": "scaffold-stairs/scaffold-ledge-ramp-h1-sw.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-ledge-ramp-h1-ne",
+   "label": "Scaffold ledge with a ramp, 1 up, rising toward NE",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 55,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 41
+   },
+   "file": "scaffold-stairs/scaffold-ledge-ramp-h1-ne.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-ledge-ramp-h2-se",
+   "label": "Scaffold ledge with a ramp, 2 up, rising toward SE",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 79,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 61
+   },
+   "file": "scaffold-stairs/scaffold-ledge-ramp-h2-se.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-ledge-ramp-h2-nw",
+   "label": "Scaffold ledge with a ramp, 2 up, rising toward NW",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 79,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 61
+   },
+   "file": "scaffold-stairs/scaffold-ledge-ramp-h2-nw.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-ledge-ramp-h2-sw",
+   "label": "Scaffold ledge with a ramp, 2 up, rising toward SW",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 79,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 61
+   },
+   "file": "scaffold-stairs/scaffold-ledge-ramp-h2-sw.png",
+   "frames": 1
+  },
+  {
+   "id": "scaffold-ledge-ramp-h2-ne",
+   "label": "Scaffold ledge with a ramp, 2 up, rising toward NE",
+   "category": "Stairs",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 79,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 61
+   },
+   "file": "scaffold-stairs/scaffold-ledge-ramp-h2-ne.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-wall-x-h05",
+   "label": "Broken wall along x, 0.5 high",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 30,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 20
+   },
+   "file": "ruins/ruin-wall-x-h05.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-wall-y-h05",
+   "label": "Broken wall along y, 0.5 high",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 30,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 20
+   },
+   "file": "ruins/ruin-wall-y-h05.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-wall-x-h1",
+   "label": "Broken wall along x, 1 high",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 38,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 28
+   },
+   "file": "ruins/ruin-wall-x-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-wall-y-h1",
+   "label": "Broken wall along y, 1 high",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 38,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 28
+   },
+   "file": "ruins/ruin-wall-y-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-wall-x-h2",
+   "label": "Broken wall along x, 2 high",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 44
+   },
+   "file": "ruins/ruin-wall-x-h2.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-wall-y-h2",
+   "label": "Broken wall along y, 2 high",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 44
+   },
+   "file": "ruins/ruin-wall-y-h2.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-wall-2x1-h1",
+   "label": "Long broken wall 2 x 1, 1 high",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 46,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 32
+   },
+   "file": "ruins/ruin-wall-2x1-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-wall-1x2-h1",
+   "label": "Long broken wall 1 x 2, 1 high",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 46,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 32
+   },
+   "file": "ruins/ruin-wall-1x2-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-wall-2x1-h2",
+   "label": "Long broken wall 2 x 1, 2 high",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 62,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 48
+   },
+   "file": "ruins/ruin-wall-2x1-h2.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-wall-1x2-h2",
+   "label": "Long broken wall 1 x 2, 2 high",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 62,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 48
+   },
+   "file": "ruins/ruin-wall-1x2-h2.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-corner-se-sw-h1",
+   "label": "Broken corner (se-sw), 1 high",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 38,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 28
+   },
+   "file": "ruins/ruin-corner-se-sw-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-corner-se-ne-h1",
+   "label": "Broken corner (se-ne), 1 high",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 38,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 28
+   },
+   "file": "ruins/ruin-corner-se-ne-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-corner-nw-sw-h1",
+   "label": "Broken corner (nw-sw), 1 high",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 38,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 28
+   },
+   "file": "ruins/ruin-corner-nw-sw-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-corner-nw-ne-h1",
+   "label": "Broken corner (nw-ne), 1 high",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 38,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 28
+   },
+   "file": "ruins/ruin-corner-nw-ne-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-corner-se-sw-h2",
+   "label": "Broken corner (se-sw), 2 high",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 44
+   },
+   "file": "ruins/ruin-corner-se-sw-h2.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-corner-se-ne-h2",
+   "label": "Broken corner (se-ne), 2 high",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 44
+   },
+   "file": "ruins/ruin-corner-se-ne-h2.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-corner-nw-sw-h2",
+   "label": "Broken corner (nw-sw), 2 high",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 44
+   },
+   "file": "ruins/ruin-corner-nw-sw-h2.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-corner-nw-ne-h2",
+   "label": "Broken corner (nw-ne), 2 high",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 44
+   },
+   "file": "ruins/ruin-corner-nw-ne-h2.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-tee-se-h1",
+   "label": "Broken tee, stub se, 1 high",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 38,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 28
+   },
+   "file": "ruins/ruin-tee-se-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-tee-sw-h1",
+   "label": "Broken tee, stub sw, 1 high",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 38,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 28
+   },
+   "file": "ruins/ruin-tee-sw-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-tee-nw-h1",
+   "label": "Broken tee, stub nw, 1 high",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 38,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 28
+   },
+   "file": "ruins/ruin-tee-nw-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-tee-ne-h1",
+   "label": "Broken tee, stub ne, 1 high",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 38,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 28
+   },
+   "file": "ruins/ruin-tee-ne-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-arch-x",
+   "label": "Broken arch, wall along x",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 50,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 40
+   },
+   "file": "ruins/ruin-arch-x.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-arch-y",
+   "label": "Broken arch, wall along y",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 50,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 40
+   },
+   "file": "ruins/ruin-arch-y.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-heap-1x1",
+   "label": "Heap of fallen stone 1x1",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 31,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 21
+   },
+   "file": "ruins/ruin-heap-1x1.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-heap-1x2",
+   "label": "Heap of fallen stone 1x2",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 40,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 26
+   },
+   "file": "ruins/ruin-heap-1x2.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-heap-2x1",
+   "label": "Heap of fallen stone 2x1",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 39,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 25
+   },
+   "file": "ruins/ruin-heap-2x1.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-heap-2x2",
+   "label": "Heap of fallen stone 2x2",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 50,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 32
+   },
+   "file": "ruins/ruin-heap-2x2.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-heap-l-n",
+   "label": "Heap of fallen stone l-n",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 49,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 31
+   },
+   "file": "ruins/ruin-heap-l-n.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-heap-l-e",
+   "label": "Heap of fallen stone l-e",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 48,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 30
+   },
+   "file": "ruins/ruin-heap-l-e.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-heap-l-s",
+   "label": "Heap of fallen stone l-s",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 47,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 29
+   },
+   "file": "ruins/ruin-heap-l-s.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-heap-l-w",
+   "label": "Heap of fallen stone l-w",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 48,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 30
+   },
+   "file": "ruins/ruin-heap-l-w.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-floor-1x1",
+   "label": "Foundation floor 1x1",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 30,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 20
+   },
+   "file": "ruins/ruin-floor-1x1.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-floor-1x2",
+   "label": "Foundation floor 1x2",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 42,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 28
+   },
+   "file": "ruins/ruin-floor-1x2.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-floor-2x1",
+   "label": "Foundation floor 2x1",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 42,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 28
+   },
+   "file": "ruins/ruin-floor-2x1.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-floor-2x2",
+   "label": "Foundation floor 2x2",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 50,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 32
+   },
+   "file": "ruins/ruin-floor-2x2.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-floor-l-n",
+   "label": "Foundation floor l-n",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 46,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 28
+   },
+   "file": "ruins/ruin-floor-l-n.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-floor-l-e",
+   "label": "Foundation floor l-e",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 50,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 32
+   },
+   "file": "ruins/ruin-floor-l-e.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-floor-l-s",
+   "label": "Foundation floor l-s",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 50,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 32
+   },
+   "file": "ruins/ruin-floor-l-s.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-floor-l-w",
+   "label": "Foundation floor l-w",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 50,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 32
+   },
+   "file": "ruins/ruin-floor-l-w.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-wall-x-h2-grown",
+   "label": "Broken wall along x, 2 high, overgrown",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 56,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 46
+   },
+   "file": "ruins/ruin-wall-x-h2-grown.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-wall-y-h2-grown",
+   "label": "Broken wall along y, 2 high, overgrown",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 57,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 47
+   },
+   "file": "ruins/ruin-wall-y-h2-grown.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-wall-x-h1-grown",
+   "label": "Broken wall along x, 1 high, overgrown",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 40,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 30
+   },
+   "file": "ruins/ruin-wall-x-h1-grown.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-wall-y-h1-grown",
+   "label": "Broken wall along y, 1 high, overgrown",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 40,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 30
+   },
+   "file": "ruins/ruin-wall-y-h1-grown.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-wall-2x1-h2-grown",
+   "label": "Long broken wall 2 x 1, 2 high, overgrown",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 64,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 50
+   },
+   "file": "ruins/ruin-wall-2x1-h2-grown.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-wall-1x2-h2-grown",
+   "label": "Long broken wall 1 x 2, 2 high, overgrown",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 64,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 50
+   },
+   "file": "ruins/ruin-wall-1x2-h2-grown.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-corner-se-sw-h2-grown",
+   "label": "Broken corner (se-sw), 2 high, overgrown",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 56,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 46
+   },
+   "file": "ruins/ruin-corner-se-sw-h2-grown.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-corner-se-ne-h2-grown",
+   "label": "Broken corner (se-ne), 2 high, overgrown",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 56,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 46
+   },
+   "file": "ruins/ruin-corner-se-ne-h2-grown.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-corner-nw-sw-h2-grown",
+   "label": "Broken corner (nw-sw), 2 high, overgrown",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 57,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 47
+   },
+   "file": "ruins/ruin-corner-nw-sw-h2-grown.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-corner-nw-ne-h2-grown",
+   "label": "Broken corner (nw-ne), 2 high, overgrown",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 57,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 47
+   },
+   "file": "ruins/ruin-corner-nw-ne-h2-grown.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-tee-se-h1-grown",
+   "label": "Broken tee, stub se, 1 high, overgrown",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 41,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 31
+   },
+   "file": "ruins/ruin-tee-se-h1-grown.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-tee-sw-h1-grown",
+   "label": "Broken tee, stub sw, 1 high, overgrown",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 41,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 31
+   },
+   "file": "ruins/ruin-tee-sw-h1-grown.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-arch-x-grown",
+   "label": "Broken arch, wall along x, overgrown",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 52,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 42
+   },
+   "file": "ruins/ruin-arch-x-grown.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-arch-y-grown",
+   "label": "Broken arch, wall along y, overgrown",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 52,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 42
+   },
+   "file": "ruins/ruin-arch-y-grown.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-heap-1x1-grown",
+   "label": "Heap of fallen stone 1x1, overgrown",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 35,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 25
+   },
+   "file": "ruins/ruin-heap-1x1-grown.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-heap-2x2-grown",
+   "label": "Heap of fallen stone 2x2, overgrown",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 51,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 33
+   },
+   "file": "ruins/ruin-heap-2x2-grown.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-heap-1x2-grown",
+   "label": "Heap of fallen stone 1x2, overgrown",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 44,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 30
+   },
+   "file": "ruins/ruin-heap-1x2-grown.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-floor-2x2-grown",
+   "label": "Foundation floor 2x2, overgrown",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 53,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 35
+   },
+   "file": "ruins/ruin-floor-2x2-grown.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-floor-1x1-grown",
+   "label": "Foundation floor 1x1, overgrown",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 34,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 24
+   },
+   "file": "ruins/ruin-floor-1x1-grown.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-floor-2x1-grown",
+   "label": "Foundation floor 2x1, overgrown",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 44,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 30
+   },
+   "file": "ruins/ruin-floor-2x1-grown.png",
+   "frames": 1
+  },
+  {
+   "id": "ruin-floor-l-n-grown",
+   "label": "Foundation floor l-n, overgrown",
+   "category": "Ruins",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 53,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 35
+   },
+   "file": "ruins/ruin-floor-l-n-grown.png",
+   "frames": 1
+  },
+  {
+   "id": "low-hay-1x1-h1",
+   "label": "Haybale stack 1 x 1, 1 high",
+   "category": "Low structures",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 38,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 28
+   },
+   "file": "low-structures/low-hay-1x1-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "low-hay-1x1-h2",
+   "label": "Haybale stack 1 x 1, 2 high",
+   "category": "Low structures",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 44
+   },
+   "file": "low-structures/low-hay-1x1-h2.png",
+   "frames": 1
+  },
+  {
+   "id": "low-hay-1x2-h1",
+   "label": "Haybale stack 1 x 2, 1 high",
+   "category": "Low structures",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 46,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 32
+   },
+   "file": "low-structures/low-hay-1x2-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "low-hay-2x1-h1",
+   "label": "Haybale stack 2 x 1, 1 high",
+   "category": "Low structures",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 46,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 32
+   },
+   "file": "low-structures/low-hay-2x1-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "low-hay-2x2-h1",
+   "label": "Haybale stack 2 x 2, 1 high",
+   "category": "Low structures",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 36
+   },
+   "file": "low-structures/low-hay-2x2-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "low-hay-2x2-stepped",
+   "label": "Haybale stack 2 x 2, stepped",
+   "category": "Low structures",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 70,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 52
+   },
+   "file": "low-structures/low-hay-2x2-stepped.png",
+   "frames": 1
+  },
+  {
+   "id": "low-hay-2x1-stepped",
+   "label": "Haybale stack 2 x 1, stepped",
+   "category": "Low structures",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 62,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 48
+   },
+   "file": "low-structures/low-hay-2x1-stepped.png",
+   "frames": 1
+  },
+  {
+   "id": "low-hay-1x2-stepped",
+   "label": "Haybale stack 1 x 2, stepped",
+   "category": "Low structures",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 62,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 48
+   },
+   "file": "low-structures/low-hay-1x2-stepped.png",
+   "frames": 1
+  },
+  {
+   "id": "low-hay-3x1-stepped",
+   "label": "Haybale stack 3 x 1, stepped",
+   "category": "Low structures",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 70,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 52
+   },
+   "file": "low-structures/low-hay-3x1-stepped.png",
+   "frames": 1
+  },
+  {
+   "id": "low-crates-1x1-h1",
+   "label": "Crate pile 1 x 1, 1 high",
+   "category": "Low structures",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 38,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 28
+   },
+   "file": "low-structures/low-crates-1x1-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "low-crates-1x1-h2",
+   "label": "Crate pile 1 x 1, 2 high",
+   "category": "Low structures",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 44
+   },
+   "file": "low-structures/low-crates-1x1-h2.png",
+   "frames": 1
+  },
+  {
+   "id": "low-crates-2x1-stepped",
+   "label": "Crate pile 2 x 1, stepped",
+   "category": "Low structures",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 62,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 48
+   },
+   "file": "low-structures/low-crates-2x1-stepped.png",
+   "frames": 1
+  },
+  {
+   "id": "low-crates-1x2-stepped",
+   "label": "Crate pile 1 x 2, stepped",
+   "category": "Low structures",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 62,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 48
+   },
+   "file": "low-structures/low-crates-1x2-stepped.png",
+   "frames": 1
+  },
+  {
+   "id": "low-crates-2x2-stepped",
+   "label": "Crate pile 2 x 2, stepped",
+   "category": "Low structures",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 70,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 52
+   },
+   "file": "low-structures/low-crates-2x2-stepped.png",
+   "frames": 1
+  },
+  {
+   "id": "low-crates-l-stepped",
+   "label": "Crate pile, L, stepped",
+   "category": "Low structures",
+   "kind": "still",
+   "place": "ground",
+   "w": 76,
+   "h": 70,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 38,
+    "y": 52
+   },
+   "file": "low-structures/low-crates-l-stepped.png",
+   "frames": 1
+  },
+  {
+   "id": "low-stall-1x1",
+   "label": "Market stall 1 x 1, canvas roof (walkable)",
+   "category": "Low structures",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 38,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 28
+   },
+   "file": "low-structures/low-stall-1x1.png",
+   "frames": 1
+  },
+  {
+   "id": "low-stall-1x1-cool",
+   "label": "Market stall 1 x 1, teal canvas roof (walkable)",
+   "category": "Low structures",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 38,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 28
+   },
+   "file": "low-structures/low-stall-1x1-cool.png",
+   "frames": 1
+  },
+  {
+   "id": "low-stall-2x1",
+   "label": "Market stall 2 x 1, canvas roof (walkable)",
+   "category": "Low structures",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 46,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 32
+   },
+   "file": "low-structures/low-stall-2x1.png",
+   "frames": 1
+  },
+  {
+   "id": "low-stall-1x2",
+   "label": "Market stall 1 x 2, canvas roof (walkable)",
+   "category": "Low structures",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 46,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 32
+   },
+   "file": "low-structures/low-stall-1x2.png",
+   "frames": 1
+  },
+  {
+   "id": "low-stall-slope-1x1",
+   "label": "Market stall 1 x 1, sloping awning",
+   "category": "Low structures",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 38,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 28
+   },
+   "file": "low-structures/low-stall-slope-1x1.png",
+   "frames": 1
+  },
+  {
+   "id": "low-stall-slope-2x1",
+   "label": "Market stall 2 x 1, sloping awning",
+   "category": "Low structures",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 46,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 32
+   },
+   "file": "low-structures/low-stall-slope-2x1.png",
+   "frames": 1
+  },
+  {
+   "id": "low-shed-1x1-h1-se",
+   "label": "Shed 1 x 1, 1 high, open to the SE",
+   "category": "Low structures",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 38,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 28
+   },
+   "file": "low-structures/low-shed-1x1-h1-se.png",
+   "frames": 1
+  },
+  {
+   "id": "low-shed-1x1-h1-sw",
+   "label": "Shed 1 x 1, 1 high, open to the SW",
+   "category": "Low structures",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 38,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 28
+   },
+   "file": "low-structures/low-shed-1x1-h1-sw.png",
+   "frames": 1
+  },
+  {
+   "id": "low-shed-1x1-h2-se",
+   "label": "Shed 1 x 1, 2 high, open to the SE",
+   "category": "Low structures",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 44
+   },
+   "file": "low-structures/low-shed-1x1-h2-se.png",
+   "frames": 1
+  },
+  {
+   "id": "low-shed-1x1-h2-sw",
+   "label": "Shed 1 x 1, 2 high, open to the SW",
+   "category": "Low structures",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 44
+   },
+   "file": "low-structures/low-shed-1x1-h2-sw.png",
+   "frames": 1
+  },
+  {
+   "id": "low-shed-2x1-h1-sw",
+   "label": "Shed 2 x 1, 1 high, open to the SW",
+   "category": "Low structures",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 46,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 32
+   },
+   "file": "low-structures/low-shed-2x1-h1-sw.png",
+   "frames": 1
+  },
+  {
+   "id": "low-shed-1x2-h1-se",
+   "label": "Shed 1 x 2, 1 high, open to the SE",
+   "category": "Low structures",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 46,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 32
+   },
+   "file": "low-structures/low-shed-1x2-h1-se.png",
+   "frames": 1
+  },
+  {
+   "id": "low-cart-hay",
+   "label": "Hay cart (along SE)",
+   "category": "Low structures",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 38,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 28
+   },
+   "file": "low-structures/low-cart-hay.png",
+   "frames": 1
+  },
+  {
+   "id": "low-cart-crates",
+   "label": "Crate cart (along SW)",
+   "category": "Low structures",
+   "kind": "still",
+   "place": "ground",
+   "w": 44,
+   "h": 38,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 22,
+    "y": 28
+   },
+   "file": "low-structures/low-cart-crates.png",
+   "frames": 1
+  },
+  {
+   "id": "low-wagon-2x1-hay",
+   "label": "Hay wagon 2 x 1",
+   "category": "Low structures",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 46,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 32
+   },
+   "file": "low-structures/low-wagon-2x1-hay.png",
+   "frames": 1
+  },
+  {
+   "id": "low-wagon-2x1-crates",
+   "label": "Crate wagon 2 x 1",
+   "category": "Low structures",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 46,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 32
+   },
+   "file": "low-structures/low-wagon-2x1-crates.png",
+   "frames": 1
+  },
+  {
+   "id": "low-wagon-1x2-hay",
+   "label": "Hay wagon 1 x 2",
+   "category": "Low structures",
+   "kind": "still",
+   "place": "ground",
+   "w": 60,
+   "h": 46,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 30,
+    "y": 32
+   },
+   "file": "low-structures/low-wagon-1x2-hay.png",
+   "frames": 1
+  },
+  {
+   "id": "mycelium-end-ne",
+   "label": "Mycelium, end (ne)",
+   "category": "Corrupted Terrain",
+   "kind": "still",
+   "place": "ground",
+   "w": 32,
+   "h": 16,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 8
+   },
+   "file": "corrupted-terrain/mycelium-end-ne.png",
+   "frames": 1
+  },
+  {
+   "id": "mycelium-end-se",
+   "label": "Mycelium, end (se)",
+   "category": "Corrupted Terrain",
+   "kind": "still",
+   "place": "ground",
+   "w": 32,
+   "h": 16,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 8
+   },
+   "file": "corrupted-terrain/mycelium-end-se.png",
+   "frames": 1
+  },
+  {
+   "id": "mycelium-end-sw",
+   "label": "Mycelium, end (sw)",
+   "category": "Corrupted Terrain",
+   "kind": "still",
+   "place": "ground",
+   "w": 32,
+   "h": 16,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 8
+   },
+   "file": "corrupted-terrain/mycelium-end-sw.png",
+   "frames": 1
+  },
+  {
+   "id": "mycelium-end-nw",
+   "label": "Mycelium, end (nw)",
+   "category": "Corrupted Terrain",
+   "kind": "still",
+   "place": "ground",
+   "w": 32,
+   "h": 16,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 8
+   },
+   "file": "corrupted-terrain/mycelium-end-nw.png",
+   "frames": 1
+  },
+  {
+   "id": "mycelium-straight-ne-sw",
+   "label": "Mycelium, straight (ne, sw)",
+   "category": "Corrupted Terrain",
+   "kind": "still",
+   "place": "ground",
+   "w": 32,
+   "h": 16,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 8
+   },
+   "file": "corrupted-terrain/mycelium-straight-ne-sw.png",
+   "frames": 1
+  },
+  {
+   "id": "mycelium-straight-nw-se",
+   "label": "Mycelium, straight (nw, se)",
+   "category": "Corrupted Terrain",
+   "kind": "still",
+   "place": "ground",
+   "w": 32,
+   "h": 16,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 8
+   },
+   "file": "corrupted-terrain/mycelium-straight-nw-se.png",
+   "frames": 1
+  },
+  {
+   "id": "mycelium-corner-ne-se",
+   "label": "Mycelium, corner (ne, se)",
+   "category": "Corrupted Terrain",
+   "kind": "still",
+   "place": "ground",
+   "w": 32,
+   "h": 16,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 8
+   },
+   "file": "corrupted-terrain/mycelium-corner-ne-se.png",
+   "frames": 1
+  },
+  {
+   "id": "mycelium-corner-se-sw",
+   "label": "Mycelium, corner (se, sw)",
+   "category": "Corrupted Terrain",
+   "kind": "still",
+   "place": "ground",
+   "w": 32,
+   "h": 16,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 8
+   },
+   "file": "corrupted-terrain/mycelium-corner-se-sw.png",
+   "frames": 1
+  },
+  {
+   "id": "mycelium-corner-sw-nw",
+   "label": "Mycelium, corner (sw, nw)",
+   "category": "Corrupted Terrain",
+   "kind": "still",
+   "place": "ground",
+   "w": 32,
+   "h": 16,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 8
+   },
+   "file": "corrupted-terrain/mycelium-corner-sw-nw.png",
+   "frames": 1
+  },
+  {
+   "id": "mycelium-corner-nw-ne",
+   "label": "Mycelium, corner (nw, ne)",
+   "category": "Corrupted Terrain",
+   "kind": "still",
+   "place": "ground",
+   "w": 32,
+   "h": 16,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 8
+   },
+   "file": "corrupted-terrain/mycelium-corner-nw-ne.png",
+   "frames": 1
+  },
+  {
+   "id": "mycelium-tee-no-ne",
+   "label": "Mycelium, tee (se, sw, nw)",
+   "category": "Corrupted Terrain",
+   "kind": "still",
+   "place": "ground",
+   "w": 32,
+   "h": 16,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 8
+   },
+   "file": "corrupted-terrain/mycelium-tee-no-ne.png",
+   "frames": 1
+  },
+  {
+   "id": "mycelium-tee-no-se",
+   "label": "Mycelium, tee (ne, sw, nw)",
+   "category": "Corrupted Terrain",
+   "kind": "still",
+   "place": "ground",
+   "w": 32,
+   "h": 16,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 8
+   },
+   "file": "corrupted-terrain/mycelium-tee-no-se.png",
+   "frames": 1
+  },
+  {
+   "id": "mycelium-tee-no-sw",
+   "label": "Mycelium, tee (ne, se, nw)",
+   "category": "Corrupted Terrain",
+   "kind": "still",
+   "place": "ground",
+   "w": 32,
+   "h": 16,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 8
+   },
+   "file": "corrupted-terrain/mycelium-tee-no-sw.png",
+   "frames": 1
+  },
+  {
+   "id": "mycelium-tee-no-nw",
+   "label": "Mycelium, tee (ne, se, sw)",
+   "category": "Corrupted Terrain",
+   "kind": "still",
+   "place": "ground",
+   "w": 32,
+   "h": 16,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 8
+   },
+   "file": "corrupted-terrain/mycelium-tee-no-nw.png",
+   "frames": 1
+  },
+  {
+   "id": "mycelium-cross",
+   "label": "Mycelium, cross (ne, se, sw, nw)",
+   "category": "Corrupted Terrain",
+   "kind": "still",
+   "place": "ground",
+   "w": 32,
+   "h": 16,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 8
+   },
+   "file": "corrupted-terrain/mycelium-cross.png",
+   "frames": 1
+  },
+  {
+   "id": "mycelium-node",
+   "label": "Mycelium, fruiting node",
+   "category": "Corrupted Terrain",
+   "kind": "still",
+   "place": "ground",
+   "w": 32,
+   "h": 16,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 8
+   },
+   "file": "corrupted-terrain/mycelium-node.png",
+   "frames": 1
+  },
+  {
+   "id": "shelf-1x1-h1",
+   "label": "Shelf fungus 1 x 1, 1 high",
+   "category": "Corrupted Terrain",
+   "kind": "still",
+   "place": "ground",
+   "w": 56,
+   "h": 38,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 28,
+    "y": 30
+   },
+   "file": "corrupted-terrain/shelf-1x1-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "shelf-1x1-h2",
+   "label": "Shelf fungus 1 x 1, 2 high",
+   "category": "Corrupted Terrain",
+   "kind": "still",
+   "place": "ground",
+   "w": 56,
+   "h": 54,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 28,
+    "y": 46
+   },
+   "file": "corrupted-terrain/shelf-1x1-h2.png",
+   "frames": 1
+  },
+  {
+   "id": "shelf-1x2-h1",
+   "label": "Shelf fungus 1 x 2, 1 high",
+   "category": "Corrupted Terrain",
+   "kind": "still",
+   "place": "ground",
+   "w": 72,
+   "h": 42,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 36,
+    "y": 34
+   },
+   "file": "corrupted-terrain/shelf-1x2-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "shelf-2x1-h1",
+   "label": "Shelf fungus 2 x 1, 1 high",
+   "category": "Corrupted Terrain",
+   "kind": "still",
+   "place": "ground",
+   "w": 72,
+   "h": 42,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 36,
+    "y": 34
+   },
+   "file": "corrupted-terrain/shelf-2x1-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "shelf-2x2-h1",
+   "label": "Shelf fungus 2 x 2, 1 high",
+   "category": "Corrupted Terrain",
+   "kind": "still",
+   "place": "ground",
+   "w": 88,
+   "h": 46,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 44,
+    "y": 38
+   },
+   "file": "corrupted-terrain/shelf-2x2-h1.png",
+   "frames": 1
+  },
+  {
+   "id": "shelf-1x2-h2-step",
+   "label": "Shelf fungus 1 x 2, 2 high with a step",
+   "category": "Corrupted Terrain",
+   "kind": "still",
+   "place": "ground",
+   "w": 72,
+   "h": 58,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 36,
+    "y": 50
+   },
+   "file": "corrupted-terrain/shelf-1x2-h2-step.png",
+   "frames": 1
+  },
+  {
+   "id": "shelf-2x2-h2-step",
+   "label": "Shelf fungus 2 x 2, 2 high with a step",
+   "category": "Corrupted Terrain",
+   "kind": "still",
+   "place": "ground",
+   "w": 88,
+   "h": 62,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 44,
+    "y": 54
+   },
+   "file": "corrupted-terrain/shelf-2x2-h2-step.png",
+   "frames": 1
+  },
+  {
+   "id": "spore-vent",
+   "label": "Spore vent (animation)",
+   "category": "Corrupted Terrain",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 48,
+   "cols": 6,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 16,
+    "y": 40
+   },
+   "file": "corrupted-terrain/spore-vent.png",
+   "frames": 6
+  },
+  {
+   "id": "thorn-wall-1x1",
+   "label": "Thorn wall 1 x 1",
+   "category": "Corrupted Terrain",
+   "kind": "still",
+   "place": "ground",
+   "w": 48,
+   "h": 44,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 24,
+    "y": 36
+   },
+   "file": "corrupted-terrain/thorn-wall-1x1.png",
+   "frames": 1
+  },
+  {
+   "id": "thorn-wall-1x1-broken",
+   "label": "Thorn wall 1 x 1, broken",
+   "category": "Corrupted Terrain",
+   "kind": "still",
+   "place": "ground",
+   "w": 48,
+   "h": 33,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 24,
+    "y": 25
+   },
+   "file": "corrupted-terrain/thorn-wall-1x1-broken.png",
+   "frames": 1
+  },
+  {
+   "id": "thorn-wall-1x2",
+   "label": "Thorn wall 1 x 2",
+   "category": "Corrupted Terrain",
+   "kind": "still",
+   "place": "ground",
+   "w": 64,
+   "h": 48,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 32,
+    "y": 40
+   },
+   "file": "corrupted-terrain/thorn-wall-1x2.png",
+   "frames": 1
+  },
+  {
+   "id": "thorn-wall-1x2-broken",
+   "label": "Thorn wall 1 x 2, broken",
+   "category": "Corrupted Terrain",
+   "kind": "still",
+   "place": "ground",
+   "w": 64,
+   "h": 37,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 32,
+    "y": 29
+   },
+   "file": "corrupted-terrain/thorn-wall-1x2-broken.png",
+   "frames": 1
+  },
+  {
+   "id": "thorn-wall-2x1",
+   "label": "Thorn wall 2 x 1",
+   "category": "Corrupted Terrain",
+   "kind": "still",
+   "place": "ground",
+   "w": 64,
+   "h": 48,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 32,
+    "y": 40
+   },
+   "file": "corrupted-terrain/thorn-wall-2x1.png",
+   "frames": 1
+  },
+  {
+   "id": "thorn-wall-2x1-broken",
+   "label": "Thorn wall 2 x 1, broken",
+   "category": "Corrupted Terrain",
+   "kind": "still",
+   "place": "ground",
+   "w": 64,
+   "h": 37,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 32,
+    "y": 29
+   },
+   "file": "corrupted-terrain/thorn-wall-2x1-broken.png",
+   "frames": 1
+  },
+  {
+   "id": "gravestone-round",
+   "label": "Gravestone, round-topped",
+   "category": "Graveyard",
+   "kind": "still",
+   "place": "ground",
+   "w": 52,
+   "h": 38,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 26,
+    "y": 30
+   },
+   "file": "graveyard/gravestone-round.png",
+   "frames": 1
+  },
+  {
+   "id": "gravestone-cross",
+   "label": "Gravestone, a stone cross",
+   "category": "Graveyard",
+   "kind": "still",
+   "place": "ground",
+   "w": 52,
+   "h": 40,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 26,
+    "y": 32
+   },
+   "file": "graveyard/gravestone-cross.png",
+   "frames": 1
+  },
+  {
+   "id": "gravestone-leaning",
+   "label": "Gravestone, leaning",
+   "category": "Graveyard",
+   "kind": "still",
+   "place": "ground",
+   "w": 52,
+   "h": 39,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 26,
+    "y": 31
+   },
+   "file": "graveyard/gravestone-leaning.png",
+   "frames": 1
+  },
+  {
+   "id": "gravestone-broken",
+   "label": "Gravestone, broken",
+   "category": "Graveyard",
+   "kind": "still",
+   "place": "ground",
+   "w": 52,
+   "h": 36,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 26,
+    "y": 28
+   },
+   "file": "graveyard/gravestone-broken.png",
+   "frames": 1
+  },
+  {
+   "id": "cairn-tall",
+   "label": "Cairn, tall",
+   "category": "Graveyard",
+   "kind": "still",
+   "place": "ground",
+   "w": 52,
+   "h": 40,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 26,
+    "y": 32
+   },
+   "file": "graveyard/cairn-tall.png",
+   "frames": 1
+  },
+  {
+   "id": "cairn-small",
+   "label": "Cairn, small",
+   "category": "Graveyard",
+   "kind": "still",
+   "place": "ground",
+   "w": 52,
+   "h": 31,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 26,
+    "y": 23
+   },
+   "file": "graveyard/cairn-small.png",
+   "frames": 1
+  },
+  {
+   "id": "bones-skull",
+   "label": "Bones, a skull among them",
+   "category": "Graveyard",
+   "kind": "still",
+   "place": "ground",
+   "w": 52,
+   "h": 30,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 26,
+    "y": 22
+   },
+   "file": "graveyard/bones-skull.png",
+   "frames": 1
+  },
+  {
+   "id": "bones-ribs",
+   "label": "Bones, a rib cage",
+   "category": "Graveyard",
+   "kind": "still",
+   "place": "ground",
+   "w": 52,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 26,
+    "y": 24
+   },
+   "file": "graveyard/bones-ribs.png",
+   "frames": 1
+  },
+  {
+   "id": "bones-scatter",
+   "label": "Bones, scattered",
+   "category": "Graveyard",
+   "kind": "still",
+   "place": "ground",
+   "w": 52,
+   "h": 27,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 26,
+    "y": 19
+   },
+   "file": "graveyard/bones-scatter.png",
+   "frames": 1
+  },
+  {
+   "id": "obelisk",
+   "label": "Obelisk, with runes",
+   "category": "Graveyard",
+   "kind": "still",
+   "place": "ground",
+   "w": 52,
+   "h": 68,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 26,
+    "y": 60
+   },
+   "file": "graveyard/obelisk.png",
+   "frames": 1
+  },
+  {
+   "id": "rune-plinth",
+   "label": "Rune plinth with a crystal",
+   "category": "Graveyard",
+   "kind": "still",
+   "place": "ground",
+   "w": 52,
+   "h": 47,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 26,
+    "y": 39
+   },
+   "file": "graveyard/rune-plinth.png",
+   "frames": 1
+  },
+  {
+   "id": "rune-altar-2x1",
+   "label": "Rune altar 2 x 1",
+   "category": "Graveyard",
+   "kind": "still",
+   "place": "ground",
+   "w": 68,
+   "h": 42,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 34,
+    "y": 34
+   },
+   "file": "graveyard/rune-altar-2x1.png",
+   "frames": 1
+  },
+  {
+   "id": "rune-altar-1x2",
+   "label": "Rune altar 1 x 2",
+   "category": "Graveyard",
+   "kind": "still",
+   "place": "ground",
+   "w": 68,
+   "h": 42,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 34,
+    "y": 34
+   },
+   "file": "graveyard/rune-altar-1x2.png",
+   "frames": 1
+  },
+  {
+   "id": "spirit-lantern-post",
+   "label": "Spirit lantern post (animation)",
+   "category": "Graveyard",
+   "kind": "animation",
+   "place": "ground",
+   "w": 60,
+   "h": 57,
+   "cols": 4,
+   "rows": 1,
+   "fps": 6,
+   "anchor": {
+    "x": 30,
+    "y": 49
+   },
+   "file": "graveyard/spirit-lantern-post.png",
+   "frames": 4
+  },
+  {
+   "id": "spirit-lantern-stone",
+   "label": "Spirit lantern, stone (animation)",
+   "category": "Graveyard",
+   "kind": "animation",
+   "place": "ground",
+   "w": 60,
+   "h": 41,
+   "cols": 4,
+   "rows": 1,
+   "fps": 6,
+   "anchor": {
+    "x": 30,
+    "y": 33
+   },
+   "file": "graveyard/spirit-lantern-stone.png",
+   "frames": 4
+  },
+  {
+   "id": "iron-fence-x",
+   "label": "Iron fence, along x",
+   "category": "Graveyard",
+   "kind": "still",
+   "place": "ground",
+   "w": 48,
+   "h": 38,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 24,
+    "y": 30
+   },
+   "file": "graveyard/iron-fence-x.png",
+   "frames": 1
+  },
+  {
+   "id": "graveyard-gate-x",
+   "label": "Graveyard gate, along x",
+   "category": "Graveyard",
+   "kind": "still",
+   "place": "ground",
+   "w": 48,
+   "h": 46,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 24,
+    "y": 38
+   },
+   "file": "graveyard/graveyard-gate-x.png",
+   "frames": 1
+  },
+  {
+   "id": "iron-fence-y",
+   "label": "Iron fence, along y",
+   "category": "Graveyard",
+   "kind": "still",
+   "place": "ground",
+   "w": 48,
+   "h": 38,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 24,
+    "y": 30
+   },
+   "file": "graveyard/iron-fence-y.png",
+   "frames": 1
+  },
+  {
+   "id": "graveyard-gate-y",
+   "label": "Graveyard gate, along y",
+   "category": "Graveyard",
+   "kind": "still",
+   "place": "ground",
+   "w": 48,
+   "h": 46,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 24,
+    "y": 38
+   },
+   "file": "graveyard/graveyard-gate-y.png",
+   "frames": 1
+  },
+  {
+   "id": "ritual-circle-2",
+   "label": "Ritual circle, 2 x 2",
+   "category": "Graveyard",
+   "kind": "still",
+   "place": "ground",
+   "w": 64,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 32,
+    "y": 16
+   },
+   "file": "graveyard/ritual-circle-2.png",
+   "frames": 1
+  },
+  {
+   "id": "ritual-circle-3",
+   "label": "Ritual circle, 3 x 3",
+   "category": "Graveyard",
+   "kind": "still",
+   "place": "ground",
+   "w": 96,
+   "h": 48,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 48,
+    "y": 24
+   },
+   "file": "graveyard/ritual-circle-3.png",
+   "frames": 1
+  },
+  {
+   "id": "ritual-circle-4",
+   "label": "Ritual circle, 4 x 4",
+   "category": "Graveyard",
+   "kind": "still",
+   "place": "ground",
+   "w": 128,
+   "h": 64,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 64,
+    "y": 32
+   },
+   "file": "graveyard/ritual-circle-4.png",
+   "frames": 1
+  },
+  {
+   "id": "dock-1x2",
+   "label": "Dock 1 x 2",
+   "category": "Water props",
+   "kind": "still",
+   "place": "ground",
+   "w": 64,
+   "h": 50,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 32,
+    "y": 36
+   },
+   "file": "water-props/dock-1x2.png",
+   "frames": 1
+  },
+  {
+   "id": "dock-1x2-corrupted",
+   "label": "Dock 1 x 2, rotted",
+   "category": "Water props",
+   "kind": "still",
+   "place": "ground",
+   "w": 64,
+   "h": 50,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 32,
+    "y": 36
+   },
+   "file": "water-props/dock-1x2-corrupted.png",
+   "frames": 1
+  },
+  {
+   "id": "dock-2x1",
+   "label": "Dock 2 x 1",
+   "category": "Water props",
+   "kind": "still",
+   "place": "ground",
+   "w": 64,
+   "h": 50,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 32,
+    "y": 36
+   },
+   "file": "water-props/dock-2x1.png",
+   "frames": 1
+  },
+  {
+   "id": "dock-2x1-corrupted",
+   "label": "Dock 2 x 1, rotted",
+   "category": "Water props",
+   "kind": "still",
+   "place": "ground",
+   "w": 64,
+   "h": 50,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 32,
+    "y": 36
+   },
+   "file": "water-props/dock-2x1-corrupted.png",
+   "frames": 1
+  },
+  {
+   "id": "dock-1x3",
+   "label": "Dock 1 x 3",
+   "category": "Water props",
+   "kind": "still",
+   "place": "ground",
+   "w": 80,
+   "h": 58,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 40,
+    "y": 40
+   },
+   "file": "water-props/dock-1x3.png",
+   "frames": 1
+  },
+  {
+   "id": "dock-1x3-corrupted",
+   "label": "Dock 1 x 3, rotted",
+   "category": "Water props",
+   "kind": "still",
+   "place": "ground",
+   "w": 80,
+   "h": 58,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 40,
+    "y": 40
+   },
+   "file": "water-props/dock-1x3-corrupted.png",
+   "frames": 1
+  },
+  {
+   "id": "dock-3x1",
+   "label": "Dock 3 x 1",
+   "category": "Water props",
+   "kind": "still",
+   "place": "ground",
+   "w": 80,
+   "h": 58,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 40,
+    "y": 40
+   },
+   "file": "water-props/dock-3x1.png",
+   "frames": 1
+  },
+  {
+   "id": "dock-3x1-corrupted",
+   "label": "Dock 3 x 1, rotted",
+   "category": "Water props",
+   "kind": "still",
+   "place": "ground",
+   "w": 80,
+   "h": 58,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 40,
+    "y": 40
+   },
+   "file": "water-props/dock-3x1-corrupted.png",
+   "frames": 1
+  },
+  {
+   "id": "rowboat-2x1",
+   "label": "Rowboat 2 x 1",
+   "category": "Water props",
+   "kind": "still",
+   "place": "ground",
+   "w": 64,
+   "h": 45,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 32,
+    "y": 31
+   },
+   "file": "water-props/rowboat-2x1.png",
+   "frames": 1
+  },
+  {
+   "id": "rowboat-1x2",
+   "label": "Rowboat 1 x 2",
+   "category": "Water props",
+   "kind": "still",
+   "place": "ground",
+   "w": 64,
+   "h": 45,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 32,
+    "y": 31
+   },
+   "file": "water-props/rowboat-1x2.png",
+   "frames": 1
+  },
+  {
+   "id": "stepping-1x1",
+   "label": "Stepping stone 1 x 1",
+   "category": "Water props",
+   "kind": "variants",
+   "place": "ground",
+   "w": 50,
+   "h": 30,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 25,
+    "y": 20
+   },
+   "file": "water-props/stepping-1x1.png",
+   "frames": 3,
+   "names": [
+    "A",
+    "B",
+    "C"
+   ]
+  },
+  {
+   "id": "stepping-2x1",
+   "label": "Stepping stones 2 x 1",
+   "category": "Water props",
+   "kind": "still",
+   "place": "ground",
+   "w": 66,
+   "h": 38,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 33,
+    "y": 24
+   },
+   "file": "water-props/stepping-2x1.png",
+   "frames": 1
+  },
+  {
+   "id": "stepping-1x2",
+   "label": "Stepping stones 1 x 2",
+   "category": "Water props",
+   "kind": "still",
+   "place": "ground",
+   "w": 66,
+   "h": 38,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 33,
+    "y": 24
+   },
+   "file": "water-props/stepping-1x2.png",
+   "frames": 1
+  },
+  {
+   "id": "stepping-1x3",
+   "label": "Stepping stones 1 x 3",
+   "category": "Water props",
+   "kind": "still",
+   "place": "ground",
+   "w": 82,
+   "h": 46,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 41,
+    "y": 28
+   },
+   "file": "water-props/stepping-1x3.png",
+   "frames": 1
+  },
+  {
+   "id": "stepping-3x1",
+   "label": "Stepping stones 3 x 1",
+   "category": "Water props",
+   "kind": "still",
+   "place": "ground",
+   "w": 82,
+   "h": 46,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 41,
+    "y": 28
+   },
+   "file": "water-props/stepping-3x1.png",
+   "frames": 1
+  },
+  {
+   "id": "waterfall-ne",
+   "label": "Waterfall NE",
+   "category": "Water props",
+   "kind": "animation",
+   "place": "ground",
+   "w": 60,
+   "h": 38,
+   "cols": 6,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 30,
+    "y": 28
+   },
+   "file": "water-props/waterfall-ne.png",
+   "frames": 6
+  },
+  {
+   "id": "waterfall-ne-corrupted",
+   "label": "Waterfall NE, corrupted",
+   "category": "Water props",
+   "kind": "animation",
+   "place": "ground",
+   "w": 60,
+   "h": 38,
+   "cols": 6,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 30,
+    "y": 28
+   },
+   "file": "water-props/waterfall-ne-corrupted.png",
+   "frames": 6
+  },
+  {
+   "id": "waterfall-se",
+   "label": "Waterfall SE",
+   "category": "Water props",
+   "kind": "animation",
+   "place": "ground",
+   "w": 60,
+   "h": 38,
+   "cols": 6,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 30,
+    "y": 28
+   },
+   "file": "water-props/waterfall-se.png",
+   "frames": 6
+  },
+  {
+   "id": "waterfall-se-corrupted",
+   "label": "Waterfall SE, corrupted",
+   "category": "Water props",
+   "kind": "animation",
+   "place": "ground",
+   "w": 60,
+   "h": 38,
+   "cols": 6,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 30,
+    "y": 28
+   },
+   "file": "water-props/waterfall-se-corrupted.png",
+   "frames": 6
+  },
+  {
+   "id": "lily-pads",
+   "label": "Lily pads",
+   "category": "Water props",
+   "kind": "variants",
+   "place": "ground",
+   "w": 32,
+   "h": 16,
+   "cols": 4,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 8
+   },
+   "file": "water-props/lily-pads.png",
+   "frames": 4,
+   "names": [
+    "One",
+    "Two",
+    "Three",
+    "Cluster"
+   ]
+  },
+  {
+   "id": "mushroom-pads",
+   "label": "Mushroom pads (corrupted)",
+   "category": "Water props",
+   "kind": "variants",
+   "place": "ground",
+   "w": 32,
+   "h": 16,
+   "cols": 4,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 8
+   },
+   "file": "water-props/mushroom-pads.png",
+   "frames": 4,
+   "names": [
+    "One",
+    "Two",
+    "Three",
+    "Cluster"
+   ]
+  },
+  {
+   "id": "reeds",
+   "label": "Reeds",
+   "category": "Water props",
+   "kind": "variants",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 25
+   },
+   "file": "water-props/reeds.png",
+   "frames": 3,
+   "names": [
+    "Tall",
+    "Thick",
+    "Short"
+   ]
+  },
+  {
+   "id": "reeds-sway",
+   "label": "Reeds swaying",
+   "category": "Water props",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 4,
+   "rows": 1,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 25
+   },
+   "file": "water-props/reeds-sway.png",
+   "frames": 4
+  },
+  {
+   "id": "reeds-corrupted",
+   "label": "Reeds (corrupted)",
+   "category": "Water props",
+   "kind": "variants",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 25
+   },
+   "file": "water-props/reeds-corrupted.png",
+   "frames": 3,
+   "names": [
+    "Tall",
+    "Thick",
+    "Short"
+   ]
+  },
+  {
+   "id": "reeds-corrupted-sway",
+   "label": "Reeds swaying (corrupted)",
+   "category": "Water props",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 4,
+   "rows": 1,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 25
+   },
+   "file": "water-props/reeds-corrupted-sway.png",
+   "frames": 4
+  },
+  {
+   "id": "barricade-1x1",
+   "label": "Barricade 1 x 1",
+   "category": "Destructibles",
+   "kind": "variants",
+   "place": "ground",
+   "w": 64,
+   "h": 50,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 32,
+    "y": 40
+   },
+   "file": "destructibles/barricade-1x1.png",
+   "frames": 3,
+   "names": [
+    "Intact",
+    "Damaged",
+    "Destroyed"
+   ]
+  },
+  {
+   "id": "barricade-1x1-destroy",
+   "label": "Barricade 1 x 1, destroyed",
+   "category": "Destructibles",
+   "kind": "animation",
+   "place": "ground",
+   "w": 64,
+   "h": 50,
+   "cols": 6,
+   "rows": 1,
+   "fps": 12,
+   "anchor": {
+    "x": 32,
+    "y": 40
+   },
+   "file": "destructibles/barricade-1x1-destroy.png",
+   "frames": 6
+  },
+  {
+   "id": "barricade-1x2",
+   "label": "Barricade 1 x 2",
+   "category": "Destructibles",
+   "kind": "variants",
+   "place": "ground",
+   "w": 80,
+   "h": 58,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 40,
+    "y": 44
+   },
+   "file": "destructibles/barricade-1x2.png",
+   "frames": 3,
+   "names": [
+    "Intact",
+    "Damaged",
+    "Destroyed"
+   ]
+  },
+  {
+   "id": "barricade-1x2-destroy",
+   "label": "Barricade 1 x 2, destroyed",
+   "category": "Destructibles",
+   "kind": "animation",
+   "place": "ground",
+   "w": 80,
+   "h": 58,
+   "cols": 6,
+   "rows": 1,
+   "fps": 12,
+   "anchor": {
+    "x": 40,
+    "y": 44
+   },
+   "file": "destructibles/barricade-1x2-destroy.png",
+   "frames": 6
+  },
+  {
+   "id": "barrel-explosive",
+   "label": "Explosive barrel",
+   "category": "Destructibles",
+   "kind": "variants",
+   "place": "ground",
+   "w": 64,
+   "h": 46,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 32,
+    "y": 36
+   },
+   "file": "destructibles/barrel-explosive.png",
+   "frames": 3,
+   "names": [
+    "Intact",
+    "Damaged",
+    "Destroyed"
+   ]
+  },
+  {
+   "id": "barrel-explosive-destroy",
+   "label": "Explosive barrel, destroyed",
+   "category": "Destructibles",
+   "kind": "animation",
+   "place": "ground",
+   "w": 64,
+   "h": 46,
+   "cols": 6,
+   "rows": 1,
+   "fps": 12,
+   "anchor": {
+    "x": 32,
+    "y": 36
+   },
+   "file": "destructibles/barrel-explosive-destroy.png",
+   "frames": 6
+  },
+  {
+   "id": "barrel-stack",
+   "label": "Barrel stack",
+   "category": "Destructibles",
+   "kind": "variants",
+   "place": "ground",
+   "w": 64,
+   "h": 54,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 32,
+    "y": 44
+   },
+   "file": "destructibles/barrel-stack.png",
+   "frames": 3,
+   "names": [
+    "Intact",
+    "Damaged",
+    "Destroyed"
+   ]
+  },
+  {
+   "id": "barrel-stack-destroy",
+   "label": "Barrel stack, destroyed",
+   "category": "Destructibles",
+   "kind": "animation",
+   "place": "ground",
+   "w": 64,
+   "h": 54,
+   "cols": 6,
+   "rows": 1,
+   "fps": 12,
+   "anchor": {
+    "x": 32,
+    "y": 44
+   },
+   "file": "destructibles/barrel-stack-destroy.png",
+   "frames": 6
+  },
+  {
+   "id": "wall-1x1",
+   "label": "Breakable wall 1 x 1",
+   "category": "Destructibles",
+   "kind": "variants",
+   "place": "ground",
+   "w": 64,
+   "h": 50,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 32,
+    "y": 40
+   },
+   "file": "destructibles/wall-1x1.png",
+   "frames": 3,
+   "names": [
+    "Intact",
+    "Damaged",
+    "Destroyed"
+   ]
+  },
+  {
+   "id": "wall-1x1-destroy",
+   "label": "Breakable wall 1 x 1, destroyed",
+   "category": "Destructibles",
+   "kind": "animation",
+   "place": "ground",
+   "w": 64,
+   "h": 50,
+   "cols": 6,
+   "rows": 1,
+   "fps": 12,
+   "anchor": {
+    "x": 32,
+    "y": 40
+   },
+   "file": "destructibles/wall-1x1-destroy.png",
+   "frames": 6
+  },
+  {
+   "id": "wall-1x2",
+   "label": "Breakable wall 1 x 2",
+   "category": "Destructibles",
+   "kind": "variants",
+   "place": "ground",
+   "w": 80,
+   "h": 58,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 40,
+    "y": 44
+   },
+   "file": "destructibles/wall-1x2.png",
+   "frames": 3,
+   "names": [
+    "Intact",
+    "Damaged",
+    "Destroyed"
+   ]
+  },
+  {
+   "id": "wall-1x2-destroy",
+   "label": "Breakable wall 1 x 2, destroyed",
+   "category": "Destructibles",
+   "kind": "animation",
+   "place": "ground",
+   "w": 80,
+   "h": 58,
+   "cols": 6,
+   "rows": 1,
+   "fps": 12,
+   "anchor": {
+    "x": 40,
+    "y": 44
+   },
+   "file": "destructibles/wall-1x2-destroy.png",
+   "frames": 6
+  },
+  {
+   "id": "urns",
+   "label": "Clay urns",
+   "category": "Destructibles",
+   "kind": "variants",
+   "place": "ground",
+   "w": 64,
+   "h": 42,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 32,
+    "y": 32
+   },
+   "file": "destructibles/urns.png",
+   "frames": 3,
+   "names": [
+    "Intact",
+    "Damaged",
+    "Destroyed"
+   ]
+  },
+  {
+   "id": "urns-destroy",
+   "label": "Clay urns, destroyed",
+   "category": "Destructibles",
+   "kind": "animation",
+   "place": "ground",
+   "w": 64,
+   "h": 42,
+   "cols": 6,
+   "rows": 1,
+   "fps": 12,
+   "anchor": {
+    "x": 32,
+    "y": 32
+   },
+   "file": "destructibles/urns-destroy.png",
+   "frames": 6
+  },
+  {
+   "id": "haycart",
+   "label": "Hay cart",
+   "category": "Destructibles",
+   "kind": "variants",
+   "place": "ground",
+   "w": 80,
+   "h": 55,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 40,
+    "y": 41
+   },
+   "file": "destructibles/haycart.png",
+   "frames": 3,
+   "names": [
+    "Intact",
+    "Damaged",
+    "Destroyed"
+   ]
+  },
+  {
+   "id": "haycart-destroy",
+   "label": "Hay cart, destroyed",
+   "category": "Destructibles",
+   "kind": "animation",
+   "place": "ground",
+   "w": 80,
+   "h": 55,
+   "cols": 6,
+   "rows": 1,
+   "fps": 12,
+   "anchor": {
+    "x": 40,
+    "y": 41
+   },
+   "file": "destructibles/haycart-destroy.png",
+   "frames": 6
+  },
+  {
+   "id": "weather-rain-light",
+   "label": "Rain, light",
+   "category": "Weather",
+   "kind": "animation",
+   "place": "none",
+   "w": 128,
+   "h": 128,
+   "cols": 8,
+   "rows": 1,
+   "fps": 12,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "weather/weather-rain-light.png",
+   "frames": 8
+  },
+  {
+   "id": "weather-rain-heavy",
+   "label": "Rain, heavy",
+   "category": "Weather",
+   "kind": "animation",
+   "place": "none",
+   "w": 128,
+   "h": 128,
+   "cols": 8,
+   "rows": 1,
+   "fps": 12,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "weather/weather-rain-heavy.png",
+   "frames": 8
+  },
+  {
+   "id": "weather-rain-ripples",
+   "label": "Rain on the ground",
+   "category": "Weather",
+   "kind": "animation",
+   "place": "none",
+   "w": 128,
+   "h": 128,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "weather/weather-rain-ripples.png",
+   "frames": 8
+  },
+  {
+   "id": "weather-fog-light",
+   "label": "Fog, light",
+   "category": "Weather",
+   "kind": "animation",
+   "place": "none",
+   "w": 128,
+   "h": 128,
+   "cols": 8,
+   "rows": 2,
+   "fps": 6,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "weather/weather-fog-light.png",
+   "frames": 12
+  },
+  {
+   "id": "weather-fog-dense",
+   "label": "Fog, dense",
+   "category": "Weather",
+   "kind": "animation",
+   "place": "none",
+   "w": 128,
+   "h": 128,
+   "cols": 8,
+   "rows": 2,
+   "fps": 6,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "weather/weather-fog-dense.png",
+   "frames": 12
+  },
+  {
+   "id": "weather-spore-haze",
+   "label": "Spore haze",
+   "category": "Weather",
+   "kind": "animation",
+   "place": "none",
+   "w": 128,
+   "h": 128,
+   "cols": 8,
+   "rows": 2,
+   "fps": 8,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "weather/weather-spore-haze.png",
+   "frames": 12
+  },
+  {
+   "id": "weather-embers",
+   "label": "Embers and ash",
+   "category": "Weather",
+   "kind": "animation",
+   "place": "none",
+   "w": 128,
+   "h": 128,
+   "cols": 8,
+   "rows": 2,
+   "fps": 10,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "weather/weather-embers.png",
+   "frames": 12
+  },
+  {
+   "id": "weather-petals",
+   "label": "Falling petals",
+   "category": "Weather",
+   "kind": "animation",
+   "place": "none",
+   "w": 128,
+   "h": 128,
+   "cols": 8,
+   "rows": 2,
+   "fps": 8,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "weather/weather-petals.png",
+   "frames": 12
+  },
+  {
+   "id": "weather-mist-low",
+   "label": "Low mist",
+   "category": "Weather",
+   "kind": "animation",
+   "place": "none",
+   "w": 128,
+   "h": 64,
+   "cols": 8,
+   "rows": 2,
+   "fps": 6,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "weather/weather-mist-low.png",
+   "frames": 12
+  },
+  {
+   "id": "weather-ripple-water",
+   "label": "Rain ripple, water",
+   "category": "Decals",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 16,
+   "cols": 4,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 16,
+    "y": 8
+   },
+   "file": "weather/weather-ripple-water.png",
+   "frames": 4
+  },
+  {
+   "id": "weather-ripple-ground",
+   "label": "Rain ripple, ground",
+   "category": "Decals",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 16,
+   "cols": 4,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 16,
+    "y": 8
+   },
+   "file": "weather/weather-ripple-ground.png",
+   "frames": 4
+  },
+  {
+   "id": "weather-splash",
+   "label": "Rain splash",
+   "category": "Decals",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 24,
+   "cols": 4,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "weather/weather-splash.png",
+   "frames": 4
+  },
+  {
    "id": "nodemap-grass-shore",
    "label": "Node map - Grass islands - shore tiles (16, by corner bits)",
    "category": "Node map",
@@ -5501,6 +10248,150 @@
     "y": 24
    },
    "file": "traps/trap-beartrap-triggered.png",
+   "frames": 6
+  },
+  {
+   "id": "trap-snare",
+   "label": "Snare - placed (waiting on the ground)",
+   "category": "Traps",
+   "kind": "still",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 24
+   },
+   "file": "traps/trap-snare.png",
+   "frames": 1
+  },
+  {
+   "id": "trap-snare-triggered",
+   "label": "Snare - triggered (animation)",
+   "category": "Traps",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 6,
+   "rows": 1,
+   "fps": 10,
+   "anchor": {
+    "x": 16,
+    "y": 24
+   },
+   "file": "traps/trap-snare-triggered.png",
+   "frames": 6
+  },
+  {
+   "id": "trap-spikepit",
+   "label": "Spike pit - placed (waiting on the ground)",
+   "category": "Traps",
+   "kind": "still",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 24
+   },
+   "file": "traps/trap-spikepit.png",
+   "frames": 1
+  },
+  {
+   "id": "trap-spikepit-triggered",
+   "label": "Spike pit - triggered (animation)",
+   "category": "Traps",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 6,
+   "rows": 1,
+   "fps": 10,
+   "anchor": {
+    "x": 16,
+    "y": 24
+   },
+   "file": "traps/trap-spikepit-triggered.png",
+   "frames": 6
+  },
+  {
+   "id": "trap-tripwire",
+   "label": "Tripwire - placed (waiting on the ground)",
+   "category": "Traps",
+   "kind": "still",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 24
+   },
+   "file": "traps/trap-tripwire.png",
+   "frames": 1
+  },
+  {
+   "id": "trap-tripwire-triggered",
+   "label": "Tripwire - triggered (animation)",
+   "category": "Traps",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 6,
+   "rows": 1,
+   "fps": 10,
+   "anchor": {
+    "x": 16,
+    "y": 24
+   },
+   "file": "traps/trap-tripwire-triggered.png",
+   "frames": 6
+  },
+  {
+   "id": "trap-mine",
+   "label": "Mine - placed (waiting on the ground)",
+   "category": "Traps",
+   "kind": "still",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 24
+   },
+   "file": "traps/trap-mine.png",
+   "frames": 1
+  },
+  {
+   "id": "trap-mine-triggered",
+   "label": "Mine - triggered (animation)",
+   "category": "Traps",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 6,
+   "rows": 1,
+   "fps": 10,
+   "anchor": {
+    "x": 16,
+    "y": 24
+   },
+   "file": "traps/trap-mine-triggered.png",
    "frames": 6
   },
   {
@@ -6527,6 +11418,456 @@
     "y": 16
    },
    "file": "item-icons/item-stone_idol.png",
+   "frames": 1
+  },
+  {
+   "id": "item-padded_gambeson",
+   "label": "Padded Gambeson",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-padded_gambeson.png",
+   "frames": 1
+  },
+  {
+   "id": "item-mystic_robe",
+   "label": "Mystic Robe",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-mystic_robe.png",
+   "frames": 1
+  },
+  {
+   "id": "item-rangers_cloak",
+   "label": "Ranger's Cloak",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-rangers_cloak.png",
+   "frames": 1
+  },
+  {
+   "id": "item-scale_coat",
+   "label": "Scale Coat",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-scale_coat.png",
+   "frames": 1
+  },
+  {
+   "id": "item-brigandine",
+   "label": "Brigandine",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-brigandine.png",
+   "frames": 1
+  },
+  {
+   "id": "item-iron_band",
+   "label": "Iron Band",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-iron_band.png",
+   "frames": 1
+  },
+  {
+   "id": "item-climbing_hooks",
+   "label": "Climbing Hooks",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-climbing_hooks.png",
+   "frames": 1
+  },
+  {
+   "id": "item-trappers_kit",
+   "label": "Trapper's Kit",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-trappers_kit.png",
+   "frames": 1
+  },
+  {
+   "id": "item-fleet_anklet",
+   "label": "Fleet Anklet",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-fleet_anklet.png",
+   "frames": 1
+  },
+  {
+   "id": "item-eagle_feather",
+   "label": "Eagle Feather",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-eagle_feather.png",
+   "frames": 1
+  },
+  {
+   "id": "item-hunters_token",
+   "label": "Hunter's Token",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-hunters_token.png",
+   "frames": 1
+  },
+  {
+   "id": "item-headsmans_brand",
+   "label": "Headsman's Brand",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-headsmans_brand.png",
+   "frames": 1
+  },
+  {
+   "id": "item-quickening_charm",
+   "label": "Quickening Charm",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-quickening_charm.png",
+   "frames": 1
+  },
+  {
+   "id": "item-cinder_charm",
+   "label": "Cinder Charm",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-cinder_charm.png",
+   "frames": 1
+  },
+  {
+   "id": "item-leech_fang",
+   "label": "Leech Fang",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-leech_fang.png",
+   "frames": 1
+  },
+  {
+   "id": "item-pike",
+   "label": "Pike",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-pike.png",
+   "frames": 1
+  },
+  {
+   "id": "item-heavy_sling",
+   "label": "Heavy Sling",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-heavy_sling.png",
+   "frames": 1
+  },
+  {
+   "id": "item-healing_draught",
+   "label": "Healing Draught",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-healing_draught.png",
+   "frames": 1
+  },
+  {
+   "id": "item-greater_draught",
+   "label": "Greater Draught",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-greater_draught.png",
+   "frames": 1
+  },
+  {
+   "id": "item-grand_elixir",
+   "label": "Grand Elixir",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-grand_elixir.png",
+   "frames": 1
+  },
+  {
+   "id": "item-cleansing_salve",
+   "label": "Cleansing Salve",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-cleansing_salve.png",
+   "frames": 1
+  },
+  {
+   "id": "item-revive_tonic",
+   "label": "Revive Tonic",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-revive_tonic.png",
+   "frames": 1
+  },
+  {
+   "id": "item-fire_bomb",
+   "label": "Fire Bomb",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-fire_bomb.png",
+   "frames": 1
+  },
+  {
+   "id": "item-blast_charge",
+   "label": "Blast Charge",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-blast_charge.png",
+   "frames": 1
+  },
+  {
+   "id": "item-caltrop_pouch",
+   "label": "Caltrop Pouch",
+   "category": "Item icons",
+   "kind": "still",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "item-icons/item-caltrop_pouch.png",
    "frames": 1
   },
   {
@@ -7672,6 +13013,114 @@
    "frames": 6
   },
   {
+   "id": "icon-sight-pop",
+   "label": "Deadeye (gold reticle) - pop-up above the head (once)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "above",
+   "w": 24,
+   "h": 32,
+   "cols": 8,
+   "rows": 1,
+   "fps": 10,
+   "anchor": {
+    "x": 12,
+    "y": 30
+   },
+   "file": "abilities/icon-sight-pop.png",
+   "frames": 8
+  },
+  {
+   "id": "icon-sight-loop",
+   "label": "Deadeye (gold reticle) - status icon (loops)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "above",
+   "w": 24,
+   "h": 32,
+   "cols": 6,
+   "rows": 1,
+   "fps": 6,
+   "anchor": {
+    "x": 12,
+    "y": 30
+   },
+   "file": "abilities/icon-sight-loop.png",
+   "frames": 6
+  },
+  {
+   "id": "icon-jaw-pop",
+   "label": "Trapped (steel jaw) - pop-up above the head (once)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "above",
+   "w": 24,
+   "h": 32,
+   "cols": 8,
+   "rows": 1,
+   "fps": 10,
+   "anchor": {
+    "x": 12,
+    "y": 30
+   },
+   "file": "abilities/icon-jaw-pop.png",
+   "frames": 8
+  },
+  {
+   "id": "icon-jaw-loop",
+   "label": "Trapped (steel jaw) - status icon (loops)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "above",
+   "w": 24,
+   "h": 32,
+   "cols": 6,
+   "rows": 1,
+   "fps": 6,
+   "anchor": {
+    "x": 12,
+    "y": 30
+   },
+   "file": "abilities/icon-jaw-loop.png",
+   "frames": 6
+  },
+  {
+   "id": "icon-cripple-pop",
+   "label": "Crippled (cracked bone) - pop-up above the head (once)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "above",
+   "w": 24,
+   "h": 32,
+   "cols": 8,
+   "rows": 1,
+   "fps": 10,
+   "anchor": {
+    "x": 12,
+    "y": 30
+   },
+   "file": "abilities/icon-cripple-pop.png",
+   "frames": 8
+  },
+  {
+   "id": "icon-cripple-loop",
+   "label": "Crippled (cracked bone) - status icon (loops)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "above",
+   "w": 24,
+   "h": 32,
+   "cols": 6,
+   "rows": 1,
+   "fps": 6,
+   "anchor": {
+    "x": 12,
+    "y": 30
+   },
+   "file": "abilities/icon-cripple-loop.png",
+   "frames": 6
+  },
+  {
    "id": "vanish-violet",
    "label": "Vanish - Violet (blink, swap)",
    "category": "Abilities",
@@ -7867,6 +13316,276 @@
     "y": 44
    },
    "file": "abilities/surface-firewall.png",
+   "frames": 8
+  },
+  {
+   "id": "surface-thorns",
+   "label": "Ground loop - Thorns (brambles, for a wall of three)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 16,
+    "y": 44
+   },
+   "file": "abilities/surface-thorns.png",
+   "frames": 8
+  },
+  {
+   "id": "sweep-scythe-se",
+   "label": "Scythe sweep (SE; mirrored for the other side)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 8,
+   "rows": 1,
+   "fps": 10,
+   "anchor": {
+    "x": 24,
+    "y": 56
+   },
+   "file": "abilities/sweep-scythe-se.png",
+   "frames": 8
+  },
+  {
+   "id": "sweep-scythe-ne",
+   "label": "Scythe sweep (NE; mirrored for the other side)",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 8,
+   "rows": 1,
+   "fps": 10,
+   "anchor": {
+    "x": 24,
+    "y": 56
+   },
+   "file": "abilities/sweep-scythe-ne.png",
+   "frames": 8
+  },
+  {
+   "id": "burst-explosion",
+   "label": "Explosion - five plots",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 80,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 40,
+    "y": 38
+   },
+   "file": "abilities/burst-explosion.png",
+   "frames": 8
+  },
+  {
+   "id": "burst-explosion-tile",
+   "label": "Explosion - one plot",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 16,
+    "y": 44
+   },
+   "file": "abilities/burst-explosion-tile.png",
+   "frames": 8
+  },
+  {
+   "id": "burst-grasp-tile",
+   "label": "Grasping hands - one plot",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 16,
+    "y": 44
+   },
+   "file": "abilities/burst-grasp-tile.png",
+   "frames": 8
+  },
+  {
+   "id": "burst-mindspore",
+   "label": "Mind spores - five plots",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 80,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 40,
+    "y": 38
+   },
+   "file": "abilities/burst-mindspore.png",
+   "frames": 8
+  },
+  {
+   "id": "burst-mindspore-tile",
+   "label": "Mind spores - one plot",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 16,
+    "y": 44
+   },
+   "file": "abilities/burst-mindspore-tile.png",
+   "frames": 8
+  },
+  {
+   "id": "burst-potion-tile",
+   "label": "Potion - one plot",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 16,
+    "y": 44
+   },
+   "file": "abilities/burst-potion-tile.png",
+   "frames": 8
+  },
+  {
+   "id": "burst-elixir-tile",
+   "label": "Elixir - one plot",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 16,
+    "y": 44
+   },
+   "file": "abilities/burst-elixir-tile.png",
+   "frames": 8
+  },
+  {
+   "id": "burst-wave-tile",
+   "label": "Force wave - one plot",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 16,
+    "y": 44
+   },
+   "file": "abilities/burst-wave-tile.png",
+   "frames": 8
+  },
+  {
+   "id": "burst-crit-tile",
+   "label": "Critical hit - one plot",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 16,
+    "y": 44
+   },
+   "file": "abilities/burst-crit-tile.png",
+   "frames": 8
+  },
+  {
+   "id": "burst-impact-tile",
+   "label": "Heavy impact - one plot",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 16,
+    "y": 44
+   },
+   "file": "abilities/burst-impact-tile.png",
+   "frames": 8
+  },
+  {
+   "id": "burst-streak-tile",
+   "label": "Piercing streak - one plot",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 16,
+    "y": 44
+   },
+   "file": "abilities/burst-streak-tile.png",
+   "frames": 8
+  },
+  {
+   "id": "burst-nick-tile",
+   "label": "Nick - one plot",
+   "category": "Abilities",
+   "kind": "animation",
+   "place": "ground",
+   "w": 32,
+   "h": 56,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 16,
+    "y": 44
+   },
+   "file": "abilities/burst-nick-tile.png",
    "frames": 8
   },
   {

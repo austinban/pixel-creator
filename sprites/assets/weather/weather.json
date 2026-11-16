@@ -1,0 +1,230 @@
+{
+ "about": "The weather overlays and splash decals in this folder. How to draw each is in tools/make_weather.py.",
+ "overlays": {
+  "weather-rain-light": {
+   "label": "Rain, light",
+   "file": "weather-rain-light.png",
+   "tile": [
+    128,
+    128
+   ],
+   "frames": 8,
+   "fps": 12,
+   "blend": "normal",
+   "opacity": [
+    0.35,
+    0.6
+   ],
+   "scroll_px_per_second": [
+    0,
+    0
+   ],
+   "note": "a few short streaks, down and to the left"
+  },
+  "weather-rain-heavy": {
+   "label": "Rain, heavy",
+   "file": "weather-rain-heavy.png",
+   "tile": [
+    128,
+    128
+   ],
+   "frames": 8,
+   "fps": 12,
+   "blend": "normal",
+   "opacity": [
+    0.5,
+    0.85
+   ],
+   "scroll_px_per_second": [
+    0,
+    0
+   ],
+   "note": "many longer streaks, the near ones two wide"
+  },
+  "weather-rain-ripples": {
+   "label": "Rain on the ground",
+   "file": "weather-rain-ripples.png",
+   "tile": [
+    128,
+    128
+   ],
+   "frames": 8,
+   "fps": 8,
+   "blend": "normal",
+   "opacity": [
+    0.45,
+    0.9
+   ],
+   "scroll_px_per_second": [
+    0,
+    0
+   ],
+   "note": "flat rings opening and fading: draw it on the ground layer"
+  },
+  "weather-fog-light": {
+   "label": "Fog, light",
+   "file": "weather-fog-light.png",
+   "tile": [
+    128,
+    128
+   ],
+   "frames": 12,
+   "fps": 6,
+   "blend": "normal",
+   "opacity": [
+    0.25,
+    0.5
+   ],
+   "scroll_px_per_second": [
+    6,
+    2
+   ],
+   "note": "thin drifting banks"
+  },
+  "weather-fog-dense": {
+   "label": "Fog, dense",
+   "file": "weather-fog-dense.png",
+   "tile": [
+    128,
+    128
+   ],
+   "frames": 12,
+   "fps": 6,
+   "blend": "normal",
+   "opacity": [
+    0.4,
+    0.7
+   ],
+   "scroll_px_per_second": [
+    4,
+    1
+   ],
+   "note": "thick banks"
+  },
+  "weather-spore-haze": {
+   "label": "Spore haze",
+   "file": "weather-spore-haze.png",
+   "tile": [
+    128,
+    128
+   ],
+   "frames": 12,
+   "fps": 8,
+   "blend": "add",
+   "opacity": [
+    0.5,
+    1.0
+   ],
+   "scroll_px_per_second": [
+    -3,
+    -2
+   ],
+   "note": "the corruption's motes: lime, mint and magenta"
+  },
+  "weather-embers": {
+   "label": "Embers and ash",
+   "file": "weather-embers.png",
+   "tile": [
+    128,
+    128
+   ],
+   "frames": 12,
+   "fps": 10,
+   "blend": "add",
+   "opacity": [
+    0.6,
+    1.0
+   ],
+   "scroll_px_per_second": [
+    0,
+    0
+   ],
+   "note": "embers and ash rising"
+  },
+  "weather-petals": {
+   "label": "Falling petals",
+   "file": "weather-petals.png",
+   "tile": [
+    128,
+    128
+   ],
+   "frames": 12,
+   "fps": 8,
+   "blend": "normal",
+   "opacity": [
+    0.8,
+    1.0
+   ],
+   "scroll_px_per_second": [
+    -8,
+    0
+   ],
+   "note": "petals and a few leaves falling"
+  },
+  "weather-mist-low": {
+   "label": "Low mist",
+   "file": "weather-mist-low.png",
+   "tile": [
+    128,
+    64
+   ],
+   "frames": 12,
+   "fps": 6,
+   "blend": "normal",
+   "opacity": [
+    0.3,
+    0.6
+   ],
+   "scroll_px_per_second": [
+    5,
+    0
+   ],
+   "note": "flat bands of mist for water and graves"
+  }
+ },
+ "decals": {
+  "weather-ripple-water": {
+   "label": "Rain ripple, water",
+   "file": "weather-ripple-water.png",
+   "cell": [
+    32,
+    16
+   ],
+   "anchor": [
+    16,
+    8
+   ],
+   "frames": 4,
+   "fps": 8
+  },
+  "weather-ripple-ground": {
+   "label": "Rain ripple, ground",
+   "file": "weather-ripple-ground.png",
+   "cell": [
+    32,
+    16
+   ],
+   "anchor": [
+    16,
+    8
+   ],
+   "frames": 4,
+   "fps": 8
+  },
+  "weather-splash": {
+   "label": "Rain splash",
+   "file": "weather-splash.png",
+   "cell": [
+    32,
+    24
+   ],
+   "anchor": [
+    16,
+    16
+   ],
+   "frames": 4,
+   "fps": 8
+  }
+ },
+ "draw": "repeat the tile over the view in screen space, above the map and below the UI, at a whole number of screen pixels per scroll step; the pixels are opaque, the layer opacity is the game's"
+}

@@ -34,6 +34,62 @@
     "shut"
    ],
    "triggeredPlays": "once, then hold the last frame"
+  },
+  "snare": {
+   "label": "Snare",
+   "placed": "trap-snare.png",
+   "triggered": "trap-snare-triggered.png",
+   "triggeredFrames": [
+    "tug",
+    "jerk",
+    "snap up",
+    "whip",
+    "bounce",
+    "held tight"
+   ],
+   "triggeredPlays": "once, then hold the last frame"
+  },
+  "spikepit": {
+   "label": "Spike pit",
+   "placed": "trap-spikepit.png",
+   "triggered": "trap-spikepit-triggered.png",
+   "triggeredFrames": [
+    "give",
+    "thrust",
+    "full",
+    "settle",
+    "dust falls",
+    "bristling"
+   ],
+   "triggeredPlays": "once, then hold the last frame"
+  },
+  "tripwire": {
+   "label": "Tripwire",
+   "placed": "trap-tripwire.png",
+   "triggered": "trap-tripwire-triggered.png",
+   "triggeredFrames": [
+    "caught",
+    "strain",
+    "snap",
+    "whip",
+    "lash",
+    "slack"
+   ],
+   "triggeredPlays": "once, then hold the last frame"
+  },
+  "mine": {
+   "label": "Mine",
+   "placed": "trap-mine.png",
+   "triggered": "trap-mine-triggered.png",
+   "triggeredFrames": [
+    "fuse",
+    "flash",
+    "burst",
+    "billow",
+    "smoke",
+    "scorched"
+   ],
+   "triggeredPlays": "once, then hold the last frame"
   }
  }
 }

@@ -38,6 +38,36 @@ Area is in cells, a diamond (steps along the two axes added together) round the 
 | Lower | 1 tile | `burst-dust-tile` | aimed | once | the game changes the terrain itself on the same frame as the dust peaks (frame 4) |
 | Stone Wall | line of 3, 1 wide | `burst-dust-tile` | cells:line3 | once | one tile on each of the three cells |
 | Shove | 1 tile | `burst-dust-small-tile` | target | once | a small puff where the unit was pushed from |
+| Fire Bomb (supply) | radius 1, thrown 2 tiles | `burst-explosion` | aimed | once | the five-plot sheet covers the whole area |
+| Blast Charge (supply) | radius 1, thrown 2 tiles | `burst-explosion` | aimed | once | the five-plot sheet covers the whole area |
+| Grasp (Zombie) | 1 tile, adjacent | `burst-grasp-tile` | target | once | hands clawing out of the ground at the target |
+| Mind Spore | 1 tile | `burst-mindspore-tile` | target | once |  |
+| Dominion | 1 tile | `burst-mindspore-tile` | target | once |  |
+| Sap | 1 tile | `burst-mindspore-tile` | target | once |  |
+| Healing Draught (supply) | 1 tile, adjacent | `burst-potion-tile` | target | once |  |
+| Greater Draught (supply) | 1 tile, adjacent | `burst-potion-tile` | target | once |  |
+| Grand Elixir (supply) | 1 tile, adjacent | `burst-elixir-tile` | target | once |  |
+| Bark | cone, 3 deep | `burst-wave-tile` | cells:line | once | one tile on each cell of the cone, nearest the caster first, so it fans out |
+| Spore Burst (Puffball) | radius 1 | `burst-spore` | aimed | once |  |
+| Spore Shot (Blood Mushroom) | 1 tile | `burst-spore-tile` | target | once |  |
+| Totem Blast | radius 3 foes | `burst-static-tile` | target | once | on each foe it burns |
+| Snare | 1 tile | `burst-dust-small-tile` | aimed | once | a puff as the trap is set |
+| Bear Trap | 1 tile | `burst-dust-small-tile` | aimed | once | a puff as the trap is set |
+| Spike Pit | 1 tile | `burst-dust-small-tile` | aimed | once | a puff as the trap is set |
+| Trapmaster | 1 tile | `burst-dust-small-tile` | aimed | once | a puff as the trap is set |
+| Caltrops | line of 3 | `burst-dust-small-tile` | cells:line3 | once | a puff on each cell as the traps are set |
+| Caltrop Pouch (supply) | line of 3 | `burst-dust-small-tile` | cells:line3 | once | a puff on each cell as the traps are set |
+| Headshot | 1 tile | `burst-crit-tile` | target | once | a crit star on the one struck |
+| Called Shot | 1 tile | `burst-impact-tile` | target | once | a heavy blow |
+| Piercing Shot | 1 tile | `burst-streak-tile` | target | once | a streak passing through |
+| Hamstring | 1 tile | `burst-nick-tile` | target | once | a nick low on the legs |
+| Minefield | radius 1 | `burst-dust-small-tile` | cells:radius1 | once | a puff on each cell as the mines are set |
+
+### Sweeps
+
+| Ability | Area | Plays | On | How | Note |
+|---|---|---|---|---|---|
+| Scythe Sweep (Mantis) | cone: the cell in front and the three beyond | `sweep-scythe` | caster-facing | once | one stroke over the whole cone, at the attacker's feet: `sweep-scythe-ne` when it faces up the screen, `-se` down it; NW and SW are those flipped left to right |
 
 ### Rings
 
@@ -53,6 +83,9 @@ Area is in cells, a diamond (steps along the two axes added together) round the 
 | Climb | caster only | `ring-climb` | caster | once |  |
 | Dash | caster only | `ring-dash-ne` | caster | once | when the dash goes up the screen (NE); NW is this sheet flipped left to right |
 | Dash | caster only | `ring-dash-se` | caster | once | when the dash goes down the screen (SE); SW is this sheet flipped left to right |
+| Cleansing Salve (supply) | 1 tile, adjacent | `ring-cleanse` | target | once |  |
+| Revive Tonic (supply) | 1 fallen ally, adjacent | `ring-inspire` | aimed | once |  |
+| Disengage | caster only | `ring-dash` | caster-facing | once | Dash's ring, the way the caster faces |
 
 ### Icons over the head
 
@@ -63,6 +96,8 @@ Area is in cells, a diamond (steps along the two axes added together) round the 
 | Stun | 1 tile | `icon-stun-pop` | target-head | once |  |
 | Charm | 1 tile | `icon-charm-pop` | target-head | once |  |
 | Confuse | 1 tile | `icon-confuse-pop` | target-head | once |  |
+| Warning Shot | 1 tile | `icon-mark-pop` | target-head | once |  |
+| Deadeye | caster only | `icon-sight-pop` | target-head | once | over the caster, who is the one it lands on |
 
 ### Vanish and appear
 
@@ -86,6 +121,7 @@ Area is in cells, a diamond (steps along the two axes added together) round the 
 | Mire | radius 1 | `surface-mire` | cells:radius1 | loop | one tile on each of the 5 cells; they join into one surface |
 | Slick Ground | radius 1 | `surface-slick` | cells:radius1 | loop | one tile on each of the 5 cells; they join into one surface |
 | Fire Wall | line of 3 | `surface-firewall` | cells:line3 | loop | one tile on each of the three cells, each started on a different frame so the flames do not move together |
+| Thornwall | line of 3 | `surface-thorns` | cells:line3 | loop | one tile on each of the three cells for as long as the thorns stand; start each on a different frame |
 
 ### Statuses (looping icons)
 
@@ -104,6 +140,9 @@ A status that lasts shows its icon on the unit and loops it for as long as the s
 | Rooted | `vine` | unit-feet | the existing vine animation, as it is |
 | Snared | `vine` | unit-feet | the existing vine animation, as it is |
 | Mired | `vine` | unit-feet | the existing vine animation, as it is |
+| Crippled | `icon-cripple-loop` | unit-head |  |
+| Trapped | `icon-jaw-loop` | unit-head |  |
+| Deadeye | `icon-sight-loop` | unit-head |  |
 
 ### Reused, nothing new
 
@@ -151,6 +190,12 @@ A status that lasts shows its icon on the unit and loops it for as long as the s
 | `icon-charm-loop.png` | Charm (heart) - status icon (loops) | 6 @ 6 | 24 x 32 | (12, 30) | loops |
 | `icon-confuse-pop.png` | Confuse (spiral) - pop-up above the head (once) | 8 @ 10 | 24 x 32 | (12, 30) | once |
 | `icon-confuse-loop.png` | Confuse (spiral) - status icon (loops) | 6 @ 6 | 24 x 32 | (12, 30) | loops |
+| `icon-sight-pop.png` | Deadeye (gold reticle) - pop-up above the head (once) | 8 @ 10 | 24 x 32 | (12, 30) | once |
+| `icon-sight-loop.png` | Deadeye (gold reticle) - status icon (loops) | 6 @ 6 | 24 x 32 | (12, 30) | loops |
+| `icon-jaw-pop.png` | Trapped (steel jaw) - pop-up above the head (once) | 8 @ 10 | 24 x 32 | (12, 30) | once |
+| `icon-jaw-loop.png` | Trapped (steel jaw) - status icon (loops) | 6 @ 6 | 24 x 32 | (12, 30) | loops |
+| `icon-cripple-pop.png` | Crippled (cracked bone) - pop-up above the head (once) | 8 @ 10 | 24 x 32 | (12, 30) | once |
+| `icon-cripple-loop.png` | Crippled (cracked bone) - status icon (loops) | 6 @ 6 | 24 x 32 | (12, 30) | loops |
 | `vanish-violet.png` | Vanish - Violet (blink, swap) | 8 @ 12 | 48 x 56 | (24, 44) | once |
 | `appear-violet.png` | Appear - Violet (blink, swap) | 8 @ 12 | 48 x 56 | (24, 44) | once |
 | `vanish-blue.png` | Vanish - Pale blue (call wolf) | 8 @ 12 | 48 x 56 | (24, 44) | once |
@@ -162,6 +207,21 @@ A status that lasts shows its icon on the unit and loops it for as long as the s
 | `surface-mire.png` | Ground loop - Mire (brown-yellow mud) | 8 @ 8 | 32 x 56 | (16, 44) | loops |
 | `surface-slick.png` | Ground loop - Slick ground (blue, wet) | 8 @ 8 | 32 x 56 | (16, 44) | loops |
 | `surface-firewall.png` | Ground loop - Fire wall (flames, for a line of three) | 8 @ 8 | 32 x 56 | (16, 44) | loops |
+| `surface-thorns.png` | Ground loop - Thorns (brambles, for a wall of three) | 8 @ 8 | 32 x 56 | (16, 44) | loops |
+| `sweep-scythe-se.png` | Scythe sweep (SE; mirrored for the other side) | 8 @ 10 | 96 x 96 | (24, 56) | once |
+| `sweep-scythe-ne.png` | Scythe sweep (NE; mirrored for the other side) | 8 @ 10 | 96 x 96 | (24, 56) | once |
+| `burst-explosion.png` | Explosion - five plots | 8 @ 8 | 80 x 56 | (40, 38) | once |
+| `burst-explosion-tile.png` | Explosion - one plot | 8 @ 8 | 32 x 56 | (16, 44) | once |
+| `burst-grasp-tile.png` | Grasping hands - one plot | 8 @ 8 | 32 x 56 | (16, 44) | once |
+| `burst-mindspore.png` | Mind spores - five plots | 8 @ 8 | 80 x 56 | (40, 38) | once |
+| `burst-mindspore-tile.png` | Mind spores - one plot | 8 @ 8 | 32 x 56 | (16, 44) | once |
+| `burst-potion-tile.png` | Potion - one plot | 8 @ 8 | 32 x 56 | (16, 44) | once |
+| `burst-elixir-tile.png` | Elixir - one plot | 8 @ 8 | 32 x 56 | (16, 44) | once |
+| `burst-wave-tile.png` | Force wave - one plot | 8 @ 8 | 32 x 56 | (16, 44) | once |
+| `burst-crit-tile.png` | Critical hit - one plot | 8 @ 8 | 32 x 56 | (16, 44) | once |
+| `burst-impact-tile.png` | Heavy impact - one plot | 8 @ 8 | 32 x 56 | (16, 44) | once |
+| `burst-streak-tile.png` | Piercing streak - one plot | 8 @ 8 | 32 x 56 | (16, 44) | once |
+| `burst-nick-tile.png` | Nick - one plot | 8 @ 8 | 32 x 56 | (16, 44) | once |
 
 ## Making a new one
 

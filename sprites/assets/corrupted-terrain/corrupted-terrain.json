@@ -1,0 +1,43 @@
+{
+ "about": "The corrupted terrain pieces in this folder. See README.md beside this file.",
+ "mycelium": {
+  "cell": [
+   32,
+   16
+  ],
+  "edge_half_width": 1.15,
+  "edges": {
+   "se": [
+    24,
+    12
+   ],
+   "nw": [
+    8,
+    4
+   ],
+   "sw": [
+    8,
+    12
+   ],
+   "ne": [
+    24,
+    4
+   ]
+  }
+ },
+ "shelf": {
+  "walk_min": 0.6
+ },
+ "vent": {
+  "cell": [
+   32,
+   48
+  ],
+  "anchor": [
+   16,
+   40
+  ],
+  "frames": 6,
+  "fps": 8
+ }
+}
