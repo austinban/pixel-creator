@@ -26,25 +26,30 @@ BRIM = (6.4, 0.5, 6.4)           # a wide brim
 # without standing above the cell. The lowest ring is as wide as the skull, so the head never shows above the brim.
 CROWN = [  # (back, up from the brim, radius)
     (-0.9, 0.5, 4.7),
-    (-1.1, 1.2, 3.9),
-    (-1.5, 1.9, 3.2),
-    (-2.2, 2.4, 2.6),
-    (-3.1, 2.8, 2.1),
-    (-4.2, 2.9, 1.7),
-    (-5.3, 2.7, 1.4),
-    (-6.2, 2.1, 1.15),
-    (-6.9, 1.4, 0.95),
-    (-7.3, 0.7, 0.75),          # the tip, hanging down behind
+    (-1.1, 1.1, 3.9),
+    (-1.5, 1.7, 3.2),
+    (-2.2, 2.1, 2.6),
+    (-3.1, 2.4, 2.1),
+    (-4.2, 2.5, 1.7),
+    (-5.3, 2.3, 1.4),
+    (-6.2, 1.8, 1.15),
+    (-6.9, 1.2, 0.95),
+    (-7.3, 0.6, 0.75),          # the tip, hanging down behind
 ]
 
 
-def hat(j):
+def hat(j, pose):
     R = j['head_R']
-    parts = [part(j['head'](0.2, BRIM_Y, 0), BRIM, 'hat', 'brim', R)]
+    # Leaning back tips the drooping crown up toward the top of the cell; a soft hat flops flatter instead (the bow draw's lean).
+    lean = min(max(0.0, pose['pitch'] - 4), 6.0) if pose['pitch'] < 80 else 0.0      # a lean back, not lying down
+    flop = 1.0 - 0.10 * lean
+    sink = 0.0
+    narrow = 1.0 - 0.03 * lean         # and the brim draws in a little
+    parts = [part(j['head'](0.2, BRIM_Y - sink, 0), (BRIM[0] * narrow, BRIM[1], BRIM[2] * narrow), 'hat', 'brim', R)]
     for back, up, r in CROWN:
-        parts.append(part(j['head'](back, BRIM_Y + up, 0), (r, 1.1, r), 'hat', 'crown', R))
-    parts.append(part(j['head'](-0.9, BRIM_Y + 0.75, 0), (4.6, 0.4, 4.6), 'band', 'band', R))          # the crimson band round the crown
-    parts.append(part(j['head'](3.7, BRIM_Y + 0.8, 0), (0.5, 0.65, 0.55), 'drop', 'band', R))              # a drop of blood at its front
+        parts.append(part(j['head'](back, BRIM_Y - sink + up * flop, 0), (r, 1.1, r), 'hat', 'crown', R))
+    parts.append(part(j['head'](-0.9, BRIM_Y - sink + 0.75, 0), (4.6, 0.4, 4.6), 'band', 'band', R))          # the crimson band round the crown
+    parts.append(part(j['head'](3.7, BRIM_Y - sink + 0.8, 0), (0.5, 0.65, 0.55), 'drop', 'band', R))              # a drop of blood at its front
     return parts
 
 
@@ -92,7 +97,7 @@ def thread(j):
 
 
 def gear(j, pose):
-    return hat(j) + hair(j, pose) + eyes(j, pose) + dress(j, pose) + thread(j)
+    return hat(j, pose) + hair(j, pose) + eyes(j, pose) + dress(j, pose) + thread(j)
 
 
 CREATURE = Humanoid(
