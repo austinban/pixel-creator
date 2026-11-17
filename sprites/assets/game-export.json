@@ -8,6 +8,11 @@
    "to": "assets/sprites/buildings"
   },
   {
+   "from": "sprites/assets/building-decks",
+   "pattern": "bld-*.png",
+   "to": "assets/sprites/buildings"
+  },
+  {
    "from": "sprites/assets/nodemap",
    "pattern": "nodemap-*.png",
    "to": "assets/sprites/nodemap"
@@ -138,6 +143,10 @@
   {
    "from": "sprites/assets/buildings/buildings.json",
    "to": "assets/sprites/buildings/buildings.json"
+  },
+  {
+   "from": "sprites/assets/building-decks/building-decks.json",
+   "to": "assets/sprites/buildings/building-decks.json"
   },
   {
    "from": "sprites/assets/traps/traps.json",

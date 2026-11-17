@@ -207,6 +207,8 @@ The **blood mushroom** is a boss for the corrupted lands, on a **2 x 2** footpri
 flesh stem, with reaching human arms and hands, a rat head, dangling legs and antlers growing out of it. It never walks, so, like the stone totem, the walk is its breathing idle and the attack a four-frame spore pulse; it has all
 the actions, both facings, as `blood-mushroom-ACTION-ne` and `-se` in the **Bosses** category, anchored at (48, 72) (`tools/make_blood_mushroom.py` makes the sprites, `tools/make_boss.py` the assets).
 
+The **Lamprey Mother** is the water boss, on the same **2 x 2** footprint, **96 x 96** cell and anchor (48, 72) (`tools/make_lamprey_mother.py`, listed in `tools/make_boss.py`): a huge blighted lamprey coiled out of sunken water, with a ring of magenta lip round a toothed throat (the opposite of the siren's toothless gape; the sirens are her brood), a mushroom crown, a fuchsia fin ridge and glowing gill slits, in all the boss actions as `lamprey-mother-ACTION-ne` and `-se`. She stays in sunken water. The **Mirewart** (a bog toad with a mushroom on its back, low level) and the **Drowned Pilgrim** (a drowned fisherman with a lantern, mid level) are the other two water enemies beside the siren, ordinary 1 x 1 characters from `tools/make_mirewart.py` and `tools/make_drowned_pilgrim.py`.
+
 The **All Tree** is the victory screen's display piece, in the **Victory Screen** category: a massive ancient tree being corrupted by the mushrooms, one **384 x 448** picture on a **10 x 10** tile base that rises 20 levels and runs off the top of the image
 (`tools/make_all_tree.py`; `--preview` shows it over its footprint). `all-tree` is a 12-frame loop at 10 a second (a shimmer climbing the fungi, vines and eyes, and glowing drops that fall and splash); `all-tree-still` is the flat picture. They live in
 `sprites/assets/all-tree/` with a README and `all-tree.json`.
@@ -378,6 +380,8 @@ A kit of building tiles to build houses, towers and whole streets from: 33 piece
 (two spires are 32 x 48). They are one-cell, one-level pieces you stack and set side by side, in the **Buildings** category, ids `bld-*`, and the folder `sprites/assets/buildings/`, which has a
 **README.md for the app that uses it** (placement, NE and SE, how to make walls, doors, roofs and towers), a `buildings.json` with every piece and the rules in numbers, and an example street with its piece list.
 `tools/buildings.py` is the renderer and `tools/make_buildings.py` the kit and a `Town` helper that builds with it.
+
+The **flat roofs and balconies** are 84 more pieces in the same format (32 x 32, anchored at (16, 24), category **Buildings**, `tools/make_building_decks.py`; `--preview` shows every piece and four small houses), in the folder `sprites/assets/building-decks/` with a README and `building-decks.json`: six flat roofs (stone, timber-framed house, terracotta, slate, teal and plank; each a deck, a hatch, four one-side parapets and four corners), three balconies (stone on corbels, timber-house with plaster panels between plum posts, and plank; each in seven rail layouts that join in a row) and three supports. The walkable top is **0.5 level (one game step) above the piece's base**, so a roof sits on top of a storey and a balcony goes at a storey floor, one cell out from the wall.
 
 ## Terrain
 

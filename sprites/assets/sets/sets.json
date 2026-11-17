@@ -1059,6 +1059,26 @@
     "bld-timber-wall-aged"
    ],
    "twin": null
+  },
+  "building-decks": {
+   "label": "Flat roofs and balconies",
+   "role": "structure",
+   "fits": "any",
+   "style": "blocky",
+   "note": "For the buildings kit: walkable flat roofs (half a level thick, with a parapet) and balconies in stone, timber-house and plank, with supports. Place a balcony at a storey floor, on the wall that faces out.",
+   "ids": [
+    "bld-balcony-plank",
+    "bld-balcony-stone",
+    "bld-balcony-timber",
+    "bld-flat-roof-plank",
+    "bld-flat-roof-slate",
+    "bld-flat-roof-stone",
+    "bld-flat-roof-teal",
+    "bld-flat-roof-tile",
+    "bld-flat-roof-timber",
+    "bld-supports"
+   ],
+   "twin": null
   }
  },
  "sets": {
@@ -1559,7 +1579,8 @@
     "stairs-scaffold"
    ],
    "structures": [
-    "buildings"
+    "buildings",
+    "building-decks"
    ],
    "weather": {
     "chance": 0.2,
@@ -1685,7 +1706,8 @@
     "stairs-scaffold"
    ],
    "structures": [
-    "buildings"
+    "buildings",
+    "building-decks"
    ],
    "weather": {
     "chance": 0.6,

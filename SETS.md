@@ -64,7 +64,7 @@ Every piece in a set fits its ground, and pieces that share a style stay cohesiv
 | Scatter (density 13%) | Fences (3), Crates (3), Bushes and hedges (2), Temperate trees (1), Small destructibles (3) |
 | Features (3.5 per 100 cells) | Stalls and sheds (3), Haybales and crate piles (3), Carts and wagons (2), Blocky ledges (2), Long destructibles (1) |
 | Stairs and ramps | Stairs and ramps, Scaffold stairs and ramps |
-| Structures | Buildings |
+| Structures | Buildings, Flat roofs and balconies |
 | Weather (20% of maps) | Rain (1) |
 
 ### Fallen town (`fallen-town`, plain ground)
@@ -74,7 +74,7 @@ Every piece in a set fits its ground, and pieces that share a style stay cohesiv
 | Scatter (density 15%) | Dead tree (3), Fences (2), Crates (2), Logs (2), Plain ground props (1), Ruined walls (4), Overgrown ruined walls (1), Small destructibles (2) |
 | Features (4.5 per 100 cells) | Rubble heaps (3), Long ruined walls (2), Foundation floors (2), Overgrown floors (1), Overgrown rubble (1), Blocky crags (1), Haybales and crate piles (1), Long destructibles (1) |
 | Stairs and ramps | Scaffold stairs and ramps |
-| Structures | Buildings |
+| Structures | Buildings, Flat roofs and balconies |
 | Weather (60% of maps) | Embers (3), Fog and mist (1) |
 
 ### Spore hollow (`spore-hollow`, corrupted ground)
@@ -177,6 +177,7 @@ Every piece in a set fits its ground, and pieces that share a style stay cohesiv
 | `traps` Traps | hazard | any | iron | 12 | - |  |
 | `chests` Chests | decor | any | timber | 12 | - |  |
 | `buildings` Buildings | structure | any | blocky | 12 | market-town, fallen-town | The kit of walls and roofs; `-aged` pieces are the weathered versions that sit in a ruined or corrupted town. |
+| `building-decks` Flat roofs and balconies | structure | any | blocky | 10 | market-town, fallen-town | For the buildings kit: walkable flat roofs (half a level thick, with a parapet) and balconies in stone, timber-house and plank, with supports. Place a balcony at a storey floor, on the wall that faces out. |
 
 ## What swaps for what
 
@@ -188,7 +189,7 @@ Every piece in a set fits its ground, and pieces that share a style stay cohesiv
 - `rocks-crag` (blocky) and `rocks-stone` (natural): blocker; fits any and any.
 - `stairs-new` (blocky) and `stairs-scaffold` (timber): connector; fits any and any.
 
-**Fits `any`** means the piece is drawn on either ground without a variant: `trees-dead`, `logs`, `fences`, `crates`, `rocks-ledge`, `rocks-slab`, `rocks-crag`, `rocks-stone`, `bridges-stone`, `bridges-plank`, `bridges-broken`, `stairs`, `stairs-new`, `stairs-scaffold`, `ruins-walls`, `ruins-walls-grown`, `ruins-walls-long`, `ruins-heaps`, `ruins-heaps-grown`, `ruins-floors`, `ruins-floors-grown`, `low-hay`, `low-stalls`, `low-carts`, `gravestones`, `cairns-bones`, `monuments`, `rune-altar`, `spirit-lanterns`, `iron-fences`, `ritual-circles`, `rowboats`, `stepping-stones`, `destructibles-small`, `destructibles-long`, `weather-rain`, `weather-fog`, `weather-embers`, `weather-ripples`, `traps`, `chests`, `buildings`.
+**Fits `any`** means the piece is drawn on either ground without a variant: `trees-dead`, `logs`, `fences`, `crates`, `rocks-ledge`, `rocks-slab`, `rocks-crag`, `rocks-stone`, `bridges-stone`, `bridges-plank`, `bridges-broken`, `stairs`, `stairs-new`, `stairs-scaffold`, `ruins-walls`, `ruins-walls-grown`, `ruins-walls-long`, `ruins-heaps`, `ruins-heaps-grown`, `ruins-floors`, `ruins-floors-grown`, `low-hay`, `low-stalls`, `low-carts`, `gravestones`, `cairns-bones`, `monuments`, `rune-altar`, `spirit-lanterns`, `iron-fences`, `ritual-circles`, `rowboats`, `stepping-stones`, `destructibles-small`, `destructibles-long`, `weather-rain`, `weather-fog`, `weather-embers`, `weather-ripples`, `traps`, `chests`, `buildings`, `building-decks`.
 
 **Fits one ground only:** `trees-temperate` (plain), `bushes` (plain), `mushroom-trees` (corrupted), `ground-props-plain` (plain), `ground-props-corrupted` (corrupted), `bridge-plank` (plain), `bridges-corrupt` (corrupted), `mycelium` (corrupted), `shelf-fungus` (corrupted), `spore-vents` (corrupted), `thorn-walls` (corrupted), `docks` (plain), `docks-corrupted` (corrupted), `waterfalls` (plain), `waterfalls-corrupted` (corrupted), `lily-pads` (plain), `mushroom-pads` (corrupted), `reeds` (plain), `reeds-corrupted` (corrupted), `weather-haze` (corrupted), `weather-petals` (plain). Do not put these in a set on the other ground.
 

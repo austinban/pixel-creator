@@ -19,6 +19,7 @@ OUT = ROOT / 'sprites' / 'assets' / 'game-export.json'
 EXPORT = {
     'png_folders': [
         {'from': 'sprites/assets/buildings', 'pattern': 'bld-*.png', 'to': 'assets/sprites/buildings'},
+        {'from': 'sprites/assets/building-decks', 'pattern': 'bld-*.png', 'to': 'assets/sprites/buildings'},
         {'from': 'sprites/assets/nodemap', 'pattern': 'nodemap-*.png', 'to': 'assets/sprites/nodemap'},
         {'from': 'sprites/assets/traps', 'pattern': 'trap-*.png', 'to': 'assets/sprites/traps'},
         {'from': 'sprites/assets/abilities', 'pattern': '*.png', 'to': 'assets/sprites/abilities'},
@@ -49,6 +50,7 @@ EXPORT = {
         {'from': 'sprites/assets/buttons/buttons.json', 'to': 'assets/sprites/ui/buttons/buttons.json'},
         {'from': 'sprites/assets/panel/panel.json', 'to': 'assets/sprites/ui/panel/panel.json'},
         {'from': 'sprites/assets/buildings/buildings.json', 'to': 'assets/sprites/buildings/buildings.json'},
+        {'from': 'sprites/assets/building-decks/building-decks.json', 'to': 'assets/sprites/buildings/building-decks.json'},
         {'from': 'sprites/assets/traps/traps.json', 'to': 'assets/sprites/traps/traps.json'},
         {'from': 'sprites/assets/abilities/abilities.json', 'to': 'assets/sprites/abilities/abilities.json'},
         {'from': 'sprites/assets/manifest.json', 'to': 'assets/sprites/pixel-creator-manifest.json'},

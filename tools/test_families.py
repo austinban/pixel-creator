@@ -877,6 +877,17 @@ class Bosses(unittest.TestCase):
                 self.assertEqual(len(a['frames']), count, a['id'])
                 self.assertEqual(a['anchor'], {'x': 48, 'y': 72})
 
+    def test_the_lamprey_mother_has_every_action_in_a_96_cell(self):
+        if not (Path(__file__).resolve().parent.parent / 'sprites' / 'lamprey-mother').is_dir():
+            self.skipTest('sprites/lamprey-mother is not here')
+        assets = {a['id']: a for a in assets_of('boss')}
+        for action, count in cv.BOSS_FRAMES.items():
+            for facing in ('ne', 'se'):
+                a = assets[f'lamprey-mother-{action}-{facing}']
+                self.assertEqual((a['w'], a['h'], a['category'], a['place']), (96, 96, 'Bosses', 'ground'))
+                self.assertEqual(len(a['frames']), count, a['id'])
+                self.assertEqual(a['anchor'], {'x': 48, 'y': 72})
+
 
 class Elites(unittest.TestCase):
     """The elites: bigger than a creature, on one tile, in a 64 x 64 cell, with every action in both facings (the rat king reads from sprites/rat-king, which is local)."""

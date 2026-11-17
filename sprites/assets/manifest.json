@@ -1507,6 +1507,258 @@
    "frames": 8
   },
   {
+   "id": "lamprey-mother-charging-ne",
+   "label": "Lamprey Mother - charging (NE)",
+   "category": "Bosses",
+   "kind": "still",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 48,
+    "y": 72
+   },
+   "file": "lamprey-mother-charging-ne.png",
+   "frames": 1
+  },
+  {
+   "id": "lamprey-mother-charging-se",
+   "label": "Lamprey Mother - charging (SE)",
+   "category": "Bosses",
+   "kind": "still",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 48,
+    "y": 72
+   },
+   "file": "lamprey-mother-charging-se.png",
+   "frames": 1
+  },
+  {
+   "id": "lamprey-mother-attack-ne",
+   "label": "Lamprey Mother - attack (NE)",
+   "category": "Bosses",
+   "kind": "animation",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 4,
+   "rows": 1,
+   "fps": 6,
+   "anchor": {
+    "x": 48,
+    "y": 72
+   },
+   "file": "lamprey-mother-attack-ne.png",
+   "frames": 4
+  },
+  {
+   "id": "lamprey-mother-attack-se",
+   "label": "Lamprey Mother - attack (SE)",
+   "category": "Bosses",
+   "kind": "animation",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 4,
+   "rows": 1,
+   "fps": 6,
+   "anchor": {
+    "x": 48,
+    "y": 72
+   },
+   "file": "lamprey-mother-attack-se.png",
+   "frames": 4
+  },
+  {
+   "id": "lamprey-mother-release-ne",
+   "label": "Lamprey Mother - release (NE)",
+   "category": "Bosses",
+   "kind": "still",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 48,
+    "y": 72
+   },
+   "file": "lamprey-mother-release-ne.png",
+   "frames": 1
+  },
+  {
+   "id": "lamprey-mother-release-se",
+   "label": "Lamprey Mother - release (SE)",
+   "category": "Bosses",
+   "kind": "still",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 48,
+    "y": 72
+   },
+   "file": "lamprey-mother-release-se.png",
+   "frames": 1
+  },
+  {
+   "id": "lamprey-mother-damage-ne",
+   "label": "Lamprey Mother - damage (NE)",
+   "category": "Bosses",
+   "kind": "still",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 48,
+    "y": 72
+   },
+   "file": "lamprey-mother-damage-ne.png",
+   "frames": 1
+  },
+  {
+   "id": "lamprey-mother-damage-se",
+   "label": "Lamprey Mother - damage (SE)",
+   "category": "Bosses",
+   "kind": "still",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 48,
+    "y": 72
+   },
+   "file": "lamprey-mother-damage-se.png",
+   "frames": 1
+  },
+  {
+   "id": "lamprey-mother-weak-ne",
+   "label": "Lamprey Mother - weak (NE)",
+   "category": "Bosses",
+   "kind": "still",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 48,
+    "y": 72
+   },
+   "file": "lamprey-mother-weak-ne.png",
+   "frames": 1
+  },
+  {
+   "id": "lamprey-mother-weak-se",
+   "label": "Lamprey Mother - weak (SE)",
+   "category": "Bosses",
+   "kind": "still",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 48,
+    "y": 72
+   },
+   "file": "lamprey-mother-weak-se.png",
+   "frames": 1
+  },
+  {
+   "id": "lamprey-mother-dead-ne",
+   "label": "Lamprey Mother - dead (NE)",
+   "category": "Bosses",
+   "kind": "still",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 48,
+    "y": 72
+   },
+   "file": "lamprey-mother-dead-ne.png",
+   "frames": 1
+  },
+  {
+   "id": "lamprey-mother-dead-se",
+   "label": "Lamprey Mother - dead (SE)",
+   "category": "Bosses",
+   "kind": "still",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 48,
+    "y": 72
+   },
+   "file": "lamprey-mother-dead-se.png",
+   "frames": 1
+  },
+  {
+   "id": "lamprey-mother-walking-ne",
+   "label": "Lamprey Mother - walking (NE)",
+   "category": "Bosses",
+   "kind": "animation",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 48,
+    "y": 72
+   },
+   "file": "lamprey-mother-walking-ne.png",
+   "frames": 8
+  },
+  {
+   "id": "lamprey-mother-walking-se",
+   "label": "Lamprey Mother - walking (SE)",
+   "category": "Bosses",
+   "kind": "animation",
+   "place": "ground",
+   "w": 96,
+   "h": 96,
+   "cols": 8,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 48,
+    "y": 72
+   },
+   "file": "lamprey-mother-walking-se.png",
+   "frames": 8
+  },
+  {
    "id": "rat-king-charging-ne",
    "label": "Rat king - charging (NE)",
    "category": "Elites",
@@ -3572,6 +3824,42 @@
     "y": 28
    },
    "file": "bow-draw-stone-shaper-se.png",
+   "frames": 4
+  },
+  {
+   "id": "bow-draw-hexweaver-ne",
+   "label": "Bow draw NE (Hexweaver)",
+   "category": "Animations",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 4,
+   "rows": 1,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 28
+   },
+   "file": "bow-draw-hexweaver-ne.png",
+   "frames": 4
+  },
+  {
+   "id": "bow-draw-hexweaver-se",
+   "label": "Bow draw SE (Hexweaver)",
+   "category": "Animations",
+   "kind": "animation",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 4,
+   "rows": 1,
+   "fps": 4,
+   "anchor": {
+    "x": 16,
+    "y": 28
+   },
+   "file": "bow-draw-hexweaver-se.png",
    "frames": 4
   },
   {
@@ -10176,6 +10464,290 @@
     "spire, dark (2 levels) (SE)",
     "spire, teal (2 levels) (NE)",
     "spire, teal (2 levels) (SE)"
+   ]
+  },
+  {
+   "id": "bld-flat-roof-stone",
+   "label": "Buildings - Flat roof, stone",
+   "category": "Buildings",
+   "kind": "variants",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 24
+   },
+   "file": "building-decks/bld-flat-roof-stone.png",
+   "frames": 10,
+   "names": [
+    "deck",
+    "edge px",
+    "edge nx",
+    "edge py",
+    "edge ny",
+    "corner px py",
+    "corner nx ny",
+    "corner px ny",
+    "corner nx py",
+    "hatch"
+   ]
+  },
+  {
+   "id": "bld-flat-roof-timber",
+   "label": "Buildings - Flat roof, timber house",
+   "category": "Buildings",
+   "kind": "variants",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 24
+   },
+   "file": "building-decks/bld-flat-roof-timber.png",
+   "frames": 10,
+   "names": [
+    "deck",
+    "edge px",
+    "edge nx",
+    "edge py",
+    "edge ny",
+    "corner px py",
+    "corner nx ny",
+    "corner px ny",
+    "corner nx py",
+    "hatch"
+   ]
+  },
+  {
+   "id": "bld-flat-roof-tile",
+   "label": "Buildings - Flat roof, terracotta tile",
+   "category": "Buildings",
+   "kind": "variants",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 24
+   },
+   "file": "building-decks/bld-flat-roof-tile.png",
+   "frames": 10,
+   "names": [
+    "deck",
+    "edge px",
+    "edge nx",
+    "edge py",
+    "edge ny",
+    "corner px py",
+    "corner nx ny",
+    "corner px ny",
+    "corner nx py",
+    "hatch"
+   ]
+  },
+  {
+   "id": "bld-flat-roof-slate",
+   "label": "Buildings - Flat roof, slate",
+   "category": "Buildings",
+   "kind": "variants",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 24
+   },
+   "file": "building-decks/bld-flat-roof-slate.png",
+   "frames": 10,
+   "names": [
+    "deck",
+    "edge px",
+    "edge nx",
+    "edge py",
+    "edge ny",
+    "corner px py",
+    "corner nx ny",
+    "corner px ny",
+    "corner nx py",
+    "hatch"
+   ]
+  },
+  {
+   "id": "bld-flat-roof-teal",
+   "label": "Buildings - Flat roof, teal",
+   "category": "Buildings",
+   "kind": "variants",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 24
+   },
+   "file": "building-decks/bld-flat-roof-teal.png",
+   "frames": 10,
+   "names": [
+    "deck",
+    "edge px",
+    "edge nx",
+    "edge py",
+    "edge ny",
+    "corner px py",
+    "corner nx ny",
+    "corner px ny",
+    "corner nx py",
+    "hatch"
+   ]
+  },
+  {
+   "id": "bld-flat-roof-plank",
+   "label": "Buildings - Flat roof, plank",
+   "category": "Buildings",
+   "kind": "variants",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 24
+   },
+   "file": "building-decks/bld-flat-roof-plank.png",
+   "frames": 10,
+   "names": [
+    "deck",
+    "edge px",
+    "edge nx",
+    "edge py",
+    "edge ny",
+    "corner px py",
+    "corner nx ny",
+    "corner px ny",
+    "corner nx py",
+    "hatch"
+   ]
+  },
+  {
+   "id": "bld-balcony-stone",
+   "label": "Buildings - Balcony, stone",
+   "category": "Buildings",
+   "kind": "variants",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 24
+   },
+   "file": "building-decks/bld-balcony-stone.png",
+   "frames": 7,
+   "names": [
+    "alcove x",
+    "alcove y",
+    "run x",
+    "run y",
+    "run start x",
+    "run start y",
+    "corner"
+   ]
+  },
+  {
+   "id": "bld-balcony-timber",
+   "label": "Buildings - Balcony, timber house",
+   "category": "Buildings",
+   "kind": "variants",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 24
+   },
+   "file": "building-decks/bld-balcony-timber.png",
+   "frames": 7,
+   "names": [
+    "alcove x",
+    "alcove y",
+    "run x",
+    "run y",
+    "run start x",
+    "run start y",
+    "corner"
+   ]
+  },
+  {
+   "id": "bld-balcony-plank",
+   "label": "Buildings - Balcony, plank",
+   "category": "Buildings",
+   "kind": "variants",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 24
+   },
+   "file": "building-decks/bld-balcony-plank.png",
+   "frames": 7,
+   "names": [
+    "alcove x",
+    "alcove y",
+    "run x",
+    "run y",
+    "run start x",
+    "run start y",
+    "corner"
+   ]
+  },
+  {
+   "id": "bld-supports",
+   "label": "Buildings - Balcony supports",
+   "category": "Buildings",
+   "kind": "variants",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 24
+   },
+   "file": "building-decks/bld-supports.png",
+   "frames": 3,
+   "names": [
+    "plank post",
+    "plum timber post",
+    "stone pillar"
    ]
   },
   {
