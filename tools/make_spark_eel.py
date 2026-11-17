@@ -165,7 +165,7 @@ def place(p):
     return placed, []
 
 
-BASE = dict(shift=0.0, reach=1.0, rise=0.55, coil=0.0, fwd=0.0, bow=0.0, amp=1.5, phase=0.0, sag=0.0, open=0.0, glow=0.35, arcs=(), head_bolt=0.0, spin=0.0, roll=0, yaw=45, lift=0.0, eyes='open')
+BASE = dict(shift=0.0, reach=1.0, rise=0.55, coil=0.0, fwd=0.0, bow=0.0, amp=1.5, phase=0.0, sag=0.0, open=0.0, glow=0.35, arcs=(), head_bolt=0.0, spin=0.0, roll=0, yaw=-15, lift=0.0, eyes='open')
 
 
 def pose(**kw):
@@ -222,6 +222,18 @@ class SparkEel:
 
 
 CREATURE = SparkEel()
+
+
+def _facing_se(q, low):
+    """The SE view: the head points down and to the right with the body side-on (not at the camera): yaw 0, and the neck sags so the head drops below the coil."""
+    q = dict(q, yaw=0)
+    if low:
+        q.update(rise=q['rise'] * 0.75, bow=q['bow'] + 0.6, head_bolt=q['head_bolt'] * 0.35, shift=q['shift'] - (2.5 if q['head_bolt'] else 0.0))
+    return q
+
+
+for _action in ('walking', 'charging', 'attack', 'release', 'damage', 'weak', 'dead'):
+    CREATURE.poses[_action + 'SE'] = [_facing_se(q, _action not in ('weak', 'dead')) for q in CREATURE.poses[_action]]
 
 if __name__ == '__main__':
     run(CREATURE)
