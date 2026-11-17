@@ -209,6 +209,15 @@ under them, and map pins. Everything is category **Node map**, ids `nodemap-*`, 
 folder's README.md. A new skin changes only colours and textures (`BIOMES` in `tools/make_nodemap.py`); its 16 tiles keep their numbers (corner bits:
 top left 1, top right 2, bottom left 4, bottom right 8), repeat their texture every 16 pixels, and join their neighbours, which the tests check.
 
+## The overgrowth map
+
+A second node-map look, with the node map's dual grid (a 16 x 16 ground tile on every corner between four cells, TL 1, TR 2, BL 4, BR 8) and nothing else of it. Category **Overgrowth map**, ids `overgrowth-*`, folder
+`sprites/assets/overgrowth/`, and the rules for using it are in that folder's README.md. Ground tiles join on every side, whatever style each is: **every cliff style ends the same depth at the tile's left and right
+columns**, and a cliff longer than what is left of its tile continues in the **spill** tile, drawn one row down and under the ground. The **full** tiles (bits 15) change only inside a 3 pixel margin, and loose
+pieces that cover ground (the patches) stay inside a 3 x 3 block of land cells, so nothing hangs over an island's edge. A node flower is one 48 x 48 cell (the summit 64 x 64) anchored on the middle of its clearing, in
+four states: **idle** and **hover** loop, **click** plays once, **used** is one still frame. A route has three states (default, off, used). A floor is the layout file (`make_overgrowth.py --layout`): same seed and preset, same floor.
+`tools/test_overgrowth.py` checks all of it, including that the README's recipe redraws the example floors from the sheets and the layout file.
+
 ## Traps
 
 A trap lies flat on a ground tile and has two states: **placed** (one frame, the trap waiting) and **triggered** (an animation). They are category **Traps**, ids `trap-NAME` and

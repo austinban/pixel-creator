@@ -59,6 +59,7 @@ UNITS = [
     Unit('destructibles', 'make_destructibles', depends=('make_rocks',)),
     Unit('weather', 'make_weather'),
     Unit('nodemap', 'make_nodemap'),
+    Unit('overgrowth', 'make_overgrowth', depends=('extract_poses',)),
     Unit('buildings', 'make_buildings'),
     Unit('building-decks', 'make_building_decks', depends=('make_buildings', 'buildings')),
     Unit('traps', 'make_traps'),

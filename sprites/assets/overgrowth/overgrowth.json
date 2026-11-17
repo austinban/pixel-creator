@@ -1,0 +1,644 @@
+{
+ "about": "How an app uses the Overgrowth map sheets in this folder. See README.md beside this file for the whole story.",
+ "format": 1,
+ "tile": 16,
+ "bits": {
+  "TL": 1,
+  "TR": 2,
+  "BL": 4,
+  "BR": 8
+ },
+ "tilePosition": "the tile on the corner between cells (i-1, j-1), (i, j-1), (i-1, j) and (i, j) has its top left at (i * 16 - 8, j * 16 - 8); a spill tile is one row down: (i * 16 - 8, (j + 1) * 16 - 8)",
+ "ground": {
+  "sheet": "overgrowth-ground.png",
+  "columns": 16,
+  "rows": 5,
+  "index": "column = bits, row = style",
+  "styles": 5,
+  "full": {
+   "sheet": "overgrowth-full.png",
+   "variants": [
+    "plain moss",
+    "clover",
+    "leaf litter and flowers",
+    "root veins",
+    "pebbles",
+    "glowing moss"
+   ]
+  },
+  "spill": {
+   "sheet": "overgrowth-spill.png",
+   "note": "drawn one row below its ground tile, under the ground layer"
+  }
+ },
+ "void": {
+  "sheet": "overgrowth-void.png",
+  "size": 256
+ },
+ "decor": {
+  "mushroom-purple": {
+   "size": [
+    24,
+    24
+   ],
+   "anchor": [
+    12,
+    21
+   ],
+   "frames": 1,
+   "fps": 0
+  },
+  "mushroom-blue": {
+   "size": [
+    24,
+    24
+   ],
+   "anchor": [
+    12,
+    21
+   ],
+   "frames": 1,
+   "fps": 0
+  },
+  "mushroom-red": {
+   "size": [
+    24,
+    24
+   ],
+   "anchor": [
+    12,
+    21
+   ],
+   "frames": 1,
+   "fps": 0
+  },
+  "crystal-violet": {
+   "size": [
+    16,
+    16
+   ],
+   "anchor": [
+    8,
+    14
+   ],
+   "frames": 1,
+   "fps": 0
+  },
+  "crystal-cyan": {
+   "size": [
+    16,
+    16
+   ],
+   "anchor": [
+    8,
+    14
+   ],
+   "frames": 1,
+   "fps": 0
+  },
+  "rock": {
+   "size": [
+    16,
+    16
+   ],
+   "anchor": [
+    8,
+    14
+   ],
+   "frames": 2,
+   "fps": 0
+  },
+  "fern": {
+   "size": [
+    16,
+    16
+   ],
+   "anchor": [
+    8,
+    14
+   ],
+   "frames": 2,
+   "fps": 0
+  },
+  "bush": {
+   "size": [
+    32,
+    32
+   ],
+   "anchor": [
+    16,
+    28
+   ],
+   "frames": 2,
+   "fps": 0
+  },
+  "wisp": {
+   "size": [
+    16,
+    16
+   ],
+   "anchor": [
+    8,
+    14
+   ],
+   "frames": 4,
+   "fps": 6
+  },
+  "vine-hang": {
+   "size": [
+    20,
+    34
+   ],
+   "anchor": [
+    10,
+    0
+   ],
+   "frames": 6,
+   "fps": 0
+  },
+  "moss-drape": {
+   "size": [
+    12,
+    28
+   ],
+   "anchor": [
+    6,
+    0
+   ],
+   "frames": 4,
+   "fps": 0
+  },
+  "tendril": {
+   "size": [
+    32,
+    32
+   ],
+   "anchor": [
+    16,
+    16
+   ],
+   "frames": 4,
+   "fps": 0
+  },
+  "moss-patch": {
+   "size": [
+    32,
+    32
+   ],
+   "anchor": [
+    16,
+    16
+   ],
+   "frames": 5,
+   "fps": 0
+  },
+  "tone-patch": {
+   "size": [
+    40,
+    40
+   ],
+   "anchor": [
+    20,
+    20
+   ],
+   "frames": 8,
+   "fps": 0
+  }
+ },
+ "nodes": {
+  "battle": {
+   "label": "Battle - a leaf bud",
+   "size": [
+    40,
+    40
+   ],
+   "anchor": [
+    20,
+    30
+   ],
+   "accent": "z",
+   "states": {
+    "idle": {
+     "frames": 4,
+     "fps": 4,
+     "loops": true,
+     "sheet": "overgrowth-node-battle-idle.png",
+     "note": "loops, a slight sway"
+    },
+    "hover": {
+     "frames": 4,
+     "fps": 8,
+     "loops": true,
+     "sheet": "overgrowth-node-battle-hover.png",
+     "note": "loops, lifted and blazing, motes of light circling the clearing"
+    },
+    "click": {
+     "frames": 6,
+     "fps": 12,
+     "loops": false,
+     "sheet": "overgrowth-node-battle-click.png",
+     "note": "plays once, then go back to idle (or used, if the node is done): squash, spring up, a ring of light and sparks bursts out"
+    },
+    "used": {
+     "frames": 1,
+     "fps": 0,
+     "loops": false,
+     "sheet": "overgrowth-node-battle-used.png",
+     "note": "one still frame, faded to ash: the node has been done"
+    }
+   }
+  },
+  "event": {
+   "label": "Event - a blue flame flower",
+   "size": [
+    40,
+    40
+   ],
+   "anchor": [
+    20,
+    30
+   ],
+   "accent": "o",
+   "states": {
+    "idle": {
+     "frames": 4,
+     "fps": 4,
+     "loops": true,
+     "sheet": "overgrowth-node-event-idle.png",
+     "note": "loops, a slight sway"
+    },
+    "hover": {
+     "frames": 4,
+     "fps": 8,
+     "loops": true,
+     "sheet": "overgrowth-node-event-hover.png",
+     "note": "loops, lifted and blazing, motes of light circling the clearing"
+    },
+    "click": {
+     "frames": 6,
+     "fps": 12,
+     "loops": false,
+     "sheet": "overgrowth-node-event-click.png",
+     "note": "plays once, then go back to idle (or used, if the node is done): squash, spring up, a ring of light and sparks bursts out"
+    },
+    "used": {
+     "frames": 1,
+     "fps": 0,
+     "loops": false,
+     "sheet": "overgrowth-node-event-used.png",
+     "note": "one still frame, faded to ash: the node has been done"
+    }
+   }
+  },
+  "elite": {
+   "label": "Elite - an eye flower",
+   "size": [
+    40,
+    40
+   ],
+   "anchor": [
+    20,
+    30
+   ],
+   "accent": "E",
+   "states": {
+    "idle": {
+     "frames": 4,
+     "fps": 4,
+     "loops": true,
+     "sheet": "overgrowth-node-elite-idle.png",
+     "note": "loops, a slight sway"
+    },
+    "hover": {
+     "frames": 4,
+     "fps": 8,
+     "loops": true,
+     "sheet": "overgrowth-node-elite-hover.png",
+     "note": "loops, lifted and blazing, motes of light circling the clearing"
+    },
+    "click": {
+     "frames": 6,
+     "fps": 12,
+     "loops": false,
+     "sheet": "overgrowth-node-elite-click.png",
+     "note": "plays once, then go back to idle (or used, if the node is done): squash, spring up, a ring of light and sparks bursts out"
+    },
+    "used": {
+     "frames": 1,
+     "fps": 0,
+     "loops": false,
+     "sheet": "overgrowth-node-elite-used.png",
+     "note": "one still frame, faded to ash: the node has been done"
+    }
+   }
+  },
+  "shop": {
+   "label": "Shop - a marigold with a coin",
+   "size": [
+    40,
+    40
+   ],
+   "anchor": [
+    20,
+    30
+   ],
+   "accent": "d",
+   "states": {
+    "idle": {
+     "frames": 4,
+     "fps": 4,
+     "loops": true,
+     "sheet": "overgrowth-node-shop-idle.png",
+     "note": "loops, a slight sway"
+    },
+    "hover": {
+     "frames": 4,
+     "fps": 8,
+     "loops": true,
+     "sheet": "overgrowth-node-shop-hover.png",
+     "note": "loops, lifted and blazing, motes of light circling the clearing"
+    },
+    "click": {
+     "frames": 6,
+     "fps": 12,
+     "loops": false,
+     "sheet": "overgrowth-node-shop-click.png",
+     "note": "plays once, then go back to idle (or used, if the node is done): squash, spring up, a ring of light and sparks bursts out"
+    },
+    "used": {
+     "frames": 1,
+     "fps": 0,
+     "loops": false,
+     "sheet": "overgrowth-node-shop-used.png",
+     "note": "one still frame, faded to ash: the node has been done"
+    }
+   }
+  },
+  "rest": {
+   "label": "Rest - a lotus with an ember",
+   "size": [
+    40,
+    40
+   ],
+   "anchor": [
+    20,
+    30
+   ],
+   "accent": "t",
+   "states": {
+    "idle": {
+     "frames": 4,
+     "fps": 4,
+     "loops": true,
+     "sheet": "overgrowth-node-rest-idle.png",
+     "note": "loops, a slight sway"
+    },
+    "hover": {
+     "frames": 4,
+     "fps": 8,
+     "loops": true,
+     "sheet": "overgrowth-node-rest-hover.png",
+     "note": "loops, lifted and blazing, motes of light circling the clearing"
+    },
+    "click": {
+     "frames": 6,
+     "fps": 12,
+     "loops": false,
+     "sheet": "overgrowth-node-rest-click.png",
+     "note": "plays once, then go back to idle (or used, if the node is done): squash, spring up, a ring of light and sparks bursts out"
+    },
+    "used": {
+     "frames": 1,
+     "fps": 0,
+     "loops": false,
+     "sheet": "overgrowth-node-rest-used.png",
+     "note": "one still frame, faded to ash: the node has been done"
+    }
+   }
+  },
+  "treasure": {
+   "label": "Treasure - a gem bulb",
+   "size": [
+    40,
+    40
+   ],
+   "anchor": [
+    20,
+    30
+   ],
+   "accent": "v",
+   "states": {
+    "idle": {
+     "frames": 4,
+     "fps": 4,
+     "loops": true,
+     "sheet": "overgrowth-node-treasure-idle.png",
+     "note": "loops, a slight sway"
+    },
+    "hover": {
+     "frames": 4,
+     "fps": 8,
+     "loops": true,
+     "sheet": "overgrowth-node-treasure-hover.png",
+     "note": "loops, lifted and blazing, motes of light circling the clearing"
+    },
+    "click": {
+     "frames": 6,
+     "fps": 12,
+     "loops": false,
+     "sheet": "overgrowth-node-treasure-click.png",
+     "note": "plays once, then go back to idle (or used, if the node is done): squash, spring up, a ring of light and sparks bursts out"
+    },
+    "used": {
+     "frames": 1,
+     "fps": 0,
+     "loops": false,
+     "sheet": "overgrowth-node-treasure-used.png",
+     "note": "one still frame, faded to ash: the node has been done"
+    }
+   }
+  },
+  "mystery": {
+   "label": "Mystery - an orchid",
+   "size": [
+    40,
+    40
+   ],
+   "anchor": [
+    20,
+    30
+   ],
+   "accent": "j",
+   "states": {
+    "idle": {
+     "frames": 4,
+     "fps": 4,
+     "loops": true,
+     "sheet": "overgrowth-node-mystery-idle.png",
+     "note": "loops, a slight sway"
+    },
+    "hover": {
+     "frames": 4,
+     "fps": 8,
+     "loops": true,
+     "sheet": "overgrowth-node-mystery-hover.png",
+     "note": "loops, lifted and blazing, motes of light circling the clearing"
+    },
+    "click": {
+     "frames": 6,
+     "fps": 12,
+     "loops": false,
+     "sheet": "overgrowth-node-mystery-click.png",
+     "note": "plays once, then go back to idle (or used, if the node is done): squash, spring up, a ring of light and sparks bursts out"
+    },
+    "used": {
+     "frames": 1,
+     "fps": 0,
+     "loops": false,
+     "sheet": "overgrowth-node-mystery-used.png",
+     "note": "one still frame, faded to ash: the node has been done"
+    }
+   }
+  },
+  "boss": {
+   "label": "Summit - the fire lotus",
+   "size": [
+    56,
+    56
+   ],
+   "anchor": [
+    28,
+    46
+   ],
+   "accent": "a",
+   "states": {
+    "idle": {
+     "frames": 4,
+     "fps": 4,
+     "loops": true,
+     "sheet": "overgrowth-node-boss-idle.png",
+     "note": "loops, a slight sway"
+    },
+    "hover": {
+     "frames": 4,
+     "fps": 8,
+     "loops": true,
+     "sheet": "overgrowth-node-boss-hover.png",
+     "note": "loops, lifted and blazing, motes of light circling the clearing"
+    },
+    "click": {
+     "frames": 6,
+     "fps": 12,
+     "loops": false,
+     "sheet": "overgrowth-node-boss-click.png",
+     "note": "plays once, then go back to idle (or used, if the node is done): squash, spring up, a ring of light and sparks bursts out"
+    },
+    "used": {
+     "frames": 1,
+     "fps": 0,
+     "loops": false,
+     "sheet": "overgrowth-node-boss-used.png",
+     "note": "one still frame, faded to ash: the node has been done"
+    }
+   }
+  }
+ },
+ "paths": {
+  "states": {
+   "default": {
+    "frames": 4,
+    "fps": 6,
+    "spacing": 8,
+    "note": "the way you can go: 3 x 3 amber dots every 8 pixels along the route, a bright pulse runs along them (4 frames)"
+   },
+   "off": {
+    "frames": 1,
+    "fps": 0,
+    "spacing": 9,
+    "note": "the way you cannot go: a small dark unlit dot every 9 pixels (1 frame)"
+   },
+   "used": {
+    "frames": 4,
+    "fps": 4,
+    "spacing": 1,
+    "note": "the way you came: a solid mint trail, 2 pixels wide with a dark outline, a sparkle sliding along it (4 frames)"
+   }
+  },
+  "sheets": {
+   "default": "overgrowth-path-default.png",
+   "off": "overgrowth-path-off.png",
+   "used": "overgrowth-path-used.png"
+  },
+  "points": "one per pixel step from (x0, y0) to (x1, y1): floor(x0 + (x1 - x0) * k / n), k = 0..n"
+ },
+ "presets": {
+  "climb": {
+   "lanes": 5,
+   "floors": 8,
+   "paths": 4,
+   "dx": 9,
+   "dy": 9,
+   "jitter": 2,
+   "wander": 1.3,
+   "node_r": [
+    2.8,
+    3.1,
+    3.4
+   ],
+   "boss_r": 5.6
+  },
+  "tall": {
+   "lanes": 4,
+   "floors": 11,
+   "paths": 3,
+   "dx": 10,
+   "dy": 8,
+   "jitter": 2,
+   "wander": 1.6,
+   "node_r": [
+    2.7,
+    3.0,
+    3.3
+   ],
+   "boss_r": 5.8
+  },
+  "wide": {
+   "lanes": 7,
+   "floors": 6,
+   "paths": 5,
+   "dx": 8,
+   "dy": 10,
+   "jitter": 2,
+   "wander": 1.0,
+   "node_r": [
+    2.6,
+    2.9,
+    3.2
+   ],
+   "boss_r": 6.0
+  },
+  "tangle": {
+   "lanes": 6,
+   "floors": 8,
+   "paths": 6,
+   "dx": 8,
+   "dy": 8,
+   "jitter": 3,
+   "wander": 2.0,
+   "node_r": [
+    2.5,
+    3.0,
+    3.5
+   ],
+   "boss_r": 5.6
+  }
+ },
+ "drawOrder": [
+  "void (repeated)",
+  "spill tiles (one row down)",
+  "ground tiles",
+  "pieces: tone, patch, decor, hang",
+  "routes",
+  "nodes, top of the map first"
+ ]
+}

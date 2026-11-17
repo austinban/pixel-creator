@@ -348,6 +348,15 @@ category on the Assets page, ids `nodemap-*`, and the folder `sprites/assets/nod
 tiles, the layers, the layout recipe), a `nodemap.json` with the numbers, and an example map with its layout. Two skins (Grass islands and Parchment chart)
 share the same 16 tiles; `tools/make_nodemap.py` is the generator and the reference for making a layout.
 
+## Overgrowth map
+
+A second look for the floor-choosing map, with no water and no roads: floating mossy islands in a purple void, vine bridges between them, and **a flower on every node** (battle, event, elite, shop, rest,
+treasure, mystery and the summit's fire lotus, each in four states: idle, hover, click and used). The ground is a dual grid like the node map's (a 16 x 16 tile on every corner, 16 shapes) with earth cliffs
+and hanging roots under every south edge in five styles, tiles that always join, and loose pieces (big and small moss patches, mushrooms, crystals, rocks, ferns, bushes, wisps, hanging root vines and moss) laid over it.
+Routes between nodes have three states too: default, off and used. It is category **Overgrowth map**, ids `overgrowth-*`, folder `sprites/assets/overgrowth/`, which has a **README.md for the app that uses it** and an
+`overgrowth.json` with the numbers. `tools/make_overgrowth.py` is the generator and also the **floor generator**: a seed and a preset (`climb`, `tall`, `wide`, `tangle`) make a floor, and
+`--layout out.json --seed N --preset NAME` writes the layout file the game draws from (`example-*.json` are four of them, `example-climb.png` and `example-tall.png` two drawn).
+
 ## Traps
 
 Caltrops and a bear trap, each placed (one frame) and triggered (an animation that ends on the spent trap). Their own group: the **Traps** category on the Assets page, ids `trap-*`,

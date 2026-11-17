@@ -18,6 +18,11 @@
    "to": "assets/sprites/nodemap"
   },
   {
+   "from": "sprites/assets/overgrowth",
+   "pattern": "overgrowth-*.png",
+   "to": "assets/sprites/overgrowth"
+  },
+  {
    "from": "sprites/assets/traps",
    "pattern": "trap-*.png",
    "to": "assets/sprites/traps"
@@ -151,6 +156,14 @@
   {
    "from": "sprites/assets/traps/traps.json",
    "to": "assets/sprites/traps/traps.json"
+  },
+  {
+   "from": "sprites/assets/overgrowth/overgrowth.json",
+   "to": "assets/sprites/overgrowth/overgrowth.json"
+  },
+  {
+   "from": "sprites/assets/overgrowth/example-climb.json",
+   "to": "tests/fixtures/overgrowth/example-climb.json"
   },
   {
    "from": "sprites/assets/abilities/abilities.json",

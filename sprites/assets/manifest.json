@@ -10089,6 +10089,1201 @@
    ]
   },
   {
+   "id": "overgrowth-ground",
+   "label": "Overgrowth map - ground tiles (row = cliff style 0-4, column = corner bits 0-15)",
+   "category": "Overgrowth map",
+   "kind": "variants",
+   "place": "none",
+   "w": 16,
+   "h": 16,
+   "cols": 16,
+   "rows": 5,
+   "fps": 0,
+   "anchor": {
+    "x": 8,
+    "y": 8
+   },
+   "file": "overgrowth/overgrowth-ground.png",
+   "frames": 80,
+   "names": [
+    "style 0, bits 0",
+    "style 0, bits 1",
+    "style 0, bits 2",
+    "style 0, bits 3",
+    "style 0, bits 4",
+    "style 0, bits 5",
+    "style 0, bits 6",
+    "style 0, bits 7",
+    "style 0, bits 8",
+    "style 0, bits 9",
+    "style 0, bits 10",
+    "style 0, bits 11",
+    "style 0, bits 12",
+    "style 0, bits 13",
+    "style 0, bits 14",
+    "style 0, bits 15",
+    "style 1, bits 0",
+    "style 1, bits 1",
+    "style 1, bits 2",
+    "style 1, bits 3",
+    "style 1, bits 4",
+    "style 1, bits 5",
+    "style 1, bits 6",
+    "style 1, bits 7",
+    "style 1, bits 8",
+    "style 1, bits 9",
+    "style 1, bits 10",
+    "style 1, bits 11",
+    "style 1, bits 12",
+    "style 1, bits 13",
+    "style 1, bits 14",
+    "style 1, bits 15",
+    "style 2, bits 0",
+    "style 2, bits 1",
+    "style 2, bits 2",
+    "style 2, bits 3",
+    "style 2, bits 4",
+    "style 2, bits 5",
+    "style 2, bits 6",
+    "style 2, bits 7",
+    "style 2, bits 8",
+    "style 2, bits 9",
+    "style 2, bits 10",
+    "style 2, bits 11",
+    "style 2, bits 12",
+    "style 2, bits 13",
+    "style 2, bits 14",
+    "style 2, bits 15",
+    "style 3, bits 0",
+    "style 3, bits 1",
+    "style 3, bits 2",
+    "style 3, bits 3",
+    "style 3, bits 4",
+    "style 3, bits 5",
+    "style 3, bits 6",
+    "style 3, bits 7",
+    "style 3, bits 8",
+    "style 3, bits 9",
+    "style 3, bits 10",
+    "style 3, bits 11",
+    "style 3, bits 12",
+    "style 3, bits 13",
+    "style 3, bits 14",
+    "style 3, bits 15",
+    "style 4, bits 0",
+    "style 4, bits 1",
+    "style 4, bits 2",
+    "style 4, bits 3",
+    "style 4, bits 4",
+    "style 4, bits 5",
+    "style 4, bits 6",
+    "style 4, bits 7",
+    "style 4, bits 8",
+    "style 4, bits 9",
+    "style 4, bits 10",
+    "style 4, bits 11",
+    "style 4, bits 12",
+    "style 4, bits 13",
+    "style 4, bits 14",
+    "style 4, bits 15"
+   ]
+  },
+  {
+   "id": "overgrowth-full",
+   "label": "Overgrowth map - full ground tiles (bits 15) with something in the middle",
+   "category": "Overgrowth map",
+   "kind": "variants",
+   "place": "none",
+   "w": 16,
+   "h": 16,
+   "cols": 6,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 8,
+    "y": 8
+   },
+   "file": "overgrowth/overgrowth-full.png",
+   "frames": 6,
+   "names": [
+    "plain moss",
+    "clover",
+    "leaf litter and flowers",
+    "root veins",
+    "pebbles",
+    "glowing moss"
+   ]
+  },
+  {
+   "id": "overgrowth-spill",
+   "label": "Overgrowth map - cliff spill tiles (drawn one row below its ground tile, under the ground layer)",
+   "category": "Overgrowth map",
+   "kind": "variants",
+   "place": "none",
+   "w": 16,
+   "h": 16,
+   "cols": 16,
+   "rows": 5,
+   "fps": 0,
+   "anchor": {
+    "x": 8,
+    "y": 8
+   },
+   "file": "overgrowth/overgrowth-spill.png",
+   "frames": 80,
+   "names": [
+    "style 0, bits 0",
+    "style 0, bits 1",
+    "style 0, bits 2",
+    "style 0, bits 3",
+    "style 0, bits 4",
+    "style 0, bits 5",
+    "style 0, bits 6",
+    "style 0, bits 7",
+    "style 0, bits 8",
+    "style 0, bits 9",
+    "style 0, bits 10",
+    "style 0, bits 11",
+    "style 0, bits 12",
+    "style 0, bits 13",
+    "style 0, bits 14",
+    "style 0, bits 15",
+    "style 1, bits 0",
+    "style 1, bits 1",
+    "style 1, bits 2",
+    "style 1, bits 3",
+    "style 1, bits 4",
+    "style 1, bits 5",
+    "style 1, bits 6",
+    "style 1, bits 7",
+    "style 1, bits 8",
+    "style 1, bits 9",
+    "style 1, bits 10",
+    "style 1, bits 11",
+    "style 1, bits 12",
+    "style 1, bits 13",
+    "style 1, bits 14",
+    "style 1, bits 15",
+    "style 2, bits 0",
+    "style 2, bits 1",
+    "style 2, bits 2",
+    "style 2, bits 3",
+    "style 2, bits 4",
+    "style 2, bits 5",
+    "style 2, bits 6",
+    "style 2, bits 7",
+    "style 2, bits 8",
+    "style 2, bits 9",
+    "style 2, bits 10",
+    "style 2, bits 11",
+    "style 2, bits 12",
+    "style 2, bits 13",
+    "style 2, bits 14",
+    "style 2, bits 15",
+    "style 3, bits 0",
+    "style 3, bits 1",
+    "style 3, bits 2",
+    "style 3, bits 3",
+    "style 3, bits 4",
+    "style 3, bits 5",
+    "style 3, bits 6",
+    "style 3, bits 7",
+    "style 3, bits 8",
+    "style 3, bits 9",
+    "style 3, bits 10",
+    "style 3, bits 11",
+    "style 3, bits 12",
+    "style 3, bits 13",
+    "style 3, bits 14",
+    "style 3, bits 15",
+    "style 4, bits 0",
+    "style 4, bits 1",
+    "style 4, bits 2",
+    "style 4, bits 3",
+    "style 4, bits 4",
+    "style 4, bits 5",
+    "style 4, bits 6",
+    "style 4, bits 7",
+    "style 4, bits 8",
+    "style 4, bits 9",
+    "style 4, bits 10",
+    "style 4, bits 11",
+    "style 4, bits 12",
+    "style 4, bits 13",
+    "style 4, bits 14",
+    "style 4, bits 15"
+   ]
+  },
+  {
+   "id": "overgrowth-void",
+   "label": "Overgrowth map - the void (256 x 256, seamless, repeated across the whole map)",
+   "category": "Overgrowth map",
+   "kind": "still",
+   "place": "none",
+   "w": 256,
+   "h": 256,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 0,
+    "y": 0
+   },
+   "file": "overgrowth/overgrowth-void.png",
+   "frames": 1
+  },
+  {
+   "id": "overgrowth-mushroom-purple",
+   "label": "Overgrowth map - Mushrooms (purple)",
+   "category": "Overgrowth map",
+   "kind": "variants",
+   "place": "none",
+   "w": 24,
+   "h": 24,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 12,
+    "y": 21
+   },
+   "file": "overgrowth/overgrowth-mushroom-purple.png",
+   "frames": 1,
+   "names": [
+    "mushroom-purple 1"
+   ]
+  },
+  {
+   "id": "overgrowth-mushroom-blue",
+   "label": "Overgrowth map - Mushrooms (blue)",
+   "category": "Overgrowth map",
+   "kind": "variants",
+   "place": "none",
+   "w": 24,
+   "h": 24,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 12,
+    "y": 21
+   },
+   "file": "overgrowth/overgrowth-mushroom-blue.png",
+   "frames": 1,
+   "names": [
+    "mushroom-blue 1"
+   ]
+  },
+  {
+   "id": "overgrowth-mushroom-red",
+   "label": "Overgrowth map - Mushrooms (red)",
+   "category": "Overgrowth map",
+   "kind": "variants",
+   "place": "none",
+   "w": 24,
+   "h": 24,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 12,
+    "y": 21
+   },
+   "file": "overgrowth/overgrowth-mushroom-red.png",
+   "frames": 1,
+   "names": [
+    "mushroom-red 1"
+   ]
+  },
+  {
+   "id": "overgrowth-crystal-violet",
+   "label": "Overgrowth map - Crystals (violet)",
+   "category": "Overgrowth map",
+   "kind": "variants",
+   "place": "none",
+   "w": 16,
+   "h": 16,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 8,
+    "y": 14
+   },
+   "file": "overgrowth/overgrowth-crystal-violet.png",
+   "frames": 1,
+   "names": [
+    "crystal-violet 1"
+   ]
+  },
+  {
+   "id": "overgrowth-crystal-cyan",
+   "label": "Overgrowth map - Crystals (cyan)",
+   "category": "Overgrowth map",
+   "kind": "variants",
+   "place": "none",
+   "w": 16,
+   "h": 16,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 8,
+    "y": 14
+   },
+   "file": "overgrowth/overgrowth-crystal-cyan.png",
+   "frames": 1,
+   "names": [
+    "crystal-cyan 1"
+   ]
+  },
+  {
+   "id": "overgrowth-rock",
+   "label": "Overgrowth map - Rocks (2)",
+   "category": "Overgrowth map",
+   "kind": "variants",
+   "place": "none",
+   "w": 16,
+   "h": 16,
+   "cols": 2,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 8,
+    "y": 14
+   },
+   "file": "overgrowth/overgrowth-rock.png",
+   "frames": 2,
+   "names": [
+    "rock 1",
+    "rock 2"
+   ]
+  },
+  {
+   "id": "overgrowth-fern",
+   "label": "Overgrowth map - Ferns (2)",
+   "category": "Overgrowth map",
+   "kind": "variants",
+   "place": "none",
+   "w": 16,
+   "h": 16,
+   "cols": 2,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 8,
+    "y": 14
+   },
+   "file": "overgrowth/overgrowth-fern.png",
+   "frames": 2,
+   "names": [
+    "fern 1",
+    "fern 2"
+   ]
+  },
+  {
+   "id": "overgrowth-bush",
+   "label": "Overgrowth map - Bushes (2)",
+   "category": "Overgrowth map",
+   "kind": "variants",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 2,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 28
+   },
+   "file": "overgrowth/overgrowth-bush.png",
+   "frames": 2,
+   "names": [
+    "bush 1",
+    "bush 2"
+   ]
+  },
+  {
+   "id": "overgrowth-wisp",
+   "label": "Overgrowth map - Wisp (animated)",
+   "category": "Overgrowth map",
+   "kind": "animation",
+   "place": "none",
+   "w": 16,
+   "h": 16,
+   "cols": 4,
+   "rows": 1,
+   "fps": 6,
+   "anchor": {
+    "x": 8,
+    "y": 14
+   },
+   "file": "overgrowth/overgrowth-wisp.png",
+   "frames": 4
+  },
+  {
+   "id": "overgrowth-vine-hang",
+   "label": "Overgrowth map - Hanging root vines (6), anchored at the top",
+   "category": "Overgrowth map",
+   "kind": "variants",
+   "place": "none",
+   "w": 20,
+   "h": 34,
+   "cols": 6,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 10,
+    "y": 0
+   },
+   "file": "overgrowth/overgrowth-vine-hang.png",
+   "frames": 6,
+   "names": [
+    "vine-hang 1",
+    "vine-hang 2",
+    "vine-hang 3",
+    "vine-hang 4",
+    "vine-hang 5",
+    "vine-hang 6"
+   ]
+  },
+  {
+   "id": "overgrowth-moss-drape",
+   "label": "Overgrowth map - Hanging moss (4), anchored at the top",
+   "category": "Overgrowth map",
+   "kind": "variants",
+   "place": "none",
+   "w": 12,
+   "h": 28,
+   "cols": 4,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 6,
+    "y": 0
+   },
+   "file": "overgrowth/overgrowth-moss-drape.png",
+   "frames": 4,
+   "names": [
+    "moss-drape 1",
+    "moss-drape 2",
+    "moss-drape 3",
+    "moss-drape 4"
+   ]
+  },
+  {
+   "id": "overgrowth-tendril",
+   "label": "Overgrowth map - Root tendrils (4)",
+   "category": "Overgrowth map",
+   "kind": "variants",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 4,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "overgrowth/overgrowth-tendril.png",
+   "frames": 4,
+   "names": [
+    "tendril 1",
+    "tendril 2",
+    "tendril 3",
+    "tendril 4"
+   ]
+  },
+  {
+   "id": "overgrowth-moss-patch",
+   "label": "Overgrowth map - Moss patches (3 light, 2 dark hollows)",
+   "category": "Overgrowth map",
+   "kind": "variants",
+   "place": "none",
+   "w": 32,
+   "h": 32,
+   "cols": 5,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 16
+   },
+   "file": "overgrowth/overgrowth-moss-patch.png",
+   "frames": 5,
+   "names": [
+    "moss-patch 1",
+    "moss-patch 2",
+    "moss-patch 3",
+    "moss-patch 4",
+    "moss-patch 5"
+   ]
+  },
+  {
+   "id": "overgrowth-tone-patch",
+   "label": "Overgrowth map - Big moss patches (4 lighter, 4 deeper)",
+   "category": "Overgrowth map",
+   "kind": "variants",
+   "place": "none",
+   "w": 40,
+   "h": 40,
+   "cols": 8,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 20,
+    "y": 20
+   },
+   "file": "overgrowth/overgrowth-tone-patch.png",
+   "frames": 8,
+   "names": [
+    "tone-patch 1",
+    "tone-patch 2",
+    "tone-patch 3",
+    "tone-patch 4",
+    "tone-patch 5",
+    "tone-patch 6",
+    "tone-patch 7",
+    "tone-patch 8"
+   ]
+  },
+  {
+   "id": "overgrowth-node-battle-idle",
+   "label": "Overgrowth map - Battle - a leaf bud - idle",
+   "category": "Overgrowth map",
+   "kind": "animation",
+   "place": "none",
+   "w": 48,
+   "h": 48,
+   "cols": 4,
+   "rows": 1,
+   "fps": 4,
+   "anchor": {
+    "x": 24,
+    "y": 34
+   },
+   "file": "overgrowth/overgrowth-node-battle-idle.png",
+   "frames": 4
+  },
+  {
+   "id": "overgrowth-node-battle-hover",
+   "label": "Overgrowth map - Battle - a leaf bud - hover",
+   "category": "Overgrowth map",
+   "kind": "animation",
+   "place": "none",
+   "w": 48,
+   "h": 48,
+   "cols": 4,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 24,
+    "y": 34
+   },
+   "file": "overgrowth/overgrowth-node-battle-hover.png",
+   "frames": 4
+  },
+  {
+   "id": "overgrowth-node-battle-click",
+   "label": "Overgrowth map - Battle - a leaf bud - click",
+   "category": "Overgrowth map",
+   "kind": "animation",
+   "place": "none",
+   "w": 48,
+   "h": 48,
+   "cols": 6,
+   "rows": 1,
+   "fps": 12,
+   "anchor": {
+    "x": 24,
+    "y": 34
+   },
+   "file": "overgrowth/overgrowth-node-battle-click.png",
+   "frames": 6
+  },
+  {
+   "id": "overgrowth-node-battle-used",
+   "label": "Overgrowth map - Battle - a leaf bud - used",
+   "category": "Overgrowth map",
+   "kind": "still",
+   "place": "none",
+   "w": 48,
+   "h": 48,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 24,
+    "y": 34
+   },
+   "file": "overgrowth/overgrowth-node-battle-used.png",
+   "frames": 1
+  },
+  {
+   "id": "overgrowth-node-event-idle",
+   "label": "Overgrowth map - Event - a blue flame flower - idle",
+   "category": "Overgrowth map",
+   "kind": "animation",
+   "place": "none",
+   "w": 48,
+   "h": 48,
+   "cols": 4,
+   "rows": 1,
+   "fps": 4,
+   "anchor": {
+    "x": 24,
+    "y": 34
+   },
+   "file": "overgrowth/overgrowth-node-event-idle.png",
+   "frames": 4
+  },
+  {
+   "id": "overgrowth-node-event-hover",
+   "label": "Overgrowth map - Event - a blue flame flower - hover",
+   "category": "Overgrowth map",
+   "kind": "animation",
+   "place": "none",
+   "w": 48,
+   "h": 48,
+   "cols": 4,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 24,
+    "y": 34
+   },
+   "file": "overgrowth/overgrowth-node-event-hover.png",
+   "frames": 4
+  },
+  {
+   "id": "overgrowth-node-event-click",
+   "label": "Overgrowth map - Event - a blue flame flower - click",
+   "category": "Overgrowth map",
+   "kind": "animation",
+   "place": "none",
+   "w": 48,
+   "h": 48,
+   "cols": 6,
+   "rows": 1,
+   "fps": 12,
+   "anchor": {
+    "x": 24,
+    "y": 34
+   },
+   "file": "overgrowth/overgrowth-node-event-click.png",
+   "frames": 6
+  },
+  {
+   "id": "overgrowth-node-event-used",
+   "label": "Overgrowth map - Event - a blue flame flower - used",
+   "category": "Overgrowth map",
+   "kind": "still",
+   "place": "none",
+   "w": 48,
+   "h": 48,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 24,
+    "y": 34
+   },
+   "file": "overgrowth/overgrowth-node-event-used.png",
+   "frames": 1
+  },
+  {
+   "id": "overgrowth-node-elite-idle",
+   "label": "Overgrowth map - Elite - an eye flower - idle",
+   "category": "Overgrowth map",
+   "kind": "animation",
+   "place": "none",
+   "w": 48,
+   "h": 48,
+   "cols": 4,
+   "rows": 1,
+   "fps": 4,
+   "anchor": {
+    "x": 24,
+    "y": 34
+   },
+   "file": "overgrowth/overgrowth-node-elite-idle.png",
+   "frames": 4
+  },
+  {
+   "id": "overgrowth-node-elite-hover",
+   "label": "Overgrowth map - Elite - an eye flower - hover",
+   "category": "Overgrowth map",
+   "kind": "animation",
+   "place": "none",
+   "w": 48,
+   "h": 48,
+   "cols": 4,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 24,
+    "y": 34
+   },
+   "file": "overgrowth/overgrowth-node-elite-hover.png",
+   "frames": 4
+  },
+  {
+   "id": "overgrowth-node-elite-click",
+   "label": "Overgrowth map - Elite - an eye flower - click",
+   "category": "Overgrowth map",
+   "kind": "animation",
+   "place": "none",
+   "w": 48,
+   "h": 48,
+   "cols": 6,
+   "rows": 1,
+   "fps": 12,
+   "anchor": {
+    "x": 24,
+    "y": 34
+   },
+   "file": "overgrowth/overgrowth-node-elite-click.png",
+   "frames": 6
+  },
+  {
+   "id": "overgrowth-node-elite-used",
+   "label": "Overgrowth map - Elite - an eye flower - used",
+   "category": "Overgrowth map",
+   "kind": "still",
+   "place": "none",
+   "w": 48,
+   "h": 48,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 24,
+    "y": 34
+   },
+   "file": "overgrowth/overgrowth-node-elite-used.png",
+   "frames": 1
+  },
+  {
+   "id": "overgrowth-node-shop-idle",
+   "label": "Overgrowth map - Shop - a marigold with a coin - idle",
+   "category": "Overgrowth map",
+   "kind": "animation",
+   "place": "none",
+   "w": 48,
+   "h": 48,
+   "cols": 4,
+   "rows": 1,
+   "fps": 4,
+   "anchor": {
+    "x": 24,
+    "y": 34
+   },
+   "file": "overgrowth/overgrowth-node-shop-idle.png",
+   "frames": 4
+  },
+  {
+   "id": "overgrowth-node-shop-hover",
+   "label": "Overgrowth map - Shop - a marigold with a coin - hover",
+   "category": "Overgrowth map",
+   "kind": "animation",
+   "place": "none",
+   "w": 48,
+   "h": 48,
+   "cols": 4,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 24,
+    "y": 34
+   },
+   "file": "overgrowth/overgrowth-node-shop-hover.png",
+   "frames": 4
+  },
+  {
+   "id": "overgrowth-node-shop-click",
+   "label": "Overgrowth map - Shop - a marigold with a coin - click",
+   "category": "Overgrowth map",
+   "kind": "animation",
+   "place": "none",
+   "w": 48,
+   "h": 48,
+   "cols": 6,
+   "rows": 1,
+   "fps": 12,
+   "anchor": {
+    "x": 24,
+    "y": 34
+   },
+   "file": "overgrowth/overgrowth-node-shop-click.png",
+   "frames": 6
+  },
+  {
+   "id": "overgrowth-node-shop-used",
+   "label": "Overgrowth map - Shop - a marigold with a coin - used",
+   "category": "Overgrowth map",
+   "kind": "still",
+   "place": "none",
+   "w": 48,
+   "h": 48,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 24,
+    "y": 34
+   },
+   "file": "overgrowth/overgrowth-node-shop-used.png",
+   "frames": 1
+  },
+  {
+   "id": "overgrowth-node-rest-idle",
+   "label": "Overgrowth map - Rest - a lotus with an ember - idle",
+   "category": "Overgrowth map",
+   "kind": "animation",
+   "place": "none",
+   "w": 48,
+   "h": 48,
+   "cols": 4,
+   "rows": 1,
+   "fps": 4,
+   "anchor": {
+    "x": 24,
+    "y": 34
+   },
+   "file": "overgrowth/overgrowth-node-rest-idle.png",
+   "frames": 4
+  },
+  {
+   "id": "overgrowth-node-rest-hover",
+   "label": "Overgrowth map - Rest - a lotus with an ember - hover",
+   "category": "Overgrowth map",
+   "kind": "animation",
+   "place": "none",
+   "w": 48,
+   "h": 48,
+   "cols": 4,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 24,
+    "y": 34
+   },
+   "file": "overgrowth/overgrowth-node-rest-hover.png",
+   "frames": 4
+  },
+  {
+   "id": "overgrowth-node-rest-click",
+   "label": "Overgrowth map - Rest - a lotus with an ember - click",
+   "category": "Overgrowth map",
+   "kind": "animation",
+   "place": "none",
+   "w": 48,
+   "h": 48,
+   "cols": 6,
+   "rows": 1,
+   "fps": 12,
+   "anchor": {
+    "x": 24,
+    "y": 34
+   },
+   "file": "overgrowth/overgrowth-node-rest-click.png",
+   "frames": 6
+  },
+  {
+   "id": "overgrowth-node-rest-used",
+   "label": "Overgrowth map - Rest - a lotus with an ember - used",
+   "category": "Overgrowth map",
+   "kind": "still",
+   "place": "none",
+   "w": 48,
+   "h": 48,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 24,
+    "y": 34
+   },
+   "file": "overgrowth/overgrowth-node-rest-used.png",
+   "frames": 1
+  },
+  {
+   "id": "overgrowth-node-treasure-idle",
+   "label": "Overgrowth map - Treasure - a gem bulb - idle",
+   "category": "Overgrowth map",
+   "kind": "animation",
+   "place": "none",
+   "w": 48,
+   "h": 48,
+   "cols": 4,
+   "rows": 1,
+   "fps": 4,
+   "anchor": {
+    "x": 24,
+    "y": 34
+   },
+   "file": "overgrowth/overgrowth-node-treasure-idle.png",
+   "frames": 4
+  },
+  {
+   "id": "overgrowth-node-treasure-hover",
+   "label": "Overgrowth map - Treasure - a gem bulb - hover",
+   "category": "Overgrowth map",
+   "kind": "animation",
+   "place": "none",
+   "w": 48,
+   "h": 48,
+   "cols": 4,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 24,
+    "y": 34
+   },
+   "file": "overgrowth/overgrowth-node-treasure-hover.png",
+   "frames": 4
+  },
+  {
+   "id": "overgrowth-node-treasure-click",
+   "label": "Overgrowth map - Treasure - a gem bulb - click",
+   "category": "Overgrowth map",
+   "kind": "animation",
+   "place": "none",
+   "w": 48,
+   "h": 48,
+   "cols": 6,
+   "rows": 1,
+   "fps": 12,
+   "anchor": {
+    "x": 24,
+    "y": 34
+   },
+   "file": "overgrowth/overgrowth-node-treasure-click.png",
+   "frames": 6
+  },
+  {
+   "id": "overgrowth-node-treasure-used",
+   "label": "Overgrowth map - Treasure - a gem bulb - used",
+   "category": "Overgrowth map",
+   "kind": "still",
+   "place": "none",
+   "w": 48,
+   "h": 48,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 24,
+    "y": 34
+   },
+   "file": "overgrowth/overgrowth-node-treasure-used.png",
+   "frames": 1
+  },
+  {
+   "id": "overgrowth-node-mystery-idle",
+   "label": "Overgrowth map - Mystery - an orchid - idle",
+   "category": "Overgrowth map",
+   "kind": "animation",
+   "place": "none",
+   "w": 48,
+   "h": 48,
+   "cols": 4,
+   "rows": 1,
+   "fps": 4,
+   "anchor": {
+    "x": 24,
+    "y": 34
+   },
+   "file": "overgrowth/overgrowth-node-mystery-idle.png",
+   "frames": 4
+  },
+  {
+   "id": "overgrowth-node-mystery-hover",
+   "label": "Overgrowth map - Mystery - an orchid - hover",
+   "category": "Overgrowth map",
+   "kind": "animation",
+   "place": "none",
+   "w": 48,
+   "h": 48,
+   "cols": 4,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 24,
+    "y": 34
+   },
+   "file": "overgrowth/overgrowth-node-mystery-hover.png",
+   "frames": 4
+  },
+  {
+   "id": "overgrowth-node-mystery-click",
+   "label": "Overgrowth map - Mystery - an orchid - click",
+   "category": "Overgrowth map",
+   "kind": "animation",
+   "place": "none",
+   "w": 48,
+   "h": 48,
+   "cols": 6,
+   "rows": 1,
+   "fps": 12,
+   "anchor": {
+    "x": 24,
+    "y": 34
+   },
+   "file": "overgrowth/overgrowth-node-mystery-click.png",
+   "frames": 6
+  },
+  {
+   "id": "overgrowth-node-mystery-used",
+   "label": "Overgrowth map - Mystery - an orchid - used",
+   "category": "Overgrowth map",
+   "kind": "still",
+   "place": "none",
+   "w": 48,
+   "h": 48,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 24,
+    "y": 34
+   },
+   "file": "overgrowth/overgrowth-node-mystery-used.png",
+   "frames": 1
+  },
+  {
+   "id": "overgrowth-node-boss-idle",
+   "label": "Overgrowth map - Summit - the fire lotus - idle",
+   "category": "Overgrowth map",
+   "kind": "animation",
+   "place": "none",
+   "w": 64,
+   "h": 64,
+   "cols": 4,
+   "rows": 1,
+   "fps": 4,
+   "anchor": {
+    "x": 32,
+    "y": 50
+   },
+   "file": "overgrowth/overgrowth-node-boss-idle.png",
+   "frames": 4
+  },
+  {
+   "id": "overgrowth-node-boss-hover",
+   "label": "Overgrowth map - Summit - the fire lotus - hover",
+   "category": "Overgrowth map",
+   "kind": "animation",
+   "place": "none",
+   "w": 64,
+   "h": 64,
+   "cols": 4,
+   "rows": 1,
+   "fps": 8,
+   "anchor": {
+    "x": 32,
+    "y": 50
+   },
+   "file": "overgrowth/overgrowth-node-boss-hover.png",
+   "frames": 4
+  },
+  {
+   "id": "overgrowth-node-boss-click",
+   "label": "Overgrowth map - Summit - the fire lotus - click",
+   "category": "Overgrowth map",
+   "kind": "animation",
+   "place": "none",
+   "w": 64,
+   "h": 64,
+   "cols": 6,
+   "rows": 1,
+   "fps": 12,
+   "anchor": {
+    "x": 32,
+    "y": 50
+   },
+   "file": "overgrowth/overgrowth-node-boss-click.png",
+   "frames": 6
+  },
+  {
+   "id": "overgrowth-node-boss-used",
+   "label": "Overgrowth map - Summit - the fire lotus - used",
+   "category": "Overgrowth map",
+   "kind": "still",
+   "place": "none",
+   "w": 64,
+   "h": 64,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 32,
+    "y": 50
+   },
+   "file": "overgrowth/overgrowth-node-boss-used.png",
+   "frames": 1
+  },
+  {
+   "id": "overgrowth-path-default",
+   "label": "Overgrowth map - route, default: the way you can go (4 pulse phases)",
+   "category": "Overgrowth map",
+   "kind": "animation",
+   "place": "none",
+   "w": 5,
+   "h": 5,
+   "cols": 4,
+   "rows": 1,
+   "fps": 6,
+   "anchor": {
+    "x": 2,
+    "y": 2
+   },
+   "file": "overgrowth/overgrowth-path-default.png",
+   "frames": 4
+  },
+  {
+   "id": "overgrowth-path-off",
+   "label": "Overgrowth map - route, off: the way you cannot go",
+   "category": "Overgrowth map",
+   "kind": "still",
+   "place": "none",
+   "w": 4,
+   "h": 4,
+   "cols": 1,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 1,
+    "y": 1
+   },
+   "file": "overgrowth/overgrowth-path-off.png",
+   "frames": 1
+  },
+  {
+   "id": "overgrowth-path-used",
+   "label": "Overgrowth map - route, used: a step of trail, a bright step, the sparkle",
+   "category": "Overgrowth map",
+   "kind": "variants",
+   "place": "none",
+   "w": 7,
+   "h": 7,
+   "cols": 3,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 3,
+    "y": 3
+   },
+   "file": "overgrowth/overgrowth-path-used.png",
+   "frames": 3,
+   "names": [
+    "trail step",
+    "bright step (every 5th)",
+    "sparkle"
+   ]
+  },
+  {
    "id": "bld-stone-wall",
    "label": "Buildings - Stone walls",
    "category": "Buildings",
