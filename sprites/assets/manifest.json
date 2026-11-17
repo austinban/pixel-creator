@@ -10467,6 +10467,290 @@
    ]
   },
   {
+   "id": "bld-flat-roof-stone",
+   "label": "Buildings - Flat roof, stone",
+   "category": "Buildings",
+   "kind": "variants",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 24
+   },
+   "file": "building-decks/bld-flat-roof-stone.png",
+   "frames": 10,
+   "names": [
+    "deck",
+    "edge px",
+    "edge nx",
+    "edge py",
+    "edge ny",
+    "corner px py",
+    "corner nx ny",
+    "corner px ny",
+    "corner nx py",
+    "hatch"
+   ]
+  },
+  {
+   "id": "bld-flat-roof-timber",
+   "label": "Buildings - Flat roof, timber house",
+   "category": "Buildings",
+   "kind": "variants",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 24
+   },
+   "file": "building-decks/bld-flat-roof-timber.png",
+   "frames": 10,
+   "names": [
+    "deck",
+    "edge px",
+    "edge nx",
+    "edge py",
+    "edge ny",
+    "corner px py",
+    "corner nx ny",
+    "corner px ny",
+    "corner nx py",
+    "hatch"
+   ]
+  },
+  {
+   "id": "bld-flat-roof-tile",
+   "label": "Buildings - Flat roof, terracotta tile",
+   "category": "Buildings",
+   "kind": "variants",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 24
+   },
+   "file": "building-decks/bld-flat-roof-tile.png",
+   "frames": 10,
+   "names": [
+    "deck",
+    "edge px",
+    "edge nx",
+    "edge py",
+    "edge ny",
+    "corner px py",
+    "corner nx ny",
+    "corner px ny",
+    "corner nx py",
+    "hatch"
+   ]
+  },
+  {
+   "id": "bld-flat-roof-slate",
+   "label": "Buildings - Flat roof, slate",
+   "category": "Buildings",
+   "kind": "variants",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 24
+   },
+   "file": "building-decks/bld-flat-roof-slate.png",
+   "frames": 10,
+   "names": [
+    "deck",
+    "edge px",
+    "edge nx",
+    "edge py",
+    "edge ny",
+    "corner px py",
+    "corner nx ny",
+    "corner px ny",
+    "corner nx py",
+    "hatch"
+   ]
+  },
+  {
+   "id": "bld-flat-roof-teal",
+   "label": "Buildings - Flat roof, teal",
+   "category": "Buildings",
+   "kind": "variants",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 24
+   },
+   "file": "building-decks/bld-flat-roof-teal.png",
+   "frames": 10,
+   "names": [
+    "deck",
+    "edge px",
+    "edge nx",
+    "edge py",
+    "edge ny",
+    "corner px py",
+    "corner nx ny",
+    "corner px ny",
+    "corner nx py",
+    "hatch"
+   ]
+  },
+  {
+   "id": "bld-flat-roof-plank",
+   "label": "Buildings - Flat roof, plank",
+   "category": "Buildings",
+   "kind": "variants",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 2,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 24
+   },
+   "file": "building-decks/bld-flat-roof-plank.png",
+   "frames": 10,
+   "names": [
+    "deck",
+    "edge px",
+    "edge nx",
+    "edge py",
+    "edge ny",
+    "corner px py",
+    "corner nx ny",
+    "corner px ny",
+    "corner nx py",
+    "hatch"
+   ]
+  },
+  {
+   "id": "bld-balcony-stone",
+   "label": "Buildings - Balcony, stone",
+   "category": "Buildings",
+   "kind": "variants",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 24
+   },
+   "file": "building-decks/bld-balcony-stone.png",
+   "frames": 7,
+   "names": [
+    "alcove x",
+    "alcove y",
+    "run x",
+    "run y",
+    "run start x",
+    "run start y",
+    "corner"
+   ]
+  },
+  {
+   "id": "bld-balcony-timber",
+   "label": "Buildings - Balcony, timber house",
+   "category": "Buildings",
+   "kind": "variants",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 24
+   },
+   "file": "building-decks/bld-balcony-timber.png",
+   "frames": 7,
+   "names": [
+    "alcove x",
+    "alcove y",
+    "run x",
+    "run y",
+    "run start x",
+    "run start y",
+    "corner"
+   ]
+  },
+  {
+   "id": "bld-balcony-plank",
+   "label": "Buildings - Balcony, plank",
+   "category": "Buildings",
+   "kind": "variants",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 24
+   },
+   "file": "building-decks/bld-balcony-plank.png",
+   "frames": 7,
+   "names": [
+    "alcove x",
+    "alcove y",
+    "run x",
+    "run y",
+    "run start x",
+    "run start y",
+    "corner"
+   ]
+  },
+  {
+   "id": "bld-supports",
+   "label": "Buildings - Balcony supports",
+   "category": "Buildings",
+   "kind": "variants",
+   "place": "ground",
+   "w": 32,
+   "h": 32,
+   "cols": 8,
+   "rows": 1,
+   "fps": 0,
+   "anchor": {
+    "x": 16,
+    "y": 24
+   },
+   "file": "building-decks/bld-supports.png",
+   "frames": 3,
+   "names": [
+    "plank post",
+    "plum timber post",
+    "stone pillar"
+   ]
+  },
+  {
    "id": "trap-caltrops",
    "label": "Caltrops - placed (waiting on the ground)",
    "category": "Traps",

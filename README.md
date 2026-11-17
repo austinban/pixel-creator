@@ -381,6 +381,8 @@ A kit of building tiles to build houses, towers and whole streets from: 33 piece
 **README.md for the app that uses it** (placement, NE and SE, how to make walls, doors, roofs and towers), a `buildings.json` with every piece and the rules in numbers, and an example street with its piece list.
 `tools/buildings.py` is the renderer and `tools/make_buildings.py` the kit and a `Town` helper that builds with it.
 
+The **flat roofs and balconies** are 84 more pieces in the same format (32 x 32, anchored at (16, 24), category **Buildings**, `tools/make_building_decks.py`; `--preview` shows every piece and four small houses), in the folder `sprites/assets/building-decks/` with a README and `building-decks.json`: six flat roofs (stone, timber-framed house, terracotta, slate, teal and plank; each a deck, a hatch, four one-side parapets and four corners), three balconies (stone on corbels, timber-house with plaster panels between plum posts, and plank; each in seven rail layouts that join in a row) and three supports. The walkable top is **0.5 level (one game step) above the piece's base**, so a roof sits on top of a storey and a balcony goes at a storey floor, one cell out from the wall.
+
 ## Terrain
 
 `terrain.html` lays the ground tiles out as an isometric map: grass with trees,

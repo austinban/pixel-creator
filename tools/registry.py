@@ -60,6 +60,7 @@ UNITS = [
     Unit('weather', 'make_weather'),
     Unit('nodemap', 'make_nodemap'),
     Unit('buildings', 'make_buildings'),
+    Unit('building-decks', 'make_building_decks', depends=('make_buildings', 'buildings')),
     Unit('traps', 'make_traps'),
     Unit('chests', 'make_chest'),
     Unit('fungi', 'make_fungi'),

@@ -127,8 +127,10 @@ GROUPS = {
     'weather-ripples': dict(label='Rain ripples and splashes', role='decor', fits='any', style='weather', regex=r'^weather-(ripple|splash)-.*', note='Ground and water decals for rain; one shot.'),
     'traps': dict(label='Traps', role='hazard', fits='any', style='iron', prefix='trap-'),
     'chests': dict(label='Chests', role='decor', fits='any', style='timber', prefix='chest-'),
-    'buildings': dict(label='Buildings', role='structure', fits='any', style='blocky', prefix='bld-',
+    'buildings': dict(label='Buildings', role='structure', fits='any', style='blocky', regex=r'^bld-(?!flat-roof|balcony|supports)',
                       note='The kit of walls and roofs; `-aged` pieces are the weathered versions that sit in a ruined or corrupted town.'),
+    'building-decks': dict(label='Flat roofs and balconies', role='structure', fits='any', style='blocky', regex=r'^bld-(flat-roof|balcony|supports)',
+                           note='For the buildings kit: walkable flat roofs (half a level thick, with a parapet) and balconies in stone, timber-house and plank, with supports. Place a balcony at a storey floor, on the wall that faces out.'),
 }
 
 # --- sets -----------------------------------------------------------------------------------------
@@ -180,7 +182,7 @@ SETS = {
         scatter=dict(density=0.13, groups={'fences': 3, 'crates': 3, 'bushes': 2, 'trees-temperate': 1, 'destructibles-small': 3}),
         features=dict(per100=3.5, groups={'low-stalls': 3, 'low-hay': 3, 'low-carts': 2, 'rocks-ledge': 2, 'destructibles-long': 1}),
         connectors=['stairs-new', 'stairs-scaffold'],
-        structures=['buildings'],
+        structures=['buildings', 'building-decks'],
         weather=dict(chance=0.2, groups={'weather-rain': 1}),
     ),
     'fallen-town': dict(
@@ -190,7 +192,7 @@ SETS = {
         scatter=dict(density=0.15, groups={'trees-dead': 3, 'fences': 2, 'crates': 2, 'logs': 2, 'ground-props-plain': 1, 'ruins-walls': 4, 'ruins-walls-grown': 1, 'destructibles-small': 2}),
         features=dict(per100=4.5, groups={'ruins-heaps': 3, 'ruins-walls-long': 2, 'ruins-floors': 2, 'ruins-floors-grown': 1, 'ruins-heaps-grown': 1, 'rocks-crag': 1, 'low-hay': 1, 'destructibles-long': 1}),
         connectors=['stairs-scaffold'],
-        structures=['buildings'],
+        structures=['buildings', 'building-decks'],
         weather=dict(chance=0.6, groups={'weather-embers': 3, 'weather-fog': 1}),
     ),
     'spore-hollow': dict(

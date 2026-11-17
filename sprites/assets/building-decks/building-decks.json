@@ -1,0 +1,668 @@
+{
+ "about": "The flat roofs and balconies in this folder. See README.md beside this file.",
+ "cell": [
+  32,
+  32
+ ],
+ "anchor": [
+  16,
+  24
+ ],
+ "deck_top_levels": 0.5,
+ "parapet_top_levels": 0.82,
+ "groups": {
+  "bld-flat-roof-stone": {
+   "label": "Flat roof, stone",
+   "pieces": [
+    {
+     "id": "deck",
+     "kind": "roof",
+     "sides": []
+    },
+    {
+     "id": "edge-px",
+     "kind": "roof",
+     "sides": [
+      "+x"
+     ]
+    },
+    {
+     "id": "edge-nx",
+     "kind": "roof",
+     "sides": [
+      "-x"
+     ]
+    },
+    {
+     "id": "edge-py",
+     "kind": "roof",
+     "sides": [
+      "+y"
+     ]
+    },
+    {
+     "id": "edge-ny",
+     "kind": "roof",
+     "sides": [
+      "-y"
+     ]
+    },
+    {
+     "id": "corner-px-py",
+     "kind": "roof",
+     "sides": [
+      "+x",
+      "+y"
+     ]
+    },
+    {
+     "id": "corner-nx-ny",
+     "kind": "roof",
+     "sides": [
+      "-x",
+      "-y"
+     ]
+    },
+    {
+     "id": "corner-px-ny",
+     "kind": "roof",
+     "sides": [
+      "+x",
+      "-y"
+     ]
+    },
+    {
+     "id": "corner-nx-py",
+     "kind": "roof",
+     "sides": [
+      "-x",
+      "+y"
+     ]
+    },
+    {
+     "id": "hatch",
+     "kind": "roof",
+     "sides": []
+    }
+   ]
+  },
+  "bld-flat-roof-timber": {
+   "label": "Flat roof, timber house",
+   "pieces": [
+    {
+     "id": "deck",
+     "kind": "roof",
+     "sides": []
+    },
+    {
+     "id": "edge-px",
+     "kind": "roof",
+     "sides": [
+      "+x"
+     ]
+    },
+    {
+     "id": "edge-nx",
+     "kind": "roof",
+     "sides": [
+      "-x"
+     ]
+    },
+    {
+     "id": "edge-py",
+     "kind": "roof",
+     "sides": [
+      "+y"
+     ]
+    },
+    {
+     "id": "edge-ny",
+     "kind": "roof",
+     "sides": [
+      "-y"
+     ]
+    },
+    {
+     "id": "corner-px-py",
+     "kind": "roof",
+     "sides": [
+      "+x",
+      "+y"
+     ]
+    },
+    {
+     "id": "corner-nx-ny",
+     "kind": "roof",
+     "sides": [
+      "-x",
+      "-y"
+     ]
+    },
+    {
+     "id": "corner-px-ny",
+     "kind": "roof",
+     "sides": [
+      "+x",
+      "-y"
+     ]
+    },
+    {
+     "id": "corner-nx-py",
+     "kind": "roof",
+     "sides": [
+      "-x",
+      "+y"
+     ]
+    },
+    {
+     "id": "hatch",
+     "kind": "roof",
+     "sides": []
+    }
+   ]
+  },
+  "bld-flat-roof-tile": {
+   "label": "Flat roof, terracotta tile",
+   "pieces": [
+    {
+     "id": "deck",
+     "kind": "roof",
+     "sides": []
+    },
+    {
+     "id": "edge-px",
+     "kind": "roof",
+     "sides": [
+      "+x"
+     ]
+    },
+    {
+     "id": "edge-nx",
+     "kind": "roof",
+     "sides": [
+      "-x"
+     ]
+    },
+    {
+     "id": "edge-py",
+     "kind": "roof",
+     "sides": [
+      "+y"
+     ]
+    },
+    {
+     "id": "edge-ny",
+     "kind": "roof",
+     "sides": [
+      "-y"
+     ]
+    },
+    {
+     "id": "corner-px-py",
+     "kind": "roof",
+     "sides": [
+      "+x",
+      "+y"
+     ]
+    },
+    {
+     "id": "corner-nx-ny",
+     "kind": "roof",
+     "sides": [
+      "-x",
+      "-y"
+     ]
+    },
+    {
+     "id": "corner-px-ny",
+     "kind": "roof",
+     "sides": [
+      "+x",
+      "-y"
+     ]
+    },
+    {
+     "id": "corner-nx-py",
+     "kind": "roof",
+     "sides": [
+      "-x",
+      "+y"
+     ]
+    },
+    {
+     "id": "hatch",
+     "kind": "roof",
+     "sides": []
+    }
+   ]
+  },
+  "bld-flat-roof-slate": {
+   "label": "Flat roof, slate",
+   "pieces": [
+    {
+     "id": "deck",
+     "kind": "roof",
+     "sides": []
+    },
+    {
+     "id": "edge-px",
+     "kind": "roof",
+     "sides": [
+      "+x"
+     ]
+    },
+    {
+     "id": "edge-nx",
+     "kind": "roof",
+     "sides": [
+      "-x"
+     ]
+    },
+    {
+     "id": "edge-py",
+     "kind": "roof",
+     "sides": [
+      "+y"
+     ]
+    },
+    {
+     "id": "edge-ny",
+     "kind": "roof",
+     "sides": [
+      "-y"
+     ]
+    },
+    {
+     "id": "corner-px-py",
+     "kind": "roof",
+     "sides": [
+      "+x",
+      "+y"
+     ]
+    },
+    {
+     "id": "corner-nx-ny",
+     "kind": "roof",
+     "sides": [
+      "-x",
+      "-y"
+     ]
+    },
+    {
+     "id": "corner-px-ny",
+     "kind": "roof",
+     "sides": [
+      "+x",
+      "-y"
+     ]
+    },
+    {
+     "id": "corner-nx-py",
+     "kind": "roof",
+     "sides": [
+      "-x",
+      "+y"
+     ]
+    },
+    {
+     "id": "hatch",
+     "kind": "roof",
+     "sides": []
+    }
+   ]
+  },
+  "bld-flat-roof-teal": {
+   "label": "Flat roof, teal",
+   "pieces": [
+    {
+     "id": "deck",
+     "kind": "roof",
+     "sides": []
+    },
+    {
+     "id": "edge-px",
+     "kind": "roof",
+     "sides": [
+      "+x"
+     ]
+    },
+    {
+     "id": "edge-nx",
+     "kind": "roof",
+     "sides": [
+      "-x"
+     ]
+    },
+    {
+     "id": "edge-py",
+     "kind": "roof",
+     "sides": [
+      "+y"
+     ]
+    },
+    {
+     "id": "edge-ny",
+     "kind": "roof",
+     "sides": [
+      "-y"
+     ]
+    },
+    {
+     "id": "corner-px-py",
+     "kind": "roof",
+     "sides": [
+      "+x",
+      "+y"
+     ]
+    },
+    {
+     "id": "corner-nx-ny",
+     "kind": "roof",
+     "sides": [
+      "-x",
+      "-y"
+     ]
+    },
+    {
+     "id": "corner-px-ny",
+     "kind": "roof",
+     "sides": [
+      "+x",
+      "-y"
+     ]
+    },
+    {
+     "id": "corner-nx-py",
+     "kind": "roof",
+     "sides": [
+      "-x",
+      "+y"
+     ]
+    },
+    {
+     "id": "hatch",
+     "kind": "roof",
+     "sides": []
+    }
+   ]
+  },
+  "bld-flat-roof-plank": {
+   "label": "Flat roof, plank",
+   "pieces": [
+    {
+     "id": "deck",
+     "kind": "roof",
+     "sides": []
+    },
+    {
+     "id": "edge-px",
+     "kind": "roof",
+     "sides": [
+      "+x"
+     ]
+    },
+    {
+     "id": "edge-nx",
+     "kind": "roof",
+     "sides": [
+      "-x"
+     ]
+    },
+    {
+     "id": "edge-py",
+     "kind": "roof",
+     "sides": [
+      "+y"
+     ]
+    },
+    {
+     "id": "edge-ny",
+     "kind": "roof",
+     "sides": [
+      "-y"
+     ]
+    },
+    {
+     "id": "corner-px-py",
+     "kind": "roof",
+     "sides": [
+      "+x",
+      "+y"
+     ]
+    },
+    {
+     "id": "corner-nx-ny",
+     "kind": "roof",
+     "sides": [
+      "-x",
+      "-y"
+     ]
+    },
+    {
+     "id": "corner-px-ny",
+     "kind": "roof",
+     "sides": [
+      "+x",
+      "-y"
+     ]
+    },
+    {
+     "id": "corner-nx-py",
+     "kind": "roof",
+     "sides": [
+      "-x",
+      "+y"
+     ]
+    },
+    {
+     "id": "hatch",
+     "kind": "roof",
+     "sides": []
+    }
+   ]
+  },
+  "bld-balcony-stone": {
+   "label": "Balcony, stone",
+   "pieces": [
+    {
+     "id": "alcove-x",
+     "kind": "balcony",
+     "sides": [
+      "+x",
+      "+y",
+      "-y"
+     ]
+    },
+    {
+     "id": "alcove-y",
+     "kind": "balcony",
+     "sides": [
+      "+x",
+      "+y",
+      "-x"
+     ]
+    },
+    {
+     "id": "run-x",
+     "kind": "balcony",
+     "sides": [
+      "+x"
+     ]
+    },
+    {
+     "id": "run-y",
+     "kind": "balcony",
+     "sides": [
+      "+y"
+     ]
+    },
+    {
+     "id": "run-start-x",
+     "kind": "balcony",
+     "sides": [
+      "+x",
+      "-y"
+     ]
+    },
+    {
+     "id": "run-start-y",
+     "kind": "balcony",
+     "sides": [
+      "+y",
+      "-x"
+     ]
+    },
+    {
+     "id": "corner",
+     "kind": "balcony",
+     "sides": [
+      "+x",
+      "+y"
+     ]
+    }
+   ]
+  },
+  "bld-balcony-timber": {
+   "label": "Balcony, timber house",
+   "pieces": [
+    {
+     "id": "alcove-x",
+     "kind": "balcony",
+     "sides": [
+      "+x",
+      "+y",
+      "-y"
+     ]
+    },
+    {
+     "id": "alcove-y",
+     "kind": "balcony",
+     "sides": [
+      "+x",
+      "+y",
+      "-x"
+     ]
+    },
+    {
+     "id": "run-x",
+     "kind": "balcony",
+     "sides": [
+      "+x"
+     ]
+    },
+    {
+     "id": "run-y",
+     "kind": "balcony",
+     "sides": [
+      "+y"
+     ]
+    },
+    {
+     "id": "run-start-x",
+     "kind": "balcony",
+     "sides": [
+      "+x",
+      "-y"
+     ]
+    },
+    {
+     "id": "run-start-y",
+     "kind": "balcony",
+     "sides": [
+      "+y",
+      "-x"
+     ]
+    },
+    {
+     "id": "corner",
+     "kind": "balcony",
+     "sides": [
+      "+x",
+      "+y"
+     ]
+    }
+   ]
+  },
+  "bld-balcony-plank": {
+   "label": "Balcony, plank",
+   "pieces": [
+    {
+     "id": "alcove-x",
+     "kind": "balcony",
+     "sides": [
+      "+x",
+      "+y",
+      "-y"
+     ]
+    },
+    {
+     "id": "alcove-y",
+     "kind": "balcony",
+     "sides": [
+      "+x",
+      "+y",
+      "-x"
+     ]
+    },
+    {
+     "id": "run-x",
+     "kind": "balcony",
+     "sides": [
+      "+x"
+     ]
+    },
+    {
+     "id": "run-y",
+     "kind": "balcony",
+     "sides": [
+      "+y"
+     ]
+    },
+    {
+     "id": "run-start-x",
+     "kind": "balcony",
+     "sides": [
+      "+x",
+      "-y"
+     ]
+    },
+    {
+     "id": "run-start-y",
+     "kind": "balcony",
+     "sides": [
+      "+y",
+      "-x"
+     ]
+    },
+    {
+     "id": "corner",
+     "kind": "balcony",
+     "sides": [
+      "+x",
+      "+y"
+     ]
+    }
+   ]
+  },
+  "bld-supports": {
+   "label": "Balcony supports",
+   "pieces": [
+    {
+     "id": "post-plank",
+     "kind": "support",
+     "sides": []
+    },
+    {
+     "id": "post-timber",
+     "kind": "support",
+     "sides": []
+    },
+    {
+     "id": "pillar-stone",
+     "kind": "support",
+     "sides": []
+    }
+   ]
+  }
+ }
+}
