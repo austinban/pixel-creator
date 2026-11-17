@@ -36,7 +36,7 @@ def main():
         section(f"{ch['id']} ({cv.kind_of(ch['id'])})", cv.check_base(ch['id'], ch['frames'], airborne=airborne), f"{len(ch['frames'])} poses")
         section(f"{ch['id']} bow animation", cv.check_bow(ch['id'], ch['frames']), 'bow poses')
 
-    for boss in ('scorpion-emperor', 'blood-mushroom'):
+    for boss in ('scorpion-emperor', 'blood-mushroom', 'lamprey-mother'):
         boss_dir = cv.ROOT / 'sprites' / boss
         if boss_dir.is_dir():
             found = cv.load_boss_frames(boss_dir, boss)

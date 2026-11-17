@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""The bosses, on a 2 x 2 footprint: 96 x 96 frames, one asset for each action and facing, read from sprites/NAME. The scorpion emperor and the blood mushroom."""
+"""The bosses, on a 2 x 2 footprint: 96 x 96 frames, one asset for each action and facing, read from sprites/NAME. The scorpion emperor, the blood mushroom and the Lamprey Mother."""
 import sys
 from pathlib import Path
 
@@ -10,6 +10,7 @@ import conventions  # noqa: E402
 BOSSES = (
     ('scorpion-emperor', 'emperor', 'Scorpion emperor'),
     ('blood-mushroom', 'blood-mushroom', 'Blood mushroom'),
+    ('lamprey-mother', 'lamprey-mother', 'Lamprey Mother'),
 )
 
 

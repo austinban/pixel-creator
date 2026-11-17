@@ -33,7 +33,7 @@ UNITS = [
     Unit('facing', 'make_facing'),
     Unit('overlays', 'make_overlay', inputs=(ASSETS / 'ground.png',)),
     Unit('ropes', 'make_ropes', inputs=(ROOT / 'poses' / 'base.js',)),
-    Unit('boss', 'make_boss', inputs=(SPRITES / 'scorpion-emperor', SPRITES / 'blood-mushroom')),
+    Unit('boss', 'make_boss', inputs=(SPRITES / 'scorpion-emperor', SPRITES / 'blood-mushroom', SPRITES / 'lamprey-mother')),
     Unit('elite', 'make_elite', inputs=(SPRITES / 'rat-king',)),
     Unit('ui', 'make_ui'),
     Unit('buttons', 'make_buttons'),
